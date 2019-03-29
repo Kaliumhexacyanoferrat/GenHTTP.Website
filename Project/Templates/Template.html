@@ -1,108 +1,141 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{{ title }}</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900">
-    <link rel="stylesheet" href="{{ route 'res/fonts/icomoon/style.css' }}">
+    <title>{{ title }} - GenHTTP Webserver</title>
 
-    <link rel="stylesheet" href="{{ route 'res/css/magnific-popup.css' }}">
-    <link rel="stylesheet" href="{{ route 'res/css/jquery-ui.css' }}">
-    <link rel="stylesheet" href="{{ route 'res/css/owl.carousel.min.css' }}">
-    <link rel="stylesheet" href="{{ route 'res/css/owl.theme.default.min.css' }}">
-    <link rel="stylesheet" href="{{ route 'res/css/bootstrap-datepicker.css' }}">
-
-    <link rel="stylesheet" href="{{ route 'res/css/aos.css' }}">
+    <link rel="stylesheet" href="{{ route 'res/vendors/bootstrap/bootstrap.min.css' }}">
+    <link rel="stylesheet" href="{{ route 'res/vendors/themify/themify.css' }}">
+    <link rel="stylesheet" href="{{ route 'res/vendors/owl/owl.theme.default.min.css' }}">
+    <link rel="stylesheet" href="{{ route 'res/vendors/owl/owl.carousel.min.css' }}">
 
     <link rel="stylesheet" href="{{ route 'res/css/style.css' }}">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
+    <style type="text/css">
+
+        .footer-area {
+            padding-top: 0;
+        }
+
+        .hero-banner {
+            background: url({{ route 'res/images/banner.png' }}) left center no-repeat;
+        }
+
+    </style>
+
 </head>
+
 <body>
 
-    <div class="site-wrap">
+    <!--================ Header Menu Area start =================-->
+    <header class="header_area">
 
-        <div class="site-mobile-menu">
-            <div class="site-mobile-menu-header">
-                <div class="site-mobile-menu-close mt-3">
-                    <span class="icon-close2 js-menu-toggle"></span>
-                </div>
-            </div>
-            <div class="site-mobile-menu-body"></div>
-        </div> <!-- .site-mobile-menu -->
-        
-        <div class="site-navbar-wrap">
-            <div class="site-navbar">
-                <div class="container py-1">
-                    <div class="row align-items-center">
-                        <div class="col-2">
-                            <h1 class="mb-0 site-logo"><a href="{{ route 'index' }}">GenHTTP</a></h1>
-                        </div>
-                        <div class="col-10">
-                            <nav class="site-navigation text-right" role="navigation">
-                                <div class="container">
-                                    <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+        <div class="main_menu">
 
-                                    <ul class="site-menu js-clone-nav d-none d-lg-block">
-                                        <li class="active">
-                                            <a href="{{ route 'index' }}">Home</a>                                           
-                                        </li>                                       
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
+            <nav class="navbar navbar-expand-lg navbar-light">
+
+                <div class="container box_1620">
+
+                    <!-- <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a> -->
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+
+                            <li class="nav-item{{ if (request.path == "/")}} active{{ end }}"><a class="nav-link" href="{{ route 'home' }}">Home</a></li>
+
+                            <li class="nav-item submenu dropdown{{ if ( request.path | string.contains "documentation" ) }} active{{ end }}">
+                                
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                   aria-expanded="false">Documentation</a>
+
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="{{ route 'documentation/intro' }}">Getting Started</a>
+                                </ul>
+
+                            </li>
+
+                            <li class="nav-item"><a class="nav-link" href="https://github.com/Kaliumhexacyanoferrat/GenHTTP">Source</a></li>
+
+                            <li class="nav-item{{ if (request.path == "/legal")}} active{{ end }}"><a class="nav-link" href="{{ route 'legal' }}">Legal</a></li>
+
+                        </ul>
+
                     </div>
+
                 </div>
-            </div>
+
+            </nav>
+
         </div>
 
-        <div class="site-blocks-cover overlay" style="background-image: url({{ route 'res/images/background.jpg' }});" data-aos="fade" data-stellar-background-ratio="0.5">
-            <div class="container">
-                <div class="row align-items-center text-center justify-content-center">
-                    <div class="col-md-8">
-                        <span class="sub-text">Lightweight HTTP server written in C#</span>
-                        <h1>GenHTTP</h1>
-                    </div>
-                </div>
-            </div>
+    </header>
+    <!--================Header Menu Area =================-->
+
+    {{ if (request.path == "/") }}
+
+    <section class="hero-banner text-center">
+        <div class="container">
+            <h1>GenHTTP Webserver</h1>
+            <p class="hero-subtitle">Lightweight web server written in pure C# with no dependencies to 3rd-party libraries. Compatible with .NET Standard 2.0.</p>
+            <a class="button button-outline" href="{{ route 'documentation/intro' }}">Get Started</a>
+        </div>
+    </section>
+
+    {{ else }}
+
+    <section class="hero-banner hero-banner-sm text-center">
+
+        <div class="container">
+            <h1>{{ title }}</h1>
         </div>
 
-        {{ content }}
+    </section>
 
-        <footer class="site-footer border-top">
-            <div class="container">
-                <div class="row pt-5 mt-5 text-center">
-                    <div class="col-md-12">
-                        <p>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </footer>
-
-    </div>
+    {{ end }}
     
-    <script src="{{ route 'res/js/jquery-3.3.1.min.js' }}"></script>
-    <script src="{{ route 'res/js/jquery-migrate-3.0.1.min.js' }}"></script>
-    <script src="{{ route 'res/js/jquery-ui.js' }}"></script>
-    <script src="{{ route 'res/js/popper.min.js' }}"></script>
-    <script src="{{ route 'res/js/bootstrap.min.js' }}"></script>
-    <script src="{{ route 'res/js/owl.carousel.min.js' }}"></script>
-    <script src="{{ route 'res/js/jquery.stellar.min.js' }}"></script>
-    <script src="{{ route 'res/js/jquery.countdown.min.js' }}"></script>
-    <script src="{{ route 'res/js/jquery.magnific-popup.min.js' }}"></script>
-    <script src="{{ route 'res/js/bootstrap-datepicker.min.js' }}"></script>
-    <script src="{{ route 'res/js/aos.js' }}"></script>
+    {{ content }}
 
+    <!-- ================ start footer Area ================= -->
+    <footer class="footer-area section-gap">
+
+        <div class="container">
+
+            <div class="footer-bottom row align-items-center text-center text-lg-left">
+
+                <p class="footer-text m-0 col-lg-8 col-md-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- ================ End footer Area ================= -->
+
+    <script src="{{ route 'res/vendors/jquery/jquery-3.2.1.min.js' }}"></script>
+    <script src="{{ route 'res/vendors/bootstrap/bootstrap.bundle.min.js' }}"></script>
+    <script src="{{ route 'res/vendors/owl/owl.carousel.min.js' }}"></script>
+    <script src="{{ route 'res/js/jquery.ajaxchimp.min.js' }}"></script>
+    <script src="{{ route 'res/js/mail-script.js' }}"></script>
     <script src="{{ route 'res/js/main.js' }}"></script>
 
 </body>
+
 </html>
