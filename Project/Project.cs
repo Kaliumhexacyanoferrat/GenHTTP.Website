@@ -32,7 +32,8 @@ namespace GenHTTP.Website
         private static IRouterBuilder GetDocumentation()
         {
             return Layout.Create()
-                         .AddPage("intro", "Intro", "Getting started");
+                         .AddPage("intro", "Intro", "Getting started")
+                         .Index("intro");
         }
 
         private static LayoutBuilder AddPage(this LayoutBuilder layout, string route, string file, string? title = null)
