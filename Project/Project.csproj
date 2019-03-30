@@ -22,7 +22,7 @@
     <None Remove="Resources\css\magnific-popup.css" />
     <None Remove="Resources\css\style.css" />
     <None Remove="Resources\css\style.map" />
-    <None Remove="Resources\images\banner.png" />
+    <None Remove="Resources\images\banner.jpg" />
     <None Remove="Resources\js\contact.js" />
     <None Remove="Resources\js\countdown.js" />
     <None Remove="Resources\js\jquery.ajaxchimp.min.js" />
@@ -57,7 +57,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Pages\Documentation\Intro.html" />
     <EmbeddedResource Include="Pages\Legal.html" />
-    <EmbeddedResource Include="Resources\images\banner.png" />
+    <EmbeddedResource Include="Resources\images\banner.jpg" />
     <EmbeddedResource Include="Resources\js\contact.js" />
     <EmbeddedResource Include="Resources\js\countdown.js" />
     <EmbeddedResource Include="Resources\js\jquery.ajaxchimp.min.js" />
