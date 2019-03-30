@@ -57,11 +57,11 @@
 
                             <li class="nav-item submenu dropdown{{ if ( request.path | string.contains "documentation" ) }} active{{ end }}">
                                 
-                                <a href="{{ route 'documentation' }}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                <a href="{{ route 'documentation/' }}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                    aria-expanded="false">Documentation</a>
 
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="{{ route 'documentation' }}">Getting Started</a>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route 'documentation/' }}">Getting Started</a>
                                 </ul>
 
                             </li>
@@ -89,7 +89,7 @@
         <div class="container">
             <h1>GenHTTP Webserver</h1>
             <p class="hero-subtitle">Lightweight web server written in pure C# with no dependencies to 3rd-party libraries. Compatible with .NET Standard 2.0.</p>
-            <a class="button button-outline" href="{{ route 'documentation' }}">Get Started</a>
+            <a class="button button-outline" href="{{ route 'documentation/' }}">Get Started</a>
         </div>
     </section>
 
