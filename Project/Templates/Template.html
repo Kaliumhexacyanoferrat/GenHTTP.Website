@@ -14,6 +14,8 @@
 
     <link rel="stylesheet" href="{{ route 'res/css/style.css' }}">
 
+    <link rel="stylesheet" href="{{ route 'res/css/highlight/vs.css' }}">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <style type="text/css">
@@ -24,6 +26,20 @@
 
         .hero-banner {
             background: url({{ route 'res/images/banner.jpg' }}) left center no-repeat;
+        }
+
+        .hero-banner-sm {
+            padding-top: 110px;
+            padding-bottom: 20px;
+        }
+
+        .section-margin {
+            margin: 40px 0px;
+        }
+
+        .regular-list {
+            list-style-type: circle;
+            padding-left: 1em;
         }
 
     </style>
@@ -56,12 +72,20 @@
                             <li class="nav-item{{ if (request.path == "/")}} active{{ end }}"><a class="nav-link" href="{{ route 'home' }}">Home</a></li>
 
                             <li class="nav-item submenu dropdown{{ if ( request.path | string.contains "documentation" ) }} active{{ end }}">
-                                
+
                                 <a href="{{ route 'documentation/' }}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                    aria-expanded="false">Documentation</a>
 
                                 <ul class="dropdown-menu">
+
                                     <li class="nav-item"><a class="nav-link" href="{{ route 'documentation/' }}">Getting Started</a>
+
+                                    <li class="nav-item"><a class="nav-link" href="{{ route 'documentation/content/' }}">Providing Content</a>
+
+                                    <li class="nav-item"><a class="nav-link" href="{{ route 'documentation/server/' }}">Server Setup</a>
+
+                                    <li class="nav-item"><a class="nav-link" href="{{ route 'documentation/hosting/' }}">Hosting Apps</a>
+
                                 </ul>
 
                             </li>
@@ -82,7 +106,6 @@
 
     </header>
     <!--================Header Menu Area =================-->
-
     {{ if (request.path == "/") }}
 
     <section class="hero-banner text-center">
@@ -104,7 +127,7 @@
     </section>
 
     {{ end }}
-    
+
     {{ content }}
 
     <!-- ================ start footer Area ================= -->
@@ -135,6 +158,10 @@
     <script src="{{ route 'res/js/jquery.ajaxchimp.min.js' }}"></script>
     <script src="{{ route 'res/js/mail-script.js' }}"></script>
     <script src="{{ route 'res/js/main.js' }}"></script>
+
+    <script src="{{ route 'res/js/highlight.pack.js' }}"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
 
 </body>
 

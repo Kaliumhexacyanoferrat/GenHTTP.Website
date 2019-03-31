@@ -33,7 +33,31 @@ namespace GenHTTP.Website
         {
             return Layout.Create()
                          .AddPage("intro", "Intro", "Getting started")
+                         .Add("content", GetContent())
+                         .Add("server", GetServer())
+                         .Add("hosting", GetHosting())
                          .Index("intro");
+        }
+
+        private static IRouterBuilder GetContent()
+        {
+            return Layout.Create()
+                         .AddPage("index", "Content.Index", "Providing Content")
+                         .Index("index");
+        }
+
+        private static IRouterBuilder GetServer()
+        {
+            return Layout.Create()
+                         .AddPage("index", "Server.Index", "Server Setup")
+                         .Index("index");
+        }
+
+        private static IRouterBuilder GetHosting()
+        {
+            return Layout.Create()
+                         .AddPage("index", "Hosting.Index", "Hosting Apps")
+                         .Index("index");
         }
 
         private static LayoutBuilder AddPage(this LayoutBuilder layout, string route, string file, string? title = null)

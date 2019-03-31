@@ -1,0 +1,43 @@
+﻿<section class="section-margin">
+
+    <div class="container">
+
+        <div class="row">
+            
+            <h2 class="contact-title">Hosting with Docker</h2>
+
+            <div class="col-12">
+
+                <p>
+                    Currently, there is a bug with the Mono framework that prevents .NET Core 3.0
+                    applications to be deployed via Docker. After the final version has been
+                    released, this section will be updated.
+                </p>
+
+            </div>
+
+            <h2 class="contact-title">Running on Raspberry Pi</h2>
+
+            <div class="col-12">
+
+                <p>
+
+                    To run a .NET Core app on Raspbian OS, you may specify a platform paramter:
+
+                    <pre><code class="bash">dotnet publish -c Release -r linux-arm</code></pre>
+
+                    Copy the resulting files from the <i>bin/Release/netcoreapp3.0/linux-arm/publish/</i>
+                    folder onto the target device, mark the application as executable and run it:
+
+                    <pre><code class="bash">chmod 775 Project
+./Project</code></pre>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

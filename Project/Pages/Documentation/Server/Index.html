@@ -1,0 +1,65 @@
+﻿<section class="section-margin">
+
+    <div class="container">
+
+        <div class="row">
+
+            <h2 class="contact-title">Lifecycle</h2>
+
+            <div class="col-12">
+
+                <p>
+
+                    As a basic requirement, the server needs a router to be supplied
+                    to handle the incoming requests:
+
+                    <pre><code class="csharp">var layout = Layout.Create();
+var server = Server.Create().Router(layout);
+                        
+using (var instance = server.Build())
+{
+    Console.ReadLine();                        
+}</code></pre>
+
+                    The server will start to listen for requests as soon as the <i>Build</i>
+                    method is called. When disposed, the server will stop to process messages
+                    and release all claimed resources.
+
+                </p>
+
+            </div>
+
+            <h2 class="contact-title">Logging &amp; Error Handling</h2>
+
+            <div class="col-12">
+
+                <p>
+
+                    As the server is designed to require no dependencies, it will neither create log files
+                    nor log errors to the console. You can register a <a href="https://github.com/Kaliumhexacyanoferrat/GenHTTP/blob/master/API/GenHTTP.API/Infrastructure/IServerCompanion.cs">Companion</a>
+                    instance that allows you to handle errors and log requests:
+
+                    <pre><code class="csharp">public class ConsoleCompanion : IServerCompanion
+{
+ 
+    public void OnRequestHandled(IHttpRequest request, IHttpResponse response, Exception? error)
+    {
+        Console.Log(request.Path);
+    }
+
+    public void OnServerError(ServerErrorScope scope, Exception error)
+    {
+        Console.Log(error);
+    }
+
+}</code></pre>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

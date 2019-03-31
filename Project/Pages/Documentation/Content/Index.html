@@ -1,0 +1,127 @@
+﻿<section class="section-margin">
+
+    <div class="container">
+
+        <div class="row">
+
+            <h2 class="contact-title">Basic Concepts</h2>
+
+            <div class="col-12">
+
+                <p>
+
+                    The GenHTTP API knows only two different kind of elements, independent from
+                    how complex a web application might be:
+
+                    <ul class="regular-list">
+                        <li>Routers are responsible for the structure of an web application</li>
+                        <li>Content providers serve the actual stream that will be sent to the client</li>
+                    </ul>
+
+                </p>
+
+                <p>
+
+                    The main entry point for every server is a router instance which will handle the
+                    incoming requests and route them to an appropriate child router or content
+                    provider. This allows us to define our application in a plug &amp; play manner
+                    and to encapsulate and re-use functionality where required.
+
+                    <pre><code class="csharp">var download = Download.FromFile("./File.pptx"); // content provider
+var layout = Layout.Create().Add("presentation", download); // router
+var server = Server.Create().Router(layout);</code></pre>
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <h2 class="contact-title">Layouts</h2>
+
+            <div class="col-12">
+
+                <p>
+
+                    Layouts allow to create a virtual structure of your web application. When creating
+                    a website, you will usually face typical questions such as "How do I serve static resources?"
+                    or "How do I add a secure area for admins?". On traditional web servers, such important
+                    structure decisions are usually hidden within the configuration. With layouts, the structure
+                    of your web application can easily be visualized:
+
+                    <pre><code class="csharp">var layout = Layout.Create()
+                   .Add("styles", Static.Files("./css"))
+                   .Add("main.js", Download.FromFile("./js/bundle.min.js"))
+                   .Add("home", Page.From("This is the Index page"))
+                   .Add("privacy", Page.From("This is the Privacy page"))
+                   .Index("home");</code></pre>
+
+                    As layouts are routers themselves, you can easily chain them:
+
+                    <pre><code class="csharp">var shop = Layout.Create(); // setup the webshop section somewhere
+var website = Layout.Create()
+                    .Add("shop", shop);</code></pre>
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <h2 class="contact-title">Templating &amp; Pages</h2>
+
+            <div class="col-12">
+
+                <p>
+
+                    Templates allow to define a basic structure that every generated page of
+                    your web application will be embedded into. For this purpose, a layout allows
+                    to register the template that should be used to serve pages. The <a href="https://www.nuget.org/packages/GenHTTP.Modules.Scriban/">GenHTTP.Scriban</a>
+                    module provides a rendering engine that can be used for this purpose:
+
+                    <pre><code class="csharp">var template = ModScriban.Template(Data.FromFile("./Template.html"));
+var layout = Layout.Create().Template(template);</code></pre>
+
+                    The most basic template file would probably look like this:
+
+                    <pre><code class="html"> &lt;!DOCTYPE html&gt;
+
+&lt;html lang="en" xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;{%{{{ title }}}%}&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    {%{{{ content }}}%}
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                    The title and content properties are part of the <a href="https://github.com/Kaliumhexacyanoferrat/GenHTTP/blob/master/API/GenHTTP.API/Modules/Templating/TemplateModel.cs">TemplateModel</a>
+                    used to render a template. Templates will automatically be inherited from the parent router, if not specified.
+                    
+                    With this feature, you can provide entirely different web applications using the same server instance.
+
+                </p>
+
+                <p>
+
+                    To generate links to files and resources, the route method can be used:
+
+                    <pre><code class="html">{%{{{ route 'res/style.css' }}}%}</code></pre>
+
+                    This allows to generate valid, relative URLs to files or routes that are available in the
+                    routing tree that belongs to the evaluated request.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
