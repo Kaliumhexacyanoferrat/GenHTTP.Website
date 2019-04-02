@@ -29,20 +29,24 @@ using (var instance = server.Build())
 
             </div>
 
+        </div>
+
+        <div class="row">
+
             <h2 class="contact-title">Logging &amp; Error Handling</h2>
 
             <div class="col-12">
 
                 <p>
 
-                    As the server is designed to require no dependencies, it will neither create log files
+                    As the server is designed to require as few dependencies as possible, it will neither create log files
                     nor log errors to the console. You can register a <a href="https://github.com/Kaliumhexacyanoferrat/GenHTTP/blob/master/API/GenHTTP.API/Infrastructure/IServerCompanion.cs">Companion</a>
                     instance that allows you to handle errors and log requests:
 
                     <pre><code class="csharp">public class ConsoleCompanion : IServerCompanion
 {
  
-    public void OnRequestHandled(IHttpRequest request, IHttpResponse response, Exception? error)
+    public void OnRequestHandled(IRequest request, IResponse response, Exception? error)
     {
         Console.Log(request.Path);
     }
@@ -53,6 +57,59 @@ using (var instance = server.Build())
     }
 
 }</code></pre>
+
+                    If you are fine with a simple console-based logger, chain the following call to your server setup:
+
+                    <pre><code class="csharp">var server = Server.Create().Router(...).Console();</code></pre>
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <h2 class="contact-title">Compression</h2>
+
+            <div class="col-12">
+
+                <p>
+
+                    The server will automatically compress content sent to the clients, if applicable. By default,
+                    support for <a href="https://www.gzip.org/">gzip</a> and <a href="https://github.com/google/brotli">Brotli</a> is enabled.
+                    If required, compression can be disabled:
+
+                    <pre><code class="csharp">var server = Server.Create().Router(...).Compression(false);</code></pre>
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <h2 class="contact-title">Extensions</h2>
+
+            <div class="col-12">
+
+                <p>
+
+                    With extensions, behavior can be added to a server instance as a whole. Extensions will be invoked
+                    after a request has been processed. The following code shows how to add a header to every response
+                    sent by the server:
+
+                    <pre><code class="csharp">public class HeaderExtension : IServerExtension
+{
+    public void Intercept(IRequest request, IResponse response)
+    {
+        response["X-Powered-By"] = "Company.org";
+    }
+}
+                        
+// registration
+var server = Server.Create().Router(...).Extension(new HeaderExtension());</code></pre>
 
                 </p>
 
