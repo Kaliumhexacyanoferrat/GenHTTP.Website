@@ -6,6 +6,8 @@ using System.Text;
 
 using GenHTTP.Core;
 
+using GenHTTP.Website.Utilities;
+
 namespace GenHTTP.Website
 {
 
@@ -17,7 +19,8 @@ namespace GenHTTP.Website
             var project = Project.Create();
 
             var server = Server.Create()
-                               .Router(project);
+                               .Router(project)
+                               .Compression(new BrotliCompression());
 
             using (var instance = server.Build())
             {
