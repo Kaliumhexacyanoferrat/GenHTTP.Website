@@ -33,34 +33,19 @@ using (var instance = server.Build())
 
         <div class="row">
 
-            <h2 class="contact-title">Logging &amp; Error Handling</h2>
+            <h2 class="contact-title">Basic Infrastructure</h2>
 
             <div class="col-12">
 
                 <p>
+                    The default server instance is configured to provide basic features that are
+                    usually required by every web application or service. If you would like to
+                    customize those features, see the following sections:
 
-                    As the server is designed to require as few dependencies as possible, it will neither create log files
-                    nor log errors to the console. You can register a <a href="https://github.com/Kaliumhexacyanoferrat/GenHTTP/blob/master/API/GenHTTP.API/Infrastructure/IServerCompanion.cs">Companion</a>
-                    instance that allows you to handle errors and log requests:
-
-                    <pre><code class="csharp">public class ConsoleCompanion : IServerCompanion
-{
- 
-    public void OnRequestHandled(IRequest request, IResponse response, Exception? error)
-    {
-        Console.Log(request.Path);
-    }
-
-    public void OnServerError(ServerErrorScope scope, Exception error)
-    {
-        Console.Log(error);
-    }
-
-}</code></pre>
-
-                    If you are fine with a simple console-based logger, chain the following call to your server setup:
-
-                    <pre><code class="csharp">var server = Server.Create().Router(...).Console();</code></pre>
+                    <ul class="regular-list">
+                        <li><a href="{{ route 'endpoints' }}">Endpoints and Ports</a></li>
+                        <li><a href="{{ route 'compression' }}">Compression</a></li>
+                    </ul>
 
                 </p>
 
@@ -70,17 +55,12 @@ using (var instance = server.Build())
 
         <div class="row">
 
-            <h2 class="contact-title">Compression</h2>
+            <h2 class="contact-title">Security</h2>
 
             <div class="col-12">
 
                 <p>
 
-                    The server will automatically compress content sent to the clients, if applicable. By default,
-                    support for <a href="https://www.gzip.org/">gzip</a> and <a href="https://github.com/google/brotli">Brotli</a> is enabled.
-                    If required, compression can be disabled:
-
-                    <pre><code class="csharp">var server = Server.Create().Router(...).Compression(false);</code></pre>
 
                 </p>
 
@@ -90,27 +70,19 @@ using (var instance = server.Build())
 
         <div class="row">
 
-            <h2 class="contact-title">Extensions</h2>
+            <h2 class="contact-title">Extensibility</h2>
 
             <div class="col-12">
 
                 <p>
+                    To add additional behavior to your web application or service, you can register
+                    additional elements with your server.
 
-                    With extensions, behavior can be added to a server instance as a whole. Extensions will be invoked
-                    after a request has been processed. The following code shows how to add a header to every response
-                    sent by the server:
-
-                    <pre><code class="csharp">public class HeaderExtension : IServerExtension
-{
-    public void Intercept(IRequest request, IResponse response)
-    {
-        response["X-Powered-By"] = "Company.org";
-    }
-}
-                        
-// registration
-var server = Server.Create().Router(...).Extension(new HeaderExtension());</code></pre>
-
+                    <ul class="regular-list">
+                        <li><a href="{{ route 'companions' }}">Companions</a></li>
+                        <li><a href="{{ route 'extensions' }}">Extensions</a></li>
+                    </ul>
+                    
                 </p>
 
             </div>

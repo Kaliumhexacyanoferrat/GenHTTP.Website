@@ -1,0 +1,38 @@
+﻿<section class="section-margin">
+
+    <div class="container">
+
+        <div class="row">
+
+            <h2 class="contact-title">Endpoints and Ports</h2>
+
+            <div class="col-12">
+
+                <p>
+
+                    By default, the server will listen on port 8080 for incoming IPv4 or IPv6 connections on
+                    any interface. To simply change the port the server will listen on, you can use
+                    the <i>Port</i> directive of the builder. Please note, that hosting a server on ports below 1024 will require additional permissions
+                    on some operating systems.
+
+                    <pre><code class="csharp">var server = Server.Create().Router(...).Port(80).Build();</code></pre>
+
+                    To configure the server to listen on specific interfaces only, you can use the overload:
+
+                    <pre><code class="csharp">var server = Server.Create()
+                   .Router(...)
+                   .Bind(IPAddress.Parse("192.168.2.10"), 8888)
+                   .Bind(IPAddress.Parse("0:0:0:0:0:ffff:c0a8:20a"), 8888)
+                   .Build();</code></pre>
+
+                    
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

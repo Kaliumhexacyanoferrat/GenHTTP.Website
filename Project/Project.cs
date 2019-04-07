@@ -50,6 +50,10 @@ namespace GenHTTP.Website
         {
             return Layout.Create()
                          .AddPage("index", "Server.Index", "Server Setup")
+                         .AddPage("companions", "Companions")
+                         .AddPage("compression", "Compression")
+                         .AddPage("extensions", "Extensions")
+                         .AddPage("endpoints", "Endpoints", "Endpoints and Ports")
                          .Index("index");
         }
 

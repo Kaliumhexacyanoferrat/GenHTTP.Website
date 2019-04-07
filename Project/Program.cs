@@ -20,7 +20,8 @@ namespace GenHTTP.Website
 
             var server = Server.Create()
                                .Router(project)
-                               .Compression(new BrotliCompression());
+                               .Compression(new BrotliCompression())
+                               .Console();
 
             using (var instance = server.Build())
             {

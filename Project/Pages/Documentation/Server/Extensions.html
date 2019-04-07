@@ -1,0 +1,36 @@
+﻿<section class="section-margin">
+
+    <div class="container">
+
+        <div class="row">
+
+            <h2 class="contact-title">Extensions</h2>
+
+            <div class="col-12">
+
+                <p>
+
+                    With extensions, behavior can be added to a server instance as a whole. Extensions will be invoked
+                    after a request has been processed. The following code shows how to add a header to every response
+                    sent by the server:
+
+                    <pre><code class="csharp">public class HeaderExtension : IServerExtension
+{
+    public void Intercept(IRequest request, IResponse response)
+    {
+        response["X-Powered-By"] = "Company.org";
+    }
+}
+                        
+// registration
+var server = Server.Create().Router(...).Extension(new HeaderExtension());</code></pre>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
