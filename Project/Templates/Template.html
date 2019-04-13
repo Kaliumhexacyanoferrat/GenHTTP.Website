@@ -69,7 +69,7 @@
 
                         <ul class="nav navbar-nav menu_nav justify-content-end">
 
-                            <li class="nav-item{{ if (request.path == "/")}} active{{ end }}"><a class="nav-link" href="{{ route 'home' }}">Home</a></li>
+                            <li class="nav-item{{ if (request.path == "/")}} active{{ end }}"><a class="nav-link" href="{{ route '/' }}">Home</a></li>
 
                             <li class="nav-item submenu dropdown{{ if ( request.path | string.contains "documentation" ) }} active{{ end }}">
 
