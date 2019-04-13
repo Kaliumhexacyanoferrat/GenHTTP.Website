@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using GenHTTP.Core;
@@ -34,7 +35,7 @@ namespace GenHTTP.Website
 #if DEBUG
                     Console.ReadLine();
 #else
-                await Task.Run(() => Thread.Sleep(Timeout.Infinite));
+                    await Task.Run(() => Thread.Sleep(Timeout.Infinite));
 #endif
                 }
 
