@@ -52,7 +52,30 @@ using (var instance = server.Build())
             </div>
 
         </div>
-        
+
+        <div class="row">
+
+            <h2 class="contact-title">Security</h2>
+
+            <div class="col-12">
+
+                <p>
+                    By default, the server will provide an HTTP endpoint on port 8080 with no
+                    SSL supported enabled. It&apos;s recommended to serve all of your web applications
+                    by a dedicated reverse proxy such as <a href="https://www.nginx.com/">nginx</a>
+                    or the <a href="https://hub.docker.com/r/genhttp/gateway">GenHTTP Gateway</a>.
+                    Nevertheless, the server allows you to add HTTPS endpoints to your application.
+
+                    <ul class="regular-list">
+                        <li><a href="{{ route 'security' }}">Secure Endpoints</a></li>
+                    </ul>
+
+                </p>
+
+            </div>
+
+        </div>
+
         <div class="row">
 
             <h2 class="contact-title">Extensibility</h2>
@@ -67,7 +90,7 @@ using (var instance = server.Build())
                         <li><a href="{{ route 'companions' }}">Companions</a></li>
                         <li><a href="{{ route 'extensions' }}">Extensions</a></li>
                     </ul>
-                    
+
                 </p>
 
             </div>

@@ -9,28 +9,48 @@
             <div class="col-12">
 
                 <p>
-                    Currently, there is a bug with the Mono framework that prevents .NET Core 3.0
-                    applications to be deployed via Docker. After the final version has been
-                    released, this section will be updated.
+                    <a href="https://www.docker.com/">Docker</a> is the preferred way to host
+                    web applications created with the GenHTTP application framework. .NET Core allows
+                    to create images for various platforms. For a list of available base images,
+                    see their <a href="https://hub.docker.com/_/microsoft-dotnet-core-sdk/">Docker Hub</a> page.
                 </p>
 
-            </div>
-
-            <h2 class="contact-title">Running on Raspberry Pi</h2>
-
-            <div class="col-12">
-
                 <p>
+                    To create an image for your web application, create a new file named <i>Dockerfile</i> in the
+                    root directory of your repository. The following example is for an x64 image
+                    running on Linux:
 
-                    To run a .NET Core app on Raspbian OS, you may specify a platform paramter:
+                    <pre><code class="dockerfile">FROM mcr.microsoft.com/dotnet/core/sdk:3.0-alpine AS build
+WORKDIR /app
 
-                    <pre><code class="bash">dotnet publish -c Release -r linux-arm</code></pre>
+# copy csproj and restore as distinct layers
+COPY Project/*.csproj ./project/
+WORKDIR /app/project
+RUN dotnet restore
 
-                    Copy the resulting files from the <i>bin/Release/netcoreapp3.0/linux-arm/publish/</i>
-                    folder onto the target device, mark the application as executable and run it:
+# copy and build app and libraries
+WORKDIR /app/
+COPY Project/. ./project/
+WORKDIR /app/project
+RUN dotnet publish -c Release -r linux-musl-x64 -o out
 
-                    <pre><code class="bash">chmod 775 Project
-./Project</code></pre>
+FROM mcr.microsoft.com/dotnet/core/runtime-deps:3.0-alpine AS runtime
+WORKDIR /app
+COPY --from=build /app/project/out ./
+ENTRYPOINT ["./Project"]
+
+EXPOSE 8080</code></pre>
+
+                    To build this docker image, run:
+
+                    <pre><code class="bash">sudo docker build -t project -f Dockerfile .</code></pre>
+
+                    This will create a new image named <i>project</i>. To run a new container
+                    with this image, execute the following command:
+
+                    <pre><code class="bash">sudo docker run -d -p 8080:8080 project</code></pre>
+
+                    You should now be able to access the application via http://localhost:8080.
 
                 </p>
 

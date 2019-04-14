@@ -72,49 +72,29 @@ var website = Layout.Create()
 
         <div class="row">
 
-            <h2 class="contact-title">Templates</h2>
+            <h2 class="contact-title">Web Applications</h2>
 
             <div class="col-12">
 
                 <p>
+                    The following pages describe some of the core concepts required to develop
+                    a web application.
 
-                    Templates allow to define a basic structure that every generated page of
-                    your web application will be embedded into. For this purpose, a layout allows
-                    to register the template that should be used to serve pages. The <a href="https://www.nuget.org/packages/GenHTTP.Modules.Scriban/">GenHTTP.Scriban</a>
-                    module provides a rendering engine based on <a href="https://github.com/lunet-io/scriban">Scriban</a> that can be used for this purpose:
-
-                    <pre><code class="csharp">var template = ModScriban.Template(Data.FromFile("./Template.html"));
-var layout = Layout.Create().Template(template);</code></pre>
-
-                    The most basic template file would probably look like this:
-
-                    <pre><code class="html">&lt;!DOCTYPE html&gt;
-
-&lt;html lang="en" xmlns="http://www.w3.org/1999/xhtml"&gt;
-&lt;head&gt;
-    &lt;meta charset="utf-8" /&gt;
-    &lt;title&gt;{%{{{ title }}}%}&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    {%{{{ content }}}%}
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-
-                    The title and content properties are part of the <a href="https://github.com/Kaliumhexacyanoferrat/GenHTTP/blob/master/API/GenHTTP.API/Modules/Templating/TemplateModel.cs">TemplateModel</a>
-                    used to render a template. Templates will automatically be inherited from the parent router, if not specified.
-
-                    With this feature, you can provide entirely different web applications using the same server instance.
-
+                    <ul class="regular-list">
+                        <li><a href="{{ route 'templates' }}">Templates</a></li>
+                        <li><a href="{{ route 'pages' }}">Pages</a></li>
+                        <li><a href="{{ route 'static-content' }}">Static Content</a></li>
+                    </ul>
+                    
                 </p>
 
                 <p>
 
-                    To generate links to files and resources, the route method can be used:
+                    Additional content providers:
 
-                    <pre><code class="html">{%{{{ route 'res/style.css' }}}%}</code></pre>
-
-                    This allows to generate valid, relative URLs to files or routes that are available in the
-                    routing tree that belongs to the evaluated request.
+                    <ul class="regular-list">
+                        <li><a href="{{ route 'downloads' }}">Downloads</a></li>
+                    </ul>
 
                 </p>
 
@@ -124,98 +104,46 @@ var layout = Layout.Create().Template(template);</code></pre>
 
         <div class="row">
 
-            <h2 class="contact-title">Pages</h2>
+            <h2 class="contact-title">Reverse Proxies</h2>
 
             <div class="col-12">
 
                 <p>
+                    Reverse proxies allow to deliver content fetched from an upstream
+                    server.
 
-                    To add content pages to your web application, just add them to your layout. There are different
-                    engines for pages to be rendered, including the Scriban-based one:
-
-                    <pre><code class="csharp">layout.Add("contact", ModScriban.Page(Data.FromFile("./Contact.html"))</code></pre>
-
-                    This will load the given Scriban template from the specified file and render it to the
-                    requesting client, if http://localhost:8080/contact is called.
-
+                    <ul class="regular-list">
+                        <li><a href="{{ route 'reverse-proxies' }}">Reverse Proxies</a></li>
+                    </ul>
+                    
                 </p>
-
-                <p>
-
-                    You may provide a custom model used to render your pages based on the current request
-                    by providing a factory method:
-
-                    <pre><code class="csharp">public class ShopModel : PageModel
-{
-
-    public Basket Basket { get; }
-
-    public ShopModel(IRequest request, Basket basket) : base(request)
-    {
-        Basket = basket;
-    }
-                        
-}
-
-// within the template, "basket" will be available as a Scriban property 
-layout.Add("shop", ModScriban.Page(Data.FromFile("./Shop.html"), request => new ShopModel(request, LoadBasket())));</code></pre>
-
-                </p>
-
-            </div>
-
-            <div class="row">
-
-                <h2 class="contact-title">Static Resources</h2>
-
-                <div class="col-12">
-
-                    <p>
-
-                        To provide static resources required by your web application, add them to your project
-                        and mark them either as <i>Content</i> or as an <i>Embedded Resource</i>. To serve those files,
-                        you can use the <i>Static</i> factory class:
-
-                        <pre><code class="csharp">// serve all embedded resources in the "Resources" sub folder of your project
-layout.Add("res", Static.Resources("Resources"))
-
-// serve all files in the given folder
-layout.Add("res", Static.Files("./Resources"));</code></pre>
-
-                        For example, a stylesheet named <i>main.css</i> in the <i>styles</i> subfolder would be made available at
-                        http://localhost:8080/res/styles/main.css. To generate a relative link to the file, use the routing
-                        functionality from within your template:
-
-                        <pre><code class="html">{%{{{ route 'res/styles/main.css' }}}%}</code></pre>
-
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="row">
-
-                <h2 class="contact-title">Downloads</h2>
-
-                <div class="col-12">
-
-                    <p>
-
-                        Downloads allow to serve a single file with a fixed name to your clients. The content type
-                        of the file will automatically be determined by it&apos;s extension.
-
-                        <pre><code class="csharp">layout.Add("agb.pdf", Download.FromFile("/var/www/documents/agb.pdf"))</code></pre>
-
-                        In this example, the file would be available at http://localhost/agb.pdf. 
-                        As with static content, downloads can also be served from your embedded resources. 
-
-                    </p>
-
-                </div>
 
             </div>
 
         </div>
+
+        <div class="row">
+
+            <h2 class="contact-title">Virtual Hosts</h2>
+
+            <div class="col-12">
+
+                <p>
+                    When more than one domain should be hosted by a single server, the virtual host
+                    provider can be used to decide the route to be taken for a given request. Please
+                    note, that it&apos;s recommended to use a reverse proxy such as <a href="https://www.nginx.com/">nginx</a>
+                    or the <a href="https://hub.docker.com/r/genhttp/gateway">GenHTTP Gateway</a> for this purpose instead.
+                    
+                    <ul class="regular-list">
+                        <li><a href="{{ route 'virtual-hosts' }}">Virtual Hosts</a></li>
+                    </ul>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>

@@ -22,6 +22,7 @@ namespace GenHTTP.Website
                                .Template(template)
                                .Add("res", Static.Resources("Resources"))
                                .Add("documentation", GetDocumentation())
+                               .Add("projects", GetProjects())
                                .AddPage("home", "Home")
                                .AddPage("legal", "Legal")
                                .Index("home");
@@ -38,11 +39,23 @@ namespace GenHTTP.Website
                          .Add("hosting", GetHosting())
                          .Index("intro");
         }
+        
+        private static IRouterBuilder GetProjects()
+        {
+            return Layout.Create()
+                         .AddPage("gateway", "Gateway", "GenHTTP Gateway");
+        }
 
         private static IRouterBuilder GetContent()
         {
             return Layout.Create()
                          .AddPage("index", "Content.Index", "Providing Content")
+                         .AddPage("templates", "Templates")
+                         .AddPage("pages", "Pages")
+                         .AddPage("static-content", "StaticContent", "Static Content")
+                         .AddPage("downloads", "Downloads")
+                         .AddPage("reverse-proxies", "ReverseProxy", "Reverse Proxies")
+                         .AddPage("virtual-hosts", "VirtualHosts", "Virtual Hosts")
                          .Index("index");
         }
 
@@ -54,6 +67,7 @@ namespace GenHTTP.Website
                          .AddPage("compression", "Compression")
                          .AddPage("extensions", "Extensions")
                          .AddPage("endpoints", "Endpoints", "Endpoints and Ports")
+                         .AddPage("security", "Security", "Secure Endpoints")
                          .Index("index");
         }
 
