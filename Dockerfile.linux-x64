@@ -1,0 +1,21 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0-alpine AS build
+WORKDIR /app
+
+# copy csproj and restore as distinct layers
+COPY Project/*.csproj ./Project/
+WORKDIR /app/Project
+RUN dotnet restore
+
+# copy and build app and libraries
+WORKDIR /app/
+COPY Project/. ./Project/
+WORKDIR /app/Project
+RUN dotnet publish -c Release -r linux-musl-x64 -o out
+
+FROM mcr.microsoft.com/dotnet/core/runtime-deps:3.0-alpine AS runtime
+ENV DOCKER_FLAVOR=linux
+WORKDIR /app
+COPY --from=build /app/Project/out ./
+ENTRYPOINT ["./Project"]
+
+EXPOSE 8080
