@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using GenHTTP.Api.Infrastructure;
+using GenHTTP.Api.Modules;
 using GenHTTP.Api.Protocol;
 
 namespace Project.Utilities
@@ -21,6 +22,8 @@ namespace Project.Utilities
                 }
             }
         }
+
+        public IContentProvider? Intercept(IRequest request) => null;
 
     }
 

@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{36CF0B22-6D39-4548-BA45-417D2DA94DA1}"
 	ProjectSection(SolutionItems) = preProject
 		Dockerfile.linux-arm32 = Dockerfile.linux-arm32
+		Dockerfile.linux-x64 = Dockerfile.linux-x64
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
