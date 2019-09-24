@@ -56,6 +56,7 @@ namespace GenHTTP.Website
                          .AddPage("downloads", "Downloads")
                          .AddPage("reverse-proxies", "ReverseProxy", "Reverse Proxies")
                          .AddPage("virtual-hosts", "VirtualHosts", "Virtual Hosts")
+                         .AddPage("webservices", "Webservices")
                          .Index("index");
         }
 

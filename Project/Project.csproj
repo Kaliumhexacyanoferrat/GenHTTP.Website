@@ -23,6 +23,7 @@
     <None Remove="Pages\Documentation\Content\StaticContent.html" />
     <None Remove="Pages\Documentation\Content\Templates.html" />
     <None Remove="Pages\Documentation\Content\VirtualHosts.html" />
+    <None Remove="Pages\Documentation\Content\Webservices.html" />
     <None Remove="Pages\Documentation\Hosting\Index.html" />
     <None Remove="Pages\Documentation\Intro.html" />
     <None Remove="Pages\Projects\Gateway.html" />
@@ -77,6 +78,7 @@
     <EmbeddedResource Include="Pages\Documentation\Content\StaticContent.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\ReverseProxy.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\Pages.html" />
+    <EmbeddedResource Include="Pages\Documentation\Content\Webservices.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\VirtualHosts.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\Templates.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\Downloads.html" />

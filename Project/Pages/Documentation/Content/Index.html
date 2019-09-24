@@ -85,15 +85,16 @@ var website = Layout.Create()
                         <li><a href="{{ route 'pages' }}">Pages</a></li>
                         <li><a href="{{ route 'static-content' }}">Static Content</a></li>
                     </ul>
-                    
+
                 </p>
 
                 <p>
 
-                    Additional content providers:
+                    Additional content providers, routers, and modules:
 
                     <ul class="regular-list">
                         <li><a href="{{ route 'downloads' }}">Downloads</a></li>
+                        <li><a href="{{ route 'webservices' }}">Webservices</a></li>
                     </ul>
 
                 </p>
@@ -115,7 +116,7 @@ var website = Layout.Create()
                     <ul class="regular-list">
                         <li><a href="{{ route 'reverse-proxies' }}">Reverse Proxies</a></li>
                     </ul>
-                    
+
                 </p>
 
             </div>
@@ -133,7 +134,7 @@ var website = Layout.Create()
                     provider can be used to decide the route to be taken for a given request. Please
                     note, that it&apos;s recommended to use a reverse proxy such as <a href="https://www.nginx.com/">nginx</a>
                     or the <a href="https://hub.docker.com/r/genhttp/gateway">GenHTTP Gateway</a> for this purpose instead.
-                    
+
                     <ul class="regular-list">
                         <li><a href="{{ route 'virtual-hosts' }}">Virtual Hosts</a></li>
                     </ul>
