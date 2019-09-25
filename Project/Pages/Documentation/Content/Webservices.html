@@ -43,6 +43,11 @@ var server = Server.Create().Router(service).Build();</code></pre>
                     all other concerns such as authentication or CORS can
                     be implemented using regular server mechanisms. 
 
+                    Because the resource router needs to utilize regular expressions
+                    and reflection to achieve the required functionality, its performance
+                    will be slow compared to <i>IContentProvider</i> instances
+                    providing the same functionality.
+
                 </p>
 
                 <p>
