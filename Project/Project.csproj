@@ -18,6 +18,7 @@
   <ItemGroup>
     <None Remove="Pages\Documentation\Content\Downloads.html" />
     <None Remove="Pages\Documentation\Content\Index.html" />
+    <None Remove="Pages\Documentation\Content\Listing.html" />
     <None Remove="Pages\Documentation\Content\Pages.html" />
     <None Remove="Pages\Documentation\Content\ReverseProxy.html" />
     <None Remove="Pages\Documentation\Content\StaticContent.html" />
@@ -75,6 +76,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <EmbeddedResource Include="Pages\Documentation\Content\Listing.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\StaticContent.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\ReverseProxy.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\Pages.html" />
@@ -138,8 +140,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="GenHTTP.Core" Version="2.4.0" />
-    <PackageReference Include="GenHTTP.Modules.Scriban" Version="2.4.0" />
+    <PackageReference Include="GenHTTP.Core" Version="2.4.1" />
+    <PackageReference Include="GenHTTP.Modules.Scriban" Version="2.4.1" />
   </ItemGroup>
   
 </Project>

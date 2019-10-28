@@ -54,6 +54,7 @@ namespace GenHTTP.Website
                          .AddPage("pages", "Pages")
                          .AddPage("static-content", "StaticContent", "Static Content")
                          .AddPage("downloads", "Downloads")
+                         .AddPage("listing", "Listing", "Directory Browsing")
                          .AddPage("reverse-proxies", "ReverseProxy", "Reverse Proxies")
                          .AddPage("virtual-hosts", "VirtualHosts", "Virtual Hosts")
                          .AddPage("webservices", "Webservices")
