@@ -20,6 +20,7 @@
     <None Remove="Pages\Documentation\Content\Index.html" />
     <None Remove="Pages\Documentation\Content\Listing.html" />
     <None Remove="Pages\Documentation\Content\Pages.html" />
+    <None Remove="Pages\Documentation\Content\Redirects.html" />
     <None Remove="Pages\Documentation\Content\ReverseProxy.html" />
     <None Remove="Pages\Documentation\Content\StaticContent.html" />
     <None Remove="Pages\Documentation\Content\Templates.html" />
@@ -76,6 +77,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <EmbeddedResource Include="Pages\Documentation\Content\Redirects.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\Listing.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\StaticContent.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\ReverseProxy.html" />
