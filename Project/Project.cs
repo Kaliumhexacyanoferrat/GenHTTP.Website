@@ -22,9 +22,9 @@ namespace GenHTTP.Website
                                .Template(template)
                                .Add("res", Static.Resources("Resources"))
                                .Add("documentation", GetDocumentation())
-                               .Add("projects", GetProjects())
                                .AddPage("home", "Home")
                                .AddPage("legal", "Legal")
+                               .AddPage("links", "Links", "Links & References")
                                .Index("home");
 
             return layout;
@@ -40,12 +40,6 @@ namespace GenHTTP.Website
                          .Index("intro");
         }
         
-        private static IRouterBuilder GetProjects()
-        {
-            return Layout.Create()
-                         .AddPage("gateway", "Gateway", "GenHTTP Gateway");
-        }
-
         private static IRouterBuilder GetContent()
         {
             return Layout.Create()
