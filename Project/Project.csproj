@@ -141,8 +141,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="GenHTTP.Core" Version="2.4.1" />
-    <PackageReference Include="GenHTTP.Modules.Scriban" Version="2.4.1" />
+    <PackageReference Include="GenHTTP.Core" Version="2.5.0" />
+    <PackageReference Include="GenHTTP.Modules.Scriban" Version="2.5.0" />
   </ItemGroup>
   
 </Project>
