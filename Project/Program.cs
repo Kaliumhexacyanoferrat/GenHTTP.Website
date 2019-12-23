@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using GenHTTP.Core;
-using GenHTTP.Website.Utilities;
+
 using Project.Utilities;
 
 namespace GenHTTP.Website
@@ -24,7 +24,6 @@ namespace GenHTTP.Website
 
                 var server = Server.Create()
                                    .Router(project)
-                                   .Compression(new BrotliCompression())
                                    .Extension(new CacheExtension())
                                    .Console();
 
