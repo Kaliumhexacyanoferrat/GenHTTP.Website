@@ -69,7 +69,7 @@ namespace ExampleWebsite
     public static class Program
     {
 
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             var index = Page.From("Hello World!")
                             .Title("Example Website");
@@ -77,14 +77,9 @@ namespace ExampleWebsite
             var project = Layout.Create()
                                 .Add("index", index, true);
 
-            var server = Server.Create()
-                               .Router(project);
-
-            using (var instance = server.Build())
-            {
-                Console.WriteLine("Press any key to shutdown ...");
-                Console.ReadLine();
-            }
+            return Host.Create()
+                       .Router(project)
+                       .Run();
         }
 
     }
