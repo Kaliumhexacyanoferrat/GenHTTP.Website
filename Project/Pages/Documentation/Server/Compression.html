@@ -11,7 +11,7 @@
                 <p>
 
                     The server will automatically compress content sent to the clients, if applicable. By default,
-                    support for <a href="https://www.gzip.org/">gzip</a>.
+                    <a href="https://www.gzip.org/">gzip</a> and <a href="https://github.com/google/brotli">Brotli</a> are supported.
                     If required, compression can be disabled:
 
                     <pre><code class="csharp">var server = Server.Create().Router(...).Compression(false);</code></pre>
@@ -33,25 +33,25 @@
                     To add a custom compression algorithm to the server, you can implement the
                     <a href="https://github.com/Kaliumhexacyanoferrat/GenHTTP/blob/master/API/GenHTTP.API/Infrastructure/ICompressionAlgorithm.cs">ICompressionAlgorithm</a>
                     interface and register the implementing class with your server builder. For example,
-                    support for <a href="https://github.com/google/brotli">Brotli</a> can be added from a .NET Core host, because .NET Standard 2.0
-                    does not support Brotli whereas .NET Core does.
+                    the following implementation will add support for the <i>deflate</i> algorithm, which 
+                    is not provided by the server out of the box:
 
-                    <pre><code class="csharp">public class BrotliCompression : ICompressionAlgorithm
+                    <pre><code class="csharp">public class DeflateCompression : ICompressionAlgorithm
 {
 
-    public string Name => "br";
+    public string Name => "deflate";
 
-    public Priority Priority => Priority.High;
+    public Priority Priority => Priority.Low;
 
     public Stream Compress(Stream content)
     {
-        return new FilteredStream(content, (mem) => new BrotliStream(mem, CompressionLevel.Fastest, false));
+        return new FilteredStream(content, (mem) => new DeflateStream(mem, CompressionLevel.Fastest, false));
     }
 
 }
                         
 // registration
-var server = Server.Create().Router(...).Compression(new BrotliCompression());
+var server = Server.Create().Router(...).Compression(new DeflateCompression());
 </code></pre>
 
                 </p>
