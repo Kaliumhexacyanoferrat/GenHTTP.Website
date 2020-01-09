@@ -20,7 +20,7 @@
                     root directory of your repository. The following example is for an x64 image
                     running on Linux:
 
-                    <pre><code class="dockerfile">FROM mcr.microsoft.com/dotnet/core/sdk:3.0-alpine AS build
+                    <pre><code class="dockerfile">FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine AS build
 WORKDIR /app
 
 # copy csproj and restore as distinct layers
@@ -34,7 +34,7 @@ COPY Project/. ./project/
 WORKDIR /app/project
 RUN dotnet publish -c Release -r linux-musl-x64 -o out --self-contained true /p:PublishTrimmed=true
 
-FROM mcr.microsoft.com/dotnet/core/runtime-deps:3.0-alpine AS runtime
+FROM mcr.microsoft.com/dotnet/core/runtime-deps:3.1-alpine AS runtime
 WORKDIR /app
 COPY --from=build /app/project/out ./
 ENTRYPOINT ["./Project"]
