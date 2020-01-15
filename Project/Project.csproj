@@ -37,6 +37,8 @@
     <None Remove="Pages\Home.html" />
     <None Remove="Pages\Legal.html" />
     <None Remove="Resources\Header.jpg" />
+    <None Remove="Resources\Highlight\highlight.css" />
+    <None Remove="Resources\Highlight\highlight.js" />
     <None Remove="Resources\Images\gateway.png" />
     <None Remove="Resources\Images\hello_world.png" />
   </ItemGroup>
@@ -67,6 +69,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Pages\Home.html" />
     <EmbeddedResource Include="Resources\Header.jpg" />
+    <EmbeddedResource Include="Resources\Highlight\highlight.css" />
+    <EmbeddedResource Include="Resources\Highlight\highlight.js" />
     <EmbeddedResource Include="Resources\Images\gateway.png" />
     <EmbeddedResource Include="Resources\Images\hello_world.png" />
   </ItemGroup>

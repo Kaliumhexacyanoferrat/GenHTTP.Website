@@ -18,7 +18,7 @@ namespace Project.Utilities
             {
                 if (response.ContentType?.KnownType != ContentType.TextHtml)
                 {
-                    response.Expires = DateTime.Now.AddDays(1);
+                    response.Expires = DateTime.Now.AddDays(30);
                 }
             }
         }

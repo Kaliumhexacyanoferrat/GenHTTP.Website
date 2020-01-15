@@ -30,9 +30,13 @@ namespace GenHTTP.Website
             var website = Modules.Core.Website.Create()
                                               .Theme(theme)
                                               .Menu(menu)
+                                              .AddScript("highlight.js", Data.FromResource("highlight.js"))
+                                              .AddStyle("highlight.css", Data.FromResource("highlight.css"))
                                               .Content(GetLayout());
             return website;
         }
+
+        #region Pages
 
         private static IRouterBuilder GetLayout()
         {
@@ -94,6 +98,8 @@ namespace GenHTTP.Website
         {
             return layout.Add(route, ModScriban.Page(Data.FromResource($"{file}.html")).Title(title ?? file));
         }
+
+        #endregion
 
     }
 
