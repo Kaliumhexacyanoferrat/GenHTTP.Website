@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 using GenHTTP.Api.Routing;
-
 using GenHTTP.Modules.Core;
 using GenHTTP.Modules.Core.Layouting;
 using GenHTTP.Modules.Scriban;
+using GenHTTP.Themes.Lorahost;
 
 namespace GenHTTP.Website
 {
@@ -16,18 +14,35 @@ namespace GenHTTP.Website
 
         public static IRouterBuilder Create()
         {
-            var template = ModScriban.Template(Data.FromResource("Template.html"));
+            var menu = Menu.Empty()
+                           .Add("home", "Home")
+                           .Add("documentation/", "Documentation", new List<(string, string)> { ("content/", "Providing Content"), ("server/", "Server Setup"), ("hosting/", "Hosting Apps") })
+                           .Add("links", "Links")
+                           .Add("https://github.com/Kaliumhexacyanoferrat/GenHTTP", "Source")
+                           .Add("legal", "Legal");
 
-            var layout = Layout.Create()
-                               .Template(template)
-                               .Add("res", Static.Resources("Resources"))
-                               .Add("documentation", GetDocumentation())
-                               .AddPage("home", "Home")
-                               .AddPage("legal", "Legal")
-                               .AddPage("links", "Links", "Links & References")
-                               .Index("home");
+            var theme = Theme.Create()
+                             .Header(Data.FromResource("Header.jpg"))
+                             .Title("GenHTTP Webserver")
+                             .Subtitle("Lightweight web server written in pure C# with few dependencies to 3rd-party libraries. Compatible with .NET Standard 2.1.")
+                             .Action("documentation/", "Get started");
 
-            return layout;
+            var website = Modules.Core.Website.Create()
+                                              .Theme(theme)
+                                              .Menu(menu)
+                                              .Content(GetLayout());
+            return website;
+        }
+
+        private static IRouterBuilder GetLayout()
+        {
+            return Layout.Create()
+                         .Add("documentation", GetDocumentation())
+                         .Add("images", Static.Resources("Images"))
+                         .AddPage("home", "Home")
+                         .AddPage("legal", "Legal")
+                         .AddPage("links", "Links", "Links & References")
+                         .Index("home");
         }
 
         private static IRouterBuilder GetDocumentation()
@@ -39,7 +54,7 @@ namespace GenHTTP.Website
                          .Add("hosting", GetHosting())
                          .Index("intro");
         }
-        
+
         private static IRouterBuilder GetContent()
         {
             return Layout.Create()

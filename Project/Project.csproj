@@ -36,43 +36,9 @@
     <None Remove="Pages\Documentation\Server\Security.html" />
     <None Remove="Pages\Home.html" />
     <None Remove="Pages\Legal.html" />
-    <None Remove="Resources\css\highlight\vs.css" />
-    <None Remove="Resources\css\magnific-popup.css" />
-    <None Remove="Resources\css\style.css" />
-    <None Remove="Resources\css\style.map" />
-    <None Remove="Resources\images\banner.jpg" />
-    <None Remove="Resources\images\docs\hello_world.png" />
-    <None Remove="Resources\images\projects\gateway.png" />
-    <None Remove="Resources\js\contact.js" />
-    <None Remove="Resources\js\countdown.js" />
-    <None Remove="Resources\css\highlight\dracula.css" />
-    <None Remove="Resources\js\jquery.ajaxchimp.min.js" />
-    <None Remove="Resources\js\jquery.form.js" />
-    <None Remove="Resources\js\jquery.magnific-popup.min.js" />
-    <None Remove="Resources\js\jquery.validate.min.js" />
-    <None Remove="Resources\js\mail-script.js" />
-    <None Remove="Resources\js\main.js" />
-    <None Remove="Resources\js\skrollr.min.js" />
-    <None Remove="Resources\vendors\bootstrap\bootstrap.bundle.min.js" />
-    <None Remove="Resources\vendors\bootstrap\bootstrap.min.css" />
-    <None Remove="Resources\vendors\contact.js" />
-    <None Remove="Resources\vendors\jquery.ajaxchimp.min.js" />
-    <None Remove="Resources\vendors\jquery.form.js" />
-    <None Remove="Resources\vendors\jquery.validate.min.js" />
-    <None Remove="Resources\vendors\jquery\jquery-3.2.1.min.js" />
-    <None Remove="Resources\vendors\mail-script.js" />
-    <None Remove="Resources\vendors\owl\owl.carousel.min.css" />
-    <None Remove="Resources\vendors\owl\owl.carousel.min.js" />
-    <None Remove="Resources\vendors\owl\owl.theme.default.min.css" />
-    <None Remove="Resources\vendors\skrollr.min.js" />
-    <None Remove="Resources\vendors\themify\fonts\themify.eot" />
-    <None Remove="Resources\vendors\themify\fonts\themify.svg" />
-    <None Remove="Resources\vendors\themify\fonts\themify.ttf" />
-    <None Remove="Resources\vendors\themify\fonts\themify.woff" />
-    <None Remove="Resources\vendors\themify\ie7\ie7.css" />
-    <None Remove="Resources\vendors\themify\ie7\ie7.js" />
-    <None Remove="Resources\vendors\themify\themify.css" />
-    <None Remove="Templates\Template.html" />
+    <None Remove="Resources\Header.jpg" />
+    <None Remove="Resources\Images\gateway.png" />
+    <None Remove="Resources\Images\hello_world.png" />
   </ItemGroup>
   
   <ItemGroup>
@@ -96,48 +62,13 @@
     <EmbeddedResource Include="Pages\Documentation\Server\Index.html" />
     <EmbeddedResource Include="Pages\Legal.html" />
     <EmbeddedResource Include="Pages\Links.html" />
-    <EmbeddedResource Include="Resources\css\highlight\vs.css" />
-    <EmbeddedResource Include="Resources\images\banner.jpg" />
-    <EmbeddedResource Include="Resources\images\docs\hello_world.png" />
-    <EmbeddedResource Include="Resources\images\projects\gateway.png" />
-    <EmbeddedResource Include="Resources\js\contact.js" />
-    <EmbeddedResource Include="Resources\js\countdown.js" />
-    <EmbeddedResource Include="Resources\js\highlight.pack.js" />
-    <EmbeddedResource Include="Resources\css\highlight\dracula.css" />
-    <EmbeddedResource Include="Resources\js\jquery.ajaxchimp.min.js" />
-    <EmbeddedResource Include="Resources\js\jquery.form.js" />
-    <EmbeddedResource Include="Resources\js\jquery.magnific-popup.min.js" />
-    <EmbeddedResource Include="Resources\js\jquery.validate.min.js" />
-    <EmbeddedResource Include="Resources\js\mail-script.js" />
-    <EmbeddedResource Include="Resources\js\main.js" />
-    <EmbeddedResource Include="Resources\js\skrollr.min.js" />
   </ItemGroup>
   
   <ItemGroup>
     <EmbeddedResource Include="Pages\Home.html" />
-    <EmbeddedResource Include="Resources\css\magnific-popup.css" />
-    <EmbeddedResource Include="Resources\css\style.css" />
-    <EmbeddedResource Include="Resources\css\style.map" />
-    <EmbeddedResource Include="Resources\vendors\bootstrap\bootstrap.bundle.min.js" />
-    <EmbeddedResource Include="Resources\vendors\bootstrap\bootstrap.min.css" />
-    <EmbeddedResource Include="Resources\vendors\contact.js" />
-    <EmbeddedResource Include="Resources\vendors\jquery.ajaxchimp.min.js" />
-    <EmbeddedResource Include="Resources\vendors\jquery.form.js" />
-    <EmbeddedResource Include="Resources\vendors\jquery.validate.min.js" />
-    <EmbeddedResource Include="Resources\vendors\jquery\jquery-3.2.1.min.js" />
-    <EmbeddedResource Include="Resources\vendors\mail-script.js" />
-    <EmbeddedResource Include="Resources\vendors\owl\owl.carousel.min.css" />
-    <EmbeddedResource Include="Resources\vendors\owl\owl.carousel.min.js" />
-    <EmbeddedResource Include="Resources\vendors\owl\owl.theme.default.min.css" />
-    <EmbeddedResource Include="Resources\vendors\skrollr.min.js" />
-    <EmbeddedResource Include="Resources\vendors\themify\fonts\themify.eot" />
-    <EmbeddedResource Include="Resources\vendors\themify\fonts\themify.svg" />
-    <EmbeddedResource Include="Resources\vendors\themify\fonts\themify.ttf" />
-    <EmbeddedResource Include="Resources\vendors\themify\fonts\themify.woff" />
-    <EmbeddedResource Include="Resources\vendors\themify\ie7\ie7.css" />
-    <EmbeddedResource Include="Resources\vendors\themify\ie7\ie7.js" />
-    <EmbeddedResource Include="Resources\vendors\themify\themify.css" />
-    <EmbeddedResource Include="Templates\Template.html" />
+    <EmbeddedResource Include="Resources\Header.jpg" />
+    <EmbeddedResource Include="Resources\Images\gateway.png" />
+    <EmbeddedResource Include="Resources\Images\hello_world.png" />
   </ItemGroup>
   
   <ItemGroup>
@@ -147,6 +78,7 @@
 
     <ProjectReference Include="..\..\GenHTTP\Core\GenHTTP.Core\GenHTTP.Core.csproj" />
     <ProjectReference Include="..\..\GenHTTP\Modules\GenHTTP.Modules.Scriban\GenHTTP.Modules.Scriban.csproj" />
+    <ProjectReference Include="..\..\GenHTTP\Themes\GenHTTP.Themes.Lorahost\GenHTTP.Themes.Lorahost.csproj" />
     
   </ItemGroup>
   
