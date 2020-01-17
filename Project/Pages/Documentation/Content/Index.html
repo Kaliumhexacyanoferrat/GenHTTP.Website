@@ -27,9 +27,35 @@
                     provider. This allows us to define our application in a plug &amp; play manner
                     and to encapsulate and re-use functionality where required.
 
-                    <pre><code class="csharp">var download = Download.FromFile("./File.pptx"); // content provider
-var layout = Layout.Create().Add("presentation", download); // router
-var server = Server.Create().Router(layout);</code></pre>
+                    <pre><code class="csharp">var page = Page.From("Title", "Content"); // content provider
+var website = Website.Create().Content(page); // router
+
+Host.Create().Router(website).Run();</code></pre>
+
+                </p>
+
+                <p>
+
+                    Layouts allow your web application to be structured into
+                    logical units:
+
+                    <pre><code class="csharp">var webApp = Layout.Create()
+                   .Add("home", Page.From("This is the Index page"), index: true)
+                   .Add("privacy", Page.From("This is the Privacy page"));
+                        
+var website = Website.Create().Content(webApp);
+                        
+Host.Create().Router(website).Run();</code></pre>
+
+                    As layouts are routers themselves, you can easily chain them
+                    to build up the logical structure of your app:
+
+                    <pre><code class="csharp">var shop = Layout.Create()
+                 .Add("cart", ...)
+                 .Add("checkout", ...);
+                        
+webApp.add("shop", shop);</code></pre>
+
 
                 </p>
 
@@ -39,105 +65,65 @@ var server = Server.Create().Router(layout);</code></pre>
 
         <div class="row">
 
-            <h2 class="contact-title">Layouts</h2>
+            <h2 class="contact-title">Websites</h2>
 
             <div class="col-12">
 
                 <p>
-
-                    Layouts allow to create a virtual structure of your web application. When creating
-                    a website, you will usually face typical questions such as "How do I serve static resources?"
-                    or "How do I add a secure area for admins?". On traditional web servers, such important
-                    structure decisions are usually hidden within the configuration. With layouts, the structure
-                    of your web application can easily be visualized:
-
-                    <pre><code class="csharp">var layout = Layout.Create()
-                   .Add("styles", Static.Files("./css"))
-                   .Add("main.js", Download.FromFile("./js/bundle.min.js"))
-                   .Add("home", Page.From("This is the Index page"))
-                   .Add("privacy", Page.From("This is the Privacy page"))
-                   .Index("home");</code></pre>
-
-                    As layouts are routers themselves, you can easily chain them:
-
-                    <pre><code class="csharp">var shop = Layout.Create(); // setup the webshop section somewhere
-var website = Layout.Create()
-                    .Add("shop", shop);</code></pre>
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="row">
-
-            <h2 class="contact-title">Web Applications</h2>
-
-            <div class="col-12">
-
-                <p>
-                    The following pages describe some of the core concepts required to develop
-                    a web application.
+                    The previous examples show how a website router can be used
+                    to serve a web application to your users with typical features
+                    such as resource management for styles and scripts or navigation.
+                    To add your content to your website, see the following sections
+                    and concepts:
 
                     <ul class="regular-list">
-                        <li><a href="{{ route 'templates' }}">Templates</a></li>
                         <li><a href="{{ route 'pages' }}">Pages</a></li>
+                        <li><a href="{{ route 'templates' }}">Templates</a></li>
+                    </ul>
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <h2 class="contact-title">Content Providers</h2>
+
+            <div class="col-12">
+
+                <p>
+                    The following providers and routers allow to server additional
+                    content from a website or web application.
+
+                    <ul class="regular-list">
                         <li><a href="{{ route 'static-content' }}">Static Content</a></li>
-                    </ul>
-
-                </p>
-
-                <p>
-
-                    Additional content providers, routers, and modules:
-
-                    <ul class="regular-list">
-                        <li><a href="{{ route 'redirects' }}">Redirects</a></li>
                         <li><a href="{{ route 'downloads' }}">Downloads</a></li>
-                        <li><a href="{{ route 'listing' }}">Directory Browsing</a></li>
+                        <li><a href="{{ route 'redirects' }}">Redirects</a></li>
+                    </ul>
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <h2 class="contact-title">Additional Services</h2>
+
+            <div class="col-12">
+
+                <p>
+                    Routers providing additional, high-level functionality to your web server.
+                    Add them to a layout, a website, or use them as the main router of
+                    your project.
+
+                    <ul class="regular-list">
                         <li><a href="{{ route 'webservices' }}">Webservices</a></li>
-                    </ul>
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="row">
-
-            <h2 class="contact-title">Reverse Proxies</h2>
-
-            <div class="col-12">
-
-                <p>
-                    Reverse proxies allow to deliver content fetched from an upstream
-                    server.
-
-                    <ul class="regular-list">
+                        <li><a href="{{ route 'listing' }}">Directory Browsing</a></li>
                         <li><a href="{{ route 'reverse-proxies' }}">Reverse Proxies</a></li>
-                    </ul>
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="row">
-
-            <h2 class="contact-title">Virtual Hosts</h2>
-
-            <div class="col-12">
-
-                <p>
-                    When more than one domain should be hosted by a single server, the virtual host
-                    provider can be used to decide the route to be taken for a given request. Please
-                    note, that it&apos;s recommended to use a reverse proxy such as <a href="https://www.nginx.com/">nginx</a>
-                    or the <a href="https://hub.docker.com/r/genhttp/gateway">GenHTTP Gateway</a> for this purpose instead.
-
-                    <ul class="regular-list">
                         <li><a href="{{ route 'virtual-hosts' }}">Virtual Hosts</a></li>
                     </ul>
 
