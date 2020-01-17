@@ -77,12 +77,10 @@
   
   <ItemGroup>
     
-    <!--<PackageReference Include="GenHTTP.Core" Version="2.6.0" />
-    <PackageReference Include="GenHTTP.Modules.Scriban" Version="2.6.0" />-->
+    <PackageReference Include="GenHTTP.Core" Version="2.7.0" />
+    <PackageReference Include="GenHTTP.Modules.Scriban" Version="2.7.0" />
 
-    <ProjectReference Include="..\..\GenHTTP\Core\GenHTTP.Core\GenHTTP.Core.csproj" />
-    <ProjectReference Include="..\..\GenHTTP\Modules\GenHTTP.Modules.Scriban\GenHTTP.Modules.Scriban.csproj" />
-    <ProjectReference Include="..\..\GenHTTP\Themes\GenHTTP.Themes.Lorahost\GenHTTP.Themes.Lorahost.csproj" />
+    <PackageReference Include="GenHTTP.Themes.Lorahost" Version="1.0.0" />    
     
   </ItemGroup>
   
