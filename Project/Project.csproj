@@ -13,6 +13,8 @@
     <StartupObject>GenHTTP.Website.Program</StartupObject>    
     <OutputType>Exe</OutputType>
     
+    <ServerGarbageCollection>true</ServerGarbageCollection>    
+    
   </PropertyGroup>
   
   <ItemGroup>
@@ -77,8 +79,8 @@
   
   <ItemGroup>
     
-    <PackageReference Include="GenHTTP.Core" Version="2.7.1" />
-    <PackageReference Include="GenHTTP.Modules.Scriban" Version="2.7.1" />
+    <PackageReference Include="GenHTTP.Core" Version="2.8.0" />
+    <PackageReference Include="GenHTTP.Modules.Scriban" Version="2.8.0" />
 
     <PackageReference Include="GenHTTP.Themes.Lorahost" Version="1.0.1" />    
     
