@@ -1,20 +1,19 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster-arm32v7 AS build
-WORKDIR /app
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine AS build
+WORKDIR /source
 
 # copy csproj and restore as distinct layers
-COPY Project/*.csproj ./Project/
-WORKDIR /app/Project
-RUN dotnet restore
+COPY Project/*.csproj .
+RUN dotnet restore -r linux-arm
 
-# copy and build app and libraries
-WORKDIR /app/
-COPY Project/. ./Project/
-WORKDIR /app/Project
-RUN dotnet publish -c Release -r linux-arm -o out --self-contained true /p:PublishTrimmed=true
+# copy and publish app and libraries
+COPY Project/ .
+RUN dotnet publish -c release -o /app -r linux-arm --self-contained true --no-restore /p:PublishTrimmed=true
 
-FROM mcr.microsoft.com/dotnet/core/runtime-deps:3.1-buster-slim-arm32v7 AS runtime
+# final stage/image
+FROM mcr.microsoft.com/dotnet/core/runtime:3.1-buster-slim-arm32v7
 WORKDIR /app
-COPY --from=build /app/Project/out ./
+COPY --from=build /app .
+
 ENTRYPOINT ["./Project"]
 
 EXPOSE 8080

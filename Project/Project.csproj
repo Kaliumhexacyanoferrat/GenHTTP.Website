@@ -79,10 +79,10 @@
   
   <ItemGroup>
     
-    <PackageReference Include="GenHTTP.Core" Version="2.8.1" />
-    <PackageReference Include="GenHTTP.Modules.Scriban" Version="2.8.1" />
+    <PackageReference Include="GenHTTP.Core" Version="2.9.0" />
+    <PackageReference Include="GenHTTP.Modules.Scriban" Version="2.9.0" />
 
-    <PackageReference Include="GenHTTP.Themes.Lorahost" Version="1.0.1" />    
+    <PackageReference Include="GenHTTP.Themes.Lorahost" Version="1.1.0" />    
     
   </ItemGroup>
   
