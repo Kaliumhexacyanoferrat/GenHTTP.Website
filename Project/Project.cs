@@ -16,6 +16,7 @@ namespace GenHTTP.Website
         {
             var menu = Menu.Empty()
                            .Add("home", "Home")
+                           .Add("features", "Features")
                            .Add("documentation/", "Documentation", new List<(string, string)> { ("content/", "Providing Content"), ("server/", "Server Setup"), ("hosting/", "Hosting Apps") })
                            .Add("links", "Links")
                            .Add("https://github.com/Kaliumhexacyanoferrat/GenHTTP", "Source")
@@ -44,6 +45,7 @@ namespace GenHTTP.Website
                          .Add("documentation", GetDocumentation())
                          .Add("images", Static.Resources("Images"))
                          .AddPage("home", "Home")
+                         .AddPage("features", "Features")
                          .AddPage("legal", "Legal")
                          .AddPage("links", "Links", "Links & References")
                          .Index("home");
@@ -65,6 +67,7 @@ namespace GenHTTP.Website
                          .AddPage("index", "Content.Index", "Providing Content")
                          .AddPage("templates", "Templates")
                          .AddPage("pages", "Pages")
+                         .AddPage("themes", "Themes")
                          .AddPage("static-content", "StaticContent", "Static Content")
                          .AddPage("downloads", "Downloads")
                          .AddPage("redirects", "Redirects")

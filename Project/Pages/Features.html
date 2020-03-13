@@ -1,0 +1,104 @@
+﻿<section class="section-margin">
+
+    <div class="container">
+
+        <div class="row">
+
+            <h2 class="contact-title">Application Performance</h2>
+
+            <div class="col-12">
+
+                <p>
+
+                    All components of the GenHTTP webserver are optimized to use best practices such as
+                    resource bundling, caching, or compression to provide optimal performance. As these concerns
+                    are already handled by the framework, developers are allowed to focus on their actual work.
+
+                    <br /><br />
+
+                    <img src="{{ route 'images/pagespeed.png' }}"
+                         style="max-width: 35em; width: 100%; box-shadow: 5px 5px 4px 1px rgba(150, 150, 150, 1); border: 1px solid #AAAAAA;"
+                         alt="Pagespeed of the GenHTTP website" />
+
+                    <br /><br />
+
+                    <i>See <a href="https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fgenhttp.org%2F">Google PageSpeed Insights</a></i>
+
+                </p>
+
+            </div>
+
+            <h2 class="contact-title">Server Performance</h2>
+
+            <div class="col-12">
+
+                <p>
+
+                    In terms of raw HTTP protocol performance, the GenHTTP webserver is located in the middle segment compared to
+                    other server implementations, serving more than 450k requests per second. Improving the performance of the server is
+                    an ongoing task, especially since there is currently a lot of potential to be tapped.
+
+                    <br /><br />
+
+                    <img src="{{ route 'images/tfb.png' }}"
+                         style="max-width: 35em; width: 100%; box-shadow: 5px 5px 4px 1px rgba(150, 150, 150, 1); border: 1px solid #AAAAAA;"
+                         alt="GenHTTP webserver in the TechEmpower Framework Benchmarks" />
+
+                    <br /><br />
+
+                    <i>See <a href="https://tfb-status.techempower.com/">TechEmpower Framework Benchmarks</a></i>
+
+                </p>
+
+            </div>
+
+            <h2 class="contact-title">Footprint</h2>
+
+            <div class="col-12">
+
+                <p>
+
+                    Applications developed with the GenHTTP SDK are optimized for low disk space and memory requirements. A basic application
+                    (such as this website) will consume about 15 MB of memory and 50 MB of disk space when
+                    <a href="{{ route 'documentation/hosting/' }}">running in Docker</a>.
+
+                    <br /><br />
+
+                    <img src="{{ route 'images/footprint.png' }}"
+                         style="max-width: 35em; width: 100%; box-shadow: 5px 5px 4px 1px rgba(150, 150, 150, 1); border: 1px solid #AAAAAA;"
+                         alt="The website of the GenHTTP websever running in docker" />
+
+                    <br /><br />
+
+                </p>
+
+            </div>
+
+            <h2 class="contact-title">Security</h2>
+
+            <div class="col-12">
+
+                <p>
+
+                    The GenHTTP webserver uses the default security mechanisms that ship with .NET Standard 2.1. Due to some limitations there,
+                    the overall level of security as reported by SSL Labs is currently capped to grade B.
+
+                    <br /><br />
+
+                    <img src="{{ route 'images/ssl_labs.png' }}"
+                         style="max-width: 35em; width: 100%; box-shadow: 5px 5px 4px 1px rgba(150, 150, 150, 1); border: 1px solid #AAAAAA;"
+                         alt="Security analysis of the GenHTTP website" />
+
+                    <br /><br />
+
+                    <i>See <a href="https://www.ssllabs.com/ssltest/analyze.html?d=genhttp.org">SSL Labs Server Test</a></i>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

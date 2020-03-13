@@ -26,6 +26,7 @@
     <None Remove="Pages\Documentation\Content\ReverseProxy.html" />
     <None Remove="Pages\Documentation\Content\StaticContent.html" />
     <None Remove="Pages\Documentation\Content\Templates.html" />
+    <None Remove="Pages\Documentation\Content\Themes.html" />
     <None Remove="Pages\Documentation\Content\VirtualHosts.html" />
     <None Remove="Pages\Documentation\Content\Webservices.html" />
     <None Remove="Pages\Documentation\Hosting\Index.html" />
@@ -36,16 +37,22 @@
     <None Remove="Pages\Documentation\Server\Extensions.html" />
     <None Remove="Pages\Documentation\Server\Index.html" />
     <None Remove="Pages\Documentation\Server\Security.html" />
+    <None Remove="Pages\Features.html" />
     <None Remove="Pages\Home.html" />
     <None Remove="Pages\Legal.html" />
     <None Remove="Resources\Header.jpg" />
     <None Remove="Resources\Highlight\highlight.css" />
     <None Remove="Resources\Highlight\highlight.js" />
+    <None Remove="Resources\Images\footprint.png" />
     <None Remove="Resources\Images\gateway.png" />
     <None Remove="Resources\Images\hello_world.png" />
+    <None Remove="Resources\Images\pagespeed.png" />
+    <None Remove="Resources\Images\ssl_labs.png" />
+    <None Remove="Resources\Images\tfb.png" />
   </ItemGroup>
   
   <ItemGroup>
+    <EmbeddedResource Include="Pages\Documentation\Content\Themes.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\Redirects.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\Listing.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\StaticContent.html" />
@@ -65,6 +72,7 @@
     <EmbeddedResource Include="Pages\Documentation\Server\Extensions.html" />
     <EmbeddedResource Include="Pages\Documentation\Server\Index.html" />
     <EmbeddedResource Include="Pages\Legal.html" />
+    <EmbeddedResource Include="Pages\Features.html" />
     <EmbeddedResource Include="Pages\Links.html" />
   </ItemGroup>
   
@@ -73,8 +81,12 @@
     <EmbeddedResource Include="Resources\Header.jpg" />
     <EmbeddedResource Include="Resources\Highlight\highlight.css" />
     <EmbeddedResource Include="Resources\Highlight\highlight.js" />
+    <EmbeddedResource Include="Resources\Images\footprint.png" />
     <EmbeddedResource Include="Resources\Images\gateway.png" />
     <EmbeddedResource Include="Resources\Images\hello_world.png" />
+    <EmbeddedResource Include="Resources\Images\pagespeed.png" />
+    <EmbeddedResource Include="Resources\Images\ssl_labs.png" />
+    <EmbeddedResource Include="Resources\Images\tfb.png" />
   </ItemGroup>
   
   <ItemGroup>

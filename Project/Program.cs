@@ -14,6 +14,9 @@ namespace GenHTTP.Website
             return Host.Create()
                        .Router(project)
                        .Extension(new CacheExtension())
+#if DEBUG
+                       .Development()
+#endif
                        .Console()
                        .Run();
         }
