@@ -25,7 +25,7 @@ namespace GenHTTP.Website
             var theme = Theme.Create()
                              .Header(Data.FromResource("Header.jpg"))
                              .Title("GenHTTP Webserver")
-                             .Subtitle("Lightweight web server written in pure C# with few dependencies to 3rd-party libraries. Compatible with .NET Standard 2.1.")
+                             .Subtitle("Lightweight, embeddable web server written in pure C# with few dependencies to 3rd-party libraries. Compatible with .NET Standard 2.1.")
                              .Action("documentation/", "Get started");
 
             var website = Modules.Core.Website.Create()
