@@ -33,6 +33,7 @@ namespace GenHTTP.Website
                                               .Menu(menu)
                                               .AddScript("highlight.js", Data.FromResource("highlight.js"))
                                               .AddStyle("highlight.css", Data.FromResource("highlight.css"))
+                                              .Favicon(Data.FromResource("favicon.ico"))
                                               .Content(GetLayout());
             return website;
         }

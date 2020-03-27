@@ -40,6 +40,7 @@
     <None Remove="Pages\Features.html" />
     <None Remove="Pages\Home.html" />
     <None Remove="Pages\Legal.html" />
+    <None Remove="Resources\favicon.ico" />
     <None Remove="Resources\Header.jpg" />
     <None Remove="Resources\Highlight\highlight.css" />
     <None Remove="Resources\Highlight\highlight.js" />
@@ -78,6 +79,7 @@
   
   <ItemGroup>
     <EmbeddedResource Include="Pages\Home.html" />
+    <EmbeddedResource Include="Resources\favicon.ico" />
     <EmbeddedResource Include="Resources\Header.jpg" />
     <EmbeddedResource Include="Resources\Highlight\highlight.css" />
     <EmbeddedResource Include="Resources\Highlight\highlight.js" />
@@ -91,8 +93,8 @@
   
   <ItemGroup>
     
-    <PackageReference Include="GenHTTP.Core" Version="2.10.1" />
-    <PackageReference Include="GenHTTP.Modules.Scriban" Version="2.10.1" />
+    <PackageReference Include="GenHTTP.Core" Version="2.10.2" />
+    <PackageReference Include="GenHTTP.Modules.Scriban" Version="2.10.2" />
 
     <PackageReference Include="GenHTTP.Themes.Lorahost" Version="1.1.0" />    
     
