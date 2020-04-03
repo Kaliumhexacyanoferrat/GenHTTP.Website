@@ -21,7 +21,7 @@ jobs:
     - name: Restore tools
       run: dotnet tool restore
     - name: Begin scan
-      run: dotnet sonarscanner begin /o:"kaliumhexacyanoferrat" /k:"GenHTTP.Website" /d:sonar.login="$SONAR_TOKEN" /d:sonar.exclusions="**/bin/**/*,**/obj/**/*" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.branch.name="${GITHUB_REF##*/}"
+      run: dotnet sonarscanner begin /o:"kaliumhexacyanoferrat" /k:"GenHTTP.Website" /d:sonar.login="$SONAR_TOKEN" /d:sonar.exclusions="**/bin/**/*,**/obj/**/*" /d:sonar.host.url="https://sonarcloud.io" 
     - name: Build project
       run: dotnet build GenHTTP.Website.sln -c Release
     - name: End scan
