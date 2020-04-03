@@ -45,7 +45,7 @@ namespace GenHTTP.Website
             return Layout.Create()
                          .Add("documentation", GetDocumentation())
                          .Add("images", Static.Resources("Images"))
-                         .AddPage("home", "Home")
+                         .AddPage("home", "Home", "C# Webserver Library")
                          .AddPage("features", "Features")
                          .AddPage("legal", "Legal")
                          .AddPage("links", "Links", "Links & References")
