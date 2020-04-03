@@ -16,7 +16,7 @@
                 </p>
 
                 <p>
-                    To create an image for your web application, create a new file named <i>Dockerfile</i> in the
+                    To create an image for your web application, create a new file named <em>Dockerfile</em> in the
                     root directory of your repository. The following example is for an x64 image
                     running on Linux:
 
@@ -44,7 +44,7 @@ EXPOSE 8080</code></pre>
 
                     <pre><code class="bash">sudo docker build -t project -f Dockerfile .</code></pre>
 
-                    This will create a new image named <i>project</i>. To run a new container
+                    This will create a new image named <em>project</em>. To run a new container
                     with this image, execute the following command:
 
                     <pre><code class="bash">sudo docker run -d -p 8080:8080 project</code></pre>

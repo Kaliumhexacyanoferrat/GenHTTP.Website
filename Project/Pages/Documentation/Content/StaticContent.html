@@ -11,8 +11,8 @@
                 <p>
 
                     To provide static resources required by your web application, add them to your project
-                    and mark them either as <i>Content</i> or as an <i>Embedded Resource</i>. To serve those files,
-                    you can use the <i>Static</i> factory class:
+                    and mark them either as <em>Content</em> or as an <em>Embedded Resource</em>. To serve those files,
+                    you can use the <em>Static</em> factory class:
 
                     <pre><code class="csharp">// serve all embedded resources in the "Resources" sub folder of your project
 layout.Add("res", Static.Resources("Resources"))
@@ -20,7 +20,7 @@ layout.Add("res", Static.Resources("Resources"))
 // serve all files in the given folder
 layout.Add("res", Static.Files("./Resources"));</code></pre>
 
-                    For example, a stylesheet named <i>main.css</i> in the <i>styles</i> subfolder would be made available at
+                    For example, a stylesheet named <em>main.css</em> in the <em>styles</em> subfolder would be made available at
                     http://localhost:8080/res/styles/main.css. To generate a relative link to the file, use the routing
                     functionality from within your template:
 

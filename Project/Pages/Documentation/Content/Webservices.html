@@ -45,7 +45,7 @@ var server = Server.Create().Router(service).Build();</code></pre>
 
                     Because the resource router needs to utilize regular expressions
                     and reflection to achieve the required functionality, its performance
-                    will be slow compared to <i>IContentProvider</i> instances
+                    will be slow compared to <em>IContentProvider</em> instances
                     providing the same functionality.
 
                 </p>
@@ -54,7 +54,7 @@ var server = Server.Create().Router(service).Build();</code></pre>
 
                     The implementation supports all typical features such as
                     serialization and deserialization of complex types, simple
-                    types, enums, streams, raw <i>IRequest</i> and <i>IResponseBuilder</i>
+                    types, enums, streams, raw <em>IRequest</em> and <em>IResponseBuilder</em>
                     arguments, query parameters, path parameters or exception handling:
 
                     <pre><code class="csharp">[Method(RequestMethod.PUT)]
@@ -71,7 +71,7 @@ public void Exception() => throw new ProviderException(ResponseStatus.AlreadyRep
                 <p>
 
                     By default, resources will consume and produce JSON and XML entities. To
-                    customize this behavior, add a custom <i>ISerializationFormat</i>
+                    customize this behavior, add a custom <em>ISerializationFormat</em>
                     implementation to the serialization registry used within your resources:
 
                     <pre><code class="csharp">var registry = Serialization.Default().Add(new FlexibleContentType("application/protobuf"), new ProtobufFormat());
