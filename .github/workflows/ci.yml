@@ -25,4 +25,4 @@ jobs:
     - name: Build project
       run: dotnet build GenHTTP.Website.sln -c Release
     - name: End scan
-      run: dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
+      run: dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN" /d:sonar.branch.name="${GITHUB_REF##*/}"
