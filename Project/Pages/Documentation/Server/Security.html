@@ -15,7 +15,7 @@
                     <pre><code class="csharp">var certificate = new X509Certificate2("./mycert.pfx");
 
 var server = Server.Create()
-                   .Router(...)
+                   .Handler(...)
                    .Bind(IPAddress.Any, 80)
                    .Bind(IPAddress.Any, 443, certificate)
                    .Build();</code></pre>

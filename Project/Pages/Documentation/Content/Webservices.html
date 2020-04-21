@@ -9,7 +9,7 @@
             <div class="col-12">
 
                 <p>
-                    The resource router shipped with the <a href="https://www.nuget.org/packages/GenHTTP.Modules.Webservices/">GenHTTP.Webservices</a>
+                    The resource handler shipped with the <a href="https://www.nuget.org/packages/GenHTTP.Modules.Webservices/">GenHTTP.Webservices</a>
                     module allows to easily implement RESTful services. The
                     concept is very similar to popular webservice frameworks
                     such as <a href="https://github.com/jax-rs">JAX-RS</a>:
@@ -36,16 +36,16 @@
 
 var service = Layout.Create().Add&lt;BookResource&gt;("books");
 
-var server = Server.Create().Router(service).Build();</code></pre>
+var server = Server.Create().Handler(service).Build();</code></pre>
 
                     The service will be available at <a href="http://localhost:8080/books">http://localhost:8080/books</a>.
-                    As the functionality is provided on router level,
+                    As the functionality is provided on handler level,
                     all other concerns such as authentication or CORS can
                     be implemented using regular server mechanisms. 
 
-                    Because the resource router needs to utilize regular expressions
+                    Because the resource hander needs to utilize regular expressions
                     and reflection to achieve the required functionality, its performance
-                    will be slow compared to <em>IContentProvider</em> instances
+                    will be slow compared to <em>IHandler</em> instances
                     providing the same functionality.
 
                 </p>
@@ -54,14 +54,14 @@ var server = Server.Create().Router(service).Build();</code></pre>
 
                     The implementation supports all typical features such as
                     serialization and deserialization of complex types, simple
-                    types, enums, streams, raw <em>IRequest</em> and <em>IResponseBuilder</em>
+                    types, enums, streams, raw <em>IRequest</em>, <em>IHandler</em>, and <em>IResponseBuilder</em>
                     arguments, query parameters, path parameters or exception handling:
 
                     <pre><code class="csharp">[Method(RequestMethod.PUT)]
 public Stream Stream(Stream input) { /* ... */ }
 
 [Method]
-public IResponseBuilder RequestResponse(IRequest request) { return request.Respond() /* ... */; }
+public IResponseBuilder RequestResponse(IRequest request, IHandler handler) { return request.Respond() /* ... */; }
 
 [Method]
 public void Exception() => throw new ProviderException(ResponseStatus.AlreadyReported, "Already reported!");</code></pre>

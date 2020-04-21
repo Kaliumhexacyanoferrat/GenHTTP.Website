@@ -1,4 +1,6 @@
 ﻿using GenHTTP.Core;
+using GenHTTP.Modules.Core;
+
 using Project.Utilities;
 
 namespace GenHTTP.Website
@@ -12,11 +14,12 @@ namespace GenHTTP.Website
             var project = Project.Create();
 
             return Host.Create()
-                       .Router(project)
-                       .Extension(new CacheExtension())
+                       .Handler(project)
+                       .Add(new CacheConcernBuilder())
 #if DEBUG
                        .Development()
 #endif
+                       .Defaults()
                        .Console()
                        .Run();
         }

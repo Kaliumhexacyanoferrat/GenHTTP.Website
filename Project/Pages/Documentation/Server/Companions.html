@@ -17,7 +17,7 @@
                     <pre><code class="csharp">public class ConsoleCompanion : IServerCompanion
 {
  
-    public void OnRequestHandled(IRequest request, IResponse response, Exception? error)
+    public void OnRequestHandled(IRequest request, IResponse response)
     {
         Console.Log(request.Path);
     }
@@ -31,7 +31,7 @@
 
                     If you are fine with a simple console-based logger, chain the following call to your server setup:
 
-                    <pre><code class="csharp">var server = Server.Create().Router(...).Console();</code></pre>
+                    <pre><code class="csharp">var server = Server.Create().Handler(...).Console();</code></pre>
 
                 </p>
 

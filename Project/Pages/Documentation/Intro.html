@@ -74,7 +74,7 @@ namespace ExampleWebsite
         public static int Main(string[] args)
         {
             var project = Layout.Create()
-                                .Add("index", Page.From("Index", "Index Page"), true)
+                                .Index(Page.From("Index", "Index Page"))
                                 .Add("other", Page.From("Second", "Second Page"));
 
             var theme = Theme.Create()
@@ -85,7 +85,9 @@ namespace ExampleWebsite
                                  .Content(project);
 
             return Host.Create()
-                       .Router(website)
+                       .Console()
+                       .Defaults()
+                       .Handler(website)
                        .Run();
         }
 

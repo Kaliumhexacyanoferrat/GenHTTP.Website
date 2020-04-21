@@ -15,12 +15,12 @@
                     the <em>Port</em> directive of the builder. Please note, that hosting a server on ports below 1024 will require additional permissions
                     on some operating systems.
 
-                    <pre><code class="csharp">var server = Server.Create().Router(...).Port(80).Build();</code></pre>
+                    <pre><code class="csharp">var server = Server.Create().Handler(...).Port(80).Build();</code></pre>
 
                     To configure the server to listen on specific interfaces only, you can use the overload:
 
                     <pre><code class="csharp">var server = Server.Create()
-                   .Router(...)
+                   .Handler(...)
                    .Bind(IPAddress.Parse("192.168.2.10"), 8888)
                    .Bind(IPAddress.Parse("0:0:0:0:0:ffff:c0a8:20a"), 8888)
                    .Build();</code></pre>

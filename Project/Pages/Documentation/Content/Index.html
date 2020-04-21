@@ -10,52 +10,37 @@
 
                 <p>
 
-                    The GenHTTP API knows only two different kind of elements, independent from
-                    how complex a web application might be:
+                    Starting a GenHTTP server instance will always require you to specify the handler
+                    that is responsible to generate responses to client requests. Depending on the kind
+                    of content you would like to serve (such as a website or a webservice), there are various
+                    handlers already available to be used.
 
-                    <ul class="regular-list">
-                        <li>Routers are responsible for the structure of an web application</li>
-                        <li>Content providers serve the actual stream that will be sent to the client</li>
-                    </ul>
+                    <pre><code class="csharp">Host.Create().Handler(...).Run();</code></pre>
 
-                </p>
-
-                <p>
-
-                    The main entry point for every server is a router instance which will handle the
-                    incoming requests and route them to an appropriate child router or content
-                    provider. This allows us to define our application in a plug &amp; play manner
-                    and to encapsulate and re-use functionality where required.
-
-                    <pre><code class="csharp">var page = Page.From("Title", "Content"); // content provider
-var website = Website.Create().Content(page); // router
-
-Host.Create().Router(website).Run();</code></pre>
-
-                </p>
-
-                <p>
-
-                    Layouts allow your web application to be structured into
-                    logical units:
-
-                    <pre><code class="csharp">var webApp = Layout.Create()
-                   .Add("home", Page.From("This is the Index page"), index: true)
-                   .Add("privacy", Page.From("This is the Privacy page"));
-                        
-var website = Website.Create().Content(webApp);
-                        
-Host.Create().Router(website).Run();</code></pre>
-
-                    As layouts are routers themselves, you can easily chain them
-                    to build up the logical structure of your app:
+                    The structure of your web application can be defined using a layout handler
+                    which allows you to define routes and sections.
 
                     <pre><code class="csharp">var shop = Layout.Create()
-                 .Add("cart", ...)
-                 .Add("checkout", ...);
-                        
-webApp.add("shop", shop);</code></pre>
+                 .Add("checkout", Page.From(...));
 
+var api = Layout.Create()
+                .Add&lt;CartResource&gt;("cart");
+
+var project = Layout.Create()
+                    .Index(Page.From(...))
+                    .Add("shop", shop) // e.g. http://localhost:8080/shop/checkout
+                    .Add("api", api); // e.g. http://localhost:8080/api/cart/items
+
+var website = Website.Create()
+                     .Content(project);</code></pre>
+
+                    By adding concerns to your handlers you can define additional behavior for
+                    different sections of your app such as logging, authentication, or caching.
+
+                    <pre><code class="csharp">website.Compression(CompressedContent.Default());</code></pre>
+
+                    The following sections describe the handlers that are shipped with the
+                    GenHTTP framework.
 
                 </p>
 
@@ -65,23 +50,33 @@ webApp.add("shop", shop);</code></pre>
 
         <div class="row">
 
-            <h2 class="contact-title">Websites</h2>
+            <h2 class="contact-title">Application Frameworks</h2>
 
             <div class="col-12">
 
                 <p>
-                    The previous examples show how a website router can be used
-                    to serve a web application to your users with typical features
-                    such as resource management for styles and scripts or navigation.
-                    To add your content to your website, see the following sections
-                    and concepts:
 
-                    <ul class="regular-list">
-                        <li><a href="{{ route 'themes' }}">Themes</a></li>
-                        <li><a href="{{ route 'pages' }}">Pages</a></li>
-                        <li><a href="{{ route 'templates' }}">Templates</a></li>
+                    <ul>
+
+                        <!-- ToDo: Themes, Pages, Templates -->
+
+                        <li class="regular-list">
+                            <a href="{{ route 'websites' }}">Websites</a>
+                            <br />
+                            Allows you to serve a themed web application with basic features such as
+                            templating, theming, sitemaps, or robots instruction files.
+                            <br /><br />
+                        </li>
+
+                        <li class="regular-list">
+                            <a href="{{ route 'webservices' }}">Webservices</a>
+                            <br />
+                            Provides REST based web services that can be consumed by clients to
+                            retrieve a JSON or XML serialized result.
+                            <br /><br />
+                        </li>
+
                     </ul>
-
                 </p>
 
             </div>
@@ -95,15 +90,34 @@ webApp.add("shop", shop);</code></pre>
             <div class="col-12">
 
                 <p>
-                    The following providers and routers allow to serve additional
-                    content from a website or web application.
 
-                    <ul class="regular-list">
-                        <li><a href="{{ route 'static-content' }}">Static Content</a></li>
-                        <li><a href="{{ route 'downloads' }}">Downloads</a></li>
-                        <li><a href="{{ route 'redirects' }}">Redirects</a></li>
+                    <ul>
+
+                        <li class="regular-list">
+                            <a href="{{ route 'static-content' }}">Static Content</a>
+                            <br />
+                            Serves resources stored in a directory or as embedded resources within an
+                            assembly to the client.
+                            <br /><br />
+                        </li>
+
+                        <li class="regular-list">
+                            <a href="{{ route 'downloads' }}">Downloads</a>
+                            <br />
+                            Provides a file to the client as a download. This could be a file from
+                            the file system or from somewhere else.
+                            <br /><br />
+                        </li>
+
+                        <li class="regular-list">
+                            <a href="{{ route 'redirects' }}">Redirects</a>
+                            <br />
+                            Redirects the client to another location on the server or an
+                            external site.
+                            <br /><br />
+                        </li>
+
                     </ul>
-
                 </p>
 
             </div>
@@ -112,27 +126,45 @@ webApp.add("shop", shop);</code></pre>
 
         <div class="row">
 
-            <h2 class="contact-title">Additional Services</h2>
+            <h2 class="contact-title">Infrastructure</h2>
 
             <div class="col-12">
 
                 <p>
-                    Routers providing additional, high-level functionality to your web server.
-                    Add them to a layout, a website, or use them as the main router of
-                    your project.
 
-                    <ul class="regular-list">
-                        <li><a href="{{ route 'webservices' }}">Webservices</a></li>
-                        <li><a href="{{ route 'listing' }}">Directory Browsing</a></li>
-                        <li><a href="{{ route 'reverse-proxies' }}">Reverse Proxies</a></li>
-                        <li><a href="{{ route 'virtual-hosts' }}">Virtual Hosts</a></li>
+                    <ul>
+
+                        <li class="regular-list">
+                            <a href="{{ route 'listing' }}">Directory Browsing</a>
+                            <br />
+                            Provides a simple, recursive web view on a directory on the file system.
+                            <br /><br />
+                        </li>
+
+                        <li class="regular-list">
+                            <a href="{{ route 'reverse-proxies' }}">Reverse Proxies</a>
+                            <br />
+                            Relays the request of the client to another server and returns
+                            the response fetched from there.
+                            <br /><br />
+                        </li>
+
+                        <li class="regular-list">
+                            <a href="{{ route 'virtual-hosts' }}">Virtual Hosts</a>
+                            <br />
+                            Allows you to handle requests differently depending on the host specified
+                            by the client. This allows to serve multiple domains using a single
+                            server instance.
+                            <br /><br />
+                        </li>
+
                     </ul>
-
                 </p>
 
             </div>
 
         </div>
+
 
     </div>
 

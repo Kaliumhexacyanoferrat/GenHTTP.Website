@@ -10,11 +10,14 @@
 
                 <p>
 
-                    As a basic requirement, the server needs a router to be supplied
-                    to handle the incoming requests:
+                    As a basic requirement, the server needs a handler to be supplied
+                    to serve the incoming requests:
 
                     <pre><code class="csharp">var layout = Layout.Create();
-var server = Server.Create().Router(layout);
+
+var server = Server.Create()
+                   .Defaults()
+                   .Handler(layout);
                         
 using (var instance = server.Build())
 {
@@ -88,7 +91,6 @@ using (var instance = server.Build())
 
                     <ul class="regular-list">
                         <li><a href="{{ route 'companions' }}">Companions</a></li>
-                        <li><a href="{{ route 'extensions' }}">Extensions</a></li>
                     </ul>
 
                 </p>

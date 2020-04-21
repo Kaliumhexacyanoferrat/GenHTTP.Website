@@ -14,7 +14,7 @@
                     <a href="https://www.gzip.org/">gzip</a> and <a href="https://github.com/google/brotli">Brotli</a> are supported.
                     If required, compression can be disabled:
 
-                    <pre><code class="csharp">var server = Server.Create().Router(...).Compression(false);</code></pre>
+                    <pre><code class="csharp">var server = Server.Create().Handler(...).Defaults(compression: false);</code></pre>
 
                 </p>
 
@@ -43,16 +43,18 @@
 
     public Priority Priority => Priority.Low;
 
-    public Stream Compress(Stream content)
+    public IResponseContent Compress(IResponseContent content)
     {
-        return new FilteredStream(content, (mem) => new DeflateStream(mem, CompressionLevel.Fastest, false));
+        return new CompressedResponseContent(content, (target) => new DeflateStream(target, CompressionLevel.Fastest, false));
     }
 
 }
                         
 // registration
-var server = Server.Create().Router(...).Compression(new DeflateCompression());
-</code></pre>
+var server = Server.Create()
+                   .Handler(...)
+                   .Defaults(compression: false)
+                   .Compression(CompressedContent.Default().Add(new DeflateCompression()));</code></pre>
 
                 </p>
 
