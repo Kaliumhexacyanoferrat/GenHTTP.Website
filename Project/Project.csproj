@@ -87,8 +87,8 @@
   
   <ItemGroup>
     
-    <PackageReference Include="GenHTTP.Core" Version="3.0.0" />
-    <PackageReference Include="GenHTTP.Modules.Scriban" Version="3.0.0" />
+    <PackageReference Include="GenHTTP.Core" Version="3.0.1" />
+    <PackageReference Include="GenHTTP.Modules.Scriban" Version="3.0.1" />
 
     <PackageReference Include="GenHTTP.Themes.Lorahost" Version="3.0.0" />
     
