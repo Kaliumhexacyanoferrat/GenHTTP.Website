@@ -19,6 +19,7 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <None Remove="Pages\Documentation\Content\Authentication.html" />
     <None Remove="Pages\Documentation\Content\Downloads.html" />
     <None Remove="Pages\Documentation\Content\Index.html" />
     <None Remove="Pages\Documentation\Content\Listing.html" />
@@ -51,6 +52,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <EmbeddedResource Include="Pages\Documentation\Content\Authentication.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\Websites.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\Redirects.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\Listing.html" />
@@ -88,8 +90,8 @@
   
   <ItemGroup>
     
-    <PackageReference Include="GenHTTP.Core" Version="3.0.3" />
-    <PackageReference Include="GenHTTP.Modules.Scriban" Version="3.0.3" />
+    <PackageReference Include="GenHTTP.Core" Version="3.1.0" />
+    <PackageReference Include="GenHTTP.Modules.Scriban" Version="3.1.0" />
 
     <PackageReference Include="GenHTTP.Themes.Lorahost" Version="3.0.0" />
     

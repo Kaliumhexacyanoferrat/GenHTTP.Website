@@ -72,7 +72,8 @@ namespace GenHTTP.Website
                          .AddPage("listing", "Listing", "Directory Browsing")
                          .AddPage("reverse-proxies", "ReverseProxy", "Reverse Proxies")
                          .AddPage("virtual-hosts", "VirtualHosts", "Virtual Hosts")
-                         .AddPage("webservices", "Webservices");
+                         .AddPage("webservices", "Webservices")
+                         .AddPage("authentication", "Authentication");
         }
 
         private static IHandlerBuilder GetServer()
