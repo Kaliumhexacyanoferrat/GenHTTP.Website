@@ -74,7 +74,8 @@ namespace GenHTTP.Website
                          .AddPage("virtual-hosts", "VirtualHosts", "Virtual Hosts")
                          .AddPage("webservices", "Webservices")
                          .AddPage("authentication", "Authentication")
-                         .AddPage("single-page-applications", "SinglePageApplications", "Single Page Applications (SPA)");
+                         .AddPage("single-page-applications", "SinglePageApplications", "Single Page Applications (SPA)")
+                         .AddPage("load-balancing", "LoadBalancer", "Load Balancer");
         }
 
         private static IHandlerBuilder GetServer()

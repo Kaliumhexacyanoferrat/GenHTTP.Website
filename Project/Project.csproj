@@ -23,6 +23,7 @@
     <None Remove="Pages\Documentation\Content\Downloads.html" />
     <None Remove="Pages\Documentation\Content\Index.html" />
     <None Remove="Pages\Documentation\Content\Listing.html" />
+    <None Remove="Pages\Documentation\Content\LoadBalancer.html" />
     <None Remove="Pages\Documentation\Content\Redirects.html" />
     <None Remove="Pages\Documentation\Content\ReverseProxy.html" />
     <None Remove="Pages\Documentation\Content\SinglePageApplications.html" />
@@ -54,6 +55,7 @@
   
   <ItemGroup>
     <EmbeddedResource Include="Pages\Documentation\Content\Authentication.html" />
+    <EmbeddedResource Include="Pages\Documentation\Content\LoadBalancer.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\SinglePageApplications.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\Websites.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\Redirects.html" />
