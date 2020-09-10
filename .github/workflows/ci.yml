@@ -17,12 +17,14 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.201
+        dotnet-version: 3.1.402
     - name: Restore tools
       run: dotnet tool restore
     - name: Begin scan
+      if: env.SONAR_TOKEN != null && env.SONAR_TOKEN != ''
       run: dotnet sonarscanner begin /o:"kaliumhexacyanoferrat" /k:"GenHTTP.Website" /d:sonar.login="$SONAR_TOKEN" /d:sonar.exclusions="**/bin/**/*,**/obj/**/*" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.branch.name="${GITHUB_REF##*/}" 
     - name: Build project
       run: dotnet build GenHTTP.Website.sln -c Release
     - name: End scan
+      if: env.SONAR_TOKEN != null && env.SONAR_TOKEN != ''
       run: dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
