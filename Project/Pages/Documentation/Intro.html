@@ -55,14 +55,20 @@
 
                     <pre><code class="bash">cd ExampleWebsite
 dotnet add package GenHTTP.Core
+dotnet add package GenHTTP.Modules.Websites
 dotnet add package GenHTTP.Themes.Lorahost</code></pre>
 
                     You can then edit the generated Program.cs to setup a simple project using the GenHTTP server API:
 
                     <pre><code class="csharp">using System;
 
-using GenHTTP.Core;
+using GenHTTP.Engine;
+                        
+using GenHTTP.Modules.IO;
 using GenHTTP.Modules.Core;
+using GenHTTP.Modules.Layouting;
+using GenHTTP.Modules.Website;
+
 using GenHTTP.Themes.Lorahost;
 
 namespace ExampleWebsite

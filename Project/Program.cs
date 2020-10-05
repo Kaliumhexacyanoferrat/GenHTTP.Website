@@ -1,5 +1,6 @@
-﻿using GenHTTP.Core;
-using GenHTTP.Modules.Core;
+﻿using GenHTTP.Engine;
+
+using GenHTTP.Modules.Practices;
 
 using Project.Utilities;
 
