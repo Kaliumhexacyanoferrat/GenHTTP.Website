@@ -32,7 +32,7 @@
     <None Remove="Pages\Documentation\Content\Webservices.html" />
     <None Remove="Pages\Documentation\Content\Websites.html" />
     <None Remove="Pages\Documentation\Hosting\Index.html" />
-    <None Remove="Pages\Documentation\Intro.html" />
+    <None Remove="Pages\Documentation\Intro.md" />
     <None Remove="Pages\Documentation\Server\Companions.html" />
     <None Remove="Pages\Documentation\Server\Compression.html" />
     <None Remove="Pages\Documentation\Server\Endpoints.html" />
@@ -51,6 +51,7 @@
     <None Remove="Resources\Images\pagespeed.png" />
     <None Remove="Resources\Images\ssl_labs.png" />
     <None Remove="Resources\Images\tfb.png" />
+    <None Remove="Resources\Styles\custom.css" />
   </ItemGroup>
   
   <ItemGroup>
@@ -67,7 +68,7 @@
     <EmbeddedResource Include="Pages\Documentation\Content\Downloads.html" />
     <EmbeddedResource Include="Pages\Documentation\Content\Index.html" />
     <EmbeddedResource Include="Pages\Documentation\Hosting\Index.html" />
-    <EmbeddedResource Include="Pages\Documentation\Intro.html" />
+    <EmbeddedResource Include="Pages\Documentation\Intro.md" />
     <EmbeddedResource Include="Pages\Documentation\Server\Security.html" />
     <EmbeddedResource Include="Pages\Documentation\Server\Endpoints.html" />
     <EmbeddedResource Include="Pages\Documentation\Server\Companions.html" />
@@ -90,13 +91,15 @@
     <EmbeddedResource Include="Resources\Images\pagespeed.png" />
     <EmbeddedResource Include="Resources\Images\ssl_labs.png" />
     <EmbeddedResource Include="Resources\Images\tfb.png" />
+    <EmbeddedResource Include="Resources\Styles\custom.css" />
   </ItemGroup>
   
   <ItemGroup>
     
     <PackageReference Include="GenHTTP.Core" Version="4.0.0" />
-    
+
     <PackageReference Include="GenHTTP.Modules.Scriban" Version="4.0.0" />
+    <PackageReference Include="GenHTTP.Modules.Markdown" Version="4.0.0" />
     <PackageReference Include="GenHTTP.Modules.Websites" Version="4.0.0" />
 
     <PackageReference Include="GenHTTP.Themes.Lorahost" Version="4.0.0" />

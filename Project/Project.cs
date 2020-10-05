@@ -5,6 +5,7 @@ using GenHTTP.Api.Content;
 using GenHTTP.Modules.IO;
 using GenHTTP.Modules.Layouting;
 using GenHTTP.Modules.Layouting.Provider;
+using GenHTTP.Modules.Markdown;
 using GenHTTP.Modules.Scriban;
 using GenHTTP.Modules.Websites;
 
@@ -37,6 +38,7 @@ namespace GenHTTP.Website
                                               .Menu(menu)
                                               .AddScript("highlight.js", Data.FromResource("highlight.js"))
                                               .AddStyle("highlight.css", Data.FromResource("highlight.css"))
+                                              .AddStyle("custom.css", Data.FromResource("custom.css"))
                                               .Favicon(Data.FromResource("favicon.ico"))
                                               .Content(GetLayout());
             return website;
@@ -58,7 +60,7 @@ namespace GenHTTP.Website
         private static IHandlerBuilder GetDocumentation()
         {
             return Layout.Create()
-                         .AddPage(null, "Intro", "Getting started")
+                         .AddMarkdownPage(null, "Intro", "Getting started")
                          .Add("content", GetContent())
                          .Add("server", GetServer())
                          .Add("hosting", GetHosting());
@@ -106,6 +108,18 @@ namespace GenHTTP.Website
             else
             {
                 return layout.Index(ModScriban.Page(Data.FromResource($"{file}.html")).Title(title ?? file));
+            }
+        }
+
+        private static LayoutBuilder AddMarkdownPage(this LayoutBuilder layout, string? route, string file, string? title = null)
+        {
+            if (route != null)
+            {
+                return layout.Add(route, ModMarkdown.Page(Data.FromResource($"{file}.md")).Title(title ?? file));
+            }
+            else
+            {
+                return layout.Index(ModMarkdown.Page(Data.FromResource($"{file}.md")).Title(title ?? file));
             }
         }
 
