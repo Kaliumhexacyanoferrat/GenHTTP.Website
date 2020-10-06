@@ -6,37 +6,14 @@ of content you would like to serve (such as a website or a webservice), there ar
 handlers already available to be used.
 
 ```csharp
-Host.Create().Handler(...).Run();
+Host.Create()
+    .Handler(...)
+    .Run();
 ```
-
-The structure of your web application can be defined using a layout handler
-which allows you to define routes and sections.
-
-```csharp
-var shop = Layout.Create()
-                 .Add("checkout", Page.From(...));
-
-var api = Layout.Create()
-                .Add<CartResource>("cart");
-
-var project = Layout.Create()
-                    .Index(Page.From(...))
-                    .Add("shop", shop) // e.g. http://localhost:8080/shop/checkout
-                    .Add("api", api); // e.g. http://localhost:8080/api/cart/items
-
-var website = Website.Create()
-                     .Content(project);
-```
-
-By adding concerns to your handlers you can define additional behavior for
-different sections of your app such as logging, authentication, or caching.
-
-```csharp
-website.Compression(CompressedContent.Default());
-```
-
-The following sections describe the handlers that are shipped with the
-GenHTTP framework.
+Handlers are usually made available by an additional nuget module. You can find
+the modules which are currently available [on nuget](https://www.nuget.org/profiles/Kaliumhexacyanoferrat).
+To setup a project, you will usually reference the [GenHTTP.Core](https://www.nuget.org/packages/GenHTTP.Core/) 
+package which includes the engine as well as basic elements for layouting and IO.
 
 ## Application Frameworks
 
@@ -57,7 +34,11 @@ GenHTTP framework.
 - [Authentication](./authentication)<br />
   Restricts the content provided by a section to authenticated users.
 
-## Content Providers
+## Providers
+
+- [Layouting](./layouting)<br />
+  Define the layout of your web application by dividing it into
+  sections. 
 
 - [Static Content](./static-content)<br />
   Serves resources stored in a directory or as embedded resources within an

@@ -30,7 +30,9 @@ public class BookResource
 
 var service = Layout.Create().AddService<BookResource>("books");
 
-var server = Server.Create().Handler(service).Build();
+Host.Create()
+    .Handler(service)
+    .Run();
 ```
 
 The service will be available at http://localhost:8080/books.

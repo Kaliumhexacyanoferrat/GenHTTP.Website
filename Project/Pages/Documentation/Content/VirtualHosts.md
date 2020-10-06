@@ -11,7 +11,9 @@ var hosts = VirtualHosts.Create()
                         .Add("domain2.com", Layout.Create())
                         .Default(Layout.Create());
                         
-var server = Server.Create().Handler(hosts).Build();
+Host.Create()
+    .Handler(hosts)
+    .Run();
 ```
 
 The default route will be taken, if either the client did not 

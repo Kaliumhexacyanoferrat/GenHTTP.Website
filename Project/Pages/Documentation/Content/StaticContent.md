@@ -5,11 +5,17 @@ and mark them either as `Content` or as an `Embedded Resource`. To serve those f
 you can use the `Static` factory class:
 
 ```csharp
+var layout = Layout.Create();
+
 // serve all embedded resources in the "Resources" sub folder of your project
 layout.Add("res", Static.Resources("Resources"))
 
 // serve all files in the given folder
 layout.Add("res", Static.Files("./Resources"));
+
+Host.Create()
+    .Handler(layout)
+    .Run();
 ```
 
 For example, a stylesheet named `main.css` in the `styles` subfolder would be made available at

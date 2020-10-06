@@ -22,6 +22,7 @@
     <None Remove="Pages\Documentation\Content\Authentication.md" />
     <None Remove="Pages\Documentation\Content\Downloads.md" />
     <None Remove="Pages\Documentation\Content\Index.md" />
+    <None Remove="Pages\Documentation\Content\Layouting.md" />
     <None Remove="Pages\Documentation\Content\Listing.md" />
     <None Remove="Pages\Documentation\Content\LoadBalancer.md" />
     <None Remove="Pages\Documentation\Content\Redirects.md" />
@@ -59,6 +60,7 @@
     <EmbeddedResource Include="Pages\Documentation\Content\Authentication.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Downloads.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Index.md" />
+    <EmbeddedResource Include="Pages\Documentation\Content\Layouting.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Listing.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\LoadBalancer.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Redirects.md" />

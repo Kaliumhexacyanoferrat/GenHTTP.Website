@@ -8,13 +8,9 @@ h2 {
 
 body > p, pre, ul {
     position: relative;
-    width: 100%;
-    min-height: 1px;
     padding-right: 4em;
     padding-left: 4em;
-    -ms-flex: 0 0 100%;
-    flex: 0 0 100%;
-    max-width: 100%;
+    max-width: 1024px;
 }
 
 ul > li {
