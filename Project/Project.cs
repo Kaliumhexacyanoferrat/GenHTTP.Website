@@ -52,9 +52,9 @@ namespace GenHTTP.Website
                          .Add("documentation", GetDocumentation())
                          .Add("images", Static.Resources("Images"))
                          .AddPage(null, "Home", "C# Webserver Library")
-                         .AddPage("features", "Features")
-                         .AddPage("legal", "Legal")
-                         .AddPage("links", "Links", "Links & References");
+                         .AddMarkdownPage("features", "Features")
+                         .AddMarkdownPage("legal", "Legal")
+                         .AddMarkdownPage("links", "Links", "Links & References");
         }
 
         private static IHandlerBuilder GetDocumentation()
@@ -69,34 +69,34 @@ namespace GenHTTP.Website
         private static IHandlerBuilder GetContent()
         {
             return Layout.Create()
-                         .AddPage(null, "Content.Index", "Providing Content")
-                         .AddPage("websites", "Websites")
-                         .AddPage("static-content", "StaticContent", "Static Content")
-                         .AddPage("downloads", "Downloads")
-                         .AddPage("redirects", "Redirects")
-                         .AddPage("listing", "Listing", "Directory Browsing")
-                         .AddPage("reverse-proxies", "ReverseProxy", "Reverse Proxies")
-                         .AddPage("virtual-hosts", "VirtualHosts", "Virtual Hosts")
-                         .AddPage("webservices", "Webservices")
-                         .AddPage("authentication", "Authentication")
-                         .AddPage("single-page-applications", "SinglePageApplications", "Single Page Applications (SPA)")
-                         .AddPage("load-balancing", "LoadBalancer", "Load Balancer");
+                         .AddMarkdownPage(null, "Content.Index", "Providing Content")
+                         .AddMarkdownPage("websites", "Websites")
+                         .AddMarkdownPage("static-content", "StaticContent", "Static Content")
+                         .AddMarkdownPage("downloads", "Downloads")
+                         .AddMarkdownPage("redirects", "Redirects")
+                         .AddMarkdownPage("listing", "Listing", "Directory Browsing")
+                         .AddMarkdownPage("reverse-proxies", "ReverseProxy", "Reverse Proxies")
+                         .AddMarkdownPage("virtual-hosts", "VirtualHosts", "Virtual Hosts")
+                         .AddMarkdownPage("webservices", "Webservices")
+                         .AddMarkdownPage("authentication", "Authentication")
+                         .AddMarkdownPage("single-page-applications", "SinglePageApplications", "Single Page Applications (SPA)")
+                         .AddMarkdownPage("load-balancing", "LoadBalancer", "Load Balancer");
         }
 
         private static IHandlerBuilder GetServer()
         {
             return Layout.Create()
-                         .AddPage(null, "Server.Index", "Server Setup")
-                         .AddPage("companions", "Companions")
-                         .AddPage("compression", "Compression")
-                         .AddPage("endpoints", "Endpoints", "Endpoints and Ports")
-                         .AddPage("security", "Security", "Secure Endpoints");
+                         .AddMarkdownPage(null, "Server.Index", "Server Setup")
+                         .AddMarkdownPage("companions", "Companions")
+                         .AddMarkdownPage("compression", "Compression")
+                         .AddMarkdownPage("endpoints", "Endpoints", "Endpoints and Ports")
+                         .AddMarkdownPage("security", "Security", "Secure Endpoints");
         }
 
         private static IHandlerBuilder GetHosting()
         {
             return Layout.Create()
-                         .AddPage(null, "Hosting.Index", "Hosting Apps");
+                         .AddMarkdownPage(null, "Hosting.Index", "Hosting Apps");
         }
 
         private static LayoutBuilder AddPage(this LayoutBuilder layout, string? route, string file, string? title = null)

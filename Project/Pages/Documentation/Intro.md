@@ -79,8 +79,9 @@ newly created project in your browser by navigating to http://localhost:8080.
 ## Next Steps
 
 The example project above gives you a basic idea on how projects developed
-with the GenHTTP may look like. To create more complex web applications, follow
-the guides in the following sections:
+with the GenHTTP may look like. To create more complex web applications
+(such as [websites](/documentation/content/websites) or [webservices](/documentation/content/webservices)),
+follow the guides in the following sections:
 
 - [Providing Content](/documentation/content/)
 - [Server Setup](/documentation/server/)
