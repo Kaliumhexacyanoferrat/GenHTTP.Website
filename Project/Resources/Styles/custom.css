@@ -28,3 +28,9 @@ pre {
 code {
     color: #6128A1;
 }
+
+p > img {
+    -webkit-box-shadow: 10px 10px 15px -4px rgba(170,170,170,1);
+    -moz-box-shadow: 10px 10px 15px -4px rgba(170,170,170,1);
+    box-shadow: 10px 10px 15px -4px rgba(170,170,170,1);
+}
