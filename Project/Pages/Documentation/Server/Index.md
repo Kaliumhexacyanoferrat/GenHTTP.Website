@@ -1,18 +1,32 @@
 ﻿## Lifecycle
 
-As a basic requirement, the server needs a handler to be supplied
-to serve the incoming requests:
+As a basic requirement, the server always needs a handler to be supplied
+to serve incoming requests. See the [Providing Content](/documentation/content/) section
+to get a list of suitable handlers.
+
+Server instances are usually created using the `Host` factory. Depending on your
+use case, you can either use a blocking or non-blocking call.
 
 ```csharp
-var layout = Layout.Create();
+// the content we would like to serve
+var content = Content.From("Hello World!");
 
-var server = Server.Create()
-                   .Defaults()
-                   .Handler(layout);
-                        
-using (var instance = server.Build())
-{
-    Console.ReadLine();                        
+// blocking until the application receives a shutdown signal (e.g. main method of a standalone application)
+return Host.Create()
+           .Handler(content)
+           .Run();
+
+// non-blocking (e.g. for test libraries)
+var host = Host.Create()
+               .Handler(content)
+               .Start();
+
+try {
+    // do something with the server instance
+}
+finally {
+    // release resources
+    host.Stop();
 }
 ```
 
