@@ -13,6 +13,10 @@ body > p, pre, ul {
     max-width: 1024px;
 }
 
+body > table {
+    margin-left: 4em;
+}
+
 ul > li {
     margin-left: 1em;
 }

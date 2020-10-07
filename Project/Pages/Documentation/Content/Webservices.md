@@ -1,6 +1,6 @@
 ﻿## Webservices
 
-The resource handler shipped with the [GenHTTP.Webservices](https://www.nuget.org/packages/GenHTTP.Modules.Webservices/)
+The resource handler shipped with the [Webservices](https://www.nuget.org/packages/GenHTTP.Modules.Webservices/)
 module allows to easily implement RESTful services. The
 concept is very similar to popular webservice frameworks
 such as [JAX-RS](https://github.com/jax-rs):
@@ -39,6 +39,15 @@ The service will be available at http://localhost:8080/books.
 As the functionality is provided on handler level,
 all other concerns such as authentication or CORS can
 be implemented using regular server mechanisms. 
+
+By default, parameter values (within the path) are expected
+to be alphanumeric. If needed, a custom pattern can be specified
+to define the format accepted by the service:
+
+```csharp
+[ResourceMethod("(?<id>[0-9]{12,13})")] // EAN-13
+public Book? GetBook(int id) { /* ... */ }
+```
 
 Because the resource hander needs to utilize regular expressions
 and reflection to achieve the required functionality, its performance

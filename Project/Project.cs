@@ -51,6 +51,7 @@ namespace GenHTTP.Website
             return Layout.Create()
                          .Add("documentation", GetDocumentation())
                          .Add("images", Static.Resources("Images"))
+                         .Add("downloads", Static.Resources("Downloads"))
                          .AddPage(null, "Home", "C# Webserver Library", "Lightweight, embeddable web server written in pure C# with few dependencies to 3rd-party libraries.")
                          .AddMarkdownPage("features", "Features", null, "Features of the GenHTTP application framework such as performance, SEO or security.")
                          .AddMarkdownPage("legal", "Legal", null, "Legal information regarding GenHTTP.org")
@@ -81,7 +82,8 @@ namespace GenHTTP.Website
                          .AddMarkdownPage("webservices", "Webservices", null, "Provide REST based web services in C# that can be consumed by clients to retrieve a JSON or XML serialized result.")
                          .AddMarkdownPage("authentication", "Authentication", null, "Restrict the content provided by the server to authenticated users.")
                          .AddMarkdownPage("single-page-applications", "SinglePageApplications", "Single Page Applications (SPA)", "Simple way to host applications written with JS frameworks such as Vue.js, Angular or React.")
-                         .AddMarkdownPage("load-balancing", "LoadBalancer", "Load Balancer", "Simple way to distribute load on specified HTTP webservers or different file systems.");
+                         .AddMarkdownPage("load-balancing", "LoadBalancer", "Load Balancer", "Simple way to distribute load on specified HTTP webservers or different file systems.")
+                         .AddMarkdownPage("controllers", "Controllers", null, "Lightweight framework to write MVC web applications in C#.");
         }
 
         private static IHandlerBuilder GetServer()

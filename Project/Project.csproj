@@ -20,6 +20,7 @@
   
   <ItemGroup>
     <None Remove="Pages\Documentation\Content\Authentication.md" />
+    <None Remove="Pages\Documentation\Content\Controllers.md" />
     <None Remove="Pages\Documentation\Content\Downloads.md" />
     <None Remove="Pages\Documentation\Content\Index.md" />
     <None Remove="Pages\Documentation\Content\Layouting.md" />
@@ -43,10 +44,12 @@
     <None Remove="Pages\Home.html" />
     <None Remove="Pages\Legal.md" />
     <None Remove="Pages\Links.md" />
+    <None Remove="Resources\Downloads\GenHTTP.Examples.Controllers.zip" />
     <None Remove="Resources\favicon.ico" />
     <None Remove="Resources\Header.jpg" />
     <None Remove="Resources\Highlight\highlight.css" />
     <None Remove="Resources\Highlight\highlight.js" />
+    <None Remove="Resources\Images\controller_menu.png" />
     <None Remove="Resources\Images\footprint.png" />
     <None Remove="Resources\Images\gateway.png" />
     <None Remove="Resources\Images\hello_world.png" />
@@ -58,6 +61,7 @@
   
   <ItemGroup>
     <EmbeddedResource Include="Pages\Documentation\Content\Authentication.md" />
+    <EmbeddedResource Include="Pages\Documentation\Content\Controllers.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Downloads.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Index.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Layouting.md" />
@@ -84,10 +88,12 @@
     <EmbeddedResource Include="Pages\Home.html" />
     <EmbeddedResource Include="Pages\Legal.md" />
     <EmbeddedResource Include="Pages\Links.md" />
+    <EmbeddedResource Include="Resources\Downloads\GenHTTP.Examples.Controllers.zip" />
     <EmbeddedResource Include="Resources\favicon.ico" />
     <EmbeddedResource Include="Resources\Header.jpg" />
     <EmbeddedResource Include="Resources\Highlight\highlight.css" />
     <EmbeddedResource Include="Resources\Highlight\highlight.js" />
+    <EmbeddedResource Include="Resources\Images\controller_menu.png" />
     <EmbeddedResource Include="Resources\Images\footprint.png" />
     <EmbeddedResource Include="Resources\Images\gateway.png" />
     <EmbeddedResource Include="Resources\Images\hello_world.png" />

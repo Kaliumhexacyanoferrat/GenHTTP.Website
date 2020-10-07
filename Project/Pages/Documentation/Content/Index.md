@@ -21,6 +21,9 @@ package which includes the engine as well as basic elements for layouting and IO
   Allows you to serve a themed web application with basic features such as
   templating, theming, sitemaps, or robots instruction files.
 
+- [Controllers (MVC)](./controllers)<br />
+  Lightweight layer to write web applications that follow the MVC pattern.
+
 - [Webservices](./webservices)<br />
   Provides REST based web services that can be consumed by clients to
   retrieve a JSON or XML serialized result.
