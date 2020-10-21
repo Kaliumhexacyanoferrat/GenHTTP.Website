@@ -2,8 +2,6 @@
 
 using GenHTTP.Modules.Practices;
 
-using Project.Utilities;
-
 namespace GenHTTP.Website
 {
 
@@ -16,7 +14,6 @@ namespace GenHTTP.Website
 
             return Host.Create()
                        .Handler(project)
-                       .Add(new CacheConcernBuilder())
 #if DEBUG
                        .Development()
 #endif

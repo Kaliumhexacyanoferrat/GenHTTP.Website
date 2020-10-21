@@ -83,7 +83,10 @@ namespace GenHTTP.Website
                          .AddMarkdownPage("authentication", "Authentication", null, "Restrict the content provided by the server to authenticated users.")
                          .AddMarkdownPage("single-page-applications", "SinglePageApplications", "Single Page Applications (SPA)", "Simple way to host applications written with JS frameworks such as Vue.js, Angular or React.")
                          .AddMarkdownPage("load-balancing", "LoadBalancer", "Load Balancer", "Simple way to distribute load on specified HTTP webservers or different file systems.")
-                         .AddMarkdownPage("controllers", "Controllers", null, "Lightweight framework to write MVC web applications in C#.");
+                         .AddMarkdownPage("controllers", "Controllers", null, "Lightweight framework to write MVC web applications in C#.")
+                         .AddMarkdownPage("cors", "CORS", null, "Automatically configure your webservices for Cross-Origin Resource Sharing.")
+                         .AddMarkdownPage("concerns", "Concerns", "Custom Concerns", "Add behavior to all handlers within a section of your web application.")
+                         .AddMarkdownPage("handlers", "Handlers", "Custom Handlers", "Low level handling of requests and generation of HTTP web server responses.");
         }
 
         private static IHandlerBuilder GetServer()

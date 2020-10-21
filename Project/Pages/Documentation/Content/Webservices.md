@@ -7,6 +7,7 @@ such as [JAX-RS](https://github.com/jax-rs):
 
 ```csharp
 using GenHTTP.Modules.Webservices;
+using GenHTTP.Modules.Security;
 
 public class BookResource
 {
@@ -28,7 +29,9 @@ public class BookResource
 
 }
 
-var service = Layout.Create().AddService<BookResource>("books");
+var service = Layout.Create()
+                    .AddService<BookResource>("books")
+                    .Add(CorsPolicy.Permissive());
 
 Host.Create()
     .Handler(service)
@@ -37,7 +40,7 @@ Host.Create()
 
 The service will be available at http://localhost:8080/books.
 As the functionality is provided on handler level,
-all other concerns such as authentication or CORS can
+all other concerns such as [authentication](./authentication) or [CORS](./cors) can
 be implemented using regular server mechanisms. 
 
 By default, parameter values (within the path) are expected

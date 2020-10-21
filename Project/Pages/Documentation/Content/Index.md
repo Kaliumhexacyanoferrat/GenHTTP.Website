@@ -15,6 +15,9 @@ the modules which are currently available [on nuget](https://www.nuget.org/profi
 To setup a project, you will usually reference the [GenHTTP.Core](https://www.nuget.org/packages/GenHTTP.Core/) 
 package which includes the engine as well as basic elements for layouting and IO.
 
+If you would like to have full control over response generation, you can
+implement a [custom handler](./handlers).
+
 ## Application Frameworks
 
 - [Websites](./websites)<br />
@@ -36,6 +39,12 @@ package which includes the engine as well as basic elements for layouting and IO
 
 - [Authentication](./authentication)<br />
   Restricts the content provided by a section to authenticated users.
+  
+- [CORS](./cors)<br />
+  Policies to be respected by browsers accessing resources on the server.
+
+- [Custom Concerns](./concerns)<br />
+  Add behavior to all handlers within a section of your web application.
 
 ## Providers
 
