@@ -33,14 +33,15 @@ namespace GenHTTP.Website
                              .Subtitle("Simple and lightweight, embeddable HTTP webserver written in pure C# with few dependencies to 3rd-party libraries. Compatible with .NET Standard 2.1.")
                              .Action("documentation", "Get started");
 
-            var website = Modules.Core.Website.Create()
-                                              .Theme(theme)
-                                              .Menu(menu)
-                                              .AddScript("highlight.js", Data.FromResource("highlight.js"))
-                                              .AddStyle("highlight.css", Data.FromResource("highlight.css"))
-                                              .AddStyle("custom.css", Data.FromResource("custom.css"))
-                                              .Favicon(Data.FromResource("favicon.ico"))
-                                              .Content(GetLayout());
+            var website = Modules.Websites.Website.Create()
+                                                  .Theme(theme)
+                                                  .Menu(menu)
+                                                  .AddScript("highlight.js", Data.FromResource("highlight.js"))
+                                                  .AddStyle("highlight.css", Data.FromResource("highlight.css"))
+                                                  .AddStyle("custom.css", Data.FromResource("custom.css"))
+                                                  .Favicon(Data.FromResource("favicon.ico"))
+                                                  .Content(GetLayout());
+
             return website;
         }
 

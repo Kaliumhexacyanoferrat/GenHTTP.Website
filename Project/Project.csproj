@@ -111,11 +111,11 @@
   
   <ItemGroup>
     
-    <PackageReference Include="GenHTTP.Core" Version="4.0.0" />
+    <PackageReference Include="GenHTTP.Core" Version="4.1.0" />
 
-    <PackageReference Include="GenHTTP.Modules.Scriban" Version="4.0.0" />
-    <PackageReference Include="GenHTTP.Modules.Markdown" Version="4.0.0" />
-    <PackageReference Include="GenHTTP.Modules.Websites" Version="4.0.0" />
+    <PackageReference Include="GenHTTP.Modules.Scriban" Version="4.1.0" />
+    <PackageReference Include="GenHTTP.Modules.Markdown" Version="4.1.0" />
+    <PackageReference Include="GenHTTP.Modules.Websites" Version="4.1.0" />
 
     <PackageReference Include="GenHTTP.Themes.Lorahost" Version="4.0.1" />
     
