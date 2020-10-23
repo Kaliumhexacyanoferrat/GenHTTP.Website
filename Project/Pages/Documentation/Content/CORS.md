@@ -25,7 +25,7 @@ to a specific origin, create a `Restrictive()` policy and add the configuration 
 using GenHTTP.Modules.Webservices;
 using GenHTTP.Modules.Security;
 
-var policy = CorsPolicy.Permissive()
+var policy = CorsPolicy.Restrictive()
                        .Add("https://mydomain.com", null, null, null, true);
 
 var api = Layout.Create()
