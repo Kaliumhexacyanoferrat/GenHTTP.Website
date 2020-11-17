@@ -17,12 +17,14 @@ public class CustomHandler : IHandler
         Parent = parent;
     }
 
-    public IResponse? Handle(IRequest request)
+    public ValueTask<IResponse?> HandleAsync(IRequest request)
     {
-        return request.Respond()
-                      .Content(new StringContent("Hello World"))
-                      .Type(new FlexibleContentType(ContentType.TextPlain))
-                      .Build();
+        var response = request.Respond()
+                              .Content(Resource.FromString("Hello World"))
+                              .Type(new FlexibleContentType(ContentType.TextPlain))
+                              .Build();
+
+        return new ValueTask<IResponse?>(response);
     }
 
     public IEnumerable<ContentElement> GetContent(IRequest request) => Enumerable.Empty<ContentElement>();
@@ -53,5 +55,5 @@ Host.Create()
 
 As handlers are invoked for every request handled by the server, it is usually worth it to
 optimize them for performance. For example, as the content served by our `CustomHandler` does 
-not change depending on the request, the `StringContent` instance could be cached by a field or property
+not change depending on the request, the string resource instance could be cached by a field or property
 set in the constructor.

@@ -1,7 +1,7 @@
 ﻿## Hosting with Docker
 
 [Docker](https://www.docker.com/) is the preferred way to host
-web applications created with the GenHTTP application framework. .NET Core allows
+web applications created with the GenHTTP application framework. .NET 5 allows
 to create images for various platforms and CPU architectures. For a list of available base images,
 see their [Docker Hub](https://hub.docker.com/_/microsoft-dotnet-core-sdk/) page.
 

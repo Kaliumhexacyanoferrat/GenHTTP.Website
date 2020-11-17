@@ -20,9 +20,9 @@ public class CustomConcern : IConcern
 
     public IEnumerable<ContentElement> GetContent(IRequest request) => Content.GetContent(request);
 
-    public IResponse? Handle(IRequest request)
+    public async ValueTask<IResponse?> HandleAsync(IRequest request)
     {
-        var response = Content.Handle(request);
+        var response = await Content.HandleAsync(request);
         
         if (response != null) 
         {

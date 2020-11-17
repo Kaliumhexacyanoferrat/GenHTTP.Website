@@ -17,4 +17,4 @@ This example will automatically search for an index file (such as `index.html`) 
 the specified directory and serve it to clients accessing http://localhost:8080/.
 
 With this handler, a single page application can be hosted with just a few lines of code
-using .NET Core on [Docker](/documentation/hosting/).
+using .NET 5 on [Docker](/documentation/hosting/).

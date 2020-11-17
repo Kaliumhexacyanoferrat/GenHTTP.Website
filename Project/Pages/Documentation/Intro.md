@@ -11,16 +11,16 @@ also in the spirit of the open source community.
 With the GenHTTP framework, developers should be able to easily develop new web
 applications in a short time.
 Everything else is provided by the server infrastructure as well as the excellent
-ecosystem of .NET Core which easily allows to build, test, and run applications.
+ecosystem of .NET which easily allows to build, test, and run applications.
 
 ## Hello World!
 
 To create our first application using the GenHTTP framework, open a terminal
 and enter the following command to create a new 
-[.NET Core](https://dotnet.microsoft.com/download) application:
+[.NET 5](https://dotnet.microsoft.com/download) application:
 
 ```bash
-dotnet new console --framework netcoreapp3.1 -o Project
+dotnet new console --framework net5.0 -o Project
 ```
 
 This will create a new folder `Project`. Within this folder, run the following
@@ -51,7 +51,7 @@ namespace Project
 
         public static int Main(string[] args)
         {
-            var content = Content.From("Hello World!");
+            var content = Content.From(Resource.FromString("Hello World!"));
 
             return Host.Create()
                        .Console()
