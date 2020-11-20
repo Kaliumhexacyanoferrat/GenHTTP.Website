@@ -28,7 +28,7 @@ namespace GenHTTP.Website
                            .Add("legal", "Legal");
 
             var theme = Theme.Create()
-                             .Header(Data.FromResource("Header.jpg"))
+                             .Header(Resource.FromAssembly("Header.jpg"))
                              .Title("GenHTTP Webserver")
                              .Subtitle("Simple and lightweight, embeddable HTTP webserver written in pure C# with few dependencies to 3rd-party libraries. Compatible with .NET 5.")
                              .Action("documentation/", "Get started");
@@ -36,10 +36,10 @@ namespace GenHTTP.Website
             var website = Modules.Websites.Website.Create()
                                                   .Theme(theme)
                                                   .Menu(menu)
-                                                  .AddScript("highlight.js", Data.FromResource("highlight.js"))
-                                                  .AddStyle("highlight.css", Data.FromResource("highlight.css"))
-                                                  .AddStyle("custom.css", Data.FromResource("custom.css"))
-                                                  .Favicon(Data.FromResource("favicon.ico"))
+                                                  .AddScript("highlight.js", Resource.FromAssembly("highlight.js"))
+                                                  .AddStyle("highlight.css", Resource.FromAssembly("highlight.css"))
+                                                  .AddStyle("custom.css", Resource.FromAssembly("custom.css"))
+                                                  .Favicon(Resource.FromAssembly("favicon.ico"))
                                                   .Content(GetLayout());
 
             return website;
@@ -51,8 +51,8 @@ namespace GenHTTP.Website
         {
             return Layout.Create()
                          .Add("documentation", GetDocumentation())
-                         .Add("images", Static.Resources("Images"))
-                         .Add("downloads", Static.Resources("Downloads"))
+                         .Add("images", Resources.From(ResourceTree.FromAssembly("Images")))
+                         .Add("downloads", Resources.From(ResourceTree.FromAssembly("Downloads")))
                          .AddPage(null, "Home", "C# Webserver Library", "Lightweight, embeddable web server written in pure C# with few dependencies to 3rd-party libraries.")
                          .AddMarkdownPage("features", "Features", null, "Features of the GenHTTP application framework such as performance, SEO or security.")
                          .AddMarkdownPage("legal", "Legal", null, "Legal information regarding GenHTTP.org")
@@ -111,11 +111,11 @@ namespace GenHTTP.Website
         {
             if (route != null)
             {
-                return layout.Add(route, ModScriban.Page(Data.FromResource($"{file}.html")).Title(title ?? file).Description(description));
+                return layout.Add(route, ModScriban.Page(Resource.FromAssembly($"{file}.html")).Title(title ?? file).Description(description));
             }
             else
             {
-                return layout.Index(ModScriban.Page(Data.FromResource($"{file}.html")).Title(title ?? file).Description(description));
+                return layout.Index(ModScriban.Page(Resource.FromAssembly($"{file}.html")).Title(title ?? file).Description(description));
             }
         }
 
@@ -123,11 +123,11 @@ namespace GenHTTP.Website
         {
             if (route != null)
             {
-                return layout.Add(route, ModMarkdown.Page(Data.FromResource($"{file}.md")).Title(title ?? file).Description(description));
+                return layout.Add(route, ModMarkdown.Page(Resource.FromAssembly($"{file}.md")).Title(title ?? file).Description(description));
             }
             else
             {
-                return layout.Index(ModMarkdown.Page(Data.FromResource($"{file}.md")).Title(title ?? file).Description(description));
+                return layout.Index(ModMarkdown.Page(Resource.FromAssembly($"{file}.md")).Title(title ?? file).Description(description));
             }
         }
 
