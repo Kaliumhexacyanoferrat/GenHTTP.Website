@@ -80,7 +80,7 @@ implementation to the serialization registry used within your resources:
 ```csharp
 var registry = Serialization.Default().Add(new FlexibleContentType("application/protobuf"), new ProtobufFormat());
 
-var resource = Resource.From<BookResource>().Formats(registry);
+var resource = ServiceResource.From<BookResource>().Formats(registry);
 
 var service = Layout.Create().Add("books", resource);
 ```

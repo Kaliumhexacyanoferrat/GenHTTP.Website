@@ -87,7 +87,8 @@ namespace GenHTTP.Website
                          .AddMarkdownPage("controllers", "Controllers", null, "Lightweight framework to write MVC web applications in C#.")
                          .AddMarkdownPage("cors", "CORS", null, "Automatically configure your webservices for Cross-Origin Resource Sharing.")
                          .AddMarkdownPage("concerns", "Concerns", "Custom Concerns", "Add behavior to all handlers within a section of your web application.")
-                         .AddMarkdownPage("handlers", "Handlers", "Custom Handlers", "Low level handling of requests and generation of HTTP web server responses.");
+                         .AddMarkdownPage("handlers", "Handlers", "Custom Handlers", "Low level handling of requests and generation of HTTP web server responses.")
+                         .AddMarkdownPage("resources", "Resources", null, "An abstraction layer over file system capabilities to allow binary content to be fetched from any data source");
         }
 
         private static IHandlerBuilder GetServer()

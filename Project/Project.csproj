@@ -30,6 +30,7 @@
     <None Remove="Pages\Documentation\Content\Listing.md" />
     <None Remove="Pages\Documentation\Content\LoadBalancer.md" />
     <None Remove="Pages\Documentation\Content\Redirects.md" />
+    <None Remove="Pages\Documentation\Content\Resources.md" />
     <None Remove="Pages\Documentation\Content\ReverseProxy.md" />
     <None Remove="Pages\Documentation\Content\SinglePageApplications.md" />
     <None Remove="Pages\Documentation\Content\StaticContent.md" />
@@ -74,6 +75,7 @@
     <EmbeddedResource Include="Pages\Documentation\Content\Listing.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\LoadBalancer.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Redirects.md" />
+    <EmbeddedResource Include="Pages\Documentation\Content\Resources.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\ReverseProxy.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\SinglePageApplications.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\StaticContent.md" />

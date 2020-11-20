@@ -1,11 +1,13 @@
 ﻿## Directory Browsing
 
 The directory listing provider serves a simple web UI allowing users to browse directories
-and files below the specified path.
+and files read from a [resource tree](./resources) below the specified path.
 
 ```csharp
+var tree = ResourceTree.FromDirectory("/var/www/documents/");
+
 Host.Create()
-    .Handler(DirectoryListing.From("/var/www/documents/"))
+    .Handler(DirectoryListing.From(tree))
     .Run();
 ```
 

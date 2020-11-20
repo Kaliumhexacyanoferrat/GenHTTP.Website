@@ -16,43 +16,32 @@ using the controller module. This example shows how to render and modify data re
 
 ```csharp
 // Model
-public class Book
-{
-
-    public int ID { get; set; }
-
-    public string Title { get; set; }
-
-}
+public record Book(int ID, string Title);
 
 // Controller
 public class BookController
 {
-    private static readonly List<Book> _Books = new List<Book>()
+    private static readonly List<Book> _Books = new()
     {
-        new Book() { ID = 1, Title = "Lord of The Rings" }
+        new Book(1, "Lord of The Rings")
     };
 
     public IHandlerBuilder Index()
     {
-        return ModScriban.Page(Data.FromResource("BookList.html"), (r, h) => new ViewModel(r, h, _Books))
+        return ModScriban.Page(Resource.FromAssembly("BookList.html"), (r, h) => new ViewModel(r, h, _Books))
                          .Title("Book List");
     }
 
     public IHandlerBuilder Create()
     {
-        return ModScriban.Page(Data.FromResource("BookCreation.html"))
+        return ModScriban.Page(Resource.FromAssembly("BookCreation.html"))
                          .Title("Add Book");
     }
 
     [ControllerAction(RequestMethod.POST)]
-    public IHandlerBuilder Create(string title) // or: Book book
+    public IHandlerBuilder Create(string title)
     {
-        var book = new Book()
-        {
-            ID = _Books.Max(b => b.ID) + 1,
-            Title = title
-        };
+        var book = new Book(_Books.Max(b => b.ID) + 1, title);
 
         _Books.Add(book);
 
@@ -63,7 +52,7 @@ public class BookController
     {
         var book = _Books.Where(b => b.ID == id).First();
 
-        return ModScriban.Page(Data.FromResource("BookEditor.html"), (r, h) => new ViewModel(r, h, book))
+        return ModScriban.Page(Resource.FromAssembly("BookEditor.html"), (r, h) => new ViewModel(r, h, book))
                          .Title(book.Title);
     }
 
@@ -72,7 +61,9 @@ public class BookController
     {
         var book = _Books.Where(b => b.ID == id).First();
 
-        book.Title = title;
+        var index = _Books.IndexOf(book);
+
+        _Books[index] = book with { Title = title };
 
         return Redirect.To("{index}/", true);
     }
@@ -119,7 +110,7 @@ making it easier to understand. A larger application would probably derive some
 
 ```csharp
 protected IHandlerBuilder View(string name, string title, object? data = null) {
-    return ModScriban.Page(Data.FromResource($"{name}.html"), (r, h) => new ViewModel(r, h, data))
+    return ModScriban.Page(Resource.FromAssembly($"{name}.html"), (r, h) => new ViewModel(r, h, data))
                      .Title(title);
 }
 ```
@@ -186,7 +177,7 @@ to map an URL:
 As with the webservice module, the controller allows to inject additional objects
 from the request context such as the `IRequest`, the `IHandler` or the `Stream` read
 from the request body. The result of your method can be `void`, `IResponse`,
-`IResponseBuilder`, `IHandler` or `IHandlerBuilder`.
+`IResponseBuilder`, `IHandler` or `IHandlerBuilder` (either `async` or not).
 
 As your methods are allowed to return any `IHandlerBuilder`, you can also return
 more complex types like a `Layout`, `ReverseProxy` or a `DirectoryListing`. Content discovery and

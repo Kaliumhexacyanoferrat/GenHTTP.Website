@@ -81,7 +81,7 @@ public class ShopModel : PageModel
 }
 
 // within the template, "basket" will be available as a Scriban property 
-website.Add("shop", ModScriban.Page(Data.FromFile("./Shop.html"), (request, handler) => new ShopModel(request, handler, LoadBasket())));
+website.Add("shop", ModScriban.Page(Resource.FromFile("./Shop.html"), (request, handler) => new ShopModel(request, handler, LoadBasket())));
 ```
 
 ## Routing

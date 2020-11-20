@@ -4,7 +4,9 @@ This handler provides an easy way to serve a single page application (for exampl
 Vue.js, React, or Angular app) to your clients.
 
 ```csharp
-var app = SinglePageApplication.From("/var/html/my-webapp");
+var tree = ResourceTree.FromDirectory("/var/html/my-webapp");
+
+var app = SinglePageApplication.From(tree);
 
  Host.Create()
      .Console()
@@ -17,4 +19,4 @@ This example will automatically search for an index file (such as `index.html`) 
 the specified directory and serve it to clients accessing http://localhost:8080/.
 
 With this handler, a single page application can be hosted with just a few lines of code
-using .NET 5 on [Docker](/documentation/hosting/).
+using [Docker](/documentation/hosting/).

@@ -81,3 +81,9 @@ implement a [custom handler](./handlers).
 - [Load Balancer](./load-balancing)<br />
   Randomly distributes incoming requests to specified nodes to distribute the 
   resulting load to other systems.
+
+## Misc
+
+- [Resources](./resources)<br />
+  An abstraction layer over file system capabilities to allow binary content
+  to be fetched from any data source.

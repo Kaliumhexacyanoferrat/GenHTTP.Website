@@ -2,16 +2,18 @@
 
 To provide static resources required by your web application, add them to your project
 and mark them either as `Content` or as an `Embedded Resource`. To serve those files,
-you can use the `Static` factory class:
+you can use the `Resources` factory class:
 
 ```csharp
 var layout = Layout.Create();
 
 // serve all embedded resources in the "Resources" sub folder of your project
-layout.Add("res", Static.Resources("Resources"))
+var tree = ResourceTree.FromAssembly("Resources");
 
 // serve all files in the given folder
-layout.Add("res", Static.Files("./Resources"));
+var tree = ResourceTree.FromDirectory("./Resources");
+
+layout.Add("res", Resources.From(tree));
 
 Host.Create()
     .Handler(layout)

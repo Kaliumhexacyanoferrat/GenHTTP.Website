@@ -27,10 +27,10 @@ LoadBalancer.Create().Proxy(..., (r) => Priority.High);
 
 Additionally, the builder accepts any `IHandler` instance as a node, allowing
 to extend the functionality where needed. For example, the following snippet would
-distribute the load to two different drives.
+distribute the load to two different, local drives.
 
 ```csharp
 LoadBalancer.Create()
-            .Add(Static.Files("/mnt/storage1/files/"))
-            .Add(Static.Files("/mnt/storage2/files/"));
+            .Add(Resources.From(ResourceTree.FromDirectory("/mnt/storage1/files/")))
+            .Add(Resources.From(ResourceTree.FromDirectory("/mnt/storage2/files/")));
 ```
