@@ -33,4 +33,4 @@ a good security grade of A+ as reported by SSL Labs.
 
 ![Security analysis of the GenHTTP website](/images/ssl_labs.png)
 
-*see [SSL Labs Server Test](https://www.ssllabs.com/ssltest/analyze.html?d=genhttp.org)*
+*see [SSL Labs Server Test](https://www.ssllabs.com/ssltest/analyze.html?d=genhttp.org&latest)*
