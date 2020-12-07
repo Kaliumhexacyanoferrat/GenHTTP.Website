@@ -13,11 +13,16 @@ jobs:
       DOTNET_ROLL_FORWARD: Major
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.100
+    - name: Setup Java JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
     - name: Restore tools
       run: dotnet tool restore
     - name: Begin scan
