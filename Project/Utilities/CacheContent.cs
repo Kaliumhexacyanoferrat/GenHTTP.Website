@@ -41,6 +41,8 @@ namespace Project.Utilities
             return response;
         }
 
+        public ValueTask PrepareAsync() => Content.PrepareAsync();
+
     }
 
     public class CacheContentConcernBuilder : IConcernBuilder

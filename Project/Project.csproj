@@ -113,13 +113,13 @@
   
   <ItemGroup>
     
-    <PackageReference Include="GenHTTP.Core" Version="5.0.0" />
+    <PackageReference Include="GenHTTP.Core" Version="5.1.0" />
 
-    <PackageReference Include="GenHTTP.Modules.Scriban" Version="5.0.0" />
-    <PackageReference Include="GenHTTP.Modules.Markdown" Version="5.0.0" />
-    <PackageReference Include="GenHTTP.Modules.Websites" Version="5.0.0" />
+    <PackageReference Include="GenHTTP.Modules.Scriban" Version="5.1.0" />
+    <PackageReference Include="GenHTTP.Modules.Markdown" Version="5.1.0" />
+    <PackageReference Include="GenHTTP.Modules.Websites" Version="5.1.0" />
 
-    <PackageReference Include="GenHTTP.Themes.Lorahost" Version="5.0.0" />
+    <PackageReference Include="GenHTTP.Themes.Lorahost" Version="5.1.0" />
     
   </ItemGroup>
   

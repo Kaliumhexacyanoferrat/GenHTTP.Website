@@ -35,3 +35,33 @@ securedContent.Authentication((user, password) => {
    return new BasicAuthenticationUser(user);
 });
 ```
+
+## API Key Authentication
+
+This kind of authentication requires your clients to authenticate themselves using an key sent
+with an additional HTTP header (named `X-API-Key`). 
+
+```csharp
+var securedContent = Layout.Create();
+
+var auth = ApiKeyAuthentication.Create()
+                               .Keys("ABC-123", "BCD-234");
+
+securedContent.Authentication(auth);
+```
+
+You may customize both where the key is read from and what keys are valid for authentication:
+
+```csharp
+var auth = ApiKeyAuthentication.Create()
+                               .WithQueryParameter("key") // read the key from the query ..
+                               .WithHeader("key") // .. or a custom header ...
+                               .Extractor((r) => ...) // ... or anywhere else
+                               .Authenticator(DoAuthenticate);
+
+private IUser? DoAuthenticate(IRequest request, string key)
+{
+    // do something to check the key (e.g. query a database)
+    return new ApiKeyUser(key); // or null, if no access is granted
+}
+```
