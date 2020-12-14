@@ -8,7 +8,7 @@ used, the identified user can be read from the request in the following manner:
 ```csharp
 using GenHTTP.Modules.Authentication;
                         
-var displayName = request.GetUser&lt;IUser&gt;()?.DisplayName;
+var displayName = request.GetUser<IUser>()?.DisplayName;
 ```
 
 The user object for the current request will be determined by the installed authentication

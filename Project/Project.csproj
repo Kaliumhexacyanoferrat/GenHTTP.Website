@@ -113,7 +113,7 @@
   
   <ItemGroup>
     
-    <PackageReference Include="GenHTTP.Core" Version="5.1.0" />
+    <PackageReference Include="GenHTTP.Core" Version="5.1.1" />
 
     <PackageReference Include="GenHTTP.Modules.Scriban" Version="5.1.0" />
     <PackageReference Include="GenHTTP.Modules.Markdown" Version="5.1.0" />
