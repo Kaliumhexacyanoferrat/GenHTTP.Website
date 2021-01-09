@@ -6,7 +6,7 @@ using GenHTTP.Modules.IO;
 using GenHTTP.Modules.Layouting;
 using GenHTTP.Modules.Layouting.Provider;
 using GenHTTP.Modules.Markdown;
-using GenHTTP.Modules.Scriban;
+using GenHTTP.Modules.Placeholders;
 using GenHTTP.Modules.Websites;
 
 using GenHTTP.Themes.Lorahost;
@@ -111,11 +111,11 @@ namespace GenHTTP.Website
         {
             if (route != null)
             {
-                return layout.Add(route, ModScriban.Page(Resource.FromAssembly($"{file}.html")).Title(title ?? file).Description(description));
+                return layout.Add(route, Page.From(Resource.FromAssembly($"{file}.html")).Title(title ?? file).Description(description));
             }
             else
             {
-                return layout.Index(ModScriban.Page(Resource.FromAssembly($"{file}.html")).Title(title ?? file).Description(description));
+                return layout.Index(Page.From(Resource.FromAssembly($"{file}.html")).Title(title ?? file).Description(description));
             }
         }
 
