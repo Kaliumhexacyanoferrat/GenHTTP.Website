@@ -14,11 +14,13 @@ var content = Content.From("Hello World!");
 // blocking until the application receives a shutdown signal (e.g. main method of a standalone application)
 return Host.Create()
            .Handler(content)
+           .Defaults()
            .Run();
 
 // non-blocking (e.g. for test libraries)
 var host = Host.Create()
                .Handler(content)
+               .Defaults()
                .Start();
 
 try {
@@ -30,23 +32,19 @@ finally {
 }
 ```
 
-The server will start to listen for requests as soon as the `Build`
+The server will start to listen for requests as soon as the `Run` or `Start`
 method is called. When disposed, the server will stop to process messages
 and release all claimed resources.
 
-## Basic Infrastructure
-
-The default server instance is configured to provide basic features that are
-usually required by every web application or service. If you would like to
-customize those features, see the following sections:
-
-- [Endpoints and Ports](./endpoints)
-- [Compression](./compression)
+By default, the server will listen to all IP addresses on port 8080. These
+settings can be adjusted [as needed](./endpoints). The `Defaults()` call is 
+provided by the [Practices](https://www.nuget.org/packages/GenHTTP.Modules.Practices/) module 
+and adds typical features such as [Compression](/documentation/content/compression).
 
 ## Security
 
 By default, the server will provide an HTTP endpoint on port 8080 with no
-SSL supported enabled. It's recommended to serve all of your web applications
+SSL supported enabled. It is recommended to serve all of your web applications
 by a dedicated reverse proxy such as [nginx](https://www.nginx.com/)
 or the [GenHTTP Gateway](https://hub.docker.com/r/genhttp/gateway).
 Nevertheless, the server allows you to add HTTPS endpoints to your application.

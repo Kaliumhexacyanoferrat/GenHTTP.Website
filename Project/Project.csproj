@@ -85,7 +85,7 @@
     <EmbeddedResource Include="Pages\Documentation\Hosting\Index.md" />
     <EmbeddedResource Include="Pages\Documentation\Intro.md" />
     <EmbeddedResource Include="Pages\Documentation\Server\Companions.md" />
-    <EmbeddedResource Include="Pages\Documentation\Server\Compression.md" />
+    <EmbeddedResource Include="Pages\Documentation\Content\Compression.md" />
     <EmbeddedResource Include="Pages\Documentation\Server\Endpoints.md" />
     <EmbeddedResource Include="Pages\Documentation\Server\Index.md" />
     <EmbeddedResource Include="Pages\Documentation\Server\Security.md" />

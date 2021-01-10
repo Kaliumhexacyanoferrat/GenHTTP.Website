@@ -1,11 +1,21 @@
 ﻿## Compression
 
-The server will automatically compress content sent to the clients, if applicable. By default,
+The compression concern compresses content sent to the clients, if applicable. By default,
 [gzip](https://www.gzip.org/) and [Brotli](https://github.com/google/brotli) are supported.
-If required, compression can be disabled:
 
 ```csharp
-var server = Server.Create().Handler(...).Defaults(compression: false);
+var content = Layout.Create()
+                    .Add(CompressedContent.Default());
+```
+
+The `Defaults()` method of the [Practices](https://www.nuget.org/packages/GenHTTP.Modules.Practices/)
+module will automatically configure compression on server level:
+
+```csharp
+Host.Create()
+    .Handler(...)
+    .Defaults()
+    .Run();
 ```
 
 ## Custom Algorithms
