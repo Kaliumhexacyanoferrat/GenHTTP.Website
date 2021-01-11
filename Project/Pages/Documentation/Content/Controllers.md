@@ -101,7 +101,7 @@ static int Main(string[] args)
 }
 ```
 
-The example is available as a downloadable [sample project](/downloads/GenHTTP.Examples.Controllers.zip) as well.
+The example is available as a downloadable [sample project](/downloads/GenHTTP-Examples-Controllers.zip) as well.
 
 You might notice that compared to ASP.NET Core MVC, the code is quite verbose (e.g.
 the Scriban stuff instead of just `View`), but you can also see what is actually executed,

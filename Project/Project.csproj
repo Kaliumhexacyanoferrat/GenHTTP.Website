@@ -51,7 +51,7 @@
     <None Remove="Pages\Home.html" />
     <None Remove="Pages\Legal.md" />
     <None Remove="Pages\Links.md" />
-    <None Remove="Resources\Downloads\GenHTTP.Examples.Controllers.zip" />
+    <None Remove="Resources\Downloads\GenHTTP-Examples-Controllers.zip" />
     <None Remove="Resources\favicon.ico" />
     <None Remove="Resources\Header.jpg" />
     <None Remove="Resources\Highlight\highlight.css" />
@@ -103,7 +103,7 @@
     <EmbeddedResource Include="Pages\Home.html" />
     <EmbeddedResource Include="Pages\Legal.md" />
     <EmbeddedResource Include="Pages\Links.md" />
-    <EmbeddedResource Include="Resources\Downloads\GenHTTP.Examples.Controllers.zip" />
+    <EmbeddedResource Include="Resources\Downloads\GenHTTP-Examples-Controllers.zip" />
     <EmbeddedResource Include="Resources\favicon.ico" />
     <EmbeddedResource Include="Resources\Header.jpg" />
     <EmbeddedResource Include="Resources\Highlight\highlight.css" />
