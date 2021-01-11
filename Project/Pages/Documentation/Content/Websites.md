@@ -58,7 +58,7 @@ or as content that will be copied to the output directory of your project. The p
 added using the appropriate module:
 
 ```csharp
-website.Add("shop", ModScriban.Page(Data.FromResource("Shop.html"))); // or ModRazor, ModMarkdown
+website.Add("shop", ModScriban.Page(Resource.FromFile("Shop.html"))); // or ModRazor, ModMarkdown
 ```
 
 This will load the given Scriban template from the specified resource and render it to the
@@ -84,6 +84,9 @@ public class ShopModel : PageModel
 website.Add("shop", ModScriban.Page(Resource.FromFile("./Shop.html"), (request, handler) => new ShopModel(request, handler, LoadBasket())));
 ```
 
+To serve a static page instead of a rendered one, you can use `Page.From(Resource.FromFile(...))` to
+create a page from a given [Resource](./resources).
+
 ## Routing
 
 Within your pages, you can access the routing context to generate relative paths
@@ -101,6 +104,12 @@ to other pages or parts of your web application. Example:
 route within the handler hierarchy and generate an URL that can be used by the
 browser to navigate to this location.
 
-Some handlers may provide symbolic routes that can be used to access the requested content.
-For example, the layout handler exposes the symbolic routes `{index}` and `{fallback}`
-and the website handler exposes `{website}` to navigate to the root of the website.
+Some handlers may provide symbolic routes that can be used to access the requested content:
+
+| Handler        | Route           | Description  |
+| ------------- |-------------| -----|
+| [Layout](./layouting)     | `{index}` | The index of the layout (if any) |
+| [Layout](./layouting)     | `{fallback}` | The fallback of the layout (if any) |
+| [Website](./websites)     | `{website}` | The root of the website |
+| [Controller](./controllers)     | `{controller}` | The root of the controller |
+| [Controller](./controllers)     | `{index}` | The index route of the controller (if any) |

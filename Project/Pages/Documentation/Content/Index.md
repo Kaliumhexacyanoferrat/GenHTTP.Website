@@ -30,6 +30,9 @@ implement a [custom handler](./handlers).
 - [Webservices](./webservices)<br />
   Provides REST based web services that can be consumed by clients to
   retrieve a JSON or XML serialized result.
+  
+- [Static Websites](./static-websites)<br />
+  Allows to easily serve static web applications such as a Hugo site.
 
 - [Single Page Applications (SPA)](./single-page-applications)<br />
   Allows to serve applications written with modern JS frameworks such as

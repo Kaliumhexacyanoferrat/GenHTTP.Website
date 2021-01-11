@@ -19,6 +19,8 @@ public class CustomConcern : IConcern
     }
 
     public IEnumerable<ContentElement> GetContent(IRequest request) => Content.GetContent(request);
+    
+    public ValueTask PrepareAsync() => Content.PrepareAsync();
 
     public async ValueTask<IResponse?> HandleAsync(IRequest request)
     {
@@ -53,5 +55,5 @@ Host.Create()
     .Run();
 ```
 
-The GenHTTP SDK uses the same mechanism to achieve functionality such as [compression](/documentation/server/compression)
+The GenHTTP SDK uses the same mechanism to achieve functionality such as [compression](./compression)
 or support for [CORS](./cors).

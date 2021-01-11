@@ -3,7 +3,8 @@
 Handlers are responsible for analyzing HTTP requests and to serve responses to the connected client. All features
 available in the SDK are either provided by handlers or [concerns](./concerns).
 
-If you would like to add an additional feature to the SDK or your own web application, you may implement
+If you would like to add an additional feature that cannot be achieved using the existing
+functionality to the SDK or your own web application, you may implement
 a custom handler instance. The following example will generate a simple text response:
 
 ```csharp
@@ -25,6 +26,13 @@ public class CustomHandler : IHandler
                               .Build();
 
         return new ValueTask<IResponse?>(response);
+    }
+
+    public ValueTask PrepareAsync() 
+    {
+        // perform CPU or I/O heavy work to initialize this
+        // handler and it's children
+        return new ValueTask();
     }
 
     public IEnumerable<ContentElement> GetContent(IRequest request) => Enumerable.Empty<ContentElement>();

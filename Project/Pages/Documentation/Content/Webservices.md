@@ -60,11 +60,12 @@ providing the same functionality.
 The implementation supports all typical features such as
 serialization and deserialization of complex types, simple
 types, enums, streams, raw `IRequest`, `IHandler`, and `IResponseBuilder`
-arguments, query parameters, path parameters or exception handling:
+arguments, query parameters, path parameters, `async` methods returning
+a `Task` or `ValueTask`, and exception handling:
 
 ```csharp
 [ResourceMethod(RequestMethod.PUT)]
-public Stream Stream(Stream input) { /* ... */ }
+public async ValueTask<Stream> Stream(Stream input) { /* ... */ }
 
 [ResourceMethod]
 public IResponseBuilder RequestResponse(IRequest request, IHandler handler) { return request.Respond() /* ... */; }

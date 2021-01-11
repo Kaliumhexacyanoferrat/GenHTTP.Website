@@ -34,6 +34,7 @@
     <None Remove="Pages\Documentation\Content\ReverseProxy.md" />
     <None Remove="Pages\Documentation\Content\SinglePageApplications.md" />
     <None Remove="Pages\Documentation\Content\StaticContent.md" />
+    <None Remove="Pages\Documentation\Content\StaticWebsites.md" />
     <None Remove="Pages\Documentation\Content\VirtualHosts.md" />
     <None Remove="Pages\Documentation\Content\Webservices.md" />
     <None Remove="Pages\Documentation\Content\Websites.md" />
@@ -57,6 +58,7 @@
     <None Remove="Resources\Images\footprint.png" />
     <None Remove="Resources\Images\gateway.png" />
     <None Remove="Resources\Images\hello_world.png" />
+    <None Remove="Resources\Images\listing.png" />
     <None Remove="Resources\Images\pagespeed.png" />
     <None Remove="Resources\Images\ssl_labs.png" />
     <None Remove="Resources\Images\tfb.png" />
@@ -77,6 +79,7 @@
     <EmbeddedResource Include="Pages\Documentation\Content\Redirects.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Resources.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\ReverseProxy.md" />
+    <EmbeddedResource Include="Pages\Documentation\Content\StaticWebsites.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\SinglePageApplications.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\StaticContent.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\VirtualHosts.md" />
@@ -105,6 +108,7 @@
     <EmbeddedResource Include="Resources\Images\footprint.png" />
     <EmbeddedResource Include="Resources\Images\gateway.png" />
     <EmbeddedResource Include="Resources\Images\hello_world.png" />
+    <EmbeddedResource Include="Resources\Images\listing.png" />
     <EmbeddedResource Include="Resources\Images\pagespeed.png" />
     <EmbeddedResource Include="Resources\Images\ssl_labs.png" />
     <EmbeddedResource Include="Resources\Images\tfb.png" />

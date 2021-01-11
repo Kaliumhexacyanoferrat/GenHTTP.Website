@@ -12,5 +12,7 @@ Host.Create()
 ```
 
 In this example, the listing view will be available at http://localhost:8080/.
-The generated view will be rendered using the template defined for the section
-of the website the provider is embedded into.
+The generated view will be rendered using the template of the [Website](./websites) 
+the provider is embedded into (or the server theme by default).
+
+![Directory listing served by the GenHTTP server](/images/listing.png)
