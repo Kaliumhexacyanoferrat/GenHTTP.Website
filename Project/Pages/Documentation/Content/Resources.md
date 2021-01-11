@@ -33,3 +33,14 @@ Host.Create()
     .Handler(listing)
     .Run();
 ```
+
+Virtual trees allow to combine different sources of resources into an unified tree:
+
+```csharp
+var tree = Layout.Create()
+                 .Add("index.html", Resource.FromFile(...))
+                 .Add("config.js", Resource.FromAssembly(...))
+                 .Add("dist", ResourceTree.FromDirectory(...));
+
+var app = SinglePageApplication.From(tree);
+```

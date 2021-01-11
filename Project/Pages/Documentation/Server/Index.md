@@ -37,9 +37,9 @@ method is called. When disposed, the server will stop to process messages
 and release all claimed resources.
 
 By default, the server will listen to all IP addresses on port 8080. These
-settings can be adjusted [as needed](./endpoints). The `Defaults()` call is 
-provided by the [Practices](https://www.nuget.org/packages/GenHTTP.Modules.Practices/) module 
-and adds typical features such as [Compression](/documentation/content/compression).
+settings can be adjusted [as needed](./endpoints). The `Defaults()` call adds 
+[typical features](/documentation/content/defaults) such as [compression](/documentation/content/compression)
+and [client caching](/documentation/content/client-caching).
 
 ## Security
 

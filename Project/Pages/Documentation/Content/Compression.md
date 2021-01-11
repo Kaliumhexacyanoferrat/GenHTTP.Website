@@ -8,15 +8,8 @@ var content = Layout.Create()
                     .Add(CompressedContent.Default());
 ```
 
-The `Defaults()` method of the [Practices](https://www.nuget.org/packages/GenHTTP.Modules.Practices/)
-module will automatically configure compression on server level:
-
-```csharp
-Host.Create()
-    .Handler(...)
-    .Defaults()
-    .Run();
-```
+This concern is part of the [default configuration](./defaults) and will automatically
+be added.
 
 ## Custom Algorithms
 

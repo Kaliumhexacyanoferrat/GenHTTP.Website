@@ -20,9 +20,11 @@
   
   <ItemGroup>
     <None Remove="Pages\Documentation\Content\Authentication.md" />
+    <None Remove="Pages\Documentation\Content\ClientCaching.md" />
     <None Remove="Pages\Documentation\Content\Concerns.md" />
     <None Remove="Pages\Documentation\Content\Controllers.md" />
     <None Remove="Pages\Documentation\Content\CORS.md" />
+    <None Remove="Pages\Documentation\Content\Defaults.md" />
     <None Remove="Pages\Documentation\Content\Downloads.md" />
     <None Remove="Pages\Documentation\Content\Handlers.md" />
     <None Remove="Pages\Documentation\Content\Index.md" />
@@ -67,9 +69,11 @@
   
   <ItemGroup>
     <EmbeddedResource Include="Pages\Documentation\Content\Authentication.md" />
+    <EmbeddedResource Include="Pages\Documentation\Content\ClientCaching.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Concerns.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Controllers.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\CORS.md" />
+    <EmbeddedResource Include="Pages\Documentation\Content\Defaults.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Downloads.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Handlers.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Index.md" />
