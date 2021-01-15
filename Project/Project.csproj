@@ -34,6 +34,7 @@
     <None Remove="Pages\Documentation\Content\Redirects.md" />
     <None Remove="Pages\Documentation\Content\Resources.md" />
     <None Remove="Pages\Documentation\Content\ReverseProxy.md" />
+    <None Remove="Pages\Documentation\Content\ServerCaching.md" />
     <None Remove="Pages\Documentation\Content\SinglePageApplications.md" />
     <None Remove="Pages\Documentation\Content\StaticContent.md" />
     <None Remove="Pages\Documentation\Content\StaticWebsites.md" />
@@ -69,6 +70,7 @@
   
   <ItemGroup>
     <EmbeddedResource Include="Pages\Documentation\Content\Authentication.md" />
+    <EmbeddedResource Include="Pages\Documentation\Content\ServerCaching.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\ClientCaching.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Concerns.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Controllers.md" />
