@@ -54,7 +54,7 @@ namespace GenHTTP.Website
                          .Add("documentation", GetDocumentation())
                          .Add("images", Resources.From(ResourceTree.FromAssembly("Images")))
                          .Add("downloads", Resources.From(ResourceTree.FromAssembly("Downloads")))
-                         .AddPage(null, "Home", "C# Webserver Library", "Lightweight, embeddable web server written in pure C# with few dependencies to 3rd-party libraries.")
+                         .AddPage(null, "Home", "C# Webserver Library", "Lightweight, embeddable HTTP web server written in pure C# with few dependencies to 3rd-party libraries.")
                          .AddMarkdownPage("features", "Features", null, "Features of the GenHTTP application framework such as performance, SEO or security.")
                          .AddMarkdownPage("legal", "Legal", null, "Legal information regarding GenHTTP.org")
                          .AddMarkdownPage("links", "Links", "Links & References", "Projects using the GenHTTP webserver engine.");
