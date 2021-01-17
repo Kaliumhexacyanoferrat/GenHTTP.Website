@@ -102,3 +102,6 @@ implement a [custom handler](./handlers).
 - [Resources](./resources)<br />
   An abstraction layer over file system capabilities to allow binary content
   to be fetched from any data source.
+  
+- [Caches](./caches)<br />
+  Allow to store intermediate results to improve performance.

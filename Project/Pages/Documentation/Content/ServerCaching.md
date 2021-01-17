@@ -70,6 +70,39 @@ ServerCache.Memory()
            .Invalidate(false);
 ```
 
+## Variations
+
+The server cache allows different versions of generated responses to be cached
+by evaluating the `Vary` header. For example, if your handler may both return
+responses compressed with `gzip` and `br`, the cache will retain a copy of both
+versions and evaluate the client headers to server the requested version.
+
+If you would like to cache different versions for every user agent, just set
+the `Vary` header accordingly:
+
+```csharp
+request.Respond()
+       .Header("Vary", "User-Agent");
+```
+
+For more information, see [this blog entry](https://www.keycdn.com/support/vary-header).
+
+## Expiration Handling
+
+By default, the file system cache will keep discarded entries available
+for another 30 minutes to allow clients to finish their downloads. If you
+need to customize this value, you may create a custom instance with
+a pre-configured cache instead:
+
+```csharp
+var meta = Cache.Memory<CachedResponse>();
+
+var data = Cache.TemporaryFiles<Stream>()
+                .AccessExpiration(TimeSpan.FromHours(4));
+
+var cache = ServerCache.Create(meta, data);
+```
+
 ## Pre-compress Content
 
 Typically, the [compression](./compression) concern is added to
