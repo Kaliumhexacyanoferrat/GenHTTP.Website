@@ -6,6 +6,11 @@ content did not change on the server, the handler will generate a `304 Not Modif
 response, causing the client to re-use the locally cached data. This way, clients
 revisiting your web application load faster and the load on your server is reduced.
 
+```csharp
+var content = Layout.Create()
+                    .Add(ClientCache.Validation());
+```
+
 The `eTag` is generated from the [checksum of the content](https://github.com/Kaliumhexacyanoferrat/GenHTTP/blob/master/API/Protocol/IResponseContent.cs) 
 that should be served to the client. Dependent on the kind of content (such as a local file resource)
 the checksum can be calculated quite efficiently.
