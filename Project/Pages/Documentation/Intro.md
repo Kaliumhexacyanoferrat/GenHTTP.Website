@@ -3,7 +3,7 @@
 With [ASP.NET](https://dotnet.microsoft.com/apps/aspnet), there is already a
 very good, scalable solution to develop and host web applications and services based
 on the .NET framework.
-But as of 2020, it seems that there are not that many other web development frameworks 
+But as of 2021, it seems that there are not that many other web development frameworks 
 and servers left besides Microsoft's ASP.NET.
 This project aims to bring more diversity to the beautiful ecosystem of .NET development,
 also in the spirit of the open source community.

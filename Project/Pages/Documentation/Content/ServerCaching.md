@@ -54,7 +54,7 @@ can pass a predicate to select them:
 
 ```csharp
 ServerCache.Memory()
-           .Predicate(r => r.ContentType?.KnownType == ContentType.TextHtml);
+           .Predicate((req, resp) => resp.ContentType?.KnownType == ContentType.TextHtml);
 ```
 
 ## Invalidation
