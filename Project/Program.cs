@@ -1,8 +1,9 @@
-﻿using GenHTTP.Engine;
+﻿using GenHTTP.Api.Protocol;
 
+using GenHTTP.Engine;
+
+using GenHTTP.Modules.ClientCaching;
 using GenHTTP.Modules.Practices;
-
-using Project.Utilities;
 
 namespace GenHTTP.Website
 {
@@ -14,12 +15,16 @@ namespace GenHTTP.Website
         {
             var project = Project.Create();
 
+            var cachePolicy = ClientCache.Policy()
+                                         .Duration(7)
+                                         .Predicate((_, r) => r.ContentType?.KnownType != ContentType.TextHtml);
+
             return Host.Create()
                        .Handler(project)
-                       .Add(new CacheContentConcernBuilder())
 #if DEBUG
                        .Development()
 #endif
+                       .Add(cachePolicy)
                        .Defaults()
                        .Console()
                        .Run();

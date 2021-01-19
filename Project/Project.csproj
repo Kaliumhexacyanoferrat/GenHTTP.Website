@@ -127,10 +127,14 @@
   
   <ItemGroup>
     
-    <PackageReference Include="GenHTTP.Core" Version="5.1.1" />
+    <PackageReference Include="GenHTTP.Core" Version="5.2.0" />
+    
+    <PackageReference Include="GenHTTP.Modules.ClientCaching" Version="5.2.0" />
 
-    <PackageReference Include="GenHTTP.Modules.Markdown" Version="5.1.0" />
-    <PackageReference Include="GenHTTP.Modules.Websites" Version="5.1.0" />
+    <PackageReference Include="GenHTTP.Modules.Markdown" Version="5.2.0" />
+
+    <PackageReference Include="GenHTTP.Modules.ServerCaching" Version="5.2.0" />
+    <PackageReference Include="GenHTTP.Modules.Websites" Version="5.2.0" />
 
     <PackageReference Include="GenHTTP.Themes.Lorahost" Version="5.1.0" />
     
