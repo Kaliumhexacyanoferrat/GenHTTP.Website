@@ -1,8 +1,13 @@
 ﻿## Webservices
 
-The resource handler shipped with the [Webservices](https://www.nuget.org/packages/GenHTTP.Modules.Webservices/)
-module allows to easily implement RESTful services. The
-concept is very similar to popular webservice frameworks
+The webservice module provides an easy way to implement RESTful services
+that can be consumed by clients as needed.
+
+> <span class="note">NOTE</span> Webservices can quickly be created by using a [project template](./templates).
+
+## Creating a Webservice
+
+The concept is very similar to popular webservice frameworks
 such as [JAX-RS](https://github.com/jax-rs):
 
 ```csharp

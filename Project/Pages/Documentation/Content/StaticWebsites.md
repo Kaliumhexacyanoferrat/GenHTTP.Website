@@ -3,6 +3,15 @@
 This handler provides an easy way to serve a static website such as a [Hugo](https://gohugo.io/)
 application to your clients.
 
+> <span class="note">NOTE</span> Static websites can quickly be created by using a [project template](./templates).
+
+## Creating a Static Website
+
+The following example will make the specified application available on http://localhost:8080/.
+The handler will search for index files (such as `index.html`) and automatically
+generate a sitemap and robots instruction file. If 
+those files already exist in the given web root, they will be served directly instead.
+
 ```csharp
 var tree = ResourceTree.FromDirectory("/var/html/my-website");
 
@@ -14,11 +23,6 @@ var app = StaticWebsite.From(tree);
      .Handler(app)
      .Run();
 ```
-
-This example will make the specified application available on http://localhost:8080/.
-The handler will search for index files (such as `index.html`) and automatically
-generate a sitemap and robots instruction file. If 
-those files already exist in the given web root, they will be served directly instead.
 
 With this handler, a static website can be hosted with just a few lines of code
 using [Docker](/documentation/hosting/).

@@ -40,6 +40,7 @@
     <None Remove="Pages\Documentation\Content\SinglePageApplications.md" />
     <None Remove="Pages\Documentation\Content\StaticContent.md" />
     <None Remove="Pages\Documentation\Content\StaticWebsites.md" />
+    <None Remove="Pages\Documentation\Content\Templates.md" />
     <None Remove="Pages\Documentation\Content\VirtualHosts.md" />
     <None Remove="Pages\Documentation\Content\Webservices.md" />
     <None Remove="Pages\Documentation\Content\Websites.md" />
@@ -92,6 +93,7 @@
     <EmbeddedResource Include="Pages\Documentation\Content\StaticWebsites.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\SinglePageApplications.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\StaticContent.md" />
+    <EmbeddedResource Include="Pages\Documentation\Content\Templates.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\VirtualHosts.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Webservices.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Websites.md" />

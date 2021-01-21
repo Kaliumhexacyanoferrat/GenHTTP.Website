@@ -14,6 +14,8 @@ Handlers are usually made available by an additional nuget module. You can find
 the modules which are currently available [on nuget](https://www.nuget.org/profiles/Kaliumhexacyanoferrat).
 To setup a project, you will usually reference the [GenHTTP.Core](https://www.nuget.org/packages/GenHTTP.Core/) 
 package which includes the engine as well as basic elements for layouting and IO.
+Additionally, you can choose from several [project templates](./templates)
+which allow to create new projects for specific use cases within a couple of minutes.
 
 If you would like to have full control over response generation, you can
 implement a [custom handler](./handlers).

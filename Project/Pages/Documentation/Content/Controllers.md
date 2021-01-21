@@ -7,9 +7,13 @@ this allows to implement MVC-style web applications. Nevertheless, controllers c
 be used to generate any content, so the functionality is not limited to generate pages 
 for websites.
 
+> <span class="note">NOTE</span> New MVC websites can quickly be created by using a [project template](./templates).
+
 In comparison to [ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-3.1&tabs=visual-studio),
 the implementation tries to use less conventions and hidden logic, keeping the learning
 curve rather low.
+
+## Creating a MVC Website
 
 The following snippet shows a basic example on how to implement a MVC style web application
 using the controller module. This example shows how to render and modify data records.

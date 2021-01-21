@@ -1,6 +1,11 @@
 ﻿## Websites
 
 The website handler allows your to create themed web applications in a simple manner.
+
+> <span class="note">NOTE</span> New websites can quickly be created by using a [project template](./templates).
+
+## Creating a Website
+
 The following code snippet will start a very basic web application with two pages:
 
 ```csharp
