@@ -13,6 +13,21 @@ body > p, pre, ul, blockquote {
     max-width: 1024px;
 }
 
+@media (max-width: 768px) {
+
+    body > p, pre, ul, blockquote, h2 {
+        position: relative;
+        margin-right: 2rem;
+        margin-left: 2rem;
+        max-width: initial;
+    }
+
+    body > table {
+        margin-left: 1em;
+    }
+
+}
+
 body > table {
     margin-left: 4em;
 }
@@ -44,4 +59,9 @@ p > img {
     font-weight: bold;
     color: #AAAAAA;
     margin-right: 0.5em;
+}
+
+.menu_nav {
+    margin-right: 0;
+    margin-left: 0;
 }

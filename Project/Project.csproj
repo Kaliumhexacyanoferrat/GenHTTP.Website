@@ -138,7 +138,7 @@
     <PackageReference Include="GenHTTP.Modules.ServerCaching" Version="5.2.0" />
     <PackageReference Include="GenHTTP.Modules.Websites" Version="5.2.0" />
 
-    <PackageReference Include="GenHTTP.Themes.Lorahost" Version="5.1.0" />
+    <PackageReference Include="GenHTTP.Themes.Lorahost" Version="5.1.1" />
     
   </ItemGroup>
   
