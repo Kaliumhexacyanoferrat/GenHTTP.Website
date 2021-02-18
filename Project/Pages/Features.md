@@ -11,12 +11,12 @@ are already handled by the framework, developers are allowed to focus on their a
 ## Server Performance
 
 In terms of raw HTTP protocol performance, the GenHTTP webserver is located in the middle segment compared to
-other server implementations, serving more than 450k requests per second. Improving the performance of the server is
+other server implementations, serving more than 600k requests per second. Improving the performance of the server is
 an ongoing task, especially since there is currently a lot of potential to be tapped.
 
 ![GenHTTP framework analyzed with TechEmpower FrameworkBenchmarks](/images/tfb.png)
 
-*see [TechEmpower Web Framework Benchmarks](https://www.techempower.com/benchmarks/#section=data-r0&hw=ph&test=plaintext&a=2)*
+*see [TechEmpower Web Framework Benchmarks](https://www.techempower.com/benchmarks/#section=data-r20&hw=ph&test=composite&a=2)*
 
 ## Footprint
 
