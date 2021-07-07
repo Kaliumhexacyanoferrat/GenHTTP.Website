@@ -33,6 +33,7 @@
     <None Remove="Pages\Documentation\Content\Layouting.md" />
     <None Remove="Pages\Documentation\Content\Listing.md" />
     <None Remove="Pages\Documentation\Content\LoadBalancer.md" />
+    <None Remove="Pages\Documentation\Content\RangeSupport.md" />
     <None Remove="Pages\Documentation\Content\Redirects.md" />
     <None Remove="Pages\Documentation\Content\Resources.md" />
     <None Remove="Pages\Documentation\Content\ReverseProxy.md" />
@@ -75,6 +76,7 @@
     <EmbeddedResource Include="Pages\Documentation\Content\Authentication.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Caches.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\ClientCachingPolicy.md" />
+    <EmbeddedResource Include="Pages\Documentation\Content\RangeSupport.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\ServerCaching.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\ClientCachingValidation.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Concerns.md" />
