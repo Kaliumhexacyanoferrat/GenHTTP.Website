@@ -92,6 +92,19 @@ website.Add("shop", ModScriban.Page(Resource.FromFile("./Shop.html"), (request, 
 To serve a static page instead of a rendered one, you can use `Page.From(Resource.FromFile(...))` to
 create a page from a given [Resource](./resources).
 
+## Hot Reload
+
+The [auto reload module](https://www.nuget.org/packages/GenHTTP.Modules.AutoReload/) improves 
+the website development experience by automatically reloading the currently shown page when 
+changes are detected. As the change detection regularly polls the website to detect modifications,
+it should be used in development mode only.
+
+```csharp
+#if DEBUG
+website.AutoReload();
+#endif
+```
+
 ## Routing
 
 Within your pages, you can access the routing context to generate relative paths
