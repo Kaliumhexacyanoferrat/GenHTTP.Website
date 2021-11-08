@@ -23,6 +23,7 @@
     <None Remove="Pages\Documentation\Content\Caches.md" />
     <None Remove="Pages\Documentation\Content\ClientCachingPolicy.md" />
     <None Remove="Pages\Documentation\Content\ClientCachingValidation.md" />
+    <None Remove="Pages\Documentation\Content\CombinedPages.md" />
     <None Remove="Pages\Documentation\Content\Concerns.md" />
     <None Remove="Pages\Documentation\Content\Controllers.md" />
     <None Remove="Pages\Documentation\Content\CORS.md" />
@@ -76,6 +77,7 @@
     <EmbeddedResource Include="Pages\Documentation\Content\Authentication.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Caches.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\ClientCachingPolicy.md" />
+    <EmbeddedResource Include="Pages\Documentation\Content\CombinedPages.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\RangeSupport.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\ServerCaching.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\ClientCachingValidation.md" />
@@ -137,7 +139,7 @@
 
     <PackageReference Include="GenHTTP.Modules.Markdown" Version="5.2.0" />
 
-    <PackageReference Include="GenHTTP.Modules.ServerCaching" Version="5.2.0" />
+    <PackageReference Include="GenHTTP.Modules.ServerCaching" Version="5.2.4" />
     <PackageReference Include="GenHTTP.Modules.Websites" Version="5.2.0" />
 
     <PackageReference Include="GenHTTP.Themes.Lorahost" Version="5.1.1" />

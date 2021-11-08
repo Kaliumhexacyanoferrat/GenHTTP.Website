@@ -78,6 +78,9 @@ implement a [custom handler](./handlers).
 - [Static Content](./static-content)<br />
   Serves resources stored in a directory or as embedded resources within an
   assembly to the client.
+  
+- [Combined Pages](./combined-pages)<br />
+  Allows to assemble a web page from different kind of content.
 
 - [Downloads](./downloads)<br />
   Provides a file to the client as a download. This could be a file from
