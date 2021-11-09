@@ -28,7 +28,7 @@ Applications developed with the GenHTTP SDK are optimized for low disk space and
 
 ## Security
 
-The GenHTTP webserver uses the default security mechanisms that ship with .NET 5. This results in
+The GenHTTP webserver uses the default security mechanisms that ship with .NET 6. This results in
 a good security grade of A+ as reported by SSL Labs.
 
 ![Security analysis of the GenHTTP website](/images/ssl_labs.png)
