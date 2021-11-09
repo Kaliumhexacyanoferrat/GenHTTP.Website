@@ -9,6 +9,7 @@ using GenHTTP.Modules.Layouting.Provider;
 using GenHTTP.Modules.Markdown;
 using GenHTTP.Modules.Placeholders;
 using GenHTTP.Modules.Websites;
+using GenHTTP.Modules.Websites.Sites;
 
 using GenHTTP.Themes.Lorahost;
 
@@ -18,7 +19,7 @@ namespace GenHTTP.Website
     public static class Project
     {
 
-        public static IHandlerBuilder Create()
+        public static WebsiteBuilder Create()
         {
             var menu = Menu.Empty()
                            .Add("{website}", "Home")
@@ -74,7 +75,7 @@ namespace GenHTTP.Website
             return Layout.Create()
                          .AddMarkdownPage(null, "Content.Index", "Providing Content", "Tutorials to write web applications (such as webservices or websites) using the GenHTTP server framework.")
                          .AddMarkdownPage("layouting", "Layouting", null, "Easily break down your web application into logical sections of content.")
-                         .AddMarkdownPage("websites", ".Websites", "Websites", "Serve a themed web application with basic features such as templating, theming, sitemaps, or robots instruction files.")
+                         .AddMarkdownPage("websites", "Websites", "Websites", "Serve a themed web application with basic features such as templating, theming, sitemaps, or robots instruction files.")
                          .AddMarkdownPage("static-content", "StaticContent", "Static Content", "Provide resources stored on the file system or within an assembly via HTTP.")
                          .AddMarkdownPage("downloads", "Downloads", null, "Provide files via HTTP to requesting clients as a download, e.g. from the file system.")
                          .AddMarkdownPage("redirects", "Redirects", null, "Redirects requesting clients to another internal or external resource.")
