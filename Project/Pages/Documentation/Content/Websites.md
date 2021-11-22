@@ -58,6 +58,8 @@ To add your pages to the web application, there are different template languages
 to be used: [Scriban](https://www.nuget.org/packages/GenHTTP.Modules.Scriban/),
 [Razor](https://www.nuget.org/packages/GenHTTP.Modules.Razor/) and [Markdown](https://www.nuget.org/packages/GenHTTP.Modules.Markdown/).
 
+> <span class="note">NOTE</span> To build more complex websites, the [MVC pattern](./controllers) is recommended. 
+
 Create a new HTML file within the tree of your project and mark it either as an embedded resource
 or as content that will be copied to the output directory of your project. The page can the be
 added using the appropriate module:
@@ -69,25 +71,24 @@ website.Add("shop", ModScriban.Page(Resource.FromFile("Shop.html"))); // or ModR
 This will load the given Scriban template from the specified resource and render it to the
 requesting client, if http://localhost:8080/shop is called.
 
-You may provide a custom model used to render your pages based on the current request
+You may provide a model used to render your pages based on the current request
 by providing a factory method:
 
 ```csharp
-public class ShopModel : PageModel
+// within the template, you might use "{{ data.total_items }}" (or "@Model.Data.TotalItems" in Razor) to access your view model
+website.Add("shop", ModScriban.Page<ViewModel<Basket>>(Resource.FromFile("./Shop.html"), LoadBasket));
+
+public record Basket(int TotalItems);
+
+private async ValueTask<ViewModel<Basket>> LoadBasket(IRequest request, IHandler handler) 
 {
+    var basket = await ...; // load the basket from your data source
 
-    public Basket Basket { get; }
-
-    public ShopModel(IRequest request, IHandler handler, Basket basket) : base(request, handler)
-    {
-        Basket = basket;
-    }
-                        
+    return new ViewModel<Basket>(request, handler, basket);
 }
-
-// within the template, "basket" will be available as a Scriban property 
-website.Add("shop", ModScriban.Page(Resource.FromFile("./Shop.html"), (request, handler) => new ShopModel(request, handler, LoadBasket())));
 ```
+
+> <span class="note">NOTE</span> View model classes must override <i>GetHashCode()</i> to allow changes to be detected. Using C#'s <i>record</i> will do this for you automatically. 
 
 To serve a static page instead of a rendered one, you can use `Page.From(Resource.FromFile(...))` to
 create a page from a given [Resource](./resources).

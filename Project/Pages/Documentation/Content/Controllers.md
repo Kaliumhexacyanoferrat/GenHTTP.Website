@@ -32,7 +32,7 @@ public class BookController
 
     public IHandlerBuilder Index()
     {
-        return ModScriban.Page(Resource.FromAssembly("BookList.html"), (r, h) => new ViewModel(r, h, _Books))
+        return ModScriban.Page<ViewModel<List<Book>>>(Resource.FromAssembly("BookList.html"), (r, h) => new(new ViewModel<List<Book>>(r, h, _Books)))
                          .Title("Book List");
     }
 
@@ -55,8 +55,8 @@ public class BookController
     public IHandlerBuilder Edit([FromPath] int id)
     {
         var book = _Books.Where(b => b.ID == id).First();
-
-        return ModScriban.Page(Resource.FromAssembly("BookEditor.html"), (r, h) => new ViewModel(r, h, book))
+        
+        return ModScriban.Page<ViewModel<Book>>(Resource.FromAssembly("BookEditor.html"), (r, h) => new(new ViewModel<Book>(r, h, book)))
                          .Title(book.Title);
     }
 
@@ -113,8 +113,8 @@ making it easier to understand. A larger application would probably derive some
 `BaseController` with a method like the following:
 
 ```csharp
-protected IHandlerBuilder View(string name, string title, object? data = null) {
-    return ModScriban.Page(Resource.FromAssembly($"{name}.html"), (r, h) => new ViewModel(r, h, data))
+protected IHandlerBuilder View<T>(string name, string title, T data) {
+    return ModScriban.Page<ViewModel<T>>(Resource.FromAssembly($"{name}.html"), (r, h) => new(new ViewModel<T>(r, h, data)))
                      .Title(title);
 }
 ```

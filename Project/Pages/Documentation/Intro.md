@@ -15,7 +15,9 @@ ecosystem of .NET which easily allows to build, test, and run applications.
 
 ## Hello World!
 
-To create our first application using the GenHTTP framework, open a terminal
+> <span class="note">NOTE</span> If you directly want to start with a more complex app such as a website or webservice, have a look at our [project templates](/documentation/content/templates).
+
+To create our first application using the GenHTTP framework from scratch, open a terminal
 and enter the following command to create a new 
 [.NET 6](https://dotnet.microsoft.com/download) application:
 
@@ -36,36 +38,21 @@ You can then edit the generated Program.cs to setup a simple project using
 the GenHTTP server API:
 
 ```csharp
-using System;
+using GenHTTP.Engine;
 
-using GenHTTP.Engine;           
-
-using GenHTTP.Modules.IO;    
+using GenHTTP.Modules.IO;
 using GenHTTP.Modules.Practices;
 
-namespace Project
-{
+var content = Content.From(Resource.FromString("Hello World!"));
 
-    public static class Program
-    {
-
-        public static int Main(string[] args)
-        {
-            var content = Content.From(Resource.FromString("Hello World!"));
-
-            return Host.Create()
-                       .Console()
-                       .Defaults()
-                       .Handler(content)
-                       .Run();
-        }
-
-    }
-
-}
+return Host.Create()
+           .Console()
+           .Defaults()
+           .Handler(content)
+           .Run();
 ```
 
-To run our newly created project, simple execute:
+To run our newly created project, simply execute:
 
 ```bash
 dotnet run
