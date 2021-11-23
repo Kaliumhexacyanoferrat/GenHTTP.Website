@@ -21,7 +21,7 @@ an ongoing task, especially since there is currently a lot of potential to be ta
 ## Footprint
 
 Applications developed with the GenHTTP SDK are optimized for low disk space and memory requirements. A basic application
-(such as this website) will consume about 15 MB of memory and 50 MB of disk space when
+(such as this website) will consume about 30 MB of memory and 50 MB of disk space when
 [running in Docker](/documentation/hosting/).
 
 ![The website of the GenHTTP websever running in docker](/images/footprint.png)
