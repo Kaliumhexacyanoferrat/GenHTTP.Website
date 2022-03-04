@@ -24,7 +24,7 @@ namespace GenHTTP.Website
             var menu = Menu.Empty()
                            .Add("{website}", "Home")
                            .Add("features", "Features")
-                           .Add("documentation/", "Documentation", new List<(string, string)> { ("content/", "Providing Content"), ("server/", "Server Setup"), ("hosting/", "Hosting Apps") })
+                           .Add("documentation/", "Documentation", new List<(string, string)> { ("content/", "Providing Content"), ("server/", "Server Setup"), ("hosting/", "Hosting Apps"), ("asp-net-comparison", "Comparison with ASP.NET") })
                            .Add("links", "Links")
                            .Add("https://github.com/Kaliumhexacyanoferrat/GenHTTP", "Source")
                            .Add("legal", "Legal");
@@ -67,7 +67,8 @@ namespace GenHTTP.Website
                          .AddMarkdownPage(null, "Intro", "Getting started", "Simple tutorial to setup a web application using the GenHTTP framework.")
                          .Add("content", GetContent())
                          .Add("server", GetServer())
-                         .Add("hosting", GetHosting());
+                         .Add("hosting", GetHosting())
+                         .Add("asp-net-comparison", GetComparison());
         }
 
         private static IHandlerBuilder GetContent()
@@ -119,6 +120,12 @@ namespace GenHTTP.Website
         {
             return Layout.Create()
                          .AddMarkdownPage(null, "Hosting.Index", "Hosting Apps", "Host web applications written in C# using the .NET 6 docker images.");
+        }
+
+        private static IHandlerBuilder GetComparison()
+        {
+            return Layout.Create()
+                         .AddMarkdownPage(null, "Comparison.Index", "Comparing ASP.NET", "Overview of the alternatives to ASP.NET concepts provided by the GenHTTP framework.");
         }
 
         private static LayoutBuilder AddPage(this LayoutBuilder layout, string? route, string file, string? title , string description)
