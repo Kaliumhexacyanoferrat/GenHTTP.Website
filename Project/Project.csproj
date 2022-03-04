@@ -68,6 +68,7 @@
     <None Remove="Resources\Images\gateway.png" />
     <None Remove="Resources\Images\hello_world.png" />
     <None Remove="Resources\Images\listing.png" />
+    <None Remove="Resources\Images\mockh.png" />
     <None Remove="Resources\Images\pagespeed.png" />
     <None Remove="Resources\Images\ssl_labs.png" />
     <None Remove="Resources\Images\tfb.png" />
@@ -127,6 +128,7 @@
     <EmbeddedResource Include="Resources\Images\gateway.png" />
     <EmbeddedResource Include="Resources\Images\hello_world.png" />
     <EmbeddedResource Include="Resources\Images\listing.png" />
+    <EmbeddedResource Include="Resources\Images\mockh.png" />
     <EmbeddedResource Include="Resources\Images\pagespeed.png" />
     <EmbeddedResource Include="Resources\Images\ssl_labs.png" />
     <EmbeddedResource Include="Resources\Images\tfb.png" />
@@ -135,16 +137,16 @@
   
   <ItemGroup>
     
-    <PackageReference Include="GenHTTP.Core" Version="6.3.0" />
+    <PackageReference Include="GenHTTP.Core" Version="6.3.3" />
     
-    <PackageReference Include="GenHTTP.Modules.ClientCaching" Version="6.3.0" />
+    <PackageReference Include="GenHTTP.Modules.ClientCaching" Version="6.3.3" />
 
-    <PackageReference Include="GenHTTP.Modules.Markdown" Version="6.3.0" />
+    <PackageReference Include="GenHTTP.Modules.Markdown" Version="6.3.3" />
 
-    <PackageReference Include="GenHTTP.Modules.ServerCaching" Version="6.3.0" />
-    <PackageReference Include="GenHTTP.Modules.Websites" Version="6.3.0" />
+    <PackageReference Include="GenHTTP.Modules.ServerCaching" Version="6.3.3" />
+    <PackageReference Include="GenHTTP.Modules.Websites" Version="6.3.3" />
 
-    <PackageReference Include="GenHTTP.Themes.Lorahost" Version="6.3.0" />
+    <PackageReference Include="GenHTTP.Themes.Lorahost" Version="6.3.1" />
     
   </ItemGroup>
   
