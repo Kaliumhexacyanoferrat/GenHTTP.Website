@@ -2,8 +2,8 @@
 
 Andreas Nägeli
 
-Villastraße 15<br />
-73230 Kirchheim unter Teck<br />
+Antoniterstr. 2A<br />
+79106 Freiburg<br />
 Germany
 
 andr.naegeli@gmail.com
