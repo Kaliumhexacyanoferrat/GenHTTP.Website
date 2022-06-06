@@ -27,9 +27,9 @@ public class DeflateCompression : ICompressionAlgorithm
 
     public Priority Priority => Priority.Low;
 
-    public IResponseContent Compress(IResponseContent content)
+    public IResponseContent Compress(IResponseContent content, CompressionLevel level)
     {
-        return new CompressedResponseContent(content, (target) => new DeflateStream(target, CompressionLevel.Fastest, false));
+        return new CompressedResponseContent(content, (target) => new DeflateStream(target, level, false));
     }
 
 }
