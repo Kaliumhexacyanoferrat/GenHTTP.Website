@@ -21,7 +21,7 @@ public class CustomHandler : IHandler
     public ValueTask<IResponse?> HandleAsync(IRequest request)
     {
         var response = request.Respond()
-                              .Content(Resource.FromString("Hello World"))
+                              .Content("Hello World")
                               .Type(new FlexibleContentType(ContentType.TextPlain))
                               .Build();
 
