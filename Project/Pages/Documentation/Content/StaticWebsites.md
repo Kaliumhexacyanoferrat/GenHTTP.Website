@@ -28,7 +28,7 @@ With this handler, a static website can be hosted with just a few lines of code
 using [Docker](/documentation/hosting/).
 
 If you would like to combine a static website with dynamic content such as a webservice,
-you can use the handler as the `Fallback` of a [Layout](./layouting):
+you can use the handler as an additional root of a [Layout](./layouting):
 
 ```csharp
 var api = Layout.Create()
@@ -36,7 +36,7 @@ var api = Layout.Create()
 
 var content = Layout.Create()
                     .Add("api", api)
-                    .Fallback(StaticWebsite.From(...))
+                    .Add(StaticWebsite.From(...))
 
  Host.Create()
      .Console()
