@@ -45,8 +45,8 @@ Host.Create()
 
 The service will be available at http://localhost:8080/books.
 As the functionality is provided on handler level,
-all other concerns such as [authentication](./authentication) or [CORS](./cors) can
-be implemented using regular server mechanisms. 
+all other concerns such as [authentication](./authentication), [error handling](./error-handling)
+or [CORS](./cors) can be implemented using regular server mechanisms. 
 
 By default, parameter values (within the path) are expected
 to be alphanumeric. If needed, a custom pattern can be specified
