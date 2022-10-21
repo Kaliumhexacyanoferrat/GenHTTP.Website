@@ -30,6 +30,7 @@
     <None Remove="Pages\Documentation\Content\CORS.md" />
     <None Remove="Pages\Documentation\Content\Defaults.md" />
     <None Remove="Pages\Documentation\Content\Downloads.md" />
+    <None Remove="Pages\Documentation\Content\ErrorHandling.md" />
     <None Remove="Pages\Documentation\Content\Functional.md" />
     <None Remove="Pages\Documentation\Content\Handlers.md" />
     <None Remove="Pages\Documentation\Content\Index.md" />
@@ -83,6 +84,7 @@
     <EmbeddedResource Include="Pages\Documentation\Content\ClientCachingPolicy.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\CombinedPages.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Functional.md" />
+    <EmbeddedResource Include="Pages\Documentation\Content\ErrorHandling.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\RangeSupport.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\ServerCaching.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\ClientCachingValidation.md" />

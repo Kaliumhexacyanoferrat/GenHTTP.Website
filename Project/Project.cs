@@ -103,7 +103,8 @@ namespace GenHTTP.Website
                          .AddMarkdownPage("caches", "Caches", null, "Different backends allowing to store computation heavy work for improved performance.")
                          .AddMarkdownPage("templates", "Templates", null, "Create new webservices and websites in a couple of minutes.")
                          .AddMarkdownPage("combined-pages", "CombinedPages", "Combined Pages", "Assemble different kind of content into a single web page.")
-                         .AddMarkdownPage("functional", "Functional", "Functional Handler", "Respond to HTTP requests in a functional manner with no boiler code.");
+                         .AddMarkdownPage("functional", "Functional", "Functional Handler", "Respond to HTTP requests in a functional manner with no boiler code.")
+                         .AddMarkdownPage("error-handling", "ErrorHandling", "Error Handling", "Generates custom HTTP responses for exceptions and missing content.");
         }
 
         private static IHandlerBuilder GetServer()
