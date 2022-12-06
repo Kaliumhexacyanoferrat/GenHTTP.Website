@@ -8,7 +8,7 @@ image on [Docker Hub](https://hub.docker.com/r/genhttp/gateway).
 ## MockH
 
 Small library based on the GenHTTP webserver allowing to mock HTTP responses for 
-integration, component and acceptance tests of projects written in C# (or .NET 6 in general).
+integration, component and acceptance tests of projects written in C# (or .NET in general).
 Available [on GitHub](https://github.com/Kaliumhexacyanoferrat/MockH).
 
 

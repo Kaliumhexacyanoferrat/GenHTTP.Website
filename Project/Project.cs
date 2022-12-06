@@ -32,7 +32,7 @@ namespace GenHTTP.Website
             var theme = Theme.Create()
                              .Header(Resource.FromAssembly("Header.jpg"))
                              .Title("GenHTTP Webserver")
-                             .Subtitle("Simple and lightweight, embeddable HTTP webserver written in pure C# with few dependencies to 3rd-party libraries. Compatible with .NET 6.")
+                             .Subtitle("Simple and lightweight, embeddable HTTP webserver written in pure C# with few dependencies to 3rd-party libraries. Compatible with .NET 6/7.")
                              .Action("documentation/", "Get started");
 
             var website = Modules.Websites.Website.Create()
@@ -120,7 +120,7 @@ namespace GenHTTP.Website
         private static IHandlerBuilder GetHosting()
         {
             return Layout.Create()
-                         .AddMarkdownPage(null, "Hosting.Index", "Hosting Apps", "Host web applications written in C# using the .NET 6 docker images.");
+                         .AddMarkdownPage(null, "Hosting.Index", "Hosting Apps", "Host web applications written in C# using the .NET docker images.");
         }
 
         private static IHandlerBuilder GetComparison()
