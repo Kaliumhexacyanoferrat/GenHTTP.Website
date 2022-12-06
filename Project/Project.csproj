@@ -150,7 +150,7 @@
     <PackageReference Include="GenHTTP.Modules.ServerCaching" Version="6.4.0" />
     <PackageReference Include="GenHTTP.Modules.Websites" Version="6.4.0" />
 
-    <PackageReference Include="GenHTTP.Themes.Lorahost" Version="6.3.1" />
+    <PackageReference Include="GenHTTP.Themes.Lorahost" Version="6.4.0" />
     
   </ItemGroup>
   
