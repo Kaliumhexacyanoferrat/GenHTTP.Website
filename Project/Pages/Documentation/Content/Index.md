@@ -112,7 +112,7 @@ implement a [custom handler](./handlers).
   server instance.
 
 - [Load Balancer](./load-balancing)<br />
-  Randomly distributes incoming requests to specified nodes to distribute the 
+  Randomly distributes incoming requests to specified nodes to di   stribute the 
   resulting load to other systems.
 
 ## Misc
