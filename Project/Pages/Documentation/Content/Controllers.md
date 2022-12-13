@@ -186,3 +186,10 @@ from the request body. The result of your method can be `void`, `IResponse`,
 As your methods are allowed to return any `IHandlerBuilder`, you can also return
 more complex types like a `Layout`, `ReverseProxy` or a `DirectoryListing`. Content discovery and
 routing will work in this case as well.
+
+## Further Resources
+
+The following capabilities are shared by various application frameworks:
+
+- [Serialization and deserialization](./conversion)
+- [Parameter injection](./injection)

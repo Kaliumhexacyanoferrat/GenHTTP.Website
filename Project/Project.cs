@@ -104,7 +104,9 @@ namespace GenHTTP.Website
                          .AddMarkdownPage("templates", "Templates", null, "Create new webservices and websites in a couple of minutes.")
                          .AddMarkdownPage("combined-pages", "CombinedPages", "Combined Pages", "Assemble different kind of content into a single web page.")
                          .AddMarkdownPage("functional", "Functional", "Functional Handler", "Respond to HTTP requests in a functional manner with no boiler code.")
-                         .AddMarkdownPage("error-handling", "ErrorHandling", "Error Handling", "Generates custom HTTP responses for exceptions and missing content.");
+                         .AddMarkdownPage("error-handling", "ErrorHandling", "Error Handling", "Generates custom HTTP responses for exceptions and missing content.")
+                         .AddMarkdownPage("conversion", "Conversion", "Serialization and Deserialization", "Configures the content serialization features of the webserver")
+                         .AddMarkdownPage("injection", "Injection", "Parameter Injection", "Add custom parameter resolvers in your application framework");
         }
 
         private static IHandlerBuilder GetServer()

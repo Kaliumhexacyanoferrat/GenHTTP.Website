@@ -79,14 +79,9 @@ public IResponseBuilder RequestResponse(IRequest request, IHandler handler) { re
 public void Exception() => throw new ProviderException(ResponseStatus.AlreadyReported, "Already reported!");
 ```
 
-By default, resources will consume and produce JSON and XML entities. To
-customize this behavior, add a custom `ISerializationFormat`
-implementation to the serialization registry used within your resources:
+## Further Resources
 
-```csharp
-var registry = Serialization.Default().Add(new FlexibleContentType("application/protobuf"), new ProtobufFormat());
+The following capabilities are shared by various application frameworks:
 
-var resource = ServiceResource.From<BookResource>().Formats(registry);
-
-var service = Layout.Create().Add("books", resource);
-```
+- [Serialization and deserialization](./conversion)
+- [Parameter injection](./injection)

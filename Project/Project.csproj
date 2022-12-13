@@ -27,6 +27,7 @@
     <None Remove="Pages\Documentation\Content\CombinedPages.md" />
     <None Remove="Pages\Documentation\Content\Concerns.md" />
     <None Remove="Pages\Documentation\Content\Controllers.md" />
+    <None Remove="Pages\Documentation\Content\Conversion.md" />
     <None Remove="Pages\Documentation\Content\CORS.md" />
     <None Remove="Pages\Documentation\Content\Defaults.md" />
     <None Remove="Pages\Documentation\Content\Downloads.md" />
@@ -34,6 +35,7 @@
     <None Remove="Pages\Documentation\Content\Functional.md" />
     <None Remove="Pages\Documentation\Content\Handlers.md" />
     <None Remove="Pages\Documentation\Content\Index.md" />
+    <None Remove="Pages\Documentation\Content\Injection.md" />
     <None Remove="Pages\Documentation\Content\Layouting.md" />
     <None Remove="Pages\Documentation\Content\Listing.md" />
     <None Remove="Pages\Documentation\Content\LoadBalancer.md" />
@@ -83,6 +85,7 @@
     <EmbeddedResource Include="Pages\Documentation\Content\Caches.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\ClientCachingPolicy.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\CombinedPages.md" />
+    <EmbeddedResource Include="Pages\Documentation\Content\Injection.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Functional.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\ErrorHandling.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\RangeSupport.md" />
@@ -106,6 +109,7 @@
     <EmbeddedResource Include="Pages\Documentation\Content\StaticContent.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Templates.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\VirtualHosts.md" />
+    <EmbeddedResource Include="Pages\Documentation\Content\Conversion.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Webservices.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Websites.md" />
     <EmbeddedResource Include="Pages\Documentation\Hosting\Index.md" />

@@ -123,3 +123,9 @@ implement a [custom handler](./handlers).
   
 - [Caches](./caches)<br />
   Allow to store intermediate results to improve performance.
+
+- [Serialization](./conversion)<br />
+  Controls how input is deserialized and output is serialized.
+
+- [Injection](./injection)<br />
+  Allow to inject custom types into service methods.

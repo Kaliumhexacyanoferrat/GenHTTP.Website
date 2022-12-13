@@ -18,3 +18,10 @@ Host.Create()
 As with the [webservice module](./webservices), functions can use various
 parameter and return types, including `IRequest`, `IResponse`, `IHandler` and
 `Stream`. Both synchronous and `async` methods are supported.
+
+## Further Resources
+
+The following capabilities are shared by various application frameworks:
+
+- [Serialization and deserialization](./conversion)
+- [Parameter injection](./injection)
