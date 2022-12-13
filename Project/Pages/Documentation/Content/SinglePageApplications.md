@@ -20,3 +20,9 @@ the specified directory and serve it to clients accessing http://localhost:8080/
 
 With this handler, a single page application can be hosted with just a few lines of code
 using [Docker](/documentation/hosting/).
+
+## Routing
+
+If you would like to use path based routing in your application, the server needs to
+serve the SPA index for every route. This can be achieved with the `ServerSideRouting()`
+method on the SPA builder.
