@@ -35,7 +35,7 @@ public class CustomHandler : IHandler
         return new ValueTask();
     }
 
-    public IEnumerable<ContentElement> GetContent(IRequest request) => Enumerable.Empty<ContentElement>();
+    public IAsyncEnumerable<ContentElement> GetContentAsync(IRequest request) => AsyncEnumerable.Empty<ContentElement>();
 
 }
 
