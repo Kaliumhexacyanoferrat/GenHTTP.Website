@@ -10,7 +10,7 @@ Host.Create()
     .Run();
 ```
 
-Wenn running this example, any request to http://localhost:8080 will be
+When running this example, any request to http://localhost:8080 will be
 proxied to http://my-cdn:8080/.
 
 If the upstream server is either not available or does not respond in time,
