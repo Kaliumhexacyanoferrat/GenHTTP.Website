@@ -20,10 +20,10 @@ ecosystem of .NET which easily allows to build, test, and run applications.
 
 To create our first application using the GenHTTP framework from scratch, open a terminal
 and enter the following command to create a new 
-[.NET 7](https://dotnet.microsoft.com/download) application:
+[.NET 8](https://dotnet.microsoft.com/download) application:
 
 ```bash
-dotnet new console --framework net7.0 -o Project
+dotnet new console --framework net8.0 -o Project
 ```
 
 This will create a new folder `Project`. Within this folder, run the following
