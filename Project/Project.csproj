@@ -75,6 +75,7 @@
     <None Remove="Resources\Images\mockh.png" />
     <None Remove="Resources\Images\pagespeed.png" />
     <None Remove="Resources\Images\ssl_labs.png" />
+    <None Remove="Resources\Images\templates.png" />
     <None Remove="Resources\Images\tfb.png" />
     <None Remove="Resources\Styles\custom.css" />
     <None Remove="Resources\Styles\custom.js" />
@@ -140,6 +141,7 @@
     <EmbeddedResource Include="Resources\Images\mockh.png" />
     <EmbeddedResource Include="Resources\Images\pagespeed.png" />
     <EmbeddedResource Include="Resources\Images\ssl_labs.png" />
+    <EmbeddedResource Include="Resources\Images\templates.png" />
     <EmbeddedResource Include="Resources\Images\tfb.png" />
     <EmbeddedResource Include="Resources\Styles\custom.css" />
     <EmbeddedResource Include="Resources\Styles\custom.js" />

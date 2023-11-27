@@ -18,6 +18,11 @@ cd AppName
 dotnet new <template-name>
 ```
 
+If installed, the templates will also show up in Visual Studio and can
+be used from there to quickly create new projects:
+
+![GenHTTP template projects in Visual Studio](/images/templates.png)
+
 The following templates are available to be used:
 
 | Template      | Description  | 
