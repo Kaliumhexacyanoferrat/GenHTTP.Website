@@ -3,6 +3,13 @@
 With this module, requests can be handled in a functional manner, reducing
 the boiler plate code to be written by a web application developer.
 
+> <span class="note">NOTE</span> Apps can quickly be created by using a [project template](./templates).
+
+## Basic Structure
+
+The following program will provide a simple web service to increment and
+decrement given numbers.
+
 ```csharp
 using GenHTTP.Modules.Functional;
 
