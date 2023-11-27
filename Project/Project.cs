@@ -26,7 +26,8 @@ namespace GenHTTP.Website
                            .Add("features", "Features")
                            .Add("documentation/", "Documentation", new List<(string, string)> { ("content/", "Providing Content"), ("server/", "Server Setup"), ("hosting/", "Hosting Apps"), ("asp-net-comparison", "Comparison with ASP.NET") })
                            .Add("links", "Links")
-                           .Add("https://github.com/Kaliumhexacyanoferrat/GenHTTP", "Source")
+                           .Add("https://discord.gg/GwtDyUpkpV", "Discord")
+                           .Add("https://github.com/Kaliumhexacyanoferrat/GenHTTP", "GitHub")
                            .Add("legal", "Legal");
 
             var theme = Theme.Create()
