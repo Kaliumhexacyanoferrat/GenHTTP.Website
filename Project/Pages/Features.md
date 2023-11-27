@@ -16,7 +16,7 @@ an ongoing task, especially since there is currently a lot of potential to be ta
 
 ![GenHTTP framework analyzed with TechEmpower FrameworkBenchmarks](/images/tfb.png)
 
-*see [TechEmpower Web Framework Benchmarks](https://www.techempower.com/benchmarks/#section=data-r20&hw=ph&test=composite&a=2)*
+*see [TechEmpower Web Framework Benchmarks](https://www.techempower.com/benchmarks/)*
 
 ## Footprint
 

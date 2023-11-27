@@ -17,7 +17,7 @@ return Host.Create()
            .Defaults()
            .Run();
 
-// non-blocking (e.g. for test libraries)
+// non-blocking (e.g. for in-process embedding or test libraries)
 var host = Host.Create()
                .Handler(content)
                .Defaults()
