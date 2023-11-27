@@ -6,11 +6,15 @@ h2 {
     margin-top: 1em;
 }
 
-body > p, pre, ul, blockquote {
+body > p, ul, blockquote {
     position: relative;
     margin-right: 4em;
     margin-left: 4em;
     max-width: 1024px;
+}
+
+pre {
+    margin: 0;
 }
 
 @media (max-width: 768px) {
@@ -64,4 +68,9 @@ p > img {
 .menu_nav {
     margin-right: 0;
     margin-left: 0;
+}
+
+pre code.hljs {
+    text-indent: 2.2em;
+    margin-left: 2em;
 }
