@@ -40,6 +40,7 @@ namespace GenHTTP.Website
                                                   .Menu(menu)
                                                   .AddScript("highlight.js", Resource.FromAssembly("highlight.js"))
                                                   .AddStyle("highlight.css", Resource.FromAssembly("highlight.css"))
+                                                  .AddScript("custom.js", Resource.FromAssembly("custom.js"))
                                                   .AddStyle("custom.css", Resource.FromAssembly("custom.css"))
                                                   .Favicon(Resource.FromAssembly("favicon.ico"))
                                                   .Content(GetLayout());
