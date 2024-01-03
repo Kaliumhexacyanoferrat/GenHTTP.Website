@@ -72,5 +72,6 @@ with the GenHTTP may look like. To create more complex web applications
 follow the guides in the following sections:
 
 - [Providing Content](/documentation/content/)
+- [Testing](/documentation/testing/)
 - [Server Setup](/documentation/server/)
 - [Hosting Apps](/documentation/hosting/)

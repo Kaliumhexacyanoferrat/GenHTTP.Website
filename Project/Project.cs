@@ -24,7 +24,7 @@ namespace GenHTTP.Website
             var menu = Menu.Empty()
                            .Add("{website}", "Home")
                            .Add("features", "Features")
-                           .Add("documentation/", "Documentation", new List<(string, string)> { ("content/", "Providing Content"), ("server/", "Server Setup"), ("hosting/", "Hosting Apps"), ("asp-net-comparison", "Comparison with ASP.NET") })
+                           .Add("documentation/", "Documentation", new List<(string, string)> { ("content/", "Providing Content"), ("testing/", "Testing Apps"), ("server/", "Server Setup"), ("hosting/", "Hosting Apps"), ("asp-net-comparison", "Comparison with ASP.NET") })
                            .Add("links", "Links")
                            .Add("https://discord.gg/GwtDyUpkpV", "Discord")
                            .Add("https://github.com/Kaliumhexacyanoferrat/GenHTTP", "GitHub")
@@ -68,6 +68,7 @@ namespace GenHTTP.Website
             return Layout.Create()
                          .AddMarkdownPage(null, "Intro", "Getting started", "Simple tutorial to setup a web application using the GenHTTP framework.")
                          .Add("content", GetContent())
+                         .Add("testing", GetTesting())
                          .Add("server", GetServer())
                          .Add("hosting", GetHosting())
                          .Add("asp-net-comparison", GetComparison());
@@ -131,6 +132,12 @@ namespace GenHTTP.Website
         {
             return Layout.Create()
                          .AddMarkdownPage(null, "Comparison.Index", "Comparing ASP.NET", "Overview of the alternatives to ASP.NET concepts provided by the GenHTTP framework.");
+        }
+
+        private static IHandlerBuilder GetTesting()
+        {
+            return Layout.Create()
+                         .AddMarkdownPage(null, "Testing.Index", "Testing Apps", "Introduction to testing applications written by using the GenHTTP framework.");
         }
 
         private static LayoutBuilder AddPage(this LayoutBuilder layout, string? route, string file, string? title , string description)

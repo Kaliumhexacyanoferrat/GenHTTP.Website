@@ -58,6 +58,7 @@
     <None Remove="Pages\Documentation\Server\Endpoints.md" />
     <None Remove="Pages\Documentation\Server\Index.md" />
     <None Remove="Pages\Documentation\Server\Security.md" />
+    <None Remove="Pages\Documentation\Testing\Index.md" />
     <None Remove="Pages\Features.md" />
     <None Remove="Pages\Home.html" />
     <None Remove="Pages\Legal.md" />
@@ -121,6 +122,7 @@
     <EmbeddedResource Include="Pages\Documentation\Server\Endpoints.md" />
     <EmbeddedResource Include="Pages\Documentation\Server\Index.md" />
     <EmbeddedResource Include="Pages\Documentation\Server\Security.md" />
+    <EmbeddedResource Include="Pages\Documentation\Testing\Index.md" />
     <EmbeddedResource Include="Pages\Features.md" />
   </ItemGroup>
   
