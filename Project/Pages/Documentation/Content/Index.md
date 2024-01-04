@@ -129,3 +129,6 @@ implement a [custom handler](./handlers).
 
 - [Injection](./injection)<br />
   Allow to inject custom types into service methods.
+- 
+- [Results](./results)<br />
+  Return structured data while adjusting the generated response.

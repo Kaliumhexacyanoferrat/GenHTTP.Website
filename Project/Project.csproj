@@ -42,6 +42,7 @@
     <None Remove="Pages\Documentation\Content\RangeSupport.md" />
     <None Remove="Pages\Documentation\Content\Redirects.md" />
     <None Remove="Pages\Documentation\Content\Resources.md" />
+    <None Remove="Pages\Documentation\Content\Results.md" />
     <None Remove="Pages\Documentation\Content\ReverseProxy.md" />
     <None Remove="Pages\Documentation\Content\ServerCaching.md" />
     <None Remove="Pages\Documentation\Content\SinglePageApplications.md" />
@@ -88,6 +89,7 @@
     <EmbeddedResource Include="Pages\Documentation\Content\Caches.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\ClientCachingPolicy.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\CombinedPages.md" />
+    <EmbeddedResource Include="Pages\Documentation\Content\Results.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Injection.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Functional.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\ErrorHandling.md" />

@@ -109,7 +109,8 @@ namespace GenHTTP.Website
                          .AddMarkdownPage("functional", "Functional", "Functional Handler", "Respond to HTTP requests in a functional manner with no boiler code.")
                          .AddMarkdownPage("error-handling", "ErrorHandling", "Error Handling", "Generates custom HTTP responses for exceptions and missing content.")
                          .AddMarkdownPage("conversion", "Conversion", "Serialization and Deserialization", "Configures the content serialization features of the webserver")
-                         .AddMarkdownPage("injection", "Injection", "Parameter Injection", "Add custom parameter resolvers in your application framework");
+                         .AddMarkdownPage("injection", "Injection", "Parameter Injection", "Add custom parameter resolvers in your application framework")
+                         .AddMarkdownPage("results", "Results", null, "Return structured data types from your API while still changing the response semantics");
         }
 
         private static IHandlerBuilder GetServer()

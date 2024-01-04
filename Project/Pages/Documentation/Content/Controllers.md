@@ -193,3 +193,4 @@ The following capabilities are shared by various application frameworks:
 
 - [Serialization and deserialization](./conversion)
 - [Parameter injection](./injection)
+- [Results](./results)
