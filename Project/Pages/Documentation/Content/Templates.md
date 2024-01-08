@@ -33,3 +33,12 @@ The following templates are available to be used:
 | `genhttp-website-mvc-razor` | Dynamic website using the [MVC pattern](./controllers) and [Razor](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-5.0) as a templating engine. |
 | `genhttp-website-mvc-scriban` | Dynamic website using the [MVC pattern](./controllers) and [Scriban](https://github.com/scriban/scriban/) as a templating engine. |
 | `genhttp-website-static` | Serves a [static website](./static-websites) from the file system. |
+
+## Updating Templates
+
+To update your locally installed project templates, run the following
+command in your terminal:
+
+```bash
+dotnet new update
+```
