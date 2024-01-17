@@ -55,6 +55,7 @@ namespace GenHTTP.Website
         {
             return Layout.Create()
                          .Add("documentation", GetDocumentation())
+                         .Add("cases", GetCases())
                          .Add("images", Resources.From(ResourceTree.FromAssembly("Images")))
                          .Add("downloads", Resources.From(ResourceTree.FromAssembly("Downloads")))
                          .AddPage(null, "Home", "C# HTTP Webserver Library", "Lightweight, embeddable HTTP web server written in pure C# with few dependencies to 3rd-party libraries.")
@@ -139,6 +140,12 @@ namespace GenHTTP.Website
         {
             return Layout.Create()
                          .AddMarkdownPage(null, "Testing.Index", "Testing Apps", "Introduction to testing applications written by using the GenHTTP framework.");
+        }
+
+        private static IHandlerBuilder GetCases()
+        {
+            return Layout.Create()
+                         .AddMarkdownPage("unity-game-webservice-api", "Unity", "Webservice APIs for Unity Games", "Write web service APIs for your Unity games in C#, fast and simple.");
         }
 
         private static LayoutBuilder AddPage(this LayoutBuilder layout, string? route, string file, string? title , string description)

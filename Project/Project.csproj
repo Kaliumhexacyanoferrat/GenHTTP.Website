@@ -19,6 +19,7 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <None Remove="Pages\Cases\Unity.md" />
     <None Remove="Pages\Documentation\Comparison\Index.md" />
     <None Remove="Pages\Documentation\Content\Authentication.md" />
     <None Remove="Pages\Documentation\Content\Caches.md" />
@@ -81,6 +82,10 @@
     <None Remove="Resources\Images\tfb.png" />
     <None Remove="Resources\Styles\custom.css" />
     <None Remove="Resources\Styles\custom.js" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Cases\Unity.md" />
   </ItemGroup>
   
   <ItemGroup>
