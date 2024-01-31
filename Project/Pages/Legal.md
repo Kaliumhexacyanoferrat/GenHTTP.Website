@@ -2,8 +2,8 @@
 
 Andreas Nägeli
 
-Antoniterstr. 2A<br />
-79106 Freiburg<br />
+Waldseemüller-Str. 10<br />
+79227 Schallstadt<br />
 Germany
 
 andr.naegeli@gmail.com
