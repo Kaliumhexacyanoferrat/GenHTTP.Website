@@ -158,16 +158,16 @@
   
   <ItemGroup>
     
-    <PackageReference Include="GenHTTP.Core" Version="8.0.0" />
+    <PackageReference Include="GenHTTP.Core" Version="8.1.0" />
     
-    <PackageReference Include="GenHTTP.Modules.ClientCaching" Version="8.0.0" />
+    <PackageReference Include="GenHTTP.Modules.ClientCaching" Version="8.1.0" />
 
-    <PackageReference Include="GenHTTP.Modules.Markdown" Version="8.0.0" />
+    <PackageReference Include="GenHTTP.Modules.Markdown" Version="8.1.0" />
 
-    <PackageReference Include="GenHTTP.Modules.ServerCaching" Version="8.0.0" />
-    <PackageReference Include="GenHTTP.Modules.Websites" Version="8.0.0" />
+    <PackageReference Include="GenHTTP.Modules.ServerCaching" Version="8.1.0" />
+    <PackageReference Include="GenHTTP.Modules.Websites" Version="8.1.0" />
 
-    <PackageReference Include="GenHTTP.Themes.Lorahost" Version="7.0.0" />
+    <PackageReference Include="GenHTTP.Themes.Lorahost" Version="8.0.0" />
     
   </ItemGroup>
   

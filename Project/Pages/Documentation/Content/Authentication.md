@@ -32,7 +32,7 @@ securedContent.Authentication(auth);
 // ... or implement your custom logic
 securedContent.Authentication((user, password) => {
    // validate the given credentials here and return your custom user object which needs to implement IUser
-   return new BasicAuthenticationUser(user);
+   return new(new BasicAuthenticationUser(user));
 });
 ```
 
@@ -57,11 +57,11 @@ var auth = ApiKeyAuthentication.Create()
                                .WithQueryParameter("key") // read the key from the query ..
                                .WithHeader("key") // .. or a custom header ...
                                .Extractor((r) => ...) // ... or anywhere else
-                               .Authenticator(DoAuthenticate);
+                               .Authenticator(DoAuthenticateAsync);
 
-private IUser? DoAuthenticate(IRequest request, string key)
+private ValueTask<IUser?> DoAuthenticateAsync(IRequest request, string key)
 {
     // do something to check the key (e.g. query a database)
-    return new ApiKeyUser(key); // or null, if no access is granted
+    return new(new ApiKeyUser(key)); // or null, if no access is granted
 }
 ```
