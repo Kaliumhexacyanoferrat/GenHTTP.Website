@@ -1,68 +1,50 @@
 ﻿## Why another Framework?
 
-With [ASP.NET](https://dotnet.microsoft.com/apps/aspnet), there is already a
-very good, scalable solution to develop and host web applications and services based
-on the .NET framework.
-But as of 2022, it seems that there are not that many other web development frameworks 
-and servers left besides Microsoft's ASP.NET.
-This project aims to bring more diversity to the beautiful ecosystem of .NET development,
-also in the spirit of the open source community. If you are familiar with the ASP.NET
-APIs, you may want to have a look at the [comparison sheet here](./asp-net-comparison/).
-
 With the GenHTTP framework, developers should be able to easily develop new web
-applications in a short time.
-Everything else is provided by the server infrastructure as well as the excellent
+applications in a short time. Everything else is provided by the server infrastructure as well as the excellent
 ecosystem of .NET which easily allows to build, test, and run applications.
 
-## Hello World!
+Similar to other frameworks such as Nancy, embedio, NetCoreServer, or Watson, and in comparison to ASP.NET,
+GenHTTP focuses on a low learning curve to quickly achieve results. You should be able to setup a new web service
+or website in a couple of minutes.
 
-> <span class="note">NOTE</span> If you directly want to start with a more complex app such as a website or webservice, have a look at our [project templates](/documentation/content/templates).
+## Getting Started
 
-To create our first application using the GenHTTP framework from scratch, open a terminal
-and enter the following command to create a new 
-[.NET 8](https://dotnet.microsoft.com/download) application:
+This section shows how to create a new project from scratch using project templates and how to extend your existing application by embedding the GenHTTP engine.
 
-```bash
-dotnet new console --framework net8.0 -o Project
-```
+### New Project
 
-This will create a new folder `Project`. Within this folder, run the following
-command to add a nuget package reference to the [GenHTTP Core](https://www.nuget.org/packages/GenHTTP.Core/)
-nuget package:
+Project templates can be used to create apps for typical use cases with little effort. After installing the [.NET SDK](https://dotnet.microsoft.com/en-us/download) and the templates via `dotnet new -i GenHTTP.Templates` in the terminal, the templates are available via the console or directly in Visual Studio:
 
-```bash
-cd Project
-dotnet add package GenHTTP.Core
-```
+![GenHTTP template projects in Visual Studio](/images/templates.png)
 
-You can then edit the generated Program.cs to setup a simple project using 
-the GenHTTP server API:
+To create a project by using the terminal, create a new folder for your app and use one of the following commands:
+
+| Template | Command |
+|---|---|
+| REST Webservice | `dotnet new genhttp-webservice` |
+| REST Webservice (single file) | `dotnet new genhttp-webservice-minimal` |
+| Website | `dotnet new genhttp-website` |
+| Website (Static HTML) | `dotnet new genhttp-website-static`  |
+| Website (MVC + Razor) | `dotnet new genhttp-website-mvc-razor`  |
+| Website (MVC + Scriban)  | `dotnet new genhttp-website-mvc-scriban`  |
+
+After the project has been created, you can run it via `dotnet run` and access the server via http://localhost:8080.
+
+### Extending Existing Apps
+
+If you would like to extend an existing .NET application, just add a nuget reference to the `GenHTTP.Core` nuget package. You can then spawn a new server instance with just a few lines of code:
 
 ```csharp
-using GenHTTP.Engine;
-
-using GenHTTP.Modules.IO;
-using GenHTTP.Modules.Practices;
-
 var content = Content.From(Resource.FromString("Hello World!"));
 
-return Host.Create()
-           .Console()
-           .Defaults()
-           .Handler(content)
-           .Run();
+using var server = Host.Create()
+                       .Handler(content)
+                       .Defaults()
+                       .Start(); // or .Run() to block until the application is shut down
 ```
 
-To run our newly created project, simply execute:
-
-```bash
-dotnet run
-```
-
-This will host a new server instance on port 8080, allowing you to view the
-newly created project in your browser by navigating to http://localhost:8080.
-
-![Browser showing our example project](/images/hello_world.png)
+When you run this sample it can be accessed in the browser via http://localhost:8080. 
 
 ## Next Steps
 
