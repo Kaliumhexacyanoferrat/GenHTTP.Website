@@ -20,6 +20,7 @@
   
   <ItemGroup>
     <None Remove="Pages\Cases\Unity.md" />
+    <None Remove="Pages\Components\Share.html" />
     <None Remove="Pages\Documentation\Comparison\Index.md" />
     <None Remove="Pages\Documentation\Content\Authentication.md" />
     <None Remove="Pages\Documentation\Content\Caches.md" />
@@ -80,12 +81,15 @@
     <None Remove="Resources\Images\ssl_labs.png" />
     <None Remove="Resources\Images\templates.png" />
     <None Remove="Resources\Images\tfb.png" />
+    <None Remove="Resources\ShareOn\shareon.iife.js" />
+    <None Remove="Resources\ShareOn\shareon.min.css" />
     <None Remove="Resources\Styles\custom.css" />
     <None Remove="Resources\Styles\custom.js" />
   </ItemGroup>
   
   <ItemGroup>
     <EmbeddedResource Include="Pages\Cases\Unity.md" />
+    <EmbeddedResource Include="Pages\Components\Share.html" />
   </ItemGroup>
   
   <ItemGroup>
@@ -152,6 +156,8 @@
     <EmbeddedResource Include="Resources\Images\ssl_labs.png" />
     <EmbeddedResource Include="Resources\Images\templates.png" />
     <EmbeddedResource Include="Resources\Images\tfb.png" />
+    <EmbeddedResource Include="Resources\ShareOn\shareon.iife.js" />
+    <EmbeddedResource Include="Resources\ShareOn\shareon.min.css" />
     <EmbeddedResource Include="Resources\Styles\custom.css" />
     <EmbeddedResource Include="Resources\Styles\custom.js" />
   </ItemGroup>
