@@ -20,14 +20,15 @@ Project templates can be used to create apps for typical use cases with little e
 
 To create a project by using the terminal, create a new folder for your app and use one of the following commands:
 
-| Template | Command |
-|---|---|
-| REST Webservice | `dotnet new genhttp-webservice` |
-| REST Webservice (single file) | `dotnet new genhttp-webservice-minimal` |
-| Website | `dotnet new genhttp-website` |
-| Website (Static HTML) | `dotnet new genhttp-website-static`  |
-| Website (MVC + Razor) | `dotnet new genhttp-website-mvc-razor`  |
-| Website (MVC + Scriban)  | `dotnet new genhttp-website-mvc-scriban`  |
+| Template | Command | Documentation |
+|---|---|---|
+| REST Webservice | `dotnet new genhttp-webservice` | [Webservices](./content/webservices) |
+| REST Webservice (single file) | `dotnet new genhttp-webservice-minimal` | [Functional Handlers](./content/functional) |
+| Website | `dotnet new genhttp-website` | [Websites](./content/websites) |
+| Website (Static HTML) | `dotnet new genhttp-website-static`  | [Statics Websites](./content/static-websites) |
+| Website (MVC + Razor) | `dotnet new genhttp-website-mvc-razor`  | [Controllers (MVC)](./content/controllers) |
+| Website (MVC + Scriban)  | `dotnet new genhttp-website-mvc-scriban`  | [Controllers (MVC)](./content/controllers) |
+| Single Page Application (SPA) | `dotnet new genhttp-spa` | [Single Page Applications (SPA)](./content/single-page-applications) |
 
 After the project has been created, you can run it via `dotnet run` and access the server via http://localhost:8080.
 
