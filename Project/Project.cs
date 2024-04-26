@@ -1,23 +1,23 @@
-﻿using System.Collections.Generic;
-
-using GenHTTP.Api.Content;
-
+﻿using GenHTTP.Api.Content;
+using GenHTTP.Api.Content.IO;
 using GenHTTP.Modules.Basics;
 using GenHTTP.Modules.IO;
 using GenHTTP.Modules.Layouting;
 using GenHTTP.Modules.Layouting.Provider;
 using GenHTTP.Modules.Markdown;
+using GenHTTP.Modules.Pages;
 using GenHTTP.Modules.Placeholders;
 using GenHTTP.Modules.Websites;
 using GenHTTP.Modules.Websites.Sites;
-
 using GenHTTP.Themes.Lorahost;
+using System.Collections.Generic;
 
 namespace GenHTTP.Website
 {
 
     public static class Project
     {
+        private static readonly IResource _ShareContent = Resource.FromAssembly("Share.html").Build();
 
         public static WebsiteBuilder Create()
         {
@@ -41,6 +41,8 @@ namespace GenHTTP.Website
                                                   .Menu(menu)
                                                   .AddScript("highlight.js", Resource.FromAssembly("highlight.js"))
                                                   .AddStyle("highlight.css", Resource.FromAssembly("highlight.css"))
+                                                  .AddScript("shareon.iife.js", Resource.FromAssembly("shareon.iife.js"))
+                                                  .AddStyle("shareon.min.css", Resource.FromAssembly("shareon.min.css"))
                                                   .AddScript("custom.js", Resource.FromAssembly("custom.js"))
                                                   .AddStyle("custom.css", Resource.FromAssembly("custom.css"))
                                                   .Favicon(Resource.FromAssembly("favicon.ico"))
@@ -60,7 +62,7 @@ namespace GenHTTP.Website
                          .Add("downloads", Resources.From(ResourceTree.FromAssembly("Downloads")))
                          .AddPage(null, "Home", "C# HTTP Webserver Library", "Lightweight, embeddable HTTP web server written in pure C# with few dependencies to 3rd-party libraries.")
                          .AddMarkdownPage("features", "Features", null, "Features of the GenHTTP application framework such as performance, SEO or security.")
-                         .AddMarkdownPage("legal", "Legal", null, "Legal information regarding GenHTTP.org")
+                         .AddMarkdownPage("legal", "Legal", null, "Legal information regarding GenHTTP.org", addSocial: false)
                          .AddMarkdownPage("links", "Links", "Links & References", "Projects using the GenHTTP webserver engine.");
         }
 
@@ -148,7 +150,7 @@ namespace GenHTTP.Website
                          .AddMarkdownPage("unity-game-webservice-api", "Unity", "Webservice APIs for Unity Games", "Write web service APIs for your Unity games in C#, fast and simple.");
         }
 
-        private static LayoutBuilder AddPage(this LayoutBuilder layout, string? route, string file, string? title , string description)
+        private static LayoutBuilder AddPage(this LayoutBuilder layout, string? route, string file, string? title, string description)
         {
             if (route != null)
             {
@@ -160,15 +162,25 @@ namespace GenHTTP.Website
             }
         }
 
-        private static LayoutBuilder AddMarkdownPage(this LayoutBuilder layout, string? route, string file, string? title, string description)
+        private static LayoutBuilder AddMarkdownPage(this LayoutBuilder layout, string? route, string file, string? title, string description, bool addSocial = true)
         {
+            var page = CombinedPage.Create()
+                                   .AddMarkdown(Resource.FromAssembly($"{file}.md"))
+                                   .Title(title ?? file)
+                                   .Description(description);
+
+            if (addSocial)
+            {
+                page.Add(_ShareContent.GetResourceAsStringAsync().Result);
+            }
+
             if (route != null)
             {
-                return layout.Add(route, ModMarkdown.Page(Resource.FromAssembly($"{file}.md")).Title(title ?? file).Description(description));
+                return layout.Add(route, page);
             }
             else
             {
-                return layout.Index(ModMarkdown.Page(Resource.FromAssembly($"{file}.md")).Title(title ?? file).Description(description));
+                return layout.Index(page);
             }
         }
 
