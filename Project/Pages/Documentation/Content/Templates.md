@@ -33,6 +33,7 @@ The following templates are available to be used:
 | `genhttp-website-mvc-razor` | Dynamic website using the [MVC pattern](./controllers) and [Razor](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-5.0) as a templating engine. |
 | `genhttp-website-mvc-scriban` | Dynamic website using the [MVC pattern](./controllers) and [Scriban](https://github.com/scriban/scriban/) as a templating engine. |
 | `genhttp-website-static` | Serves a [static website](./static-websites) from the file system. |
+| `genhttp-spa` | Serves the distribution files of a [Single Page Application (SPA)](./single-page-applications). |
 
 ## Updating Templates
 
