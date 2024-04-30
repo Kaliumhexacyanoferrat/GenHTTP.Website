@@ -25,21 +25,6 @@ pre {
     margin: 0;
 }
 
-@media (max-width: 768px) {
-
-    body > p, pre, ul, blockquote, h2 {
-        position: relative;
-        margin-right: 2rem;
-        margin-left: 2rem;
-        max-width: initial;
-    }
-
-    body > table {
-        margin-left: 1em;
-    }
-
-}
-
 body > table {
     margin-left: 4em;
     margin-bottom: 1em;
@@ -75,8 +60,15 @@ p > img {
 }
 
 .menu_nav {
+    gap: 2em;
+}
+
+.justify-content-end {
+    justify-content: center !important;
+}
+
+.header_area .navbar .nav .nav-item {
     margin-right: 0;
-    margin-left: 0;
 }
 
 pre code.hljs {
@@ -86,4 +78,22 @@ pre code.hljs {
 
 td {
     padding-right: 1em;
+}
+
+@media (max-width: 768px) {
+
+    body > p, pre, ul, blockquote, h2 {
+        position: relative;
+        margin-right: 2rem;
+        margin-left: 2rem;
+        max-width: initial;
+    }
+
+    body > table {
+        margin-left: 1em;
+    }
+
+    .menu_nav {
+        gap: 0;
+    }
 }

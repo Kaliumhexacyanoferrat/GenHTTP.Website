@@ -29,9 +29,9 @@ namespace GenHTTP.Website
                            .Add("features", "Features")
                            .Add("documentation/", "Documentation", new List<(string, string)> { ("content/", "Providing Content"), ("testing/", "Testing Apps"), ("server/", "Server Setup"), ("hosting/", "Hosting Apps"), ("asp-net-comparison", "Comparison with ASP.NET") })
                            .Add("links", "Links")
-                           .Add("https://discord.gg/GwtDyUpkpV", "Discord")
-                           .Add("https://github.com/Kaliumhexacyanoferrat/GenHTTP", "GitHub")
-                           .Add("legal", "Legal");
+                           .Add("legal", "Legal")
+                           .Add("https://discord.gg/GwtDyUpkpV", "<span class=\"fab fa-discord\" style=\"font-size: 16pt; color: #fff; margin-right: 0;\" aria-label=\"GenHTTP on Discord\"></span>")
+                           .Add("https://github.com/Kaliumhexacyanoferrat/GenHTTP", "<span class=\"fab fa-github\" style=\"font-size: 16pt; color: #fff; margin-right: 0;\" aria-label=\"GenHTTP on GitHub\"></span>");
 
             var theme = Theme.Create()
                              .Header(Resource.FromAssembly("Header.jpg"))
