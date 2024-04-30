@@ -2,7 +2,7 @@
 
 using GenHTTP.Api.Content;
 using GenHTTP.Api.Content.IO;
-
+using GenHTTP.Api.Content.Templating;
 using GenHTTP.Modules.Basics;
 using GenHTTP.Modules.IO;
 using GenHTTP.Modules.Layouting;
@@ -10,6 +10,7 @@ using GenHTTP.Modules.Layouting.Provider;
 using GenHTTP.Modules.Markdown;
 using GenHTTP.Modules.Pages;
 using GenHTTP.Modules.Placeholders;
+using GenHTTP.Modules.Razor;
 using GenHTTP.Modules.Websites;
 using GenHTTP.Modules.Websites.Sites;
 
@@ -21,6 +22,8 @@ namespace GenHTTP.Website
     public static class Project
     {
         private static readonly IResource _ShareContent = Resource.FromAssembly("Share.html").Build();
+
+        private static readonly IResource _VideoPlayer = Resource.FromAssembly("Video.cshtml").Build();
 
         public static WebsiteBuilder Create()
         {
@@ -34,7 +37,7 @@ namespace GenHTTP.Website
                            .Add("https://github.com/Kaliumhexacyanoferrat/GenHTTP", "<span class=\"fab fa-github\" style=\"font-size: 16pt; color: #fff; margin-right: 0;\" aria-label=\"GenHTTP on GitHub\"></span>");
 
             var theme = Theme.Create()
-                             .Header(Resource.FromAssembly("Header.jpg"))
+                             .Header(Resource.FromFile("./Resources/Header.jpg"))
                              .Title("GenHTTP Webserver")
                              .Subtitle("Simple and lightweight, embeddable HTTP server written in pure C# with few dependencies to 3rd-party libraries. Compatible with .NET 6/7/8.")
                              .Action("documentation/", "Get started");
@@ -48,7 +51,7 @@ namespace GenHTTP.Website
                                                   .AddStyle("shareon.min.css", Resource.FromAssembly("shareon.min.css"))
                                                   .AddScript("custom.js", Resource.FromAssembly("custom.js"))
                                                   .AddStyle("custom.css", Resource.FromAssembly("custom.css"))
-                                                  .Favicon(Resource.FromAssembly("favicon.ico"))
+                                                  .Favicon(Resource.FromFile("./Resources/favicon.ico"))
                                                   .Content(GetLayout());
 
             return website;
@@ -61,12 +64,11 @@ namespace GenHTTP.Website
             return Layout.Create()
                          .Add("documentation", GetDocumentation())
                          .Add("cases", GetCases())
-                         .Add("images", Resources.From(ResourceTree.FromAssembly("Images")))
-                         .Add("downloads", Resources.From(ResourceTree.FromAssembly("Downloads")))
                          .AddPage(null, "Home", "C# HTTP Webserver Library", "Lightweight, embeddable HTTP web server written in pure C# with few dependencies to 3rd-party libraries.")
                          .AddMarkdownPage("features", "Features", null, "Features of the GenHTTP application framework such as performance, SEO or security.")
                          .AddMarkdownPage("legal", "Legal", null, "Legal information regarding GenHTTP.org", addSocial: false)
-                         .AddMarkdownPage("links", "Links", "Links & References", "Projects using the GenHTTP webserver engine.");
+                         .AddMarkdownPage("links", "Links", "Links & References", "Projects using the GenHTTP webserver engine.")
+                         .Add(Resources.From(ResourceTree.FromDirectory("./Resources/Public")));
         }
 
         private static IHandlerBuilder GetDocumentation()
@@ -132,7 +134,7 @@ namespace GenHTTP.Website
         private static IHandlerBuilder GetHosting()
         {
             return Layout.Create()
-                         .AddMarkdownPage(null, "Hosting.Index", "Hosting Apps", "Host web applications written in C# using the .NET docker images.");
+                         .AddMarkdownPage(null, "Hosting.Index", "Hosting Apps", "Host web applications written in C# using the .NET docker images.", video: "hosting-in-docker");
         }
 
         private static IHandlerBuilder GetComparison()
@@ -165,12 +167,17 @@ namespace GenHTTP.Website
             }
         }
 
-        private static LayoutBuilder AddMarkdownPage(this LayoutBuilder layout, string? route, string file, string? title, string description, bool addSocial = true)
+        private static LayoutBuilder AddMarkdownPage(this LayoutBuilder layout, string? route, string file, string? title, string description, string? video = null, bool addSocial = true)
         {
             var page = CombinedPage.Create()
                                    .AddMarkdown(Resource.FromAssembly($"{file}.md"))
                                    .Title(title ?? file)
                                    .Description(description);
+
+            if (video != null)
+            {
+                page.AddRazor<ViewModel<string>>(_VideoPlayer, (r, h) => new(new ViewModel<string>(r, h, video)));
+            }
 
             if (addSocial)
             {
