@@ -65,30 +65,31 @@
     <None Remove="Pages\Home.html" />
     <None Remove="Pages\Legal.md" />
     <None Remove="Pages\Links.md" />
-    <None Remove="Resources\Downloads\GenHTTP-Examples-Controllers.zip" />
+    <None Remove="Resources\Public\downloads\GenHTTP-Examples-Controllers.zip" />
     <None Remove="Resources\favicon.ico" />
     <None Remove="Resources\Header.jpg" />
-    <None Remove="Resources\Highlight\highlight.css" />
-    <None Remove="Resources\Highlight\highlight.js" />
-    <None Remove="Resources\Images\controller_menu.png" />
-    <None Remove="Resources\Images\footprint.png" />
-    <None Remove="Resources\Images\gateway.png" />
-    <None Remove="Resources\Images\hello_world.png" />
-    <None Remove="Resources\Images\listing.png" />
-    <None Remove="Resources\Images\mockh.png" />
-    <None Remove="Resources\Images\pagespeed.png" />
-    <None Remove="Resources\Images\ssl_labs.png" />
-    <None Remove="Resources\Images\templates.png" />
-    <None Remove="Resources\Images\tfb.png" />
-    <None Remove="Resources\ShareOn\shareon.iife.js" />
-    <None Remove="Resources\ShareOn\shareon.min.css" />
-    <None Remove="Resources\Styles\custom.css" />
-    <None Remove="Resources\Styles\custom.js" />
+    <None Remove="Resources\Libraries\Highlight\highlight.css" />
+    <None Remove="Resources\Libraries\Highlight\highlight.js" />
+    <None Remove="Resources\Public\images\controller_menu.png" />
+    <None Remove="Resources\Public\images\footprint.png" />
+    <None Remove="Resources\Public\images\gateway.png" />
+    <None Remove="Resources\Public\images\hello_world.png" />
+    <None Remove="Resources\Public\images\listing.png" />
+    <None Remove="Resources\Public\images\mockh.png" />
+    <None Remove="Resources\Public\images\pagespeed.png" />
+    <None Remove="Resources\Public\images\ssl_labs.png" />
+    <None Remove="Resources\Public\images\templates.png" />
+    <None Remove="Resources\Public\images\tfb.png" />
+    <None Remove="Resources\Libraries\ShareOn\shareon.iife.js" />
+    <None Remove="Resources\Libraries\ShareOn\shareon.min.css" />
+    <None Remove="Resources\Public\videos\hosting-in-docker.png" />
+    <None Remove="Resources\Public\videos\hosting-in-docker.webm" />
   </ItemGroup>
   
   <ItemGroup>
     <EmbeddedResource Include="Pages\Cases\Unity.md" />
     <EmbeddedResource Include="Pages\Components\Share.html" />
+    <EmbeddedResource Include="Pages\Components\Video.cshtml" />
   </ItemGroup>
   
   <ItemGroup>
@@ -140,25 +141,57 @@
     <EmbeddedResource Include="Pages\Home.html" />
     <EmbeddedResource Include="Pages\Legal.md" />
     <EmbeddedResource Include="Pages\Links.md" />
-    <EmbeddedResource Include="Resources\Downloads\GenHTTP-Examples-Controllers.zip" />
-    <EmbeddedResource Include="Resources\favicon.ico" />
-    <EmbeddedResource Include="Resources\Header.jpg" />
-    <EmbeddedResource Include="Resources\Highlight\highlight.css" />
-    <EmbeddedResource Include="Resources\Highlight\highlight.js" />
-    <EmbeddedResource Include="Resources\Images\controller_menu.png" />
-    <EmbeddedResource Include="Resources\Images\footprint.png" />
-    <EmbeddedResource Include="Resources\Images\gateway.png" />
-    <EmbeddedResource Include="Resources\Images\hello_world.png" />
-    <EmbeddedResource Include="Resources\Images\listing.png" />
-    <EmbeddedResource Include="Resources\Images\mockh.png" />
-    <EmbeddedResource Include="Resources\Images\pagespeed.png" />
-    <EmbeddedResource Include="Resources\Images\ssl_labs.png" />
-    <EmbeddedResource Include="Resources\Images\templates.png" />
-    <EmbeddedResource Include="Resources\Images\tfb.png" />
-    <EmbeddedResource Include="Resources\ShareOn\shareon.iife.js" />
-    <EmbeddedResource Include="Resources\ShareOn\shareon.min.css" />
-    <EmbeddedResource Include="Resources\Styles\custom.css" />
-    <EmbeddedResource Include="Resources\Styles\custom.js" />
+    <Content Include="Resources\Public\downloads\GenHTTP-Examples-Controllers.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Public\videos\hosting-in-docker.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Public\videos\hosting-in-docker.webm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Header.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Resources\Libraries\Highlight\highlight.css" />
+    <EmbeddedResource Include="Resources\Libraries\Highlight\highlight.js" />
+    <Content Include="Resources\Public\images\controller_menu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Public\images\footprint.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Public\images\gateway.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Public\images\hello_world.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Public\images\listing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Public\images\mockh.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Public\images\pagespeed.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Public\images\ssl_labs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Public\images\templates.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Public\images\tfb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Resources\Libraries\ShareOn\shareon.iife.js" />
+    <EmbeddedResource Include="Resources\Libraries\ShareOn\shareon.min.css" />
+    <EmbeddedResource Include="Resources\Libraries\custom.css" />
+    <EmbeddedResource Include="Resources\Libraries\custom.js" />
   </ItemGroup>
   
   <ItemGroup>
@@ -168,6 +201,7 @@
     <PackageReference Include="GenHTTP.Modules.ClientCaching" Version="8.3.0" />
 
     <PackageReference Include="GenHTTP.Modules.Markdown" Version="8.3.0" />
+    <PackageReference Include="GenHTTP.Modules.Razor" Version="8.3.0" />
 
     <PackageReference Include="GenHTTP.Modules.ServerCaching" Version="8.3.0" />
     <PackageReference Include="GenHTTP.Modules.Websites" Version="8.3.0" />

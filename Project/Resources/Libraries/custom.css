@@ -80,6 +80,10 @@ td {
     padding-right: 1em;
 }
 
+video {
+    border: 1px solid #aaa;
+}
+
 @media (max-width: 768px) {
 
     body > p, pre, ul, blockquote, h2 {
