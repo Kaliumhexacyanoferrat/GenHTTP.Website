@@ -40,6 +40,7 @@
     <None Remove="Pages\Documentation\Content\Layouting.md" />
     <None Remove="Pages\Documentation\Content\Listing.md" />
     <None Remove="Pages\Documentation\Content\LoadBalancer.md" />
+    <None Remove="Pages\Documentation\Content\Minification.md" />
     <None Remove="Pages\Documentation\Content\RangeSupport.md" />
     <None Remove="Pages\Documentation\Content\Redirects.md" />
     <None Remove="Pages\Documentation\Content\Resources.md" />
@@ -98,6 +99,7 @@
     <EmbeddedResource Include="Pages\Documentation\Content\Caches.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\ClientCachingPolicy.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\CombinedPages.md" />
+    <EmbeddedResource Include="Pages\Documentation\Content\Minification.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Results.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Injection.md" />
     <EmbeddedResource Include="Pages\Documentation\Content\Functional.md" />

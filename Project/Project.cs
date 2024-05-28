@@ -118,7 +118,8 @@ namespace GenHTTP.Website
                          .AddMarkdownPage("error-handling", "ErrorHandling", "Error Handling", "Generates custom HTTP responses for exceptions and missing content.")
                          .AddMarkdownPage("conversion", "Conversion", "Serialization and Deserialization", "Configures the content serialization features of the webserver")
                          .AddMarkdownPage("injection", "Injection", "Parameter Injection", "Add custom parameter resolvers in your application framework")
-                         .AddMarkdownPage("results", "Results", null, "Return structured data types from your API while still changing the response semantics");
+                         .AddMarkdownPage("results", "Results", null, "Return structured data types from your API while still changing the response semantics")
+                         .AddMarkdownPage("minification", "Minification", null, "Minify web resources such as JS, CSS or HTML files for improved performance");
         }
 
         private static IHandlerBuilder GetServer()
