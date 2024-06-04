@@ -1,7 +1,7 @@
 ﻿## Why another Framework?
 
 With the GenHTTP framework, developers should be able to easily develop new web
-applications in a short time. Everything else is provided by the server infrastructure as well as the excellent
+services in a short time. Everything else is provided by the server infrastructure as well as the excellent
 ecosystem of .NET which easily allows to build, test, and run applications.
 
 Similar to other frameworks such as Nancy, embedio, NetCoreServer, or Watson, and in comparison to ASP.NET,
@@ -24,10 +24,10 @@ To create a project by using the terminal, create a new folder for your app and 
 |---|---|---|
 | REST Webservice | `dotnet new genhttp-webservice` | [Webservices](./content/webservices) |
 | REST Webservice (single file) | `dotnet new genhttp-webservice-minimal` | [Functional Handlers](./content/functional) |
-| Website | `dotnet new genhttp-website` | [Websites](./content/websites) |
+| Website \[[deprecated](https://github.com/Kaliumhexacyanoferrat/GenHTTP/issues/496)\] | `dotnet new genhttp-website` | [Websites](./content/websites) |
 | Website (Static HTML) | `dotnet new genhttp-website-static`  | [Statics Websites](./content/static-websites) |
-| Website (MVC + Razor) | `dotnet new genhttp-website-mvc-razor`  | [Controllers (MVC)](./content/controllers) |
-| Website (MVC + Scriban)  | `dotnet new genhttp-website-mvc-scriban`  | [Controllers (MVC)](./content/controllers) |
+| Website (MVC + Razor) \[[deprecated](https://github.com/Kaliumhexacyanoferrat/GenHTTP/issues/496)\] | `dotnet new genhttp-website-mvc-razor`  | [Controllers (MVC)](./content/controllers) |
+| Website (MVC + Scriban) \[[deprecated](https://github.com/Kaliumhexacyanoferrat/GenHTTP/issues/496)\]  | `dotnet new genhttp-website-mvc-scriban`  | [Controllers (MVC)](./content/controllers) |
 | Single Page Application (SPA) | `dotnet new genhttp-spa` | [Single Page Applications (SPA)](./content/single-page-applications) |
 
 After the project has been created, you can run it via `dotnet run` and access the server via http://localhost:8080.
@@ -51,8 +51,7 @@ When you run this sample it can be accessed in the browser via http://localhost:
 
 The example project above gives you a basic idea on how projects developed
 with the GenHTTP may look like. To create more complex web applications
-(such as [websites](/documentation/content/websites) or [webservices](/documentation/content/webservices)),
-follow the guides in the following sections:
+(such as [webservices](/documentation/content/webservices)), follow the guides in the following sections:
 
 - [Providing Content](/documentation/content/)
 - [Testing](/documentation/testing/)

@@ -68,6 +68,8 @@ securedContent.Authentication((user, password) => {
 
 ## Web Authentication
 
+> <span class="note">NOTE</span> The feature described in this section [is deprecated](https://github.com/Kaliumhexacyanoferrat/GenHTTP/issues/496) and will be removed with GenHTTP 9.
+
 This concern will secure your website by adding a login form that needs to be completed by 
 the app users to authenticate themselves.Additionally, the concern provides a setup functionality 
 that will allow users to create an admin account on the first run of your application. 

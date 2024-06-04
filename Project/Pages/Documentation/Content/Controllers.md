@@ -15,6 +15,8 @@ curve rather low.
 
 ## Creating a MVC Website
 
+> <span class="note">NOTE</span> The feature described in this section [is deprecated](https://github.com/Kaliumhexacyanoferrat/GenHTTP/issues/496) and will be removed with GenHTTP 9.
+
 The following snippet shows a basic example on how to implement a MVC style web application
 using the controller module. This example shows how to render and modify data records.
 

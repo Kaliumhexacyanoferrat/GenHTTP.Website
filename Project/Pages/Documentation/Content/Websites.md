@@ -1,5 +1,7 @@
 ﻿## Websites
 
+> <span class="note">NOTE</span> The feature described in this section [is deprecated](https://github.com/Kaliumhexacyanoferrat/GenHTTP/issues/496) and will be removed with GenHTTP 9.
+
 The website handler allows your to create themed web applications in a simple manner.
 
 > <span class="note">NOTE</span> New websites can quickly be created by using a [project template](./templates).

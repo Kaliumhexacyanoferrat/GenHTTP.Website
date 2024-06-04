@@ -13,7 +13,7 @@ public class ConsoleCompanion : IServerCompanion
         Console.Log(request.Path);
     }
 
-    public void OnServerError(ServerErrorScope scope, Exception error)
+    public void OnServerError(ServerErrorScope scope, IPAddress? client, Exception error)
     {
         Console.Log(error);
     }
