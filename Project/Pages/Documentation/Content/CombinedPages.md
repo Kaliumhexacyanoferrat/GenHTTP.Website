@@ -1,5 +1,7 @@
 ﻿## Combined Pages
 
+> <span class="note">NOTE</span> The feature described in this section [is deprecated](https://github.com/Kaliumhexacyanoferrat/GenHTTP/issues/496) and will be removed with GenHTTP 9.
+
 This provider allows to assemble different kind of content into a single
 web page to be delivered. Rendering engines and technologies can be mixed
 as needed.

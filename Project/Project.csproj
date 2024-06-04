@@ -77,7 +77,6 @@
     <None Remove="Resources\Public\images\hello_world.png" />
     <None Remove="Resources\Public\images\listing.png" />
     <None Remove="Resources\Public\images\mockh.png" />
-    <None Remove="Resources\Public\images\pagespeed.png" />
     <None Remove="Resources\Public\images\ssl_labs.png" />
     <None Remove="Resources\Public\images\templates.png" />
     <None Remove="Resources\Public\images\tfb.png" />
@@ -176,9 +175,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Public\images\mockh.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Public\images\pagespeed.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Public\images\ssl_labs.png">

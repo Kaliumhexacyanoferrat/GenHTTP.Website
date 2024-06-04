@@ -22,7 +22,7 @@ implement a [custom handler](./handlers).
 
 ## Application Frameworks
 
-- [Websites](./websites)<br />
+- [Websites](./websites) (deprecated)<br />
   Allows you to serve a themed web application with basic features such as
   templating, theming, sitemaps, or robots instruction files.
 
@@ -64,7 +64,7 @@ implement a [custom handler](./handlers).
 - [Error Handling](./error-handling)<br />
   Generate custom HTTP responses for exceptions and missing content.
   
-- [Minification](./minification)<br />
+- [Minification](./minification) (deprecated)<br />
   Reduces the size of web resources such as JS, CSS or HTML files sent to the client by minifying them.
 
 - [Server Caching](./server-caching)<br />
@@ -89,7 +89,7 @@ implement a [custom handler](./handlers).
   Serves resources stored in a directory or as embedded resources within an
   assembly to the client.
   
-- [Combined Pages](./combined-pages)<br />
+- [Combined Pages](./combined-pages) (deprecated)<br />
   Allows to assemble a web page from different kind of content.
 
 - [Downloads](./downloads)<br />

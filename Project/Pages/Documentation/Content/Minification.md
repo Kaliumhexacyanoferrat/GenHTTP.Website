@@ -1,5 +1,7 @@
 ﻿## Minification
 
+> <span class="note">NOTE</span> The feature described in this section [is deprecated](https://github.com/Kaliumhexacyanoferrat/GenHTTP/issues/496) and will be removed with GenHTTP 9.
+
 The minification module allows you to minify typical web resources
 such as JS, CSS or HTML files before serving them to the client.
 
