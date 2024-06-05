@@ -194,7 +194,7 @@
   
   <ItemGroup>
     
-    <PackageReference Include="GenHTTP.Core" Version="8.5.1" />
+    <PackageReference Include="GenHTTP.Core" Version="8.5.2" />
     
     <PackageReference Include="GenHTTP.Modules.ClientCaching" Version="8.5.0" />
 
