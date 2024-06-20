@@ -1,0 +1,27 @@
+﻿---
+title: Client Caching (Policy)
+cascade:
+  type: docs
+---
+
+This concern allows to instruct clients to cache responses generated
+by the server for some duration by adding the `Expires` HTTP header.
+The following example will cause the static website to be cached for one week:
+
+```csharp
+var website = StaticWebsite.From(...)
+                           .Add(ClientCache.Policy().Duration(7));
+
+Host.Create()
+    .Handler(website)
+    .Run();
+```
+
+If needed, a predicate can be passed to specify the content that
+should be cached more explicitly:
+
+```csharp
+var policy = ClientCache.Policy()
+                        .Duration(7)
+                        .Predicate((req, resp) => resp.ContentType?.RawType != "text/html")); // do not cache HTML pages
+```
