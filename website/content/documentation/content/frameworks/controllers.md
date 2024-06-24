@@ -1,170 +1,62 @@
 ﻿---
-title: Controllers & MVC
+title: Controllers
 cascade:
   type: docs
 ---
 
-The [Controllers](https://www.nuget.org/packages/GenHTTP.Modules.Controllers/) module
-adds a thin layer that allows to serve content from controller classes. Combined
-with the [Website](./websites) framework and a renderer of your choice,
-this allows to implement MVC-style web applications. Nevertheless, controllers can 
-be used to generate any content, so the functionality is not limited to generate pages 
-for websites.
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.Controllers/" title="GenHTTP.Modules.Controllers" icon="link" >}}
+{{< /cards >}}
+
+This framework allows to create APIs by defining and implementing controller classes. In contrast
+to ASP.NET you cannot use this framework to dynamically render HTML pages in a MVC style project,
+so this is just another flavor of defining a web API.
 
 {{< callout type="info" >}}
-New MVC websites can quickly be created by using a [project template](./templates).
+Controller based APIs can quickly be created by using a [project template](../../templates).
 {{< /callout >}}
 
-In comparison to [ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-3.1&tabs=visual-studio),
-the implementation tries to use less conventions and hidden logic, keeping the learning
-curve rather low.
+## Creating a controller based API
 
-## Creating a MVC Website
+The following example shows how an API controlling an IoT device could look like
+when implemented using the controller framework.
 
-> <span class="note">NOTE</span> The feature described in this section [is deprecated](https://github.com/Kaliumhexacyanoferrat/GenHTTP/issues/496) and will be removed with GenHTTP 9.
-
-The following snippet shows a basic example on how to implement a MVC style web application
-using the controller module. This example shows how to render and modify data records.
+The methods of the controller class will automatically be translated into paths
+that can be called by the client.
 
 ```csharp
-// Model
-public record Book(int ID, string Title);
+// API will be available via http://localhost:8080/device/
 
-// Controller
-public class BookController
-{
-    private static readonly List<Book> _Books = new()
-    {
-        new Book(1, "Lord of The Rings")
-    };
+var api = Layout.Create()
+                .AddController<IotController>("device")
+                .Add(CorsPolicy.Permissive());
+                
+Host.Create()
+    .Handler(api)
+    .Defaults()
+    .Development()
+    .Console()
+    .Run();
+    
+// --
 
-    public IHandlerBuilder Index()
-    {
-        return ModScriban.Page<ViewModel<List<Book>>>(Resource.FromAssembly("BookList.html"), (r, h) => new(new ViewModel<List<Book>>(r, h, _Books)))
-                         .Title("Book List");
-    }
-
-    public IHandlerBuilder Create()
-    {
-        return ModScriban.Page(Resource.FromAssembly("BookCreation.html"))
-                         .Title("Add Book");
-    }
-
-    [ControllerAction(RequestMethod.POST)]
-    public IHandlerBuilder Create(string title)
-    {
-        var book = new Book(_Books.Max(b => b.ID) + 1, title);
-
-        _Books.Add(book);
-
-        return Redirect.To("{index}/", true);
-    }
-
-    public IHandlerBuilder Edit([FromPath] int id)
-    {
-        var book = _Books.Where(b => b.ID == id).First();
-        
-        return ModScriban.Page<ViewModel<Book>>(Resource.FromAssembly("BookEditor.html"), (r, h) => new(new ViewModel<Book>(r, h, book)))
-                         .Title(book.Title);
-    }
-
-    [ControllerAction(RequestMethod.POST)]
-    public IHandlerBuilder Edit([FromPath] int id, string title)
-    {
-        var book = _Books.Where(b => b.ID == id).First();
-
-        var index = _Books.IndexOf(book);
-
-        _Books[index] = book with { Title = title };
-
-        return Redirect.To("{index}/", true);
-    }
-
-    [ControllerAction(RequestMethod.POST)]
-    public IHandlerBuilder Delete([FromPath] int id)
-    {
-        _Books.RemoveAll(b => b.ID == id);
-
-        return Redirect.To("{index}/", true);
-    }
-
-}
-
-// Website setup
-static int Main(string[] args)
-{
-    var app = Layout.Create()
-                    .AddController<BookController>("books")
-                    .Index(Page.From("Welcome to the Book Manager!").Title("Home"));
-
-    var theme = Theme.Create()
-                     .Title("Book Manager");
-
-    var website = Website.Create()
-                         .Theme(theme)
-                         .Content(app);
-
-    return Host.Create()
-               .Handler(website)
-               .Defaults()
-               .Development()
-               .Console()
-               .Run();
-}
-```
-
-The example is available as a downloadable [sample project](/downloads/GenHTTP-Examples-Controllers.zip) as well.
-
-You might notice that compared to ASP.NET Core MVC, the code is quite verbose (e.g.
-the Scriban stuff instead of just `View`), but you can also see what is actually executed,
-making it easier to understand. A larger application would probably derive some
-`BaseController` with a method like the following:
-
-```csharp
-protected IHandlerBuilder View<T>(string name, string title, T data) {
-    return ModScriban.Page<ViewModel<T>>(Resource.FromAssembly($"{name}.html"), (r, h) => new(new ViewModel<T>(r, h, data)))
-                     .Title(title);
-}
-```
-
-## Content Discovery
-
-When you run the sample project, you will notice, that there is an automatically
-generated menu that has been derived from our controller class:
-
-![automatically generated menu](/images/controller_menu.png)
-
-This is possible because the controller handler (as any other handler of the GenHTTP
-framework) declares the content elements it provides as meta information. From this
-information the sitemap (http://localhost:8080/sitemap.xml is generated as well).
-
-If you do not want a page to show up in the sitemap or menu, you can mark it hidden:
-
-```csharp
-[ControllerAction(RequestMethod.GET, IgnoreContent = true)]
-public IHandlerBuilder Create() { /* ... */ }
-```
-
-For dynamic content (such as the books in our example), you can specify an `IContentHint`
-implementation which makes the content discoverable to the framework:
-
-```csharp
-[ControllerAction(RequestMethod.GET, ContentHints = typeof(BookContentHints))]
-public IHandlerBuilder Edit([FromPath] int id) { /* ... */ }
-
-public class BookContentHints : IContentHints
+public class IotController
 {
 
-    public List<ContentHint> GetHints(IRequest request)
+    public DeviceInfo Index() 
     {
-        var result = new List<ContentHint>();
-
-        foreach (var book in BookController.Books)
-        {
-            result.Add(new ContentHint() { { "id", book.ID } });
-        }
-
-        return result;
+        // GET http://localhost:8080/device/
+    }
+    
+    public DeviceFieldInfo Field([FromPath] int fieldID) 
+    {
+        // GET http://localhost:8080/device/field/4711
+    }
+    
+    [ControllerAction(RequestMethod.POST)]
+    public DeviceInfo Restart() 
+    {
+        // POST http://localhost:8080/device/restart
     }
 
 }
@@ -172,9 +64,7 @@ public class BookContentHints : IContentHints
 
 ## URL Patterns
 
-As with ASP.NET Core MVC, the endpoints of your controller methods will automatically
-be derived by analyzing your class. The following table shows the rules that are applied
-to map an URL:
+The following table shows the rules that are applied to map an URL:
 
 | Method                      | Endpoint      |
 | -------------               | ------------- |
@@ -184,21 +74,13 @@ to map an URL:
 | `Action(int id)`            | `/controller/action/?id=:id` |
 | `LongAction()`              | `/controller/long-action/` |
 
-## Advanced Method Definitions
-
-As with the webservice module, the controller allows to inject additional objects
-from the request context such as the `IRequest`, the `IHandler` or the `Stream` read
-from the request body. The result of your method can be `void`, `IResponse`,
-`IResponseBuilder`, `IHandler` or `IHandlerBuilder` (either `async` or not).
-
-As your methods are allowed to return any `IHandlerBuilder`, you can also return
-more complex types like a `Layout`, `ReverseProxy` or a `DirectoryListing`. Content discovery and
-routing will work in this case as well.
-
 ## Further Resources
 
 The following capabilities are shared by various application frameworks:
 
-- [Serialization and deserialization](./conversion)
-- [Parameter injection](./injection)
-- [Results](./results)
+{{< cards >}}
+{{< card link="../../concepts/definitions" title="Method Definitions" icon="chip" >}}
+{{< card link="../../concepts/conversion" title="Serialization and deserialization" icon="document-text" >}}
+{{< card link="../../concepts/injection" title="Parameter Injection" icon="arrow-right" >}}
+{{< card link="../../concepts/results" title="Results" icon="arrow-left" >}}
+{{< /cards >}}

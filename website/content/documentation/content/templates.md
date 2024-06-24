@@ -1,5 +1,6 @@
 ﻿---
 title: Templates
+weight: 1
 cascade:
   type: docs
 ---
