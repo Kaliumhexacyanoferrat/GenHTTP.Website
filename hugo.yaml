@@ -34,3 +34,14 @@ menu:
       weight: 7
       params:
         type: search
+
+params:
+  navbar:
+    displayTitle: true
+    displayLogo: true
+    logo:
+      path: images/logo.png
+      dark: images/logo.png
+      link: /
+      width: 32
+      height: 32

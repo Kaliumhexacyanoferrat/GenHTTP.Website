@@ -86,7 +86,7 @@ To create a new project from scratch, it is recommended to use a [project templa
 
 {{< /cards >}}
 
-## Misc
+## Concepts
 
 {{< cards >}}
 
