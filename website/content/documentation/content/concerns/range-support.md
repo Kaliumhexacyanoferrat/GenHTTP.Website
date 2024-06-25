@@ -25,7 +25,7 @@ to be requested (which would then result in a multipart response).
 
 ## Scope
 
-As the range support is implemented as a [concern](./concerns), you
+As the range support is implemented as a [concern](../concepts/concerns.md), you
 may add this functionality to any handler as needed.
 
 ```csharp

@@ -1,5 +1,6 @@
-﻿---
+---
 title: Handlers
+weight: 3
 cascade:
   type: docs
 ---
@@ -66,6 +67,6 @@ Host.Create()
 ```
 
 As handlers are invoked for every request handled by the server, it is usually worth it to
-optimize them for performance. For example, as the content served by our `CustomHandler` does 
+optimize them for performance. For example, as the content served by our `CustomHandler` does
 not change depending on the request, the string resource instance could be cached by a field or property
 set in the constructor.

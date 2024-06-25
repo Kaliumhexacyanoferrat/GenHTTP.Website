@@ -9,7 +9,9 @@ your application using a test framework of your choice. It provides both the
 ability to host your project in an isolated mode as well as convenience methods
 to run HTTP requests against your server.
 
-> <span class="note">NOTE</span> Projects created via [project templates](../content/templates) already feature a basic test setup.
+{{< callout type="info" >}}
+Projects created via [project templates](../content/templates/) already feature a basic test setup.
+{{< /callout >}}
 
 ## Writing Tests
 

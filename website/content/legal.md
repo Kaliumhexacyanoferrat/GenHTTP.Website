@@ -2,9 +2,7 @@
 
 Andreas Nägeli
 
-Waldseemüller-Str. 10<br />
-79227 Schallstadt<br />
-Germany
+Waldseemüller-Str. 10, 79227 Schallstadt, Germany
 
 andr.naegeli@gmail.com
 

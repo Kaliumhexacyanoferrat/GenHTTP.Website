@@ -1,39 +1,59 @@
 ﻿---
 title: Functional Handlers
+weight: 2
 cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.Functional/" title="GenHTTP.Modules.Functional" icon="link" >}}
+{{< /cards >}}
+
 With this module, requests can be handled in a functional manner, reducing
-the boiler plate code to be written by a web application developer.
+the boilerplate code to be written by a web application developer.
 
-> <span class="note">NOTE</span> Apps can quickly be created by using a [project template](./templates).
+{{< callout type="info" >}}
+Apps can quickly be created by using a [project template](../../templates).
+{{< /callout >}}
 
-## Basic Structure
+## Hosting an API
 
-The following program will provide a simple web service to increment and
-decrement given numbers.
+To host an API using this framework you can create an `Inline` handler and add
+your operations as needed. 
 
 ```csharp
-using GenHTTP.Modules.Functional;
+using GenHTTP.Engine;
 
-var handler = Inline.Create()
-                    .Get("/increment", (i) => i + 1) // GET /increment?i=1
-                    .Get("/decrement/:i", (i) => i - 1); // GET /decrement/2
+using GenHTTP.Modules.Functional;
+using GenHTTP.Modules.Layouting;
+
+var bookService = Inline.Create()                        
+                        // GET http://localhost:8080/books/?page=1&pageSize=20
+                        .Get((int page, int pageSize) => /* ... */)
+                        // GET http://localhost:8080/books/4711
+                        .Get(":id", (int id) => /* ... */) 
+                        // PUT http://localhost:8080/books/
+                        .Put((Book book) => /* ... */) 
+                        // POST http://localhost:8080/books/
+                        .Post((Book book) => /* ... */) 
+                        // DELETE http://localhost:8080/books/4711
+                        .Delete(":id", (int id) => /* ... */); 
+
+var api = Layout.Create()
+                .Add("books", bookService);
 
 Host.Create()
-    .Handler(handler)
+    .Handler(api)
+    .Development()
+    .Console()
     .Run();
 ```
-
-As with the [webservice module](./webservices), functions can use various
-parameter and return types, including `IRequest`, `IResponse`, `IHandler` and
-`Stream`. Both synchronous and `async` methods are supported.
 
 ## Further Resources
 
 The following capabilities are shared by various application frameworks:
 
-- [Serialization and deserialization](./conversion)
-- [Parameter injection](./injection)
-- [Results](./results)
+{{< cards >}}
+{{< card link="../../concepts/definitions" title="Method Definitions" icon="chip" >}}
+{{< /cards >}}
+

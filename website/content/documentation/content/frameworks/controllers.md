@@ -1,5 +1,6 @@
 ﻿---
 title: Controllers
+weight: 3
 cascade:
   type: docs
 ---
@@ -16,7 +17,7 @@ so this is just another flavor of defining a web API.
 Controller based APIs can quickly be created by using a [project template](../../templates).
 {{< /callout >}}
 
-## Creating a controller based API
+## Hosting an API
 
 The following example shows how an API controlling an IoT device could look like
 when implemented using the controller framework.
@@ -80,7 +81,4 @@ The following capabilities are shared by various application frameworks:
 
 {{< cards >}}
 {{< card link="../../concepts/definitions" title="Method Definitions" icon="chip" >}}
-{{< card link="../../concepts/conversion" title="Serialization and deserialization" icon="document-text" >}}
-{{< card link="../../concepts/injection" title="Parameter Injection" icon="arrow-right" >}}
-{{< card link="../../concepts/results" title="Results" icon="arrow-left" >}}
 {{< /cards >}}

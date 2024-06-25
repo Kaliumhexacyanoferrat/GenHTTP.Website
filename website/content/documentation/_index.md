@@ -52,7 +52,7 @@ When you run this sample it can be accessed in the browser via http://localhost:
 
 The example project above gives you a basic idea on how projects developed
 with the GenHTTP may look like. To create more complex web applications
-(such as [webservices](/documentation/content/webservices)), follow the guides in the following sections:
+(such as [webservices](/documentation/content/frameworks/webservices/)), follow the guides in the following sections:
 
 - [Providing Content](/documentation/content/)
 - [Testing](/documentation/testing/)

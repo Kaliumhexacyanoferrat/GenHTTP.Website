@@ -1,92 +1,79 @@
 ﻿---
 title: Webservices
+weight: 1
 cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.Webservices/" title="GenHTTP.Modules.Webservices" icon="link" >}}
+{{< /cards >}}
+
 The webservice module provides an easy way to implement RESTful services
 that can be consumed by clients as needed.
 
-> <span class="note">NOTE</span> Webservices can quickly be created by using a [project template](./templates).
+{{< callout type="info" >}}
+Webservices can quickly be created by using a [project template](../../templates).
+{{< /callout >}}
 
-## Creating a Webservice
+## Hosting an API
 
-The concept is very similar to popular webservice frameworks
-such as [JAX-RS](https://github.com/jax-rs):
+To host an API using this framework you can define a new class that
+hosts your operations as dedicated methods. The signature of those methods will
+define how your API can be called via HTTP.
+
+The following example shows how to define and host a service that can be used
+to manage an entity (books in this case).
 
 ```csharp
+using GenHTTP.Engine;
+
+using GenHTTP.Api.Protocol;
+
 using GenHTTP.Modules.Webservices;
 using GenHTTP.Modules.Security;
+using GenHTTP.Modules.Layouting;
 
-public class BookResource
+public class BookService
 {
 
+    // GET http://localhost:8080/books/?page=1&pageSize=20
     [ResourceMethod]
     public List<Book> GetBooks(int page, int pageSize) { /* ... */ }
 
+    // GET http://localhost:8080/books/4711
     [ResourceMethod(":id")]
     public Book? GetBook(int id) { /* ... */ }
 
+    // PUT http://localhost:8080/books/
     [ResourceMethod(RequestMethod.PUT)]
     public Book AddBook(Book book) { /* ... */ }
-                        
+
+    // POST http://localhost:8080/books/
     [ResourceMethod(RequestMethod.POST)]
     public Book UpdateBook(Book book) { /* ... */ }
 
+    // DELETE http://localhost:8080/books/4711
     [ResourceMethod(RequestMethod.DELETE, ":id")]
     public Book? DeleteBook(int id) { /* ... */ }
 
 }
 
 var service = Layout.Create()
-                    .AddService<BookResource>("books")
+                    .AddService<BookService>("books")
                     .Add(CorsPolicy.Permissive());
 
 Host.Create()
     .Handler(service)
+    .Development()
+    .Console()
     .Run();
-```
-
-The service will be available at http://localhost:8080/books.
-As the functionality is provided on handler level,
-all other concerns such as [authentication](./authentication), [error handling](./error-handling)
-or [CORS](./cors) can be implemented using regular server mechanisms. 
-
-By default, parameter values (within the path) are expected
-to be alphanumeric. If needed, a custom pattern can be specified
-to define the format accepted by the service:
-
-```csharp
-[ResourceMethod("(?<id>[0-9]{12,13})")] // EAN-13
-public Book? GetBook(int id) { /* ... */ }
-```
-
-Because the resource hander needs to utilize regular expressions
-and reflection to achieve the required functionality, its performance
-will be slow compared to `IHandler` instances
-providing the same functionality.
-
-The implementation supports all typical features such as
-serialization and deserialization of complex types, simple
-types, enums, streams, raw `IRequest`, `IHandler`, and `IResponseBuilder`
-arguments, query parameters, path parameters, `async` methods returning
-a `Task` or `ValueTask`, and exception handling:
-
-```csharp
-[ResourceMethod(RequestMethod.PUT)]
-public async ValueTask<Stream> Stream(Stream input) { /* ... */ }
-
-[ResourceMethod]
-public IResponseBuilder RequestResponse(IRequest request, IHandler handler) { return request.Respond() /* ... */; }
-
-[ResourceMethod]
-public void Exception() => throw new ProviderException(ResponseStatus.AlreadyReported, "Already reported!");
 ```
 
 ## Further Resources
 
 The following capabilities are shared by various application frameworks:
 
-- [Serialization and deserialization](./conversion)
-- [Parameter injection](./injection)
-- [Results](./results)
+{{< cards >}}
+{{< card link="../../concepts/definitions" title="Method Definitions" icon="chip" >}}
+{{< /cards >}}

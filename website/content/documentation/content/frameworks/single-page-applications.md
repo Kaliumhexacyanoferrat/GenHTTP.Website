@@ -1,11 +1,22 @@
 ﻿---
 title: Single Page Applications (SPA)
+weight: 5
 cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.SinglePageApplications/" title="GenHTTP.Modules.SPAs" icon="link" >}}
+{{< /cards >}}
+
 This handler provides an easy way to serve a single page application (for example a 
 Vue.js, React, or Angular app) to your clients.
+
+{{< callout type="info" >}}
+Apps can quickly be created by using a [project template](../../templates).
+{{< /callout >}}
+
+## Hosting a SPA
 
 ```csharp
 var tree = ResourceTree.FromDirectory("/var/html/my-webapp");
@@ -21,9 +32,6 @@ var app = SinglePageApplication.From(tree);
 
 This example will automatically search for an index file (such as `index.html`) in
 the specified directory and serve it to clients accessing http://localhost:8080/.
-
-With this handler, a single page application can be hosted with just a few lines of code
-using [Docker](/documentation/hosting/).
 
 ## Routing
 
