@@ -24,7 +24,7 @@
         
         
         &lt;p&gt;The directory listing provider serves a simple web UI allowing users to browse directories
-and files read from a &lt;a href=&#34;../concepts/resources.md&#34; &gt;resource tree&lt;/a&gt; below the specified path.&lt;/p&gt;
+and files read from a &lt;a href=&#34;../../concepts/resources&#34; &gt;resource tree&lt;/a&gt; below the specified path.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code&#34;&gt;
   
 
@@ -44,9 +44,7 @@ and files read from a &lt;a href=&#34;../concepts/resources.md&#34; &gt;resource
 
   
 &lt;/div&gt;
-&lt;p&gt;In this example, the listing view will be available at http://localhost:8080/.
-The generated view will be rendered using the template of the &lt;a href=&#34;./websites&#34; &gt;Website&lt;/a&gt;
-the provider is embedded into (or the server theme by default).&lt;/p&gt;
+&lt;p&gt;In this example, the listing view will be available at http://localhost:8080/.&lt;/p&gt;
 &lt;p&gt;
     &lt;img src=&#34;../listing.png&#34; alt=&#34;Directory listing served by the GenHTTP server&#34; loading=&#34;lazy&#34; /&gt;&lt;/p&gt;
 
@@ -62,7 +60,7 @@ the provider is embedded into (or the server theme by default).&lt;/p&gt;
       <description>
         
         
-        &lt;p&gt;Downloads allow to serve a single &lt;a href=&#34;./resources&#34; &gt;Resource&lt;/a&gt; with a fixed name to your clients. The content type
+        &lt;p&gt;Downloads allow to serve a single &lt;a href=&#34;../../concepts/resources&#34; &gt;Resource&lt;/a&gt; with a fixed name to your clients. The content type
 of the file will automatically be determined by it&amp;rsquo;s extension.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code&#34;&gt;
   
@@ -236,8 +234,6 @@ is different than the requested URI.&lt;/p&gt;
 &lt;p&gt;In this example, accessing http://localhost:8080 will redirect the client to the
 Google search engine. By default, the HTTP status 301 (permament redirect) will be sent, which
 can get customized to a temporary HTTP 307 redirect.&lt;/p&gt;
-&lt;p&gt;If you would like to redirect the client to a resource that is hosted by your
-application, you can also pass a symbolic route such as &lt;code&gt;{sitemap}&lt;/code&gt; (see &lt;a href=&#34;./websites#routing&#34; &gt;routing&lt;/a&gt;).&lt;/p&gt;
 
       </description>
     </item>
@@ -288,7 +284,7 @@ the provider will return a HTTP 502/504 error page instead.&lt;/p&gt;
       <description>
         
         
-        &lt;p&gt;To provide static resources required by your web application, add them to your project
+        &lt;p&gt;To provide static resources required by your application, add them to your project
 and mark them either as &lt;code&gt;Content&lt;/code&gt; or as an &lt;code&gt;Embedded Resource&lt;/code&gt;. To serve those files,
 you can use the &lt;code&gt;Resources&lt;/code&gt; factory class:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code&#34;&gt;
@@ -319,23 +315,7 @@ you can use the &lt;code&gt;Resources&lt;/code&gt; factory class:&lt;/p&gt;
   
 &lt;/div&gt;
 &lt;p&gt;For example, a stylesheet named &lt;code&gt;main.css&lt;/code&gt; in the &lt;code&gt;styles&lt;/code&gt; subfolder would be made available at
-http://localhost:8080/res/styles/main.css. To generate a relative link to the file, use the routing
-functionality from within your template:&lt;/p&gt;
-&lt;div class=&#34;hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code&#34;&gt;
-  
-
-&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{{ route &amp;#39;res/styles/main.css&amp;#39; }}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0&#34;&gt;
-  &lt;button
-    class=&#34;hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50&#34;
-    title=&#34;Copy code&#34;
-  &gt;
-    &lt;div class=&#34;copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4&#34;&gt;&lt;/div&gt;
-    &lt;div class=&#34;success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4&#34;&gt;&lt;/div&gt;
-  &lt;/button&gt;
-&lt;/div&gt;
-
-  
-&lt;/div&gt;
+http://localhost:8080/res/styles/main.css.&lt;/p&gt;
 
       </description>
     </item>

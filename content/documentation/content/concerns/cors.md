@@ -7,7 +7,7 @@ cascade:
 
 [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) allows to control
 which resources browsers are allowed to access and how they are allowed to do so. For example, if you would like
-to access a [webservice](./webservices) from a [website](./websites) hosted on another domain, the browser will
+to access a webservice from a website hosted on another domain, the browser will
 send the `Origin` header along with requests to the webservice and analyze the response to determine, whether the server
 allows clients to access the resource from this origin.
 

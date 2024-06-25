@@ -5,7 +5,7 @@ cascade:
   type: docs
 ---
 
-Downloads allow to serve a single [Resource](./resources) with a fixed name to your clients. The content type
+Downloads allow to serve a single [Resource](../../concepts/resources) with a fixed name to your clients. The content type
 of the file will automatically be determined by it's extension.
 
 ```csharp

@@ -76,19 +76,19 @@ be used from there to quickly create new projects:&lt;/p&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;code&gt;genhttp-webservice&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;A project that will host a new &lt;a href=&#34;./webservices&#34; &gt;REST web service&lt;/a&gt;.&lt;/td&gt;
+&lt;td&gt;A project that will host a new &lt;a href=&#34;../frameworks/webservices&#34; &gt;REST web service&lt;/a&gt;.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;code&gt;genhttp-webservice-minimal&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;A project that will host a minimal web service in a single file using the &lt;a href=&#34;./functional&#34; &gt;functional module&lt;/a&gt;.&lt;/td&gt;
+&lt;td&gt;A project that will host a minimal web service in a single file using the &lt;a href=&#34;../frameworks/functional&#34; &gt;functional module&lt;/a&gt;.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;code&gt;genhttp-website-static&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Serves a &lt;a href=&#34;./static-websites&#34; &gt;static website&lt;/a&gt; from the file system.&lt;/td&gt;
+&lt;td&gt;Serves a &lt;a href=&#34;../frameworks/static-websites&#34; &gt;static website&lt;/a&gt; from the file system.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;code&gt;genhttp-spa&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Serves the distribution files of a &lt;a href=&#34;./single-page-applications&#34; &gt;Single Page Application (SPA)&lt;/a&gt;.&lt;/td&gt;
+&lt;td&gt;Serves the distribution files of a &lt;a href=&#34;../frameworks/single-page-applications&#34; &gt;Single Page Application (SPA)&lt;/a&gt;.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -166,7 +166,7 @@ such as providing a RESTful service API.&lt;/p&gt;
         
         
         &lt;p&gt;Handlers are responsible for analyzing HTTP requests and to serve responses to the connected client. All features
-available in the SDK are either provided by handlers or &lt;a href=&#34;./concerns&#34; &gt;concerns&lt;/a&gt;.&lt;/p&gt;
+available in the SDK are either provided by handlers or &lt;a href=&#34;../concerns&#34; &gt;concerns&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you would like to add an additional feature that cannot be achieved using the existing
 functionality to the SDK or your own web application, you may implement
 a custom handler instance. The following example will generate a simple text response:&lt;/p&gt;
@@ -338,15 +338,15 @@ handlers.&lt;/p&gt;
     &lt;a href=&#34;#concepts&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-cards hx-mt-4 hx-gap-4 hx-grid not-prose&#34; style=&#34;--hextra-cards-grid-cols: 3;&#34;&gt;
 
   &lt;a
-    class=&#34;hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-transparent hx-shadow-sm dark:hx-border-neutral-800 hover:hx-bg-slate-50 hover:hx-shadow-md dark:hover:hx-border-neutral-700 dark:hover:hx-bg-neutral-900&#34;href=&#34;./concepts/definitions/&#34;
+    class=&#34;hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-transparent hx-shadow-sm dark:hx-border-neutral-800 hover:hx-bg-slate-50 hover:hx-shadow-md dark:hover:hx-border-neutral-700 dark:hover:hx-bg-neutral-900&#34;href=&#34;./definitions/&#34;
       &gt;&lt;span class=&#34;hextra-card-icon hx-flex hx-font-semibold hx-items-start hx-gap-2 hx-p-4 hx-text-gray-700 hover:hx-text-gray-900 dark:hx-text-neutral-200 dark:hover:hx-text-neutral-50&#34;&gt;Method Definitions&lt;/span&gt;&lt;/a&gt;
   
   &lt;a
-    class=&#34;hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-transparent hx-shadow-sm dark:hx-border-neutral-800 hover:hx-bg-slate-50 hover:hx-shadow-md dark:hover:hx-border-neutral-700 dark:hover:hx-bg-neutral-900&#34;href=&#34;./concepts/resources/&#34;
+    class=&#34;hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-transparent hx-shadow-sm dark:hx-border-neutral-800 hover:hx-bg-slate-50 hover:hx-shadow-md dark:hover:hx-border-neutral-700 dark:hover:hx-bg-neutral-900&#34;href=&#34;./resources/&#34;
       &gt;&lt;span class=&#34;hextra-card-icon hx-flex hx-font-semibold hx-items-start hx-gap-2 hx-p-4 hx-text-gray-700 hover:hx-text-gray-900 dark:hx-text-neutral-200 dark:hover:hx-text-neutral-50&#34;&gt;Resources&lt;/span&gt;&lt;/a&gt;
   
   &lt;a
-    class=&#34;hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-transparent hx-shadow-sm dark:hx-border-neutral-800 hover:hx-bg-slate-50 hover:hx-shadow-md dark:hover:hx-border-neutral-700 dark:hover:hx-bg-neutral-900&#34;href=&#34;./concepts/caches/&#34;
+    class=&#34;hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-transparent hx-shadow-sm dark:hx-border-neutral-800 hover:hx-bg-slate-50 hover:hx-shadow-md dark:hover:hx-border-neutral-700 dark:hover:hx-bg-neutral-900&#34;href=&#34;./caches/&#34;
       &gt;&lt;span class=&#34;hextra-card-icon hx-flex hx-font-semibold hx-items-start hx-gap-2 hx-p-4 hx-text-gray-700 hover:hx-text-gray-900 dark:hx-text-neutral-200 dark:hover:hx-text-neutral-50&#34;&gt;Caches&lt;/span&gt;&lt;/a&gt;
 
 &lt;/div&gt;

@@ -1656,7 +1656,7 @@ for data structures, but also for special types such as streams.&lt;/p&gt;
 &lt;h3&gt;Handlers&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;handlers&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#handlers&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Instead of generating a response you can also return an &lt;code&gt;IHandler&lt;/code&gt; or &lt;code&gt;IHandlerBuilder&lt;/code&gt; instance.
 This allows you to provide a whole segment on your web application by re-using the
-&lt;a href=&#34;../../handlers/&#34; &gt;existing handlers&lt;/a&gt; or by implementing &lt;a href=&#34;../handlers/&#34; &gt;custom ones&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;../../handlers/&#34; &gt;existing handlers&lt;/a&gt; or by implementing &lt;a href=&#34;../../handlers/&#34; &gt;custom ones&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The following example will render a fully navigable directory listing view depending on
 the tenant ID passed to the method:&lt;/p&gt;
 &lt;div class=&#34;hx-mt-4 hx-flex hx-w-max hx-min-w-full hx-border-b hx-border-gray-200 hx-pb-px dark:hx-border-neutral-800&#34;&gt;&lt;button
@@ -2478,7 +2478,7 @@ a service.&lt;/p&gt;
         
         
         &lt;p&gt;Resources provide an unified way to load and access binary data used by handlers
-to achieve their functionality. For example, the &lt;a href=&#34;./downloads&#34; &gt;Download&lt;/a&gt; handler
+to achieve their functionality. For example, the &lt;a href=&#34;../../handlers/downloads&#34; &gt;Download&lt;/a&gt; handler
 serves a single file on request - where the content of the file originates from
 is not important for the handler to achieve it&amp;rsquo;s functionality.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code&#34;&gt;
@@ -2506,8 +2506,8 @@ is not important for the handler to achieve it&amp;rsquo;s functionality.&lt;/p&
 provide resources, for example a database or a cloud blob storage.&lt;/p&gt;
 &lt;h2&gt;Resource Trees&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;resource-trees&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#resource-trees&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Similar to the resources, resource trees provide an abstraction for a directory
-structure that can be consumed by handlers such as the &lt;a href=&#34;./listing&#34; &gt;Directory Browsing&lt;/a&gt;
-or the &lt;a href=&#34;./single-page-applications&#34; &gt;Single Page Application&lt;/a&gt;.&lt;/p&gt;
+structure that can be consumed by handlers such as the &lt;a href=&#34;../../handlers/listing&#34; &gt;Directory Browsing&lt;/a&gt;
+or the &lt;a href=&#34;../../frameworks/single-page-applications&#34; &gt;Single Page Application&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code&#34;&gt;
   
 
@@ -2563,7 +2563,7 @@ or the &lt;a href=&#34;./single-page-applications&#34; &gt;Single Page Applicati
       <description>
         
         
-        &lt;p&gt;Caches can be used by handlers such as the &lt;a href=&#34;./server-caching&#34; &gt;cached content&lt;/a&gt; concern
+        &lt;p&gt;Caches can be used by handlers such as the &lt;a href=&#34;../../concerns/server-caching&#34; &gt;cached content&lt;/a&gt; concern
 to store and serve intermediate results for improved performance. The SDK ships with
 backends for local memory and file system based storage. Custom backends can be
 provided by implementing the &lt;a href=&#34;https://github.com/Kaliumhexacyanoferrat/GenHTTP/blob/master/API/Content/Caching/ICache.cs&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ICache&lt;/a&gt;

@@ -549,7 +549,7 @@ for data structures, but also for special types such as streams.
 
 Instead of generating a response you can also return an `IHandler` or `IHandlerBuilder` instance.
 This allows you to provide a whole segment on your web application by re-using the
-[existing handlers](../../handlers/) or by implementing [custom ones](../handlers/).
+[existing handlers](../../handlers/) or by implementing [custom ones](../../handlers/).
 
 The following example will render a fully navigable directory listing view depending on
 the tenant ID passed to the method:

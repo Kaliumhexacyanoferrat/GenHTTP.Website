@@ -12,7 +12,7 @@ needed by every web application, [range support](https://developer.mozilla.org/e
 disabled by default.
 
 To enable this feature on server level, you may pass an
-additional flag to the [default configuration](./defaults).
+additional flag to the [default configuration](../defaults).
 
 ```csharp
 Host.Create()
@@ -26,7 +26,7 @@ to be requested (which would then result in a multipart response).
 
 ## Scope
 
-As the range support is implemented as a [concern](../concepts/concerns.md), you
+As the range support is implemented as a [concern](../), you
 may add this functionality to any handler as needed.
 
 ```csharp

@@ -218,7 +218,7 @@ revisiting your web application load faster and the load on your server is reduc
 &lt;p&gt;The &lt;code&gt;eTag&lt;/code&gt; is generated from the &lt;a href=&#34;https://github.com/Kaliumhexacyanoferrat/GenHTTP/blob/master/API/Protocol/IResponseContent.cs&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;checksum of the content&lt;/a&gt;
 that should be served to the client. Dependent on the kind of content (such as a local file resource)
 the checksum can be calculated quite efficiently.&lt;/p&gt;
-&lt;p&gt;This concern is part of the &lt;a href=&#34;./defaults&#34; &gt;default configuration&lt;/a&gt; and will automatically
+&lt;p&gt;This concern is part of the &lt;a href=&#34;../defaults&#34; &gt;default configuration&lt;/a&gt; and will automatically
 be added to your server.&lt;/p&gt;
 
       </description>
@@ -251,7 +251,7 @@ be added to your server.&lt;/p&gt;
 
   
 &lt;/div&gt;
-&lt;p&gt;This concern is part of the &lt;a href=&#34;./defaults&#34; &gt;default configuration&lt;/a&gt; and will automatically
+&lt;p&gt;This concern is part of the &lt;a href=&#34;../defaults&#34; &gt;default configuration&lt;/a&gt; and will automatically
 be added.&lt;/p&gt;
 &lt;h2&gt;Custom Algorithms&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;custom-algorithms&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#custom-algorithms&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;To add a custom compression algorithm to the server, you can implement the
@@ -307,7 +307,7 @@ is not provided by the server out of the box:&lt;/p&gt;
         
         &lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Cross-Origin Resource Sharing&lt;/a&gt; allows to control
 which resources browsers are allowed to access and how they are allowed to do so. For example, if you would like
-to access a &lt;a href=&#34;./webservices&#34; &gt;webservice&lt;/a&gt; from a &lt;a href=&#34;./websites&#34; &gt;website&lt;/a&gt; hosted on another domain, the browser will
+to access a webservice from a website hosted on another domain, the browser will
 send the &lt;code&gt;Origin&lt;/code&gt; header along with requests to the webservice and analyze the response to determine, whether the server
 allows clients to access the resource from this origin.&lt;/p&gt;
 &lt;p&gt;To allow all clients to access a resource with no restrictions, you can add a &lt;code&gt;Permissive&lt;/code&gt; policy to your handler:&lt;/p&gt;
@@ -375,7 +375,7 @@ purposes, you may combine the snippets above along with the &lt;code&gt;#if DEBU
         
         &lt;p&gt;The &lt;code&gt;Defaults()&lt;/code&gt; method provided by the &lt;a href=&#34;https://www.nuget.org/packages/GenHTTP.Modules.Practices/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Practices&lt;/a&gt;
 module adds some useful concerns to your web server to enable features such as
-&lt;a href=&#34;./compression&#34; &gt;compression&lt;/a&gt; or &lt;a href=&#34;./client-caching-validation&#34; &gt;client side caching&lt;/a&gt;.
+&lt;a href=&#34;../compression&#34; &gt;compression&lt;/a&gt; or &lt;a href=&#34;../client-caching-validation&#34; &gt;client side caching&lt;/a&gt;.
 This way, you will have a well configured server instance without the need
 of adding everything by yourself.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code&#34;&gt;
@@ -509,7 +509,7 @@ to pause and resume downloads. As ths functionality is not
 needed by every web application, &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;range support&lt;/a&gt; is
 disabled by default.&lt;/p&gt;
 &lt;p&gt;To enable this feature on server level, you may pass an
-additional flag to the &lt;a href=&#34;./defaults&#34; &gt;default configuration&lt;/a&gt;.&lt;/p&gt;
+additional flag to the &lt;a href=&#34;../defaults&#34; &gt;default configuration&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code&#34;&gt;
   
 
@@ -531,7 +531,7 @@ additional flag to the &lt;a href=&#34;./defaults&#34; &gt;default configuration
 &lt;p&gt;Please note that the implementation does not support multiple ranges
 to be requested (which would then result in a multipart response).&lt;/p&gt;
 &lt;h2&gt;Scope&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;scope&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#scope&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;As the range support is implemented as a &lt;a href=&#34;../concepts/concerns.md&#34; &gt;concern&lt;/a&gt;, you
+    &lt;a href=&#34;#scope&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;As the range support is implemented as a &lt;a href=&#34;../&#34; &gt;concern&lt;/a&gt;, you
 may add this functionality to any handler as needed.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code&#34;&gt;
   
@@ -567,16 +567,16 @@ may add this functionality to any handler as needed.&lt;/p&gt;
         
         &lt;p&gt;This concern allows to cache responses generated by a handler and to
 serve them from the cache when they are requested again. The following
-example will cache all responses generated by a &lt;a href=&#34;./websites&#34; &gt;website&lt;/a&gt;:&lt;/p&gt;
+example will cache all responses generated by an API:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code&#34;&gt;
   
 
-&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; website = Website.Create()
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                     .Content(...)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                     .Add(ServerCache.Memory());
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; service = Layout.Create()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    .Content(...)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    .Add(ServerCache.Memory());
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Host.Create()
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .Handler(website)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .Handler(service)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .Console()
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .Defaults()
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .Run();&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0&#34;&gt;
@@ -593,7 +593,7 @@ example will cache all responses generated by a &lt;a href=&#34;./websites&#34; 
 &lt;/div&gt;
 &lt;h2&gt;When to Cache&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;when-to-cache&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#when-to-cache&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Caching usually introduces some overhead that might affect the performance
-of your web application in a negative manner. A cache will boost the
+of your application in a negative manner. A cache will boost the
 performance of your application if the provided content does rarely change
 and the generation of the content is expensive.&lt;/p&gt;
 &lt;p&gt;Using a file system cache to cache a static website or to cache
@@ -601,7 +601,7 @@ pages that will change on every request will slow down your
 application instead.&lt;/p&gt;
 &lt;h2&gt;Backends&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;backends&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#backends&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The server cache can utilize any backend provided by the
-&lt;a href=&#34;./caches&#34; &gt;cache infrastructure&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;../../concepts/caches&#34; &gt;cache infrastructure&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code&#34;&gt;
   
 
@@ -719,7 +719,7 @@ a pre-configured cache instead:&lt;/p&gt;
   
 &lt;/div&gt;
 &lt;h2&gt;Pre-compress Content&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;pre-compress-content&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#pre-compress-content&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Typically, the &lt;a href=&#34;./compression&#34; &gt;compression&lt;/a&gt; concern is added to
+    &lt;a href=&#34;#pre-compress-content&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Typically, the &lt;a href=&#34;../compression&#34; &gt;compression&lt;/a&gt; concern is added to
 dynamically compress the content which is generated by your
 web application. If the content of your application is rather static,
 you can use the server cache to compress the content once with

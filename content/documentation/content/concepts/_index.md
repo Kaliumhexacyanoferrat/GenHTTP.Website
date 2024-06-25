@@ -12,10 +12,10 @@ handlers.
 
 {{< cards >}}
 
-  {{< card link="./concepts/definitions/" title="Method Definitions" >}}
+  {{< card link="./definitions/" title="Method Definitions" >}}
   
-  {{< card link="./concepts/resources/" title="Resources" >}}
+  {{< card link="./resources/" title="Resources" >}}
   
-  {{< card link="./concepts/caches/" title="Caches" >}}
+  {{< card link="./caches/" title="Caches" >}}
 
 {{< /cards >}}

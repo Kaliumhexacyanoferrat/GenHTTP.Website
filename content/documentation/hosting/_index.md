@@ -16,7 +16,7 @@ see their [Docker Hub](https://hub.docker.com/_/microsoft-dotnet-core-sdk/) page
 
 ## Building Template Apps
 
-If you created your application using a [project template](../documentation/templates),
+If you created your application using a [project template](../content/templates),
 you will see that matching Docker files have already been created. Building and
 running your app is as easy as:
 

@@ -20,5 +20,5 @@ The `eTag` is generated from the [checksum of the content](https://github.com/Ka
 that should be served to the client. Dependent on the kind of content (such as a local file resource)
 the checksum can be calculated quite efficiently.
 
-This concern is part of the [default configuration](./defaults) and will automatically
+This concern is part of the [default configuration](../defaults) and will automatically
 be added to your server.
