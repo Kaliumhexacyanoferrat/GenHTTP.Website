@@ -1,5 +1,6 @@
 ﻿---
 title: Range Support
+description: Enables partial responses if requested by the client, e.g. to resume downloads.
 cascade:
   type: docs
 ---

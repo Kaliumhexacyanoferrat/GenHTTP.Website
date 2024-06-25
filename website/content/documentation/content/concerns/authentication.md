@@ -1,5 +1,6 @@
 ﻿---
 title: Authentication
+description: 'Restrict the content provided by the server to authenticated users.'
 cascade:
 type: docs
 ---

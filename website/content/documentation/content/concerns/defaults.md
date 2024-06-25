@@ -1,5 +1,6 @@
 ﻿---
 title: Defaults
+description: Automatically configures your web server for performance and security.
 cascade:
   type: docs
 ---

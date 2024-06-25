@@ -1,5 +1,6 @@
 ﻿---
 title: Documentation
+description: 'Simple tutorial to setup a web application using the GenHTTP framework.'
 cascade:
   type: docs
 ---

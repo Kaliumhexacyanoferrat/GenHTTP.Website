@@ -1,5 +1,6 @@
 ﻿---
 title: Server Lifecycle
+description: 'Tutorials to configure the GenHTTP webserver for best practices regarding security or performance.'
 cascade:
   type: docs
 ---

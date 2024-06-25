@@ -1,5 +1,6 @@
 ﻿---
 title: Directory Browsing
+description: 'Simple web application to list the contents of a directory via HTTP.'
 cascade:
   type: docs
 ---

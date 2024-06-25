@@ -1,5 +1,6 @@
 ﻿---
 title: Load Balancer
+description: Simple way to distribute load on specified HTTP webservers or different file systems.
 cascade:
   type: docs
 ---

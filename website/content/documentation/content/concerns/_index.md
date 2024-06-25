@@ -1,5 +1,6 @@
 ﻿---
 title: Concerns
+description: Add behavior to all handlers within a section of your web application.
 weight: 4
 cascade:
   type: docs

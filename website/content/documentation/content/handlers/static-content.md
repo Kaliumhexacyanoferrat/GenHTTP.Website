@@ -1,5 +1,6 @@
 ﻿---
 title: Static Resources
+description: 'Provide resources stored on the file system or within an assembly via HTTP.'
 cascade:
   type: docs
 ---

@@ -1,5 +1,6 @@
 ---
 title: Handlers
+description: Low level handling of requests and generation of HTTP web server responses.
 weight: 3
 cascade:
   type: docs

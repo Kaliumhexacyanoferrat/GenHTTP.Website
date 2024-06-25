@@ -1,5 +1,6 @@
 ﻿---
 title: Controllers
+description: Lightweight framework to write web APIs using the controller pattern in C#.
 weight: 3
 cascade:
   type: docs

@@ -1,5 +1,6 @@
 ﻿---
 title: Functional Handlers
+description: Respond to HTTP requests in a functional manner with no boiler code.
 weight: 2
 cascade:
   type: docs

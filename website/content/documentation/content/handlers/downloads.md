@@ -1,5 +1,6 @@
 ﻿---
 title: Downloads
+description: 'Provide files via HTTP to requesting clients as a download, e.g. from the file system.'
 cascade:
   type: docs
 ---

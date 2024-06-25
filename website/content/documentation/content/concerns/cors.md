@@ -1,5 +1,6 @@
 ﻿---
 title: CORS
+description: Automatically configure your webservices for Cross-Origin Resource Sharing.
 cascade:
   type: docs
 ---

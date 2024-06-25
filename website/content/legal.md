@@ -1,4 +1,10 @@
-﻿## Imprint
+﻿+++
+title = 'Legal'
+description = 'Legal information regarding GenHTTP.org'
+date = 2024-06-20T14:10:41+02:00
++++
+
+## Imprint
 
 Andreas Nägeli
 

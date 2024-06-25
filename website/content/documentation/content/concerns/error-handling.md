@@ -1,5 +1,6 @@
 ﻿---
 title: Error Handling
+description: Generates custom HTTP responses for exceptions and missing content.
 cascade:
   type: docs
 ---

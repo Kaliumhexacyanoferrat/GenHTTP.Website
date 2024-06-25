@@ -1,5 +1,6 @@
 ﻿---
 title: Redirects
+description: 'Redirects requesting clients to another internal or external resource.'
 cascade:
   type: docs
 ---

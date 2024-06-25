@@ -1,5 +1,6 @@
 ﻿---
 title: Virtual Hosts
+description: 'Allows to handle requests depending on the host specified by the client (to serve multiple domains using a single server).'
 cascade:
   type: docs
 ---

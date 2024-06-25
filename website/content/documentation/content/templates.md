@@ -1,5 +1,6 @@
 ﻿---
 title: Templates
+description: Create new webservices and websites in a couple of minutes.
 weight: 1
 cascade:
   type: docs

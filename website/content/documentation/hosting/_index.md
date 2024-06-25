@@ -1,5 +1,6 @@
 ﻿---
 title: Hosting
+description: 'Host web applications written in C# using the .NET docker images.'
 cascade:
   type: docs
 ---

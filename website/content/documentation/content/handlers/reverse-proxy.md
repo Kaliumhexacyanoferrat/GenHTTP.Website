@@ -1,5 +1,6 @@
 ﻿---
 title: Reverse Proxies
+description: 'Server component to relay requests to an upstream server and return the result to requesting clients.'
 cascade:
   type: docs
 ---

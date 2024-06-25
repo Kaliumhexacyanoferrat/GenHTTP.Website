@@ -1,5 +1,6 @@
 ﻿---
 title: Resources
+description: An abstraction layer over file system capabilities to allow binary content to be fetched from any data source
 weight: 4
 cascade:
   type: docs

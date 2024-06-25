@@ -1,5 +1,6 @@
 ﻿---
 title: Single Page Applications (SPA)
+description: Simple way to host applications written with JS frameworks such as Vue.js, Angular or React.
 weight: 5
 cascade:
   type: docs

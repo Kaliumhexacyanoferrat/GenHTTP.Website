@@ -1,4 +1,10 @@
-﻿## Server Performance
+﻿+++
+title = 'Features'
+description = 'Features of the GenHTTP application framework such as performance, SEO or security.'
+date = 2024-06-20T14:10:41+02:00
++++
+
+## Server Performance
 
 In terms of raw HTTP protocol performance, the GenHTTP webserver is located in the middle segment compared to
 other server implementations, serving more than four million requests per second. Improving the performance of the server is

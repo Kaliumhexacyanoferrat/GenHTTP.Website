@@ -1,5 +1,6 @@
 ﻿---
 title: Layouting
+description: 'Easily break down your web application into logical sections of content.'
 cascade:
   type: docs
 ---
