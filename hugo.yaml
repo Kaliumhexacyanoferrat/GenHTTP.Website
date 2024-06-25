@@ -1,0 +1,47 @@
+baseURL: https://genhttp.org/
+languageCode: en-us
+title: GenHTTP Webserver
+
+module:
+  imports:
+    - path: github.com/imfing/hextra
+
+menu:
+  main:    
+    - name: Features
+      pageRef: /features
+      weight: 1
+    - name: Documentation
+      pageRef: /documentation
+      weight: 2
+    - name: Links
+      pageRef: /links
+      weight: 3
+    - name: Legal
+      pageRef: /legal
+      weight: 4
+    - name: GitHub
+      weight: 5
+      url: "https://github.com/Kaliumhexacyanoferrat/GenHTTP"
+      params:
+        icon: github 
+    - name: Discord
+      weight: 6
+      url: "https://discord.gg/GwtDyUpkpV"
+      params:
+        icon: discord    
+    - name: Search
+      weight: 7
+      params:
+        type: search
+
+params:
+  navbar:
+    displayTitle: true
+    displayLogo: true
+    logo:
+      path: images/logo.png
+      dark: images/logo.png
+      link: /
+      width: 32
+      height: 32
