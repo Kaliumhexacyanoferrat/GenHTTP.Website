@@ -1,5 +1,6 @@
 ﻿---
 title: Content
+weight: 2
 description: 'Tutorials to write web applications (such as webservices or websites) using the GenHTTP server framework.'
 cascade:
   type: docs

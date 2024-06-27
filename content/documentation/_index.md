@@ -17,6 +17,11 @@ or website in a couple of minutes.
 
 This section shows how to create a new project from scratch using project templates and how to extend your existing application by embedding the GenHTTP engine.
 
+{{< callout emoji="🌐" >}}
+This is a brief overview to get you running. You might want to have a look
+at the [tutorials](./tutorials/) for detailed step-by-step guides.
+{{< /callout >}}
+
 ### New Project
 
 Project templates can be used to create apps for typical use cases with little effort. After installing the [.NET SDK](https://dotnet.microsoft.com/en-us/download) and the templates via `dotnet new -i GenHTTP.Templates` in the terminal, the templates are available via the console or directly in Visual Studio:
@@ -56,6 +61,8 @@ with the GenHTTP may look like. To create more complex web applications,
 follow the guides in the following sections:
 
 {{< cards >}}
+
+  {{< card link="./tutorials/" title="Create a new project" >}}
 
   {{< card link="./content/" title="Implement your service" >}}
   

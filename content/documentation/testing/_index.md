@@ -1,5 +1,6 @@
 ﻿---
 title: Testing
+weight: 3
 description: 'Introduction to testing applications written by using the GenHTTP framework.'
 cascade:
   type: docs
