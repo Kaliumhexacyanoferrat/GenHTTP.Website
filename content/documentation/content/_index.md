@@ -5,24 +5,29 @@ cascade:
   type: docs
 ---
 
-Starting a GenHTTP server instance will always require you to specify the handler
-that is responsible to generate responses to client requests. Depending on the kind
-of content you would like to serve (such as a webservice), there are various
-handlers already available to be used.
+This section describes the providers that you can use to implement your application, such
+as webservices, redirects or static resources.
+
+When running a GenHTTP server instance, you need to pass the root handler that will
+be responsible to answer HTTP requests. You will typically start with a [layout](./handlers/layouting/) 
+that allows to structure your web application and add some of the handlers below to 
+achieve the required functionality to this layout.
+
+The [template projects](./templates/) will already provide a basic project structure that
+you can extend to your needs.
 
 ```csharp
+var app = Layout.Create()
+                .Add("resources", ...)
+                .Add("api", ...);
+
 Host.Create()
-    .Handler(...)
+    .Handler(app)
     .Run();
 ```
 
-You will typically start with a [layout](./handlers/layouting/) that allows to structure
-your web application and add the handlers needed to achieve the required functionality to this layout.
-
 This page lists all handlers that are provided by the framework. To implement new
 functionality, you can also implement [custom handlers](./handlers/).
-
-To create a new project from scratch, it is recommended to use a [project template](./templates/).
 
 ## Application Frameworks
 

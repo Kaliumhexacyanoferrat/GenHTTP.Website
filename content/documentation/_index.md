@@ -52,10 +52,17 @@ When you run this sample it can be accessed in the browser via http://localhost:
 ## Next Steps
 
 The example project above gives you a basic idea on how projects developed
-with the GenHTTP may look like. To create more complex web applications
-(such as [webservices](/documentation/content/frameworks/webservices/)), follow the guides in the following sections:
+with the GenHTTP may look like. To create more complex web applications, 
+follow the guides in the following sections:
 
-- [Providing Content](/documentation/content/)
-- [Testing](/documentation/testing/)
-- [Server Setup](/documentation/server/)
-- [Hosting Apps](/documentation/hosting/)
+{{< cards >}}
+
+  {{< card link="./content/" title="Implement your service" >}}
+  
+  {{< card link="./testing/" title="Test your logic" >}}
+  
+  {{< card link="./server/" title="Run your app" >}}
+  
+  {{< card link="./hosting/" title="Deploy your app" >}}
+
+{{< /cards >}}
