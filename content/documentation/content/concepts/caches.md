@@ -6,6 +6,10 @@ cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.Caching/" title="GenHTTP.Modules.Caching" icon="link" >}}
+{{< /cards >}}
+
 Caches can be used by handlers such as the [cached content](../../concerns/server-caching) concern
 to store and serve intermediate results for improved performance. The SDK ships with
 backends for local memory and file system based storage. Custom backends can be

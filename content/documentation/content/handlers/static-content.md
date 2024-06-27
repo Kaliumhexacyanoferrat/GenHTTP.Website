@@ -5,6 +5,10 @@ cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.IO/" title="GenHTTP.Modules.IO" icon="link" >}}
+{{< /cards >}}
+
 To provide static resources required by your application, add them to your project
 and mark them either as `Content` or as an `Embedded Resource`. To serve those files,
 you can use the `Resources` factory class:

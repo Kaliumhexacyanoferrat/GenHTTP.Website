@@ -5,6 +5,10 @@ cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.ReverseProxy/" title="GenHTTP.Modules.ReverseProxy" icon="link" >}}
+{{< /cards >}}
+
 The reverse proxy content provider allows to embed content from another
 web server into your application. Content returned by the upstream
 server will not be embedded into a templated page.

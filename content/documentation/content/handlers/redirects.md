@@ -5,6 +5,10 @@ cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.Basics/" title="GenHTTP.Modules.Basics" icon="link" >}}
+{{< /cards >}}
+
 The redirect provider allows to inform the client that the location of the actual resource
 is different than the requested URI.
 

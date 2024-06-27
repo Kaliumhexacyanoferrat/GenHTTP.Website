@@ -5,6 +5,10 @@ cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.ClientCaching/" title="GenHTTP.Modules.ClientCaching" icon="link" >}}
+{{< /cards >}}
+
 This concern allows to instruct clients to cache responses generated
 by the server for some duration by adding the `Expires` HTTP header.
 The following example will cause the static website to be cached for one week:

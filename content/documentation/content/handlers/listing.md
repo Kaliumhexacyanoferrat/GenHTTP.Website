@@ -5,6 +5,10 @@ cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.DirectoryBrowsing/" title="GenHTTP.Modules.DirectoryBrowsing" icon="link" >}}
+{{< /cards >}}
+
 The directory listing provider serves a simple web UI allowing users to browse directories
 and files read from a [resource tree](../../concepts/resources) below the specified path.
 

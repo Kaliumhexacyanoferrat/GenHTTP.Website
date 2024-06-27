@@ -5,6 +5,10 @@ cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.Compression/" title="GenHTTP.Modules.Compression" icon="link" >}}
+{{< /cards >}}
+
 The compression concern compresses content sent to the clients, if applicable. By default,
 [gzip](https://www.gzip.org/) and [Brotli](https://github.com/google/brotli) are supported.
 

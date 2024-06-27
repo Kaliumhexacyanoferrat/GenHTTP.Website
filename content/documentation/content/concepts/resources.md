@@ -6,6 +6,10 @@ cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.IO/" title="GenHTTP.Modules.IO" icon="link" >}}
+{{< /cards >}}
+
 Resources provide an unified way to load and access binary data used by handlers
 to achieve their functionality. For example, the [Download](../../handlers/downloads) handler
 serves a single file on request - where the content of the file originates from

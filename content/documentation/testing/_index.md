@@ -5,6 +5,10 @@ cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Testing/" title="GenHTTP.Modules.Testing" icon="link" >}}
+{{< /cards >}}
+
 The `GenHTTP.Testing` package provides an easy way to write component tests for
 your application using a test framework of your choice. It provides both the
 ability to host your project in an isolated mode as well as convenience methods

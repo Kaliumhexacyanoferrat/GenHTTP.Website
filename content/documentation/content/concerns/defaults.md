@@ -5,7 +5,11 @@ cascade:
   type: docs
 ---
 
-The `Defaults()` method provided by the [Practices](https://www.nuget.org/packages/GenHTTP.Modules.Practices/)
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.Practices/" title="GenHTTP.Modules.Practices" icon="link" >}}
+{{< /cards >}}
+
+The `Defaults()` method provided by the practices
 module adds some useful concerns to your web server to enable features such as 
 [compression](../compression) or [client side caching](../client-caching-validation).
 This way, you will have a well configured server instance without the need

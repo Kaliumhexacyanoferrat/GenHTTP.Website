@@ -5,6 +5,10 @@ cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.VirtualHosting/" title="GenHTTP.Modules.VirtualHosting" icon="link" >}}
+{{< /cards >}}
+
 The virtual host handler can be used to deliver different content
 depending on the host requested by the client. Note, that the
 handler can be used anywhere in the handler chain, but usually it is

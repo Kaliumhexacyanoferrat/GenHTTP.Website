@@ -4,8 +4,12 @@ description: 'Restrict the content provided by the server to authenticated users
 cascade:
 type: docs
 ---
-The [authentication module](https://www.nuget.org/packages/GenHTTP.Modules.Authentication/)
-allows to restrict access to sections provided 
+
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.Authentication/" title="GenHTTP.Modules.Authentication" icon="link" >}}
+{{< /cards >}}
+
+The authentication module allows to restrict access to sections provided 
 by handlers to authenticated users only. Independent from the kind of authentication
 used, the identified user can be read from the request in the following manner:
 

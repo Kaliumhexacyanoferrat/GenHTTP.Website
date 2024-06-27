@@ -5,6 +5,10 @@ cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.LoadBalancing/" title="GenHTTP.Modules.LoadBalancing" icon="link" >}}
+{{< /cards >}}
+
 Allows to distribute incoming requests to multiple nodes, either by using
 a reverse proxy or by redirecting the client.
 

@@ -1,9 +1,14 @@
 ﻿---
 title: Layouting
 description: 'Easily break down your web application into logical sections of content.'
+weight: 1
 cascade:
   type: docs
 ---
+
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.Layouting/" title="GenHTTP.Modules.Layouting" icon="link" >}}
+{{< /cards >}}
 
 Layouts allow the assembly of a web application from different parts. This
 allows you to use different handlers for different kind of work.

@@ -5,6 +5,10 @@ cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.Security/" title="GenHTTP.Modules.Security" icon="link" >}}
+{{< /cards >}}
+
 [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) allows to control
 which resources browsers are allowed to access and how they are allowed to do so. For example, if you would like
 to access a webservice from a website hosted on another domain, the browser will

@@ -5,6 +5,10 @@ cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.ErrorHandling/" title="GenHTTP.Modules.ErrorHandling" icon="link" >}}
+{{< /cards >}}
+
 If an exception occurs while a request is handled, the server will render the
 exception into a HTML page that informs the client about the issue.
 

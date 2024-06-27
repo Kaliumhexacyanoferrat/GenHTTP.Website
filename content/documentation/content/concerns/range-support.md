@@ -5,6 +5,10 @@ cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.IO/" title="GenHTTP.Modules.IO" icon="link" >}}
+{{< /cards >}}
+
 Partial responses allow clients to fetch a specified portion of 
 a requested resource which can be helpful for download managers
 to pause and resume downloads. As ths functionality is not 
