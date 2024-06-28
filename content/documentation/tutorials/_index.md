@@ -12,5 +12,7 @@ The tutorials in this section will teach you how to create, run and test applica
 
   {{< card link="./creating-a-webservice/" title="Creating a Webservice" >}}
 
+  {{< card link="./two-line-webservice/" title="Two-line Webservice" >}}
+
 {{< /cards >}}
 

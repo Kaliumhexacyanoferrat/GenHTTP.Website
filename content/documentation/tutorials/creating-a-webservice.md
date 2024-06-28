@@ -97,12 +97,14 @@ in the `Project.cs`.
 .AddService<AnotherService>("another")
 ```
 
+## Next Steps
+
 The documentation will show you the details of the web service framework as well
 as all other aspects that are relevant when developing an webservice application
 using the GenHTTP framework.
 
 {{< cards >}}
 
-  {{< card link="/documentation/content/" title="Documentation" >}}
+  {{< card link="/documentation/content/" title="Documentation" icon="book-open" >}}
 
 {{< /cards >}}
