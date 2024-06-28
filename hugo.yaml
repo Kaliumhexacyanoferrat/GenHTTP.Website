@@ -36,6 +36,11 @@ menu:
         type: search
 
 params:
+
+  editURL:
+    enable: true
+    base: "https://github.com/Kaliumhexacyanoferrat/GenHTTP.Website/edit/master/content"
+
   navbar:
     displayTitle: true
     displayLogo: true
