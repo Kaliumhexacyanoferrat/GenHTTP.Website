@@ -210,3 +210,15 @@
     background-color: #43648c;
     border-color: #43648c;
 }
+
+.out-of-content-h2 {
+    margin-top: 2.5rem;
+    border-bottom-width: 1px;
+    border-color: rgb(229 229 229 / .7);
+    padding-bottom: .25rem;
+    font-size: 1.875rem;
+    font-weight: 600;
+    letter-spacing: -.015em;
+    --tw-text-opacity: 1;
+    color: rgb(15 23 42 / var(--tw-text-opacity));
+}
