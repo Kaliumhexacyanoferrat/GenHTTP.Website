@@ -58,3 +58,18 @@ request.Content = new StringContent("My Body");
 
 using var response = await runner.GetResponseAsync(request);
 ```
+
+## Response Handling
+
+The test framework provides some extension methods to simplify reading typed responses.
+
+```csharp
+using var response = await runner.GetResponseAsync();
+
+var typed = await response.GetContentAsync<MyType>();
+
+var typedNullable = await response.GetOptionalContentAsync<MyType>(); // might be null
+```
+
+Those methods allows to deserialize all formats supported by the GenHTTP framework
+(JSON, XML, form encoded, Protobuf).
