@@ -35,8 +35,8 @@ entries to your project file.
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GenHTTP.Core" Version="8.5.2" />
-    <PackageReference Include="GenHTTP.Modules.Functional" Version="8.5.0" />
+    <PackageReference Include="GenHTTP.Core" Version="8.6.0" />
+    <PackageReference Include="GenHTTP.Modules.Functional" Version="8.6.0" />
   </ItemGroup>
 
 </Project>
