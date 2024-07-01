@@ -52,6 +52,79 @@ private ValueTask<IUser?> DoAuthenticateAsync(IRequest request, string key)
 }
 ```
 
+## Bearer Authentication
+
+Bearer authentication expects the clients to send an access token that they obtained
+from a trusted issuer with every request. The concern will validate the tokens
+against the signing keys of the issuer and will optionally perform additional
+validation steps to authorize the client.
+
+```csharp
+var securedContent = Layout.Create();
+
+// specify all users and their password ...
+var auth = BearerAuthentication.Create()
+                               .Issuer("https://sso.mycompany.org/auth/")
+                               .Audience("https://myapi.company.org"); // optional
+
+securedContent.Add(auth);
+```
+
+Please note, that both the issuer and the audience url need to exactly match the
+issued values (including trailing slashes etc.). To validate the issuer, the concern
+needs to download the signing keys from the server on first request. Subsequent requests
+will use the cached keys.
+
+If you would like to perform additional checks, you can pass a custom validator:
+
+```csharp
+var auth = BearerAuthentication.Create()
+                               .Issuer(...)
+                               .Validation(ValidateClient);
+                               
+// ...
+
+private static Task ValidateClient(JwtSecurityToken token)
+{
+    if (token.Subject != "my-client")
+    {
+        throw new ProviderException(ResponseStatus.Forbidden, "Only 'my-client' is allowed to access this service");
+    }
+
+    return Task.CompletedTask;
+}
+```
+
+If you would like to map incoming tokens to user accounts, you can add a mapper which will
+resolve an `IUser` instance. This mechanism can be combined with [user injection](/documentation/content/concepts/definitions/#user-injection)
+to allow you to directly access the user instance in your service methods.
+
+```csharp
+var auth = BearerAuthentication.Create()
+                               .UserMapping(MapUser)
+                               .AllowExpired();
+                               
+// ...
+
+private static ValueTask<IUser?> UserMapping(IRequest request, JwtSecurityToken token)
+{
+    var user = UserRepository.Resolve(token.Subject);
+
+    return new ServiceUser(user);
+}
+
+// ...
+
+[ResourceMethod]
+public MyResponse DoWork(ServiceUser user) 
+{
+  // ...
+}
+```
+
+Returning `null` will not deny access for the requesting client. If you want to do so,
+throw an `ProviderException` with status `Forbidden`.
+
 ## Basic Authentication
 
 Basic authentication can be used by either specifying a list of users and their passwords or
