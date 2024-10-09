@@ -91,6 +91,10 @@ using the GenHTTP framework.
 
 {{< cards >}}
 
+{{< card link="/documentation/content/concepts/definitions/" title="Method Definitions" icon="book-open" >}}
+
+{{< card link="/documentation/content/frameworks/webservices/" title="Webservice Module" icon="book-open" >}}
+
 {{< card link="/documentation/content/" title="Documentation" icon="book-open" >}}
 
 {{< /cards >}}
