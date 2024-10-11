@@ -5,54 +5,63 @@ cascade:
   type: docs
 ---
 
-If an exception occurs while a request is handled, the server will render the
-exception into a HTML page that informs the client about the issue.
+If an exceptions occurs while processing a request or a requested resource cannot be found,
+the server will return a JSON object describing the error such as
 
-If you would like to send cutom HTTP responses for exceptions, you can add
-the `ErrorHandler` concern with a custom `IErrorMapper`.
+```json
+{
+    "status": 404,
+    "message": "The requested resource does not exist on this server"
+}
+```
 
-The following example will generate a JSON response for errors and missing
-content:
+## HTML Error Messages
+
+To render error messages to HTML (so they can be viewed in a browser), you can use the built-in
+`ErrorHandler.Html()`.
 
 ```csharp
-var errorHandling = ErrorHandler.From(new JsonErrorMapper());
+var app = Layout.Create()
+                // ...
+                .Add(ErrorHandler.Html());
+```
 
-var api = Layout.Create()
-                .AddService<...>()
-                .Add(errorHandling);
+## Custom Error Handlers
 
-public record ErrorModel(String Message);
+To fully customize error handling, you can implement `IErrorMapper<T>` and pass an instance
+of your mapper to the error handling concern. The following example will render any error
+to a text formatted response:
 
-public class JsonErrorMapper : IErrorMapper<Exception>
+```csharp
+var errorHandler = ErrorHandler.From(new TextErrorMapper());
+
+var app = Layout.Create()
+                // ...
+                .Add(errorHandler);
+
+public class TextErrorMapper : IErrorMapper<Exception>
 {
 
     public ValueTask<IResponse?> GetNotFound(IRequest request, IHandler handler)
     {
-        var errorModel = new ErrorModel("The requested content was not found");
+        var response = request.Respond()
+                              .Status(ResponseStatus.NotFound)
+                              .Content("Not found")
+                              .Build();
 
-        // hint: return null here to render the default error page of the server
-        return new(GetResponse(request, ResponseStatus.NotFound, errorModel));
+        return new(response);
     }
-    
+
     public ValueTask<IResponse?> Map(IRequest request, IHandler handler, Exception error)
     {
-        var errorModel = new ErrorModel(error.Message);
+        var status = (error is ProviderException pe) ? pe.Status : ResponseStatus.InternalServerError;
 
-        if (error is ProviderException providerException)
-        {
-            return new(GetResponse(request, providerException.Status, errorModel));
-        }
+        var response = request.Respond()
+                              .Status(status)
+                              .Content(error.Message)
+                              .Build();
 
-        return new(GetResponse(request, ResponseStatus.InternalServerError, errorModel));
-    }
-
-    private static IResponse GetResponse(IRequest request, ResponseStatus status, ErrorModel model)
-    {
-        return request.Respond()
-                      .Status(status)
-                      .Content(new JsonContent(model, new()))
-                      .Type(ContentType.ApplicationJson)
-                      .Build()
+        return new(response);
     }
 
 }
