@@ -6,7 +6,10 @@ cascade:
 ---
 
 The compression concern compresses content sent to the clients, if applicable. By default,
-[gzip](https://www.gzip.org/) and [Brotli](https://github.com/google/brotli) are supported.
+[gzip](https://www.gzip.org/), [Brotli](https://github.com/google/brotli) and [Zstandard](https://github.com/facebook/zstd) are supported.
+
+The concern will automatically negotiate which algorithms are supported by the client
+and will try to chose a modern one with good compression rates and low CPU usage.
 
 ```csharp
 var content = Layout.Create()
