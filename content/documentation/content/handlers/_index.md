@@ -14,6 +14,13 @@ functionality to the SDK or your own web application, you may implement
 a custom handler instance. The following example will generate a simple text response:
 
 ```csharp
+using GenHTTP.Api.Content;
+using GenHTTP.Api.Protocol;
+
+using GenHTTP.Engine;
+
+using GenHTTP.Modules.IO;
+
 public class CustomHandler : IHandler
 { 
 
@@ -40,8 +47,6 @@ public class CustomHandler : IHandler
         // handler and it's children
         return new ValueTask();
     }
-
-    public IAsyncEnumerable<ContentElement> GetContentAsync(IRequest request) => AsyncEnumerable.Empty<ContentElement>();
 
 }
 
