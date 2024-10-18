@@ -42,8 +42,6 @@ or [Swagger Editor](https://editor.swagger.io/) to execute requests or generate 
 
 ![Generated specification loaded into Swagger Editor](open-api-swagger-editor.png)
 
-Please note that method annotations are currently not supported.
-
 ## Endpoints
 
 The Open API concern provides the following endpoints:
@@ -80,6 +78,9 @@ Host.Create()
     .Console()
     .Run();
 ```
+
+Please note that method annotations are currently not supported, besides the `[Obsolete]` attribute
+marking an operation as deprecated. You will find the corresponding [feature request](https://github.com/Kaliumhexacyanoferrat/GenHTTP/issues/525) on GitHub.
 
 ## Caching
 
