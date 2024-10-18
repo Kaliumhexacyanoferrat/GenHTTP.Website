@@ -29,14 +29,14 @@ entries to your project file.
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GenHTTP.Core" Version="8.6.0" />
-    <PackageReference Include="GenHTTP.Modules.Functional" Version="8.6.0" />
+    <PackageReference Include="GenHTTP.Core" Version="9.0.0" />
+    <PackageReference Include="GenHTTP.Modules.Functional" Version="9.0.0" />
   </ItemGroup>
 
 </Project>
