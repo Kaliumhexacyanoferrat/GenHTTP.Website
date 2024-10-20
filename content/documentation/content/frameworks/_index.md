@@ -17,6 +17,8 @@ such as providing a RESTful service API.
   {{< card link="./functional/" title="Functional Handlers" >}}
   
   {{< card link="./controllers/" title="Controllers" >}}
+
+  {{< card link="./websockets/" title="Websockets" >}}
   
   {{< card link="./static-websites/" title="Static Websites" >}}
   

@@ -35,6 +35,7 @@ To create a project by using the terminal, create a new folder for your app and 
 | REST Webservice               | `dotnet new genhttp-webservice`             | [Webservices](./content/frameworks/webservices)                                 |
 | REST Webservice (single file) | `dotnet new genhttp-webservice-minimal`     | [Functional Handlers](./content/frameworks/functional)                          |
 | REST Webservice (controllers) | `dotnet new genhttp-webservice-controllers` | [Controllers](./content/frameworks/controllers)                                 |
+| Websocket                     | `dotnet new genhttp-websocket`              | [Websockets](./content/frameworks/websockets)                                   |
 | Website (Static HTML)         | `dotnet new genhttp-website-static`         | [Statics Websites](./content/frameworks/static-websites)                        |
 | Single Page Application (SPA) | `dotnet new genhttp-spa`                    | [Single Page Applications (SPA)](./content/frameworks/single-page-applications) |
 

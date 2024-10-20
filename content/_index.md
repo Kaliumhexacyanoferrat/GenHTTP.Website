@@ -1,6 +1,6 @@
 +++
 title = ''
-description = 'Lightweight, embeddable HTTP web server written in pure C# with few dependencies to 3rd-party libraries.'
+description = 'Lightweight, embeddable HTTP web server written in pure C# with few dependencies to 3rd-party libraries and support for current standards such as Open API, websockets or JWT authentication.'
 date = 2024-06-20T14:10:41+02:00
 +++
 
@@ -33,7 +33,7 @@ date = 2024-06-20T14:10:41+02:00
   >}}
   {{< hextra/feature-card
     title="Simple & Powerful"
-    subtitle="The server API provides a simple, yet powerful, fully object-oriented module system to plug in your content. All modules follow best practices, e.g. in terms of security or performance."
+    subtitle="Provides a simple, yet powerful, fully object-oriented module system. Supports current standards such as Open API, Websockets or JWT authentication."
     style="background: radial-gradient(ellipse at 50% 80%,rgba(221,210,59,0.15),hsla(0,0%,100%,0));"
   >}}
   {{< hextra/feature-card
