@@ -40,6 +40,8 @@ functionality, you can also implement [custom handlers](./handlers/).
 
   {{< card link="./frameworks/controllers/" title="Controllers" >}}
 
+  {{< card link="./frameworks/websockets/" title="Websockets" >}}
+
   {{< card link="./frameworks/static-websites/" title="Static Websites" >}}
 
   {{< card link="./frameworks/single-page-applications/" title="Single Page Applications (SPA)" >}}
@@ -61,6 +63,8 @@ functionality, you can also implement [custom handlers](./handlers/).
   {{< card link="./concerns/cors/" title="CORS" >}}
 
   {{< card link="./concerns/error-handling/" title="Error Handling" >}}
+
+  {{< card link="./concerns/open-api/" title="Open API" >}}
 
   {{< card link="./concerns/server-caching/" title="Server Caching" >}}
 
@@ -103,5 +107,3 @@ functionality, you can also implement [custom handlers](./handlers/).
   {{< card link="./concepts/caches/" title="Caches" >}}
 
 {{< /cards >}}
-
-
