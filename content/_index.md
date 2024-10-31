@@ -1,6 +1,6 @@
 +++
 title = ''
-description = 'Lightweight, embeddable HTTP web server written in pure C# with few dependencies to 3rd-party libraries and support for current standards such as Open API, websockets or JWT authentication.'
+description = 'Lightweight, embeddable HTTP web server written in pure C# with few dependencies to 3rd-party libraries and support for current standards such as Open API, websockets, SSE, or JWT authentication.'
 date = 2024-06-20T14:10:41+02:00
 +++
 

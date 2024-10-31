@@ -85,7 +85,9 @@ functionality, you can also implement [custom handlers](./handlers/).
   {{< card link="./handlers/downloads/" title="Downloads" >}}
   
   {{< card link="./handlers/redirects/" title="Redirects" >}}
-  
+
+  {{< card link="./handlers/server-sent-events/" title="Server Sent Events (SSE)" >}}
+
   {{< card link="./handlers/listing/" title="Directory Browsing" >}}
   
   {{< card link="./handlers/reverse-proxy/" title="Reverse Proxies" >}}
