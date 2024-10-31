@@ -233,7 +233,8 @@ fails, the `Connected` property will be set to `false` allowing your loop to exi
 next evaluation.
 
 If the server has no events to be sent to the client, it is recommended by the specification to
-periodically send comments to prevent proxy servers from cancelling the running request.
+periodically send comments to prevent proxy servers from cancelling the running request and to
+verify that the client is still connected.
 
 If the server has no data for a connecting client and will most likely not produce any, the server
 can indicate this to the client by sending a `204 No Content` response. This way the server does not
