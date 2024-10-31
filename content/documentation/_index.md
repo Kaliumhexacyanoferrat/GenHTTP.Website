@@ -5,12 +5,12 @@ cascade:
   type: docs
 ---
 
-With the GenHTTP framework, developers should be able to easily develop new web
-services in a short time. Everything else is provided by the server infrastructure as well as the excellent
+With the GenHTTP framework, developers can quickly create new web services.
+Everything else is provided by the server infrastructure as well as the excellent
 ecosystem of .NET which easily allows to build, test, and run applications.
 
-Similar to other frameworks such as Nancy, embedio, NetCoreServer, or Watson, and in comparison to ASP.NET,
-GenHTTP focuses on a low learning curve to quickly achieve results. You should be able to setup a new web service
+Similar to other frameworks like Nancy, embedio, NetCoreServer, or Watson, and in comparison to ASP.NET,
+GenHTTP emphasizes a gentle learning curve to enable fast results. You should be able to setup a new web service
 or website in a couple of minutes.
 
 ## Getting Started

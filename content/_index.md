@@ -1,17 +1,17 @@
 +++
 title = ''
-description = 'Lightweight, embeddable HTTP web server written in pure C# with few dependencies to 3rd-party libraries and support for current standards such as Open API, websockets, SSE, or JWT authentication.'
+description = 'Lightweight, embeddable HTTP web server written in pure C# with minimal dependencies on third-party libraries and support for current standards such as Open API, websockets, SSE, or JWT authentication.'
 date = 2024-06-20T14:10:41+02:00
 +++
 
 {{< hextra/hero-headline >}}
-  Simple & Fast APIs in C#
+  Effortless API Development with C#
 {{< /hextra/hero-headline >}}
 
 <br /><br />
 
 {{< hextra/hero-subtitle >}}
-  Configuration-free web service framework for your REST APIs.
+  A configuration-free framework for building REST APIs.
 {{< /hextra/hero-subtitle >}}
 
 <br /><br />
@@ -23,17 +23,17 @@ date = 2024-06-20T14:10:41+02:00
 {{< hextra/feature-grid >}}
   {{< hextra/feature-card
     title="Fast Development"
-    subtitle="GenHTTP is a web server framework intended to quickly create webservices using a .NET based development environment and IDEs such as Visual Studio."
+    subtitle="GenHTTP is designed for rapid web service development in .NET, supporting IDEs like Visual Studio or Rider."
     style="background: radial-gradient(ellipse at 50% 80%,rgba(194,97,254,0.15),hsla(0,0%,100%,0));"
   >}}
   {{< hextra/feature-card
     title="100% Managed"
-    subtitle="Written in C# and provided as a .NET library package on nuget, with just a few dependencies. Host your local server instance with just one line of code."
+    subtitle="Written in C# and provided as a .NET library package on nuget, with just a few dependencies. Spin up a local server with a single line of code."
     style="background: radial-gradient(ellipse at 50% 80%,rgba(142,53,74,0.15),hsla(0,0%,100%,0));"
   >}}
   {{< hextra/feature-card
     title="Simple & Powerful"
-    subtitle="Provides a simple, yet powerful, fully object-oriented module system. Supports current standards such as Open API, Websockets or JWT authentication."
+    subtitle="Provides a simple, yet powerful, fully object-oriented module system. Supports widely used standards such as Open API, WebSockets, Server Sent Events, or JWT authentication."
     style="background: radial-gradient(ellipse at 50% 80%,rgba(221,210,59,0.15),hsla(0,0%,100%,0));"
   >}}
   {{< hextra/feature-card
