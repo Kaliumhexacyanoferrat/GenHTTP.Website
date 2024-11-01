@@ -24,13 +24,13 @@ using GenHTTP.Modules.IO;
 public class CustomHandler : IHandler
 { 
 
-    public IHandler Parent { get; }
-
-    public CustomHandler(IHandler parent)
+    public ValueTask PrepareAsync() 
     {
-        Parent = parent;
+        // perform CPU or I/O heavy work to initialize this
+        // handler and it's children
+        return new ValueTask();
     }
-
+    
     public ValueTask<IResponse?> HandleAsync(IRequest request)
     {
         var response = request.Respond()
@@ -41,18 +41,11 @@ public class CustomHandler : IHandler
         return new ValueTask<IResponse?>(response);
     }
 
-    public ValueTask PrepareAsync() 
-    {
-        // perform CPU or I/O heavy work to initialize this
-        // handler and it's children
-        return new ValueTask();
-    }
-
 }
 
 public class CustomHandlerBuilder : IHandlerBuilder<CustomHandlerBuilder>
 {
-    private readonly List<IConcernBuilder> _Concerns = new List<IConcernBuilder>();
+    private readonly List<IConcernBuilder> _Concerns = [];
 
     public CustomHandlerBuilder Add(IConcernBuilder concern)
     {
@@ -60,9 +53,9 @@ public class CustomHandlerBuilder : IHandlerBuilder<CustomHandlerBuilder>
         return this;
     }
 
-    public IHandler Build(IHandler parent)
+    public IHandler Build()
     {
-        return Concerns.Chain(parent, _Concerns, (p) => new CustomHandler(p));
+        return Concerns.Chain(_Concerns, new CustomHandler());
     }
 
 }
@@ -71,6 +64,9 @@ Host.Create()
     .Handler(new CustomHandlerBuilder())
     .Run();
 ```
+
+The usage of the builder pattern is not required here but you will notice that all handlers
+provided by the framework use this scheme (which basically allows to add concerns everywhere).
 
 As handlers are invoked for every request handled by the server, it is usually worth it to
 optimize them for performance. For example, as the content served by our `CustomHandler` does

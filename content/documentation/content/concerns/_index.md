@@ -24,12 +24,9 @@ public class CustomConcern : IConcern
 
     public IHandler Content { get; }
 
-    public IHandler Parent { get; }
-
-    public CustomConcern(IHandler parent, Func<IHandler, IHandler> contentFactory)
+    public CustomConcern(IHandler content)
     {
-        Parent = parent;
-        Content = contentFactory(this);
+        Content = content;
     }
 
     public ValueTask PrepareAsync() => Content.PrepareAsync();
@@ -51,9 +48,9 @@ public class CustomConcern : IConcern
 public class CustomConcernBuilder : IConcernBuilder
 {
 
-    public IConcern Build(IHandler parent, Func<IHandler, IHandler> contentFactory)
+    public IConcern Build(IHandler content)
     {
-        return new CustomConcern(parent, contentFactory);
+        return new CustomConcern(content);
     }
 
 }

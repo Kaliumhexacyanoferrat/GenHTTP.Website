@@ -1,6 +1,6 @@
 ﻿---
 title: Webservices
-description: 'Provide REST based web services in C# that can be consumed by clients to retrieve a JSON or XML serialized result.'
+description: 'Provide REST based web services in C# that can be consumed by clients to retrieve a JSON, YMAL, or XML serialized result.'
 weight: 1
 cascade:
   type: docs

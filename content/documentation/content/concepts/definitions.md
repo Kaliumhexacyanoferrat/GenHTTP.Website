@@ -122,7 +122,7 @@ Some frameworks allow to further restrict path parameters using a regular expres
 ### Complex Types
 
 When using a complex type in a parameter declaration, the value will be [deserialized](#serialization-formats) from the
-request body. By default, handlers will accept content declared as XML, JSON or form encoded. If
+request body. By default, handlers will accept content declared as XML, JSON, YAML or form encoded. If
 the client does not declare the `Content-Type`, the server will try to treat the body as JSON.
 
 {{< tabs items="Webservices,Functional,Controllers" >}}
@@ -419,7 +419,7 @@ If declared nullable, the server will generate a `HTTP 204 No Content` if `null`
 
 When returning a complex type, the value will be [serialized](#serialization-formats) and sent
 to the client. The response format is negated with the client using the `Accept` request
-header. By default, the server is capable of generating XML, JSON or form encoded responses. If
+header. By default, the server is capable of generating XML, JSON, YAML or form encoded responses. If
 no format is specified by the client, the implementation will fall back to JSON.
 
 If declared nullable, the server will generate a `HTTP 204 No Content` if `null` is returned.
@@ -774,7 +774,7 @@ via `/invert/8-10` and will return `10-8` as a text formatted response.
 
 Serialization allows to read and write complex types, so they can be used in
 your method definitions. By default, services can consume and produce entities
-in XML, JSON or in form encoding, with a default fallback to JSON. 
+in XML, JSON, YAML or in form encoding, with a default fallback to JSON. 
 
 When sending an entity to your service, the client should specify the `Content-Type`
 of the body so the server can choose the correct deserializer to read the data with. The `Accept`

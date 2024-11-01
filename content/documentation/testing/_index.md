@@ -72,4 +72,4 @@ var typedNullable = await response.GetOptionalContentAsync<MyType>(); // might b
 ```
 
 Those methods allows to deserialize all formats supported by the GenHTTP framework
-(JSON, XML, form encoded, Protobuf).
+(JSON, XML, YAML, form encoded, Protobuf).
