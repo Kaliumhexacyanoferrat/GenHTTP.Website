@@ -33,12 +33,12 @@ var api = Layout.Create()
                 .AddController<IotController>("device")
                 .Add(CorsPolicy.Permissive());
                 
-Host.Create()
-    .Handler(api)
-    .Defaults()
-    .Development()
-    .Console()
-    .Run();
+await Host.Create()
+          .Handler(api)
+          .Defaults()
+          .Development()
+          .Console()
+          .RunAsync();
     
 // --
 

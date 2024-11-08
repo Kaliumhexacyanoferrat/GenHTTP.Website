@@ -24,11 +24,11 @@ var tree = ResourceTree.FromDirectory("/var/html/my-webapp");
 
 var app = SinglePageApplication.From(tree);
 
- Host.Create()
-     .Console()
-     .Defaults()
-     .Handler(app)
-     .Run();
+await Host.Create()
+          .Console()
+          .Defaults()
+          .Handler(app)
+          .RunAsync();
 ```
 
 This example will automatically search for an index file (such as `index.html`) in

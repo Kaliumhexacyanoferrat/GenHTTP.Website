@@ -24,9 +24,9 @@ var tree = ResourceTree.FromDirectory("./Resources");
 
 layout.Add("res", Resources.From(tree));
 
-Host.Create()
-    .Handler(layout)
-    .Run();
+await Host.Create()
+          .Handler(layout)
+          .RunAsync();
 ```
 
 For example, a stylesheet named `main.css` in the `styles` subfolder would be made available at

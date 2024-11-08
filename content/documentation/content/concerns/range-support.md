@@ -19,10 +19,10 @@ To enable this feature on server level, you may pass an
 additional flag to the [default configuration](../defaults).
 
 ```csharp
-Host.Create()
-    .Handler(...)
-    .Defaults(rangeSupport: true)
-    .Run();
+await Host.Create()
+          .Handler(...)
+          .Defaults(rangeSupport: true)
+          .RunAsync();
 ```
 
 Please note that the implementation does not support multiple ranges 

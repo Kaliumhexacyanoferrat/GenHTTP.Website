@@ -53,21 +53,21 @@ using GenHTTP.Modules.Practices;
 var service = Inline.Create()
                     .Get(() => new { ID = 12, Name = "Some User" });
 
-Host.Create()
-    .Handler(service)
-    .Console()
-    .Defaults()
-    .Development()
-    .Run();
+await Host.Create()
+          .Handler(service)
+          .Console()
+          .Defaults()
+          .Development()
+          .RunAsync();
 ```
 
 This uses the [functional framework](../../content/frameworks/functional/) to define and
 implement a web service and the GenHTTP host to spawn the server instance. 
 
 If you  have an already existing project, you can copy those two lines to an appropriate
-place (e.g. the bootstrapping code of your app). As the `Run()` method will block
+place (e.g. the bootstrapping code of your app). As the `RunAsync()` method will block
 execution (which is convenient for a console app), you might want to manage 
-the server lifecycle via `Start()` and `Stop()` yourself in such a scenario.
+the server lifecycle via `StartAsync()` and `StopAsync()` yourself in such a scenario.
 
 ## Starting the Server
 

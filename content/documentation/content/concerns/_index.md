@@ -59,9 +59,9 @@ var handler = Layout.Create()
                     .Index(Content.From(Resource.FromString("Hello World")))
                     .Add(new CustomConcernBuilder());
 
-Host.Create()
-    .Handler(handler)
-    .Run();
+await Host.Create()
+          .Handler(handler)
+          .RunAsync();
 ```
 
 The GenHTTP SDK uses the same mechanism to achieve functionality such as [compression](./compression)

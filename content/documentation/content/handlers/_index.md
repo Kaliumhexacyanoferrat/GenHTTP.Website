@@ -60,9 +60,9 @@ public class CustomHandlerBuilder : IHandlerBuilder<CustomHandlerBuilder>
 
 }
 
-Host.Create()
-    .Handler(new CustomHandlerBuilder())
-    .Run();
+await Host.Create()
+          .Handler(new CustomHandlerBuilder())
+          .RunAsync();
 ```
 
 The usage of the builder pattern is not required here but you will notice that all handlers

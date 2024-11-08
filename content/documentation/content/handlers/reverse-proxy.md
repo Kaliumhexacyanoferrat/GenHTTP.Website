@@ -14,9 +14,9 @@ web server into your application. Content returned by the upstream
 server will not be embedded into a templated page.
 
 ```csharp
-Host.Create()
-    .Handler(ReverseProxy.Create().Upstream("http://my-cdn:8080/"))
-    .Run();
+await Host.Create()
+          .Handler(ReverseProxy.Create().Upstream("http://my-cdn:8080/"))
+          .RunAsync();
 ```
 
 When running this example, any request to http://localhost:8080 will be

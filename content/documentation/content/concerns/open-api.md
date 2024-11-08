@@ -23,11 +23,11 @@ var api = Inline.Create()
                 .Get("/user/:id", (int id) => new User(id, "John Doe"))
                 .AddOpenApi();
 
-Host.Create()
-    .Handler(api)
-    .Development()
-    .Console()
-    .Run();
+await Host.Create()
+          .Handler(api)
+          .Development()
+          .Console()
+          .RunAsync();
 
 record User(int ID, string Name);
 ```
@@ -72,11 +72,11 @@ var description = ApiDescription.Create()
 var api = Inline.Create()
                 .Add(description);
 
-Host.Create()
-    .Handler(api)
-    .Development()
-    .Console()
-    .Run();
+await Host.Create()
+          .Handler(api)
+          .Development()
+          .Console()
+          .RunAsync();
 ```
 
 Please note that method annotations are currently not supported, besides the `[Obsolete]` attribute
@@ -125,11 +125,11 @@ var api = Layout.Create()
                 .Add("google", Redirect.To("https://google.com"))
                 .Add(description);
 
-Host.Create()
-    .Handler(api)
-    .Development()
-    .Console()
-    .Run();
+await Host.Create()
+          .Handler(api)
+          .Development()
+          .Console()
+          .RunAsync();
 
 class RedirectExplorer : IApiExplorer
 {

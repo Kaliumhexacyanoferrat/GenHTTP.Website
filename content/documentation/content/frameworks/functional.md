@@ -43,11 +43,11 @@ var bookService = Inline.Create()
 var api = Layout.Create()
                 .Add("books", bookService);
 
-Host.Create()
-    .Handler(api)
-    .Development()
-    .Console()
-    .Run();
+await Host.Create()
+          .Handler(api)
+          .Development()
+          .Console()
+          .RunAsync();
 ```
 
 ## Further Resources
@@ -57,4 +57,3 @@ The following capabilities are shared by various application frameworks:
 {{< cards >}}
 {{< card link="../../concepts/definitions" title="Method Definitions" icon="chip" >}}
 {{< /cards >}}
-

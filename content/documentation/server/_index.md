@@ -1,5 +1,5 @@
 ﻿---
-title: Server Lifecycle
+title: Server
 weight: 4
 description: 'Tutorials to configure the GenHTTP webserver for best practices regarding security or performance.'
 cascade:
@@ -7,7 +7,7 @@ cascade:
 ---
 
 As a basic requirement, the server always needs a handler to be supplied
-to serve incoming requests. See the [Providing Content](/documentation/content/) section
+to serve incoming requests. See the [Content](/documentation/content/) section
 to get a list of suitable handlers.
 
 Server instances are usually created using the `Host` factory. Depending on your
@@ -18,27 +18,27 @@ use case, you can either use a blocking or non-blocking call.
 var content = Content.From("Hello World!");
 
 // blocking until the application receives a shutdown signal (e.g. main method of a standalone application)
-return Host.Create()
-           .Handler(content)
-           .Defaults()
-           .Run();
+return await Host.Create()
+                 .Handler(content)
+                 .Defaults()
+                 .RunAsync();
 
 // non-blocking (e.g. for in-process embedding or test libraries)
-var host = Host.Create()
-               .Handler(content)
-               .Defaults()
-               .Start();
+var host = await Host.Create()
+                     .Handler(content)
+                     .Defaults()
+                     .StartAsync();
 
 try {
     // do something with the server instance
 }
 finally {
     // release resources
-    host.Stop();
+    await host.StopAsync();
 }
 ```
 
-The server will start to listen for requests as soon as the `Run` or `Start`
+The server will start to listen for requests as soon as the `RunAsync` or `StartAsync`
 method is called. When disposed, the server will stop to process messages
 and release all claimed resources. This way, server instances can easily be used
 for service mocks in integration and component testing as well. 
@@ -54,13 +54,18 @@ By default, the server will provide an HTTP endpoint on port 8080 with no
 SSL supported enabled. It is recommended to serve all of your web applications
 by a dedicated reverse proxy such as [nginx](https://www.nginx.com/)
 or the [GenHTTP Gateway](https://hub.docker.com/r/genhttp/gateway).
-Nevertheless, the server allows you to add HTTPS endpoints to your application.
+Nevertheless, the server allows you to [add HTTPS endpoints](./security/) to your application.
 
-- [Secure Endpoints](./security)
+## Content
 
-## Extensibility
+{{< cards >}}
 
-To add additional behavior to your web application or service, you can register
-additional elements with your server.
+{{< card link="./engines/" title="Engines" >}}
 
-- [Companions](./companions)
+{{< card link="./endpoints/" title="Endpoints and Ports" >}}
+
+{{< card link="./security/" title="SSL Endpoints" >}}
+
+{{< card link="./companions/" title="Companions" >}}
+
+{{< /cards >}}

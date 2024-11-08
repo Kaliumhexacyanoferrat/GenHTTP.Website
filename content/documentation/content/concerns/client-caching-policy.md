@@ -17,9 +17,9 @@ The following example will cause the static website to be cached for one week:
 var website = StaticWebsite.From(...)
                            .Add(ClientCache.Policy().Duration(7));
 
-Host.Create()
-    .Handler(website)
-    .Run();
+await Host.Create()
+          .Handler(website)
+          .RunAsync();
 ```
 
 If needed, a predicate can be passed to specify the content that

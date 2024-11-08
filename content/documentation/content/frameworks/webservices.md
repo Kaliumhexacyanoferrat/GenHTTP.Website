@@ -64,11 +64,11 @@ var service = Layout.Create()
                     .AddService<BookService>("books")
                     .Add(CorsPolicy.Permissive());
 
-Host.Create()
-    .Handler(service)
-    .Development()
-    .Console()
-    .Run();
+await Host.Create()
+          .Handler(service)
+          .Development()
+          .Console()
+          .RunAsync();
 ```
 
 ## Further Resources

@@ -15,9 +15,9 @@ and files read from a [resource tree](../../concepts/resources) below the specif
 ```csharp
 var tree = ResourceTree.FromDirectory("/var/www/documents/");
 
-Host.Create()
-    .Handler(DirectoryListing.From(tree))
-    .Run();
+await Host.Create()
+          .Handler(DirectoryListing.From(tree))
+          .RunAsync();
 ```
 
 In this example, the listing view will be available at http://localhost:8080/.

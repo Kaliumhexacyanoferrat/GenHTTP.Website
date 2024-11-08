@@ -1,5 +1,6 @@
 ﻿---
-title: Adding SSL Endpoints
+title: SSL Endpoints
+weight: 3
 description: 'Configure the GenHTTP webserver for security.'
 cascade:
   type: docs

@@ -26,9 +26,9 @@ var tree = ResourceTree.FromDirectory("/var/html/my-website");
 
 var app = StaticWebsite.From(tree);
 
- Host.Create()
-     .Console()
-     .Defaults()
-     .Handler(app)
-     .Run();
+await Host.Create()
+          .Console()
+          .Defaults()
+          .Handler(app)
+          .RunAsync();
 ```

@@ -16,18 +16,18 @@ This way, you will have a well configured server instance without the need
 of adding everything by yourself.
 
 ```csharp
-Host.Create()
-    .Handler(...)
-    .Defaults()
-    .Run();
+await Host.Create()
+          .Handler(...)
+          .Defaults()
+          .RunAsync();
 ```
 
 If you would like to opt out of a default feature, you may pass a 
 flag as needed:
 
 ```csharp
-Host.Create()
-    .Handler(...)
-    .Defaults(compression: false)
-    .Run();
+await Host.Create()
+          .Handler(...)
+          .Defaults(compression: false)
+          .RunAsync();
 ```

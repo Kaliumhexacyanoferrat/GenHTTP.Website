@@ -13,9 +13,9 @@ The redirect provider allows to inform the client that the location of the actua
 is different than the requested URI.
 
 ```csharp
-Host.Create()
-    .Handler(Redirect.To("http://google.com"))
-    .Run();
+await Host.Create()
+          .Handler(Redirect.To("http://google.com"))
+          .RunAsync();
 ```
 
 In this example, accessing http://localhost:8080 will redirect the client to the

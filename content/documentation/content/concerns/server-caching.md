@@ -18,11 +18,11 @@ var service = Layout.Create()
                     .Content(...)
                     .Add(ServerCache.Memory());
 
-Host.Create()
-    .Handler(service)
-    .Console()
-    .Defaults()
-    .Run();
+await Host.Create()
+          .Handler(service)
+          .Console()
+          .Defaults()
+          .RunAsync();
 ```
 
 ## When to Cache
@@ -132,9 +132,9 @@ var website = StaticWebsite.From(ResourceTree.FromDirectory("/var/www/"))
                            .Add(compression)
                            .Add(cache);
 
-Host.Create()
-    .Handler(website)
-    .Console()
-    .Defaults()
-    .Run();
+await Host.Create()
+          .Handler(website)
+          .Console()
+          .Defaults()
+          .RunAsync();
 ```

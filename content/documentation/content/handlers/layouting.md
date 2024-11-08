@@ -21,9 +21,9 @@ via the URL [http://localhost:8080/hello.txt](http://localhost:8080/hello.txt).
 var app = Layout.Create()
                 .Add("hello.txt", Content.From(Resource.FromString("Hello World")));
                    
-Host.Create()
-    .Handler(app)
-    .Run();
+await Host.Create()
+          .Handler(app)
+          .RunAsync();
 ```
 
 ## Index
@@ -36,9 +36,9 @@ when [http://localhost:8080/](http://localhost:8080/) is requested.
 var app = Layout.Create()
                 .Add(Content.From(Resource.FromString("Hello World")));
                    
-Host.Create()
-    .Handler(app)
-    .Run();
+await Host.Create()
+          .Handler(app)
+          .RunAsync();
 ```
 
 ## Sub Sections
@@ -56,9 +56,9 @@ var resources = Layout.Create()
 var app = Layout.Create()
                 .Add("static", resources);
 
-Host.Create()
-    .Handler(app)
-    .Run();
+await Host.Create()
+          .Handler(app)
+          .RunAsync();
 ```
 
 This feature is typically used to describe your project topology on a high level and
@@ -71,9 +71,9 @@ var app = Layout.Create()
                 .Add("static", ...)
                 .Add("admin-area", ...);
 
-Host.Create()
-    .Handler(app)
-    .Run();
+await Host.Create()
+          .Handler(app)
+          .RunAsync();
 ```
 
 ## Fallbacks
@@ -93,9 +93,9 @@ var app = Layout.Create()
                 .Add(files)
                 .Add(Content.From(Resource.FromString("Hello World")));
 
-Host.Create()
-    .Handler(app)
-    .Run();
+await Host.Create()
+          .Handler(app)
+          .RunAsync();
 ```
 
 ## Extensions
@@ -143,7 +143,7 @@ var app = VirtualHosts.Create()
                       .Add("domain1.com", app1)
                       .Add("domain2.com", app2);
                       
-Host.Create()
-    .Handler(app)
-    .Run();            
+await Host.Create()
+          .Handler(app)
+          .RunAsync();            
 ```

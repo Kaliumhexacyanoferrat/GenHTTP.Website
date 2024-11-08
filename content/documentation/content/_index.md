@@ -22,9 +22,9 @@ var app = Layout.Create()
                 .Add("resources", ...)
                 .Add("api", ...);
 
-Host.Create()
-    .Handler(app)
-    .Run();
+await Host.Create()
+          .Handler(app)
+          .RunAsync();
 ```
 
 This page lists all handlers that are provided by the framework. To implement new

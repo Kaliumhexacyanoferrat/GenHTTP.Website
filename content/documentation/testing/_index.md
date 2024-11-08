@@ -37,7 +37,7 @@ public sealed class MyTests
     {
         var app = ... // setup your app here
 
-        using var runner = TestHost.Run(app);
+        await using var runner = await TestHost.RunAsync(app);
 
         using var response = await runner.GetResponseAsync("/some/path");
 

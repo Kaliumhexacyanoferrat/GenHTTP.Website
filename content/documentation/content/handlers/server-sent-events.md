@@ -35,12 +35,12 @@ var app = Layout.Create()
                 .Add("stock", stocks)
                 .Index(client);
 
-Host.Create()
-    .Handler(app)
-    .Defaults()
-    .Development()
-    .Console()
-    .Run();
+await Host.Create()
+          .Handler(app)
+          .Defaults()
+          .Development()
+          .Console()
+          .RunAsync();
 
 static async ValueTask GenerateStock(IEventConnection connection)
 {

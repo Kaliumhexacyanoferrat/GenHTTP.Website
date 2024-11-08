@@ -20,9 +20,9 @@ var resource = Resource.FromFile("/var/www/downloads/myvideo.mp4"); // or FromSt
 
 var download = Download.From(resource);
 
-Host.Create()
-    .Handler(download)
-    .Run();
+await Host.Create()
+          .Handler(download)
+          .RunAsync();
 ```
 
 By implementing the `IResource` interface, a custom data source can be used to
@@ -39,9 +39,9 @@ var tree = ResourceTree.FromDirectory("/var/www/downloads/"); // or FromAssembly
 
 var listing = Listing.From(tree);
 
-Host.Create()
-    .Handler(listing)
-    .Run();
+await Host.Create()
+          .Handler(listing)
+          .RunAsync();
 ```
 
 Virtual trees allow to combine different sources of resources into an unified tree:

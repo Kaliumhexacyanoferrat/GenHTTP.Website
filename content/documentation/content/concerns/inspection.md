@@ -24,11 +24,11 @@ using GenHTTP.Modules.Practices;
 var app = Layout.Create()
                 .AddInspector();
 
-Host.Create()
-    .Handler(app)
-    .Defaults()
-    .Console()
-    .Run();
+await Host.Create()
+          .Handler(app)
+          .Defaults()
+          .Console()
+          .RunAsync();
 ```
 
 When running this example and opening http://localhost:8080/some/request?inspect in your browser, you will get a summary of
