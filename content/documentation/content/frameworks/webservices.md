@@ -27,7 +27,7 @@ The following example shows how to define and host a service that can be used
 to manage an entity (books in this case).
 
 ```csharp
-using GenHTTP.Engine;
+using GenHTTP.Engine.Internal;
 
 using GenHTTP.Api.Protocol;
 

@@ -17,7 +17,7 @@ a custom handler instance. The following example will generate a simple text res
 using GenHTTP.Api.Content;
 using GenHTTP.Api.Protocol;
 
-using GenHTTP.Engine;
+using GenHTTP.Engine.Internal;
 
 using GenHTTP.Modules.IO;
 

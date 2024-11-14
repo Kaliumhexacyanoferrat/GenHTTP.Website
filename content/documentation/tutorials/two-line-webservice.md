@@ -45,7 +45,7 @@ entries to your project file.
 In the same directory, create a file named `Program.cs` and add the following content.
 
 ```csharp
-using GenHTTP.Engine;
+using GenHTTP.Engine.Internal;
 
 using GenHTTP.Modules.Functional;
 using GenHTTP.Modules.Practices;

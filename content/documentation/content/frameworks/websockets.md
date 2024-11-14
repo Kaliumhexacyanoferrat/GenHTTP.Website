@@ -17,7 +17,7 @@ The following example hosts a simple console application that provides a websock
 to connected clients:
 
 ```csharp
-using GenHTTP.Engine;
+using GenHTTP.Engine.Internal;
 using GenHTTP.Modules.Practices;
 using GenHTTP.Modules.Websockets;
 
@@ -46,7 +46,7 @@ var host = Host.Create()
     .Development()
     .Console();
 
-host.Start();
+await host.StartAsync();
 
 var input = Console.ReadLine();
 
@@ -63,7 +63,7 @@ while (input != "exit")
     input = Console.ReadLine();
 }
 
-host.Stop();
+await host.StopAsync();
 ```
 
 After starting the server, you can open the following HTML page (provided by the Fleck project as a sample)
