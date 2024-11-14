@@ -19,7 +19,7 @@ The following example will host a SSE endpoint that will stream
 randomly generated updates on stock prices to a client until it disconnects.
 
 ```csharp
-using GenHTTP.Engine;
+using GenHTTP.Engine.Internal;
 
 using GenHTTP.Modules.IO;
 using GenHTTP.Modules.Layouting;

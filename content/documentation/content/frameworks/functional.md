@@ -23,7 +23,7 @@ To host an API using this framework you can create an `Inline` handler and add
 your operations as needed. 
 
 ```csharp
-using GenHTTP.Engine;
+using GenHTTP.Engine.Internal;
 
 using GenHTTP.Modules.Functional;
 using GenHTTP.Modules.Layouting;

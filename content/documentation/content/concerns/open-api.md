@@ -13,7 +13,7 @@ This concern dynamically generates and serves an [Open API v3 specification](htt
 [NSwag](https://github.com/RicoSuter/NSwag) for all detected API endpoints.
 
 ```csharp
-using GenHTTP.Engine;
+using GenHTTP.Engine.Internal;
 
 using GenHTTP.Modules.Functional;
 using GenHTTP.Modules.OpenApi;
@@ -59,7 +59,7 @@ To customize the generated specification you can pass a function that will be ex
 just before the document is serialized and sent to the requesting client.
 
 ```csharp
-using GenHTTP.Engine;
+using GenHTTP.Engine.Internal;
 
 using GenHTTP.Modules.Functional;
 using GenHTTP.Modules.OpenApi;
@@ -108,7 +108,7 @@ will describe the operation.
 
 ```csharp
 using GenHTTP.Api.Content;
-using GenHTTP.Engine;
+using GenHTTP.Engine.Internal;
 using GenHTTP.Modules.Basics;
 using GenHTTP.Modules.Basics.Providers;
 using GenHTTP.Modules.Layouting;
