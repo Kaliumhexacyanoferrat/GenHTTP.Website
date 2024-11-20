@@ -50,7 +50,7 @@ var server = Server.Create()
 
 ## Client Certificates
 
-To enable client certificates, you can pass a custom `ICertificateValidator` to the `Bind` method:
+To enable client certificates (mTLS), you can pass a custom `ICertificateValidator` to the `Bind` method:
 
 ```csharp
 public class MyValidator : ICertificateValidator
