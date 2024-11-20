@@ -22,6 +22,9 @@ var displayName = request.GetUser<IUser>()?.DisplayName;
 The user object for the current request will be determined by the installed authentication
 concern. The concern will allow you to add your custom user object there.
 
+For frameworks such as webservices or controllers, you can also inject the user instance in
+your method calls (see [user injection](/documentation/content/concepts/definitions/#user-injection)).
+
 ## API Key Authentication
 
 This kind of authentication requires your clients to authenticate themselves using an key sent
@@ -33,7 +36,7 @@ var securedContent = Layout.Create();
 var auth = ApiKeyAuthentication.Create()
                                .Keys("ABC-123", "BCD-234");
 
-securedContent.Authentication(auth);
+securedContent.Add(auth);
 ```
 
 You may customize both where the key is read from and what keys are valid for authentication:
@@ -125,6 +128,41 @@ public MyResponse DoWork(ServiceUser user)
 Returning `null` will not deny access for the requesting client. If you want to do so,
 throw an `ProviderException` with status `Forbidden`.
 
+## Client Certificate Authentication
+
+This concern can be used to secure a section of your web application by analyzing the 
+certificate the client presented during the SSL/TLS handshake when connecting
+to the server. The configuration for this feature can be found [here](/documentation/server/security/#client-certificates).
+
+```csharp
+var securedContent = Layout.Create();
+
+var auth = ClientCertificateAuthentication.Create()
+                                          .Authorization(Authorize)
+                                          .UserMapping(MapUser);
+
+securedContent.Add(auth);
+
+//
+
+static ValueTask<bool> Authorize(IRequest request, X509Certificate? certificate)
+{
+    // return true to allow the request, false to deny it
+    return new(certificate != null);
+}
+
+static ValueTask<IUser?> MapUser(IRequest request, X509Certificate? certificate)
+{
+    // create the user record you would like to use for this request
+    if (certificate != null)
+    {
+        return new(new ClientCertificateUser(certificate));
+    }
+
+    return new();
+}
+```
+
 ## Basic Authentication
 
 Basic authentication can be used by either specifying a list of users and their passwords or
@@ -138,7 +176,7 @@ var auth = BasicAuthentication.Create()
                               .Add("Bob", "pw123")
                               .Add("Alice", "123pw");
 
-securedContent.Authentication(auth);
+securedContent.Add(auth);
 
 // ... or implement your custom logic
 securedContent.Authentication((user, password) => {
