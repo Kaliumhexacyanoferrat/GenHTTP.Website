@@ -4,6 +4,20 @@ description = 'Features of the GenHTTP application framework such as performance
 date = 2024-06-20T14:10:41+02:00
 +++
 
+## Frameworks
+
+GenHTTP provides several frameworks to develop and host web services (e.g. service classes, controller-style or functional-style).
+Additionally you can easily host static websites or a single page app. Besides this, the framwork
+comes with a rich set of features:
+
+- Automatically generated Open API specifications
+- Various authentication methods (e.g. API key, JWT, Client Certificates or Basic Auth)
+- Support for Websockets and Server Sent Events (SSE)
+- Automatic response compression and request decompression
+- Client caching directives and automatic eTag handling
+- Range support to fetch byte ranges
+- Security relevant features (such as automatic redirection to HTTPS)
+
 ## Server Performance
 
 In terms of raw HTTP protocol performance, the GenHTTP webserver is located in the middle segment compared to
