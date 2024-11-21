@@ -55,6 +55,14 @@ await Host.Create(configHook, appHook)
           .RunAsync();
 ```
 
+In contrast to the internal engine, Kestrel supports HTTP/2 and HTTP/3 via SSL/TLS. While HTTP/2 is enabled
+by default on such endpoints, you need to opt-in to HTTP/3, as the protocol is served via UDP/QUIC which probably
+requires additional firewall rules on your system:
+
+```csharp
+.Bind(IPAddress.Any, 443, myCertificate, enableQuic: true)
+```
+
 There are some limitations that apply to this engine:
 
 - Kestrel does not allow to read the request body twice (there is `request.EnableBuffering()` but this has not been implemented yet)
