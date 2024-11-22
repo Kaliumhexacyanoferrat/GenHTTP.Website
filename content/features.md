@@ -7,7 +7,7 @@ date = 2024-06-20T14:10:41+02:00
 ## Frameworks
 
 GenHTTP provides several frameworks to develop and host web services (e.g. service classes, controller-style or functional-style).
-Additionally you can easily host static websites or a single page app. Besides this, the framwork
+Additionally you can easily host static websites or a single page app. Besides this, the framework
 comes with a rich set of features:
 
 - Automatically generated Open API specifications
