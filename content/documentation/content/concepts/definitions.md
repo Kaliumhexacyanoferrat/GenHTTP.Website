@@ -843,3 +843,15 @@ a service.
 {{< /tab >}}
 
 {{< /tabs >}}
+
+To configure the default serialization formats, you can pass configuration options directly to the 
+`Default()` factory:
+
+```csharp
+var options = new JsonSerializerOptions()
+{
+    WriteIndented = false
+};
+
+var serialization = Serialization.Default(jsonOptions: options);
+```
