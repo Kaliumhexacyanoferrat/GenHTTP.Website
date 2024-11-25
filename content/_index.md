@@ -1,11 +1,11 @@
 +++
 title = ''
-description = 'Lightweight, embeddable HTTP web server written in pure C# with minimal dependencies on third-party libraries and support for current standards such as Open API, websockets, SSE, or JWT authentication.'
+description = 'Lightweight REST API development framework written in C# alongside a powerful, dependency-free HTTP web server with support for current standards such as Open API, JWT auth, Websockets and more.'
 date = 2024-06-20T14:10:41+02:00
 +++
 
 {{< hextra/hero-headline >}}
-  Effortless API Development with C#
+  Effortless REST API Development with C#
 {{< /hextra/hero-headline >}}
 
 <br /><br />
