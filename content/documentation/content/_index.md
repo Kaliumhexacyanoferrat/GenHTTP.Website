@@ -88,6 +88,8 @@ functionality, you can also implement [custom handlers](./handlers/).
   
   {{< card link="./handlers/redirects/" title="Redirects" >}}
 
+  {{< card link="./handlers/pages/" title="Pages" >}}
+
   {{< card link="./handlers/server-sent-events/" title="Server Sent Events (SSE)" >}}
 
   {{< card link="./handlers/listing/" title="Directory Browsing" >}}
