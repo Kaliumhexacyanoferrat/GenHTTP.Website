@@ -11,7 +11,7 @@ cascade:
 {{< /cards >}}
 
 Resources provide an unified way to load and access binary data used by handlers
-to achieve their functionality. For example, the [Download](../../handlers/downloads) handler
+to achieve their functionality. For example, the [Download](../../handlers/downloads/) handler
 serves a single file on request - where the content of the file originates from
 is not important for the handler to achieve it's functionality.
 
@@ -31,8 +31,8 @@ provide resources, for example a database or a cloud blob storage.
 ## Resource Trees
 
 Similar to the resources, resource trees provide an abstraction for a directory
-structure that can be consumed by handlers such as the [Directory Browsing](../../handlers/listing)
-or the [Single Page Application](../../frameworks/single-page-applications). 
+structure that can be consumed by handlers such as the [Directory Browsing](../../handlers/listing/)
+or the [Single Page Application](../../frameworks/single-page-applications/). 
 
 ```csharp
 var tree = ResourceTree.FromDirectory("/var/www/downloads/"); // or FromAssembly, ...
