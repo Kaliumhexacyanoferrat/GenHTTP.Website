@@ -6,4 +6,4 @@ WORKDIR /opt/HugoApp
 
 COPY . .
 
-ENTRYPOINT hugo
+ENTRYPOINT ["hugo"]
