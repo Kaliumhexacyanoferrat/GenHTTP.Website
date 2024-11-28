@@ -68,18 +68,18 @@ public class IotController
 
 The following table shows the rules that are applied to map an URL:
 
-| Method                      | Endpoint      |
-| -------------               | ------------- |
-| `Index()`                   | `/controller/` |
-| `Action()`                  | `/controller/action/` |
-| `Action([FromPath] int id)` | `/controller/action/:id/` |
+| Method                      | Endpoint                     |
+|-----------------------------|------------------------------|
+| `Index()`                   | `/controller/`               |
+| `Action()`                  | `/controller/action/`        |
+| `Action([FromPath] int id)` | `/controller/action/:id/`    |
 | `Action(int id)`            | `/controller/action/?id=:id` |
-| `LongAction()`              | `/controller/long-action/` |
+| `LongAction()`              | `/controller/long-action/`   |
 
 ## Further Resources
 
 The following capabilities are shared by various application frameworks:
 
 {{< cards >}}
-{{< card link="../../concepts/definitions" title="Method Definitions" icon="chip" >}}
+{{< card link="../../concepts/definitions/" title="Method Definitions" icon="chip" >}}
 {{< /cards >}}

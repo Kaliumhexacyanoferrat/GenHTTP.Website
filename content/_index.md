@@ -16,7 +16,7 @@ date = 2024-06-20T14:10:41+02:00
 
 <br /><br />
 
-{{< hextra/hero-button text="Get Started" link="documentation" >}}
+{{< hextra/hero-button text="Get Started" link="/documentation/" >}}
 
 <br /><br />
 

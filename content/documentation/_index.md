@@ -30,14 +30,14 @@ Project templates can be used to create apps for typical use cases with little e
 
 To create a project by using the terminal, create a new folder for your app and use one of the following commands:
 
-| Template                      | Command                                     | Documentation                                                                   |
-|-------------------------------|---------------------------------------------|---------------------------------------------------------------------------------|
-| REST Webservice               | `dotnet new genhttp-webservice`             | [Webservices](./content/frameworks/webservices)                                 |
-| REST Webservice (single file) | `dotnet new genhttp-webservice-minimal`     | [Functional Handlers](./content/frameworks/functional)                          |
-| REST Webservice (controllers) | `dotnet new genhttp-webservice-controllers` | [Controllers](./content/frameworks/controllers)                                 |
-| Websocket                     | `dotnet new genhttp-websocket`              | [Websockets](./content/frameworks/websockets)                                   |
-| Website (Static HTML)         | `dotnet new genhttp-website-static`         | [Statics Websites](./content/frameworks/static-websites)                        |
-| Single Page Application (SPA) | `dotnet new genhttp-spa`                    | [Single Page Applications (SPA)](./content/frameworks/single-page-applications) |
+| Template                      | Command                                     | Documentation                                                                    |
+|-------------------------------|---------------------------------------------|----------------------------------------------------------------------------------|
+| REST Webservice               | `dotnet new genhttp-webservice`             | [Webservices](./content/frameworks/webservices/)                                 |
+| REST Webservice (single file) | `dotnet new genhttp-webservice-minimal`     | [Functional Handlers](./content/frameworks/functional/)                          |
+| REST Webservice (controllers) | `dotnet new genhttp-webservice-controllers` | [Controllers](./content/frameworks/controllers/)                                 |
+| Websocket                     | `dotnet new genhttp-websocket`              | [Websockets](./content/frameworks/websockets/)                                   |
+| Website (Static HTML)         | `dotnet new genhttp-website-static`         | [Statics Websites](./content/frameworks/static-websites/)                        |
+| Single Page Application (SPA) | `dotnet new genhttp-spa`                    | [Single Page Applications (SPA)](./content/frameworks/single-page-applications/) |
 
 After the project has been created, you can run it via `dotnet run` and access the server via http://localhost:8080.
 

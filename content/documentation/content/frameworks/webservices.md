@@ -76,5 +76,5 @@ await Host.Create()
 The following capabilities are shared by various application frameworks:
 
 {{< cards >}}
-{{< card link="../../concepts/definitions" title="Method Definitions" icon="chip" >}}
+{{< card link="../../concepts/definitions/" title="Method Definitions" icon="chip" >}}
 {{< /cards >}}

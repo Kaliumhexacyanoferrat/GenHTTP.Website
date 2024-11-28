@@ -23,7 +23,7 @@ be added.
 ## Custom Algorithms
 
 To add a custom compression algorithm to the server, you can implement the
-[ICompressionAlgorithm](https://github.com/Kaliumhexacyanoferrat/GenHTTP/blob/master/API/Infrastructure/ICompressionAlgorithm.cs)
+[ICompressionAlgorithm](https://github.com/Kaliumhexacyanoferrat/GenHTTP/blob/main/API/Content/IO/ICompressionAlgorithm.cs)
 interface and register the implementing class with your server builder. For example,
 the following implementation will add support for the `deflate` algorithm, which 
 is not provided by the server out of the box:
