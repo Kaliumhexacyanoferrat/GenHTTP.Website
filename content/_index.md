@@ -1,6 +1,6 @@
 +++
 title = ''
-description = 'Lightweight REST API development framework written in C# alongside a powerful, dependency-free HTTP web server with support for current standards such as Open API, JWT auth, Websockets and more.'
+description = 'Lightweight REST API server framework written in C# with support for current standards such as Open API, JWT auth, Websockets and more.'
 date = 2024-06-20T14:10:41+02:00
 +++
 
