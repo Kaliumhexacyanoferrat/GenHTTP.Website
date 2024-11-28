@@ -6,22 +6,19 @@ module:
   imports:
     - path: github.com/imfing/hextra
 
-permalinks:
-  section: "/:slug/"
-
 menu:
   main:
     - name: Features
-      pageRef: /features/
+      pageRef: https://genhttp.org/features/
       weight: 1
     - name: Documentation
-      pageRef: /documentation/
+      pageRef: https://genhttp.org/documentation/
       weight: 2
     - name: Links
-      pageRef: /links/
+      pageRef: https://genhttp.org/links/
       weight: 3
     - name: Legal
-      pageRef: /legal/
+      pageRef: https://genhttp.org/legal/
       weight: 4
     - name: GitHub
       weight: 5
