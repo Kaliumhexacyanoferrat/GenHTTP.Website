@@ -18,4 +18,6 @@ handlers.
   
   {{< card link="./caches/" title="Caches" >}}
 
+  {{< card link="./adapters/" title="Adapters" >}}
+
 {{< /cards >}}

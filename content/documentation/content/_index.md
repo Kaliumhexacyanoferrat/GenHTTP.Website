@@ -112,4 +112,6 @@ functionality, you can also implement [custom handlers](./handlers/).
 
   {{< card link="./concepts/caches/" title="Caches" >}}
 
+  {{< card link="./concepts/adapters/" title="Adapters" >}}
+
 {{< /cards >}}
