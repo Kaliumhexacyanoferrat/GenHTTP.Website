@@ -11,15 +11,23 @@ menu:
     - name: Features
       url: https://genhttp.org/features/
       weight: 1
+      params:
+        external: false
     - name: Documentation
       url: https://genhttp.org/documentation/
       weight: 2
+      params:
+        external: false
     - name: Links
       url: https://genhttp.org/links/
       weight: 3
+      params:
+        external: false
     - name: Legal
       url: https://genhttp.org/legal/
       weight: 4
+      params:
+        external: false
     - name: GitHub
       weight: 5
       url: "https://github.com/Kaliumhexacyanoferrat/GenHTTP"
