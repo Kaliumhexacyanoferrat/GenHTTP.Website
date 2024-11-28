@@ -9,16 +9,16 @@ module:
 menu:
   main:
     - name: Features
-      pageRef: https://genhttp.org/features/
+      url: https://genhttp.org/features/
       weight: 1
     - name: Documentation
-      pageRef: https://genhttp.org/documentation/
+      url: https://genhttp.org/documentation/
       weight: 2
     - name: Links
-      pageRef: https://genhttp.org/links/
+      url: https://genhttp.org/links/
       weight: 3
     - name: Legal
-      pageRef: https://genhttp.org/legal/
+      url: https://genhttp.org/legal/
       weight: 4
     - name: GitHub
       weight: 5
