@@ -14,7 +14,7 @@ The webservice module provides an easy way to implement RESTful services
 that can be consumed by clients as needed.
 
 {{< callout type="info" >}}
-Webservices can quickly be created by using a [project template](../../templates).
+Webservices can quickly be created by using a [project template](../../templates/).
 {{< /callout >}}
 
 ## Hosting an API

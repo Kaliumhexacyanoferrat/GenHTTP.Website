@@ -15,7 +15,7 @@ to ASP.NET you cannot use this framework to dynamically render HTML pages in a M
 so this is just another flavor of defining a web API.
 
 {{< callout type="info" >}}
-Controller based APIs can quickly be created by using a [project template](../../templates).
+Controller based APIs can quickly be created by using a [project template](../../templates/).
 {{< /callout >}}
 
 ## Hosting an API

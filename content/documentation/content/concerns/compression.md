@@ -17,7 +17,7 @@ var content = Layout.Create()
                     .Add(CompressedContent.Default());
 ```
 
-This concern is part of the [default configuration](../defaults) and will automatically
+This concern is part of the [default configuration](../defaults/) and will automatically
 be added.
 
 ## Custom Algorithms

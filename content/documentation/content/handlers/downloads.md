@@ -9,7 +9,7 @@ cascade:
 {{< card link="https://www.nuget.org/packages/GenHTTP.Modules.IO/" title="GenHTTP.Modules.IO" icon="link" >}}
 {{< /cards >}}
 
-Downloads allow to serve a single [Resource](../../concepts/resources) with a fixed name to your clients. The content type
+Downloads allow to serve a single [Resource](../../concepts/resources/) with a fixed name to your clients. The content type
 of the file will automatically be determined by it's extension.
 
 ```csharp
