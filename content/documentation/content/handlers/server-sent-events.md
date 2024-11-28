@@ -1,6 +1,6 @@
 ﻿---
 title: Server Sent Events (SSE)
-description: 'Handler written in C# to generate a stream of events and sends them to connected clients.'
+description: 'Quickly setup a C# / .NET server to provide a simple Server Sent Events (SSE) stream (with examples).'
 cascade:
   type: docs
 ---
@@ -11,7 +11,8 @@ cascade:
 
 [Server Sent Events (SSE)](https://html.spec.whatwg.org/multipage/server-sent-events.html#server-sent-events) allow client applications such as
 browsers to subscribe to a stream of relevant events without the overhead added by the bi-directional connection
-of websockets. Therefore they are useful whenever the server would like to notify the client about changes.
+of websockets. Therefore they are useful whenever the server would like to notify the client about changes. This article
+describes how to host an event source in C# using the GenHTTP web server.
 
 ## Example
 
