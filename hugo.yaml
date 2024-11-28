@@ -7,29 +7,29 @@ module:
     - path: github.com/imfing/hextra
 
 menu:
-  main:    
+  main:
     - name: Features
-      pageRef: /features
+      pageRef: /features/
       weight: 1
     - name: Documentation
-      pageRef: /documentation
+      pageRef: /documentation/
       weight: 2
     - name: Links
-      pageRef: /links
+      pageRef: /links/
       weight: 3
     - name: Legal
-      pageRef: /legal
+      pageRef: /legal/
       weight: 4
     - name: GitHub
       weight: 5
       url: "https://github.com/Kaliumhexacyanoferrat/GenHTTP"
       params:
-        icon: github 
+        icon: github
     - name: Discord
       weight: 6
       url: "https://discord.gg/GwtDyUpkpV"
       params:
-        icon: discord    
+        icon: discord
     - name: Search
       weight: 7
       params:
