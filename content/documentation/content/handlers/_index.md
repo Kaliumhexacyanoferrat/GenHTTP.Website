@@ -7,7 +7,7 @@ cascade:
 ---
 
 Handlers are responsible for analyzing HTTP requests and to serve responses to the connected client. All features
-available in the SDK are either provided by handlers or [concerns](../concerns).
+available in the SDK are either provided by handlers or [concerns](../concerns/).
 
 If you would like to add an additional feature that cannot be achieved using the existing
 functionality to the SDK or your own web application, you may implement

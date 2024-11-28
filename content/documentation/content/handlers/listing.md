@@ -10,7 +10,7 @@ cascade:
 {{< /cards >}}
 
 The directory listing provider serves a simple web UI allowing users to browse directories
-and files read from a [resource tree](../../concepts/resources) below the specified path.
+and files read from a [resource tree](../../concepts/resources/) below the specified path.
 
 ```csharp
 var tree = ResourceTree.FromDirectory("/var/www/documents/");

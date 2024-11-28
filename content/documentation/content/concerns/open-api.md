@@ -97,9 +97,9 @@ var description = ApiDescription.Create()
 
 ## Custom Discovery
 
-By default, automatic discovery will handle [functional handlers](../../frameworks/functional),
-[webservices](../../frameworks/webservices) and [controllers](../../frameworks/controllers)
-and will traverse automatically through [layouts](../../handlers/layouting) and
+By default, automatic discovery will handle [functional handlers](../../frameworks/functional/),
+[webservices](../../frameworks/webservices/) and [controllers](../../frameworks/controllers/)
+and will traverse automatically through [layouts](../../handlers/layouting/) and
 [concerns](../). If you would like to support an additional handler, you can
 initialize a registry and pass a custom `IApiExplorer`.
 

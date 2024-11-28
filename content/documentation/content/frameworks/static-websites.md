@@ -14,7 +14,7 @@ This handler provides an easy way to serve a static website such as a [Hugo](htt
 application to your clients.
 
 {{< callout type="info" >}}
-Static websites can quickly be created by using a [project template](../../templates).
+Static websites can quickly be created by using a [project template](../../templates/).
 {{< /callout >}}
 
 ## Creating a Static Website

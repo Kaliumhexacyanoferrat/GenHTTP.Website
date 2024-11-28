@@ -64,5 +64,5 @@ await Host.Create()
           .RunAsync();
 ```
 
-The GenHTTP SDK uses the same mechanism to achieve functionality such as [compression](./compression)
-or support for [CORS](./cors).
+The GenHTTP SDK uses the same mechanism to achieve functionality such as [compression](./compression/)
+or support for [CORS](./cors/).

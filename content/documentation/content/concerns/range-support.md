@@ -16,7 +16,7 @@ needed by every web application, [range support](https://developer.mozilla.org/e
 disabled by default.
 
 To enable this feature on server level, you may pass an
-additional flag to the [default configuration](../defaults).
+additional flag to the [default configuration](../defaults/).
 
 ```csharp
 await Host.Create()

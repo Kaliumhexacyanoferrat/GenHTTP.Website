@@ -44,9 +44,9 @@ and release all claimed resources. This way, server instances can easily be used
 for service mocks in integration and component testing as well. 
 
 By default, the server will listen to all IP addresses on port 8080. These
-settings can be adjusted [as needed](./endpoints). The `Defaults()` call adds 
-[typical features](/documentation/content/concerns/defaults) such as [compression](/documentation/content/concerns/compression)
-and [client caching](/documentation/content/concerns/client-caching-validation).
+settings can be adjusted [as needed](./endpoints/). The `Defaults()` call adds 
+[typical features](/documentation/content/concerns/defaults/) such as [compression](/documentation/content/concerns/compression/)
+and [client caching](/documentation/content/concerns/client-caching-validation/).
 
 ## Security
 

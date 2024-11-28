@@ -13,11 +13,11 @@ cluster in the cloud.
 
 As GenHTTP is built on top of .NET, we can use the base images provided by Microsoft
 to setup our build chain. For a list of available base images,
-see their [Docker Hub](https://hub.docker.com/_/microsoft-dotnet-core-sdk/) page.
+see their [Docker Hub](https://hub.docker.com/r/microsoft/dotnet-sdk) page.
 
 ## Building Template Apps
 
-If you created your application using a [project template](../content/templates),
+If you created your application using a [project template](../content/templates/),
 you will see that matching Docker files have already been created. Building and
 running your app is as easy as:
 
