@@ -2,7 +2,7 @@
 FROM alpine:latest AS build
 
 # Install the Hugo go app.
-RUN apk add --update hugo
+RUN apk add --update hugo go
 
 WORKDIR /opt/HugoApp
 
