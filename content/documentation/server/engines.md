@@ -1,7 +1,7 @@
 ﻿---
 title: Engines
 weight: 1
-description: 'Configure the GenHTTP webserver to listen on different ports or endpoints.'
+description: 'Describes the webserver engines available to run GenHTTP projects with (such as Kestrel).'
 cascade:
   type: docs
 ---
