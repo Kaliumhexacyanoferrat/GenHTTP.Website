@@ -380,6 +380,9 @@ var injection = Injection.Default()
                          .Add(new UserInjector<BasicAuthenticationUser>());
 ```
 
+Instead of injecting the user, you can also use a built-in [interceptor](#interceptors)
+to achieve [role-based authorization](../../concerns/authentication/#role-based-authorization).
+
 ## Response Generation
 
 This section describes the various mechanisms to generate a service response.

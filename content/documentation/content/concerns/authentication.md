@@ -23,7 +23,7 @@ The user object for the current request will be determined by the installed auth
 concern. The concern will allow you to add your custom user object there.
 
 For frameworks such as webservices or controllers, you can also inject the user instance in
-your method calls (see [user injection](/documentation/content/concepts/definitions/#user-injection)).
+your method calls (see [user injection](/documentation/content/concepts/definitions/#user-injection)) or use [role-based authorization](#role-based-authorization).
 
 ## API Key Authentication
 
@@ -183,4 +183,50 @@ securedContent.Authentication((user, password) => {
    // validate the given credentials here and return your custom user object which needs to implement IUser
    return new(new BasicAuthenticationUser(user));
 });
+```
+
+## Role-based Authorization
+
+If you are using one of the service frameworks, you probably want to authorize users on method level
+(e.g. an admin is allowed to delete something whereas regular users are not). This can be achieved
+by setting the `Roles` property on user creation in combination with the `[RequireRole]`
+interceptor:
+
+```csharp
+using GenHTTP.Api.Content.Authentication;
+using GenHTTP.Api.Protocol;
+
+using GenHTTP.Engine.Internal;
+
+using GenHTTP.Modules.Authentication;
+using GenHTTP.Modules.Authentication.ApiKey;
+using GenHTTP.Modules.Functional;
+
+var auth = ApiKeyAuthentication.Create()
+                               .WithQueryParameter("apiKey")
+                               .Authenticator(AuthenticateRequestAsync);
+
+var app = Inline.Create()
+                .Get("/admin", [RequireRole("ADMIN")] () => "You are an administrator")
+                .Get("/user", [RequireRole("USER")] () => "You are an user")
+                .Authentication(auth);
+
+await Host.Create()
+          .Handler(app)
+          .RunAsync();
+
+static ValueTask<IUser?> AuthenticateRequestAsync(IRequest request, string apiKey)
+{
+    if (apiKey == "abc")
+    {
+        return new(new ApiKeyUser(apiKey, "ADMIN", "USER"));
+    }
+
+    if (apiKey == "bcd")
+    {
+        return new(new ApiKeyUser(apiKey, "USER"));
+    }
+
+    return default;
+}
 ```
