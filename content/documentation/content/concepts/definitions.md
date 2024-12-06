@@ -855,3 +855,170 @@ var options = new JsonSerializerOptions()
 
 var serialization = Serialization.Default(jsonOptions: options);
 ```
+
+## Interceptors
+
+With interceptors, you can add behavior on operation-level by using additional attributes. This is useful
+for features such as authorization.
+
+{{< tabs items="Webservices,Functional,Controllers" >}}
+
+{{< tab >}}
+  ```csharp
+  using System.Net;
+  
+  using GenHTTP.Api.Content;
+  using GenHTTP.Api.Protocol;
+  
+  using GenHTTP.Engine.Internal;
+  
+  using GenHTTP.Modules.Layouting;
+  using GenHTTP.Modules.Reflection;
+  using GenHTTP.Modules.Reflection.Operations;
+  using GenHTTP.Modules.Webservices;
+  
+  var app = Layout.Create().AddService<MyService>("service");
+  
+  await Host.Create()
+            .Handler(app)
+            .RunAsync();
+  
+  class RequireLocalhostAttribute : InterceptWithAttribute<LocalhostInterceptor>;
+  
+  class LocalhostInterceptor : IOperationInterceptor
+  {
+  
+      public void Configure(object attribute)
+      {
+          if (attribute is RequireLocalhostAttribute)
+          {
+              // ...
+          }
+      }
+  
+      public ValueTask<InterceptionResult?> InterceptAsync(IRequest request, Operation operation, IReadOnlyDictionary<string, object?> arguments)
+      {
+          if (!request.Client.IPAddress.Equals(IPAddress.Loopback))
+          {
+              throw new ProviderException(ResponseStatus.Forbidden, "Access from localhost only!");
+          }
+  
+          return default;
+      }
+  
+  }
+  
+  class MyService
+  {
+  
+      [ResourceMethod]
+      [RequireLocalhost]
+      public string MyMethod() => "Hello to localhost";
+  
+  }
+  ```
+{{< /tab >}}
+
+{{< tab >}}
+  ```csharp
+  using System.Net;
+  
+  using GenHTTP.Api.Content;
+  using GenHTTP.Api.Protocol;
+  
+  using GenHTTP.Engine.Internal;
+  
+  using GenHTTP.Modules.Functional;
+  using GenHTTP.Modules.Reflection;
+  using GenHTTP.Modules.Reflection.Operations;
+  
+  var app = Inline.Create().Get([RequireLocalhost]() => "Hello to localhost!");
+  
+  await Host.Create()
+            .Handler(app)
+            .RunAsync();
+  
+  class RequireLocalhostAttribute : InterceptWithAttribute<LocalhostInterceptor>;
+  
+  class LocalhostInterceptor : IOperationInterceptor
+  {
+  
+      public void Configure(object attribute)
+      {
+          if (attribute is RequireLocalhostAttribute)
+          {
+              // ...
+          }
+      }
+  
+      public ValueTask<InterceptionResult?> InterceptAsync(IRequest request, Operation operation, IReadOnlyDictionary<string, object?> arguments)
+      {
+          if (!request.Client.IPAddress.Equals(IPAddress.Loopback))
+          {
+              throw new ProviderException(ResponseStatus.Forbidden, "Access from localhost only!");
+          }
+  
+          return default;
+      }
+  
+  }
+  ```
+{{< /tab >}}
+
+{{< tab >}}
+  ```csharp
+  using System.Net;
+  
+  using GenHTTP.Api.Content;
+  using GenHTTP.Api.Protocol;
+  
+  using GenHTTP.Engine.Internal;
+  
+  using GenHTTP.Modules.Controllers;
+  using GenHTTP.Modules.Layouting;
+  using GenHTTP.Modules.Reflection;
+  using GenHTTP.Modules.Reflection.Operations;
+  
+  var app = Layout.Create().AddController<MyController>("controller");
+  
+  await Host.Create()
+            .Handler(app)
+            .RunAsync();
+  
+  class RequireLocalhostAttribute : InterceptWithAttribute<LocalhostInterceptor>;
+  
+  class LocalhostInterceptor : IOperationInterceptor
+  {
+  
+      public void Configure(object attribute)
+      {
+          if (attribute is RequireLocalhostAttribute)
+          {
+              // ...
+          }
+      }
+  
+      public ValueTask<InterceptionResult?> InterceptAsync(IRequest request, Operation operation, IReadOnlyDictionary<string, object?> arguments)
+      {
+          if (!request.Client.IPAddress.Equals(IPAddress.Loopback))
+          {
+              throw new ProviderException(ResponseStatus.Forbidden, "Access from localhost only!");
+          }
+  
+          return default;
+      }
+  
+  }
+  
+  class MyController
+  {
+  
+      [ControllerAction(RequestMethod.Get)]
+      [RequireLocalhost]
+      public string MyMethod() => "Hello to localhost";
+  
+  }
+  ```
+{{< /tab >}}
+
+{{< /tabs >}}
