@@ -54,6 +54,8 @@ functionality, you can also implement [custom handlers](./handlers/).
 
   {{< card link="./concerns/authentication/" title="Authentication" >}}
 
+  {{< card link="./concerns/localization/" title="Localization" >}}
+
   {{< card link="./concerns/client-caching-policy/" title="Client Caching (Policy)" >}}
 
   {{< card link="./concerns/client-caching-validation/" title="Client Caching (Validation)" >}}
