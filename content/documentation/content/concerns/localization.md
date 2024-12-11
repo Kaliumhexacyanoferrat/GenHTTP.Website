@@ -129,5 +129,7 @@ In your `.csproj` file:
 In your docker file:
 
 ```dockerfile
+RUN apk add --no-cache icu-data-full icu-libs
+    
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 ```
