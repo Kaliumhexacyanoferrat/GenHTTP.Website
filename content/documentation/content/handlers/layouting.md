@@ -76,6 +76,24 @@ await Host.Create()
           .RunAsync();
 ```
 
+### Multiple Segments
+
+To create a nested path structure (such as `/api/v1/`) you can nest layouts within layouts. To make this easier,
+there is an extension method that accepts an array of segments and internally creates
+additional layouts as needed:
+
+```csharp
+var api = Layout.Create()
+                .AddService<...>("...");
+
+var app = Layout.Create()
+                .Add(["api", "v1"], api);
+
+await Host.Create()
+          .Handler(app)
+          .RunAsync();
+```
+
 ## Fallbacks
 
 If a handler cannot provide a response it will return `null` which causes the server
