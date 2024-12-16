@@ -95,6 +95,11 @@ var description = ApiDescription.Create()
                                 .Caching(false);
 ```
 
+## Visualizing Definitions
+
+To explore your APIs using graphical applications such as Swagger or Redoc,
+you can use the [API browsing](../../handlers/api-browsing/) functionality.
+
 ## Custom Discovery
 
 By default, automatic discovery will handle [functional handlers](../../frameworks/functional/),
