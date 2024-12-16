@@ -10,8 +10,8 @@ cascade:
 {{< /cards >}}
 
 This module adds JavaScript based applications to visualize an Open API
-definition such as [Swagger UI](https://swagger.io/tools/swagger-ui/) or 
-[Redoc](https://redocly.com/) to your app. All resources required by those
+definition such as [Swagger UI](https://swagger.io/tools/swagger-ui/), 
+[Redoc](https://redocly.com/) or [Scalar](https://scalar.com/) to your app. All resources required by those
 apps are hosted locally so no internet connection is required.
 
 The following example creates an API, the corresponding Open API definition
@@ -35,7 +35,8 @@ and two endpoints to host Swagger and Redoc.
                   .AddService<BookService>("books")
                   .AddOpenApi()
                   .AddSwaggerUI()
-                  .AddRedoc();
+                  .AddRedoc()
+                  .AddScalar();
   
   await Host.Create()
             .Handler(app)
@@ -85,7 +86,8 @@ and two endpoints to host Swagger and Redoc.
                   .Add("books", bookApi)
                   .AddOpenApi()
                   .AddSwaggerUI()
-                  .AddRedoc();
+                  .AddRedoc()
+                  .AddScalar();
 
   await Host.Create()
             .Handler(app)
@@ -114,7 +116,8 @@ and two endpoints to host Swagger and Redoc.
                   .AddController<BookController>("books")
                   .AddOpenApi()
                   .AddSwaggerUI()
-                  .AddRedoc();
+                  .AddRedoc()
+                  .AddScalar();
 
   await Host.Create()
             .Handler(app)
@@ -146,8 +149,8 @@ and two endpoints to host Swagger and Redoc.
 
 {{< /tabs >}}
 
-After running this sample you can view both http://localhost:8080/swagger/ and http://localhost:8080/redoc/
-in your browser.
+After running this sample you can view http://localhost:8080/swagger/, http://localhost:8080/redoc/
+and http://localhost:8080/scalar/ in your browser.
 
 ## Referencing a Definition
 
