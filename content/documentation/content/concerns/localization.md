@@ -18,30 +18,106 @@ serve content based on those.
 By default, the concern will read the `Accept-Language` header
 and set the `CultureInfo.CurrentUICulture`accordingly. 
 
-```csharp
-using System.Globalization;
+{{< tabs items="Webservices,Functional,Controllers" >}}
 
-using GenHTTP.Engine.Internal;
+{{< tab >}}
+  ```csharp
+  using System.Globalization;
 
-using GenHTTP.Modules.Functional;
-using GenHTTP.Modules.I18n;
-using GenHTTP.Modules.Practices;
+  using GenHTTP.Engine.Internal;
 
-var localization = Localization.Create();
+  using GenHTTP.Modules.I18n;
+  using GenHTTP.Modules.Layouting;
+  using GenHTTP.Modules.Practices;
+  using GenHTTP.Modules.Webservices;
 
-var app = Inline.Create()
-                .Get(() => CultureInfo.CurrentUICulture.ToString())
-                .Add(localization);
+  var localization = Localization.Create();
 
-await Host.Create()
-          .Handler(app)
-          .Defaults()
-          .Development()
-          .Console()
-          .RunAsync();
-```
+  var app = Layout.Create()
+                  .AddService<LocalizedService>("service")
+                  .Add(localization);
 
-Running and accessing this example app via http://localhost:8080 in your
+  await Host.Create()
+            .Handler(app)
+            .Defaults()
+            .Development()
+            .Console()
+            .RunAsync();
+
+  public class LocalizedService
+  {
+
+      [ResourceMethod]
+      public string GetLocalized() => CultureInfo.CurrentUICulture.ToString();
+
+  }
+  ```
+{{< /tab >}}
+
+{{< tab >}}
+  ```csharp
+  using System.Globalization;
+
+  using GenHTTP.Engine.Internal;
+
+  using GenHTTP.Modules.Functional;
+  using GenHTTP.Modules.I18n;
+  using GenHTTP.Modules.Practices;
+
+  var localization = Localization.Create();
+
+  var app = Inline.Create()
+                  .Get("/service/", () => CultureInfo.CurrentUICulture.ToString())
+                  .Add(localization);
+
+  await Host.Create()
+            .Handler(app)
+            .Defaults()
+            .Development()
+            .Console()
+            .RunAsync();
+  ```
+{{< /tab >}}
+
+{{< tab >}}
+  ```csharp
+  using System.Globalization;
+
+  using GenHTTP.Api.Protocol;
+
+  using GenHTTP.Engine.Internal;
+
+  using GenHTTP.Modules.Controllers;
+  using GenHTTP.Modules.I18n;
+  using GenHTTP.Modules.Layouting;
+  using GenHTTP.Modules.Practices;
+
+  var localization = Localization.Create();
+
+  var app = Layout.Create()
+                  .AddController<LocalizedController>("service")
+                  .Add(localization);
+
+  await Host.Create()
+            .Handler(app)
+            .Defaults()
+            .Development()
+            .Console()
+            .RunAsync();
+
+  public class LocalizedController
+  {
+
+      [ControllerAction(RequestMethod.Get)]
+      public string Index() => CultureInfo.CurrentUICulture.ToString();
+
+  }
+  ```
+{{< /tab >}}
+
+{{< /tabs >}}
+
+Running and accessing this example app via http://localhost:8080/service/ in your
 browser will print the preferred locale of your client.
 
 ## Language Negotiation

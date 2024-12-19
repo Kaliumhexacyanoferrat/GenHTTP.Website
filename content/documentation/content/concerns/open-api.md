@@ -12,25 +12,98 @@ type: docs
 This concern dynamically generates and serves an [Open API v3 specification](https://github.com/OAI/OpenAPI-Specification) using 
 [NSwag](https://github.com/RicoSuter/NSwag) for all detected API endpoints.
 
-```csharp
-using GenHTTP.Engine.Internal;
+{{< tabs items="Webservices,Functional,Controllers" >}}
 
-using GenHTTP.Modules.Functional;
-using GenHTTP.Modules.OpenApi;
+{{< tab >}}
+  ```csharp
+  using GenHTTP.Engine.Internal;
 
-var api = Inline.Create()
-                .Get("/users", () => new List<User>())
-                .Get("/user/:id", (int id) => new User(id, "John Doe"))
-                .AddOpenApi();
+  using GenHTTP.Modules.Layouting;
+  using GenHTTP.Modules.OpenApi;
+  using GenHTTP.Modules.Webservices;
 
-await Host.Create()
-          .Handler(api)
-          .Development()
-          .Console()
-          .RunAsync();
+  var api = Layout.Create()
+                  .AddService<UserService>("users")
+                  .AddOpenApi();
 
-record User(int ID, string Name);
-```
+  await Host.Create()
+            .Handler(api)
+            .Development()
+            .Console()
+            .RunAsync();
+
+  public record User(int ID, string Name);
+
+  public class UserService
+  {
+
+      [ResourceMethod]
+      public List<User> GetUsers() => [];
+
+      [ResourceMethod(":id")]
+      public User GetUser(int id) => new User(id, "John Doe");
+
+  }
+  ```
+{{< /tab >}}
+
+{{< tab >}}
+  ```csharp
+  using GenHTTP.Engine.Internal;
+
+  using GenHTTP.Modules.Functional;
+  using GenHTTP.Modules.OpenApi;
+
+  var api = Inline.Create()
+                  .Get("/users", () => new List<User>())
+                  .Get("/user/:id", (int id) => new User(id, "John Doe"))
+                  .AddOpenApi();
+
+  await Host.Create()
+            .Handler(api)
+            .Development()
+            .Console()
+            .RunAsync();
+
+  record User(int ID, string Name);
+  ```
+{{< /tab >}}
+
+{{< tab >}}
+  ```csharp
+  using GenHTTP.Api.Protocol;
+  using GenHTTP.Engine.Internal;
+
+  using GenHTTP.Modules.Controllers;
+  using GenHTTP.Modules.Layouting;
+  using GenHTTP.Modules.OpenApi;
+
+  var api = Layout.Create()
+                  .AddController<UserController>("users")
+                  .AddOpenApi();
+
+  await Host.Create()
+            .Handler(api)
+            .Development()
+            .Console()
+            .RunAsync();
+
+  public record User(int ID, string Name);
+
+  public class UserController
+  {
+
+      [ControllerAction(RequestMethod.Get)]
+      public List<User> List() => [];
+
+      [ControllerAction(RequestMethod.Get)]
+      public User Find([FromPath] int id) => new(id, "John Doe");
+
+  }
+  ```
+{{< /tab >}}
+
+{{< /tabs >}}
 
 This example provides a functional API with two operations and hosts a self-describing
 Open API specification via http://localhost:8080/openapi.json.
@@ -119,7 +192,7 @@ using NSwag;
 var discovery = ApiDiscovery.Default()
                             .Add<RedirectExplorer>();
 
-var description = ApiDescription.With(discovery).Caching(false);
+var description = ApiDescription.With(discovery);
 
 var api = Layout.Create()
                 .Add("google", Redirect.To("https://google.com"))
