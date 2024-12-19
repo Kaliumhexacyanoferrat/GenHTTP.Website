@@ -94,6 +94,21 @@ await Host.Create()
           .RunAsync();
 ```
 
+### Imperative Flow
+
+Instead of creating and adding new layouts for each sub section yourself, you can also directly create a new layout
+by calling the `AddSegment()` method on an existing builder. 
+This flavor feels more imperative and might suit some project
+setup procedures better than the functional one.
+
+```csharp
+var app = Layout.Create();
+
+var api = app.AddSegment("api"); // or AddSegments([ "api", "v1" ])
+
+api.AddService<SomeService>("some");
+```
+
 ## Fallbacks
 
 If a handler cannot provide a response it will return `null` which causes the server
