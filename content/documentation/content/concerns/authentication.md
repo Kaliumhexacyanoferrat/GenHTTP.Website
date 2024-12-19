@@ -219,41 +219,155 @@ If you are using one of the service frameworks, you probably want to authorize u
 by setting the `Roles` property on user creation in combination with the `[RequireRole]`
 interceptor:
 
-```csharp
-using GenHTTP.Api.Content.Authentication;
-using GenHTTP.Api.Protocol;
+{{< tabs items="Webservices,Functional,Controllers" >}}
 
-using GenHTTP.Engine.Internal;
+{{< tab >}}
+  ```csharp
+  using GenHTTP.Api.Content.Authentication;
+  using GenHTTP.Api.Protocol;
 
-using GenHTTP.Modules.Authentication;
-using GenHTTP.Modules.Authentication.ApiKey;
-using GenHTTP.Modules.Functional;
+  using GenHTTP.Engine.Internal;
 
-var auth = ApiKeyAuthentication.Create()
-                               .WithQueryParameter("apiKey")
-                               .Authenticator(AuthenticateRequestAsync);
+  using GenHTTP.Modules.Authentication;
+  using GenHTTP.Modules.Authentication.ApiKey;
+  using GenHTTP.Modules.Layouting;
+  using GenHTTP.Modules.Webservices;
 
-var app = Inline.Create()
-                .Get("/admin", [RequireRole("ADMIN")] () => "You are an administrator")
-                .Get("/user", [RequireRole("USER")] () => "You are an user")
-                .Authentication(auth);
+  var auth = ApiKeyAuthentication.Create()
+                                 .WithQueryParameter("apiKey")
+                                 .Authenticator(AuthenticateRequestAsync);
 
-await Host.Create()
-          .Handler(app)
-          .RunAsync();
+  var app = Layout.Create()
+                  .AddService<MyService>("service")
+                  .Authentication(auth);
 
-static ValueTask<IUser?> AuthenticateRequestAsync(IRequest request, string apiKey)
-{
-    if (apiKey == "abc")
-    {
-        return new(new ApiKeyUser(apiKey, "ADMIN", "USER"));
-    }
+  await Host.Create()
+            .Handler(app)
+            .RunAsync();
 
-    if (apiKey == "bcd")
-    {
-        return new(new ApiKeyUser(apiKey, "USER"));
-    }
+  static ValueTask<IUser?> AuthenticateRequestAsync(IRequest request, string apiKey)
+  {
+      if (apiKey == "abc")
+      {
+          return new(new ApiKeyUser(apiKey, "ADMIN", "USER"));
+      }
 
-    return default;
-}
-```
+      if (apiKey == "bcd")
+      {
+          return new(new ApiKeyUser(apiKey, "USER"));
+      }
+
+      return default;
+  }
+
+  public class MyService
+  {
+
+      [ResourceMethod("/admin")]
+      [RequireRole("ADMIN")]
+      public string CheckAdmin() => "You are an administrator";
+
+      [ResourceMethod("/user")]
+      [RequireRole("USER")]
+      public string CheckUser() => "You are an user";
+
+  }
+  ```
+{{< /tab >}}
+
+{{< tab >}}
+  ```csharp
+  using GenHTTP.Api.Content.Authentication;
+  using GenHTTP.Api.Protocol;
+
+  using GenHTTP.Engine.Internal;
+
+  using GenHTTP.Modules.Authentication;
+  using GenHTTP.Modules.Authentication.ApiKey;
+  using GenHTTP.Modules.Functional;
+
+  var auth = ApiKeyAuthentication.Create()
+                                 .WithQueryParameter("apiKey")
+                                 .Authenticator(AuthenticateRequestAsync);
+
+  var app = Inline.Create()
+                  .Get("/admin", [RequireRole("ADMIN")] () => "You are an administrator")
+                  .Get("/user", [RequireRole("USER")] () => "You are an user")
+                  .Authentication(auth);
+
+  await Host.Create()
+            .Handler(app)
+            .RunAsync();
+
+  static ValueTask<IUser?> AuthenticateRequestAsync(IRequest request, string apiKey)
+  {
+      if (apiKey == "abc")
+      {
+          return new(new ApiKeyUser(apiKey, "ADMIN", "USER"));
+      }
+
+      if (apiKey == "bcd")
+      {
+          return new(new ApiKeyUser(apiKey, "USER"));
+      }
+
+      return default;
+  }
+  ```
+{{< /tab >}}
+
+{{< tab >}}
+  ```csharp
+  using GenHTTP.Api.Content.Authentication;
+  using GenHTTP.Api.Protocol;
+
+  using GenHTTP.Engine.Internal;
+
+  using GenHTTP.Modules.Authentication;
+  using GenHTTP.Modules.Authentication.ApiKey;
+  using GenHTTP.Modules.Controllers;
+  using GenHTTP.Modules.Layouting;
+
+  var auth = ApiKeyAuthentication.Create()
+                                 .WithQueryParameter("apiKey")
+                                 .Authenticator(AuthenticateRequestAsync);
+
+  var app = Layout.Create()
+                  .AddController<MyController>("service")
+                  .Authentication(auth);
+
+  await Host.Create()
+            .Handler(app)
+            .RunAsync();
+
+  static ValueTask<IUser?> AuthenticateRequestAsync(IRequest request, string apiKey)
+  {
+      if (apiKey == "abc")
+      {
+          return new(new ApiKeyUser(apiKey, "ADMIN", "USER"));
+      }
+
+      if (apiKey == "bcd")
+      {
+          return new(new ApiKeyUser(apiKey, "USER"));
+      }
+
+      return default;
+  }
+
+  public class MyController
+  {
+
+      [ControllerAction(RequestMethod.Get)]
+      [RequireRole("ADMIN")]
+      public string CheckAdmin() => "You are an administrator";
+
+      [ControllerAction(RequestMethod.Get)]
+      [RequireRole("USER")]
+      public string CheckUser() => "You are an user";
+
+  }
+  ```
+{{< /tab >}}
+
+{{< /tabs >}}
