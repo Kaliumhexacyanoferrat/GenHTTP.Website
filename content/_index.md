@@ -11,7 +11,7 @@ date = 2024-06-20T14:10:41+02:00
 <br /><br />
 
 {{< hextra/hero-subtitle >}}
-  A configuration-free framework for building REST APIs on .NET Core.
+  A configuration-free alternative to ASP.NET Core for building REST APIs on .NET.
 {{< /hextra/hero-subtitle >}}
 
 <br /><br />
