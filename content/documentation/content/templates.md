@@ -37,6 +37,7 @@ The following templates are available to be used:
 | `genhttp-webservice-minimal`     | A project that will host a minimal web service in a single file using the [functional module](../frameworks/functional/). |
 | `genhttp-webservice-controllers` | A project that will host a web service using [controllers](../frameworks/controllers/).                                   |  
 | `genhttp-websocket`              | A project that will host a new [web socket](../frameworks/websockets/).                                                   |
+| `genhttp-sse`                    | A project serving a SSE [event stream](../handlers/server-sent-events/).                                                  |
 | `genhttp-website-static`         | Serves a [static website](../frameworks/static-websites/) from the file system.                                           |
 | `genhttp-spa`                    | Serves the distribution files of a [Single Page Application (SPA)](../frameworks/single-page-applications/).              |
 

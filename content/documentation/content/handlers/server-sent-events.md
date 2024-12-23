@@ -14,6 +14,10 @@ browsers to subscribe to a stream of relevant events without the overhead added 
 of websockets. Therefore they are useful whenever the server would like to notify the client about changes. This article
 describes how to host an event source in C# using the GenHTTP web server.
 
+{{< callout type="info" >}}
+Event sources can quickly be created by using a [project template](../../templates/).
+{{< /callout >}}
+
 ## Example
 
 The following example will host a SSE endpoint that will stream

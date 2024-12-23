@@ -13,6 +13,10 @@ cascade:
 The websocket handler integrates [Fleck](https://github.com/statianzo/Fleck) to upgrade client connections so that you
 can use websocket functionality in your application.
 
+{{< callout type="info" >}}
+A project serving a websocket can quickly be created by using a [project template](../../templates/).
+{{< /callout >}}
+
 The following example hosts a simple console application that provides a websocket server that will echo received messages back
 to connected clients:
 
