@@ -23,7 +23,7 @@ running your app is as easy as:
 
 ```bash
 # creates an image named "myproject"
-docker build -f Dockerfile.linux-x64 -t myproject .
+docker build -f Dockerfile -t myproject .
 
 # runs your application
 docker run -p 8080:8080 -d myproject
@@ -36,29 +36,28 @@ you will not need to install the .NET SDK or any other dependencies besides Dock
 ## Creating a new Dockerfile
 
 If you did not use a project template, create a new file named `Dockerfile` in the
-root directory of your repository. The following example is for an x64 image
-running on Linux:
+root directory of your repository and paste the following content:
 
 ```dockerfile
-FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build
+ARG TARGETARCH
 WORKDIR /source
 
-# copy csproj and restore as distinct layers
-COPY Project/*.csproj .
-RUN dotnet restore -r linux-musl-x64
+COPY --link Project/*.csproj .
+RUN dotnet restore -a "$TARGETARCH"
 
-# copy and publish app and libraries
-COPY Project/ .
-RUN dotnet publish -c release -o /app -r linux-musl-x64 --no-restore /p:PublishTrimmed=true /p:TrimMode=Link
+COPY --link Project/. .
+RUN dotnet publish --no-restore -a "$TARGETARCH" -o /app
 
-# final stage/image
-FROM mcr.microsoft.com/dotnet/runtime-deps:9.0-alpine-amd64
-WORKDIR /app
-COPY --from=build /app .
+# Enable globalization and time zones:
+# https://github.com/dotnet/dotnet-docker/blob/main/samples/enable-globalization.md
 
-ENTRYPOINT ["./Project"]
-
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine
 EXPOSE 8080
+WORKDIR /app
+COPY --link --from=build /app .
+USER $APP_UID
+ENTRYPOINT ["./Project"]
 ```
 
 This assumes that you named your project `Project`. With this file you can use
@@ -66,7 +65,7 @@ the commands in the previous section to build and run your project.
 
 ## Managing dependencies
 
-Typically your web application will have some dependencies such as databases
+Typically, your web application will have some dependencies such as databases
 or a redis server. [docker compose](https://docs.docker.com/compose/gettingstarted/)
 allows you to define and maintain the whole infrastructure needed by your app
 in a single file.
