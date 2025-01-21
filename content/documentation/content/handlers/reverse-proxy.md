@@ -10,12 +10,14 @@ cascade:
 {{< /cards >}}
 
 The reverse proxy content provider allows to embed content from another
-web server into your application. Content returned by the upstream
-server will not be embedded into a templated page.
+web server into your application.
 
 ```csharp
+var proxy = ReverseProxy.Create()
+                        .Upstream("http://my-cdn:8080/");
+
 await Host.Create()
-          .Handler(ReverseProxy.Create().Upstream("http://my-cdn:8080/"))
+          .Handler(proxy)
           .RunAsync();
 ```
 
@@ -24,3 +26,15 @@ proxied to http://my-cdn:8080/.
 
 If the upstream server is either not available or does not respond in time,
 the provider will return a HTTP 502/504 error page instead.
+
+## Adjustments
+
+The module internally uses the `HttpClient` to perform HTTP requests. If needed,
+you can pass actions to adjust the client as required.
+
+```csharp
+var proxy = ReverseProxy.Create()
+                        .Upstream("http://my-cdn:8080/")
+                        .AdjustHandler(h => h.Proxy = null)
+                        .AdjustClient(c => c.MaxResponseContentBufferSize = 10000);
+```
