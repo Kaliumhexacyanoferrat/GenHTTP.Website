@@ -12,6 +12,8 @@ handlers.
 
 {{< cards >}}
 
+  {{< card link="./routing/" title="Routing" >}}
+
   {{< card link="./definitions/" title="Method Definitions" >}}
   
   {{< card link="./resources/" title="Resources" >}}
