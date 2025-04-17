@@ -22,7 +22,7 @@ the `Advance()` method.
 
 To illustrate this concept, we will write a simple handler that exposes all drives
 on a Windows system by analyzing the requested drive and passing the request
-along to the [listing handler](../handlers/listing).
+along to the [listing handler](../../handlers/listing/).
 
 The handler first inspects the `Current` segment to be handled, therefore
 reading the drive to be listed. If a drive name has been passed by the client,
