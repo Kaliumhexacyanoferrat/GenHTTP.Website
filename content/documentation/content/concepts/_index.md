@@ -16,7 +16,7 @@ handlers.
 
   {{< card link="./definitions/" title="Method Definitions" >}}
   
-  {{< card link="./resources/" title="Resources" >
+  {{< card link="./resources/" title="Resources" >}}
 
   {{< card link="./dependency-injection/" title="Dependency Injection" >}}
   
