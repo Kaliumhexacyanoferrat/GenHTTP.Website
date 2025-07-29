@@ -110,9 +110,13 @@ functionality, you can also implement [custom handlers](./handlers/).
 
 {{< cards >}}
 
+  {{< card link="./concepts/routing/" title="Routing" >}}
+
   {{< card link="./concepts/definitions/" title="Method Definitions" >}}
 
   {{< card link="./concepts/resources/" title="Resources" >}}
+
+  {{< card link="./concepts/dependency-injection/" title="Dependency Injection" >}}
 
   {{< card link="./concepts/caches/" title="Caches" >}}
 
