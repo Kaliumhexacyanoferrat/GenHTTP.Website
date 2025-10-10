@@ -22,6 +22,7 @@ to connected clients:
 
 ```csharp
 using GenHTTP.Engine.Internal;
+
 using GenHTTP.Modules.Practices;
 using GenHTTP.Modules.Websockets;
 
@@ -32,16 +33,24 @@ var websocket = Websocket.Create()
                          {
                              Console.WriteLine("Open!");
                              allSockets.Add(socket);
+                             
+                             return Task.CompletedTask;
                          })
                          .OnClose((socket) =>
                          {
                              Console.WriteLine("Close!");
                              allSockets.Remove(socket);
+
+                             return Task.CompletedTask;
                          })
-                         .OnMessage((socket, message) =>
+                         .OnMessage(async (socket, message) =>
                          {
                              Console.WriteLine(message);
-                             allSockets.ToList().ForEach(s => s.Send("Echo: " + message));
+
+                             foreach (var client in allSockets.ToList())
+                             {
+                                 await client.SendAsync("Echo: " + message);
+                             }
                          });
 
 var host = Host.Create()
@@ -60,7 +69,7 @@ while (input != "exit")
     {
         foreach (var socket in allSockets.ToList())
         {
-            await socket.Send(input);
+            await socket.SendAsync(input);
         }
     }
 
