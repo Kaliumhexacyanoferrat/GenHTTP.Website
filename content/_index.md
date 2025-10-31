@@ -1,7 +1,7 @@
 +++
 title = ''
 description = 'Lightweight REST API HTTP server framework library written in C# with support for current standards such as Open API, JWT auth, Websockets and more.'
-date = 2024-06-20T14:10:41+02:00
+date = 2025-11-31T14:10:41+02:00
 +++
 
 {{< hextra/hero-headline >}}
@@ -38,7 +38,7 @@ date = 2024-06-20T14:10:41+02:00
   >}}
   {{< hextra/feature-card
     title="Flexible Hosting"
-    subtitle="Embed the tiny engine into your existing dotnet application (e.g. Windows Forms, WPF, MAUI, WinUI, UWP, Uno, Unity or console) or host it via Docker. No configuration files or other magic."
+    subtitle="Embed the tiny engine into your existing dotnet application (e.g. Windows Forms, WPF, MAUI, WinUI, UWP, Uno, Avalonia or console) or host it via Docker. No configuration files or other magic."
   >}}
   {{< hextra/feature-card
     title="Minimal Footprint"
