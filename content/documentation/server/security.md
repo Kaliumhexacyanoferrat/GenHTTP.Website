@@ -6,15 +6,15 @@ cascade:
   type: docs
 ---
 
-To add a SSL/TLS secured endpoint, you can use the overload of the `Bind` method:
+To add a SSL/TLS secured endpoint, you can use the overload of the `Bind()` method:
 
 ```csharp
 var certificate = X509CertificateLoader.LoadCertificateFromFile("./mycert.pfx");
 
 var server = Server.Create()
                    .Handler(...)
-                   .Bind(IPAddress.Any, 80)
-                   .Bind(IPAddress.Any, 443, certificate)
+                   .Bind(null, 80)
+                   .Bind(null, 443, certificate)
                    .Build();
 ```
 
@@ -43,8 +43,8 @@ public class CustomCertificateProvider : ICertificateProvider
 
 var server = Server.Create()
                    .Handler(...)
-                   .Bind(IPAddress.Any, 80)
-                   .Bind(IPAddress.Any, 443, new CustomCertificateProvider())
+                   .Bind(null, 80)
+                   .Bind(null, 443, new CustomCertificateProvider())
                    .Build();
 ```
 
@@ -76,8 +76,8 @@ public class MyValidator : ICertificateValidator
 
 var server = Server.Create()
                    .Handler(...)
-                   .Bind(IPAddress.Any, 80)
-                   .Bind(IPAddress.Any, 443, certificate, certificateValidator: new MyValidator())
+                   .Bind(null, 80)
+                   .Bind(null, 443, certificate, certificateValidator: new MyValidator())
                    .Build();
 ```
 
