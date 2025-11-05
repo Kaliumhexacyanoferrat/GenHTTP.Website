@@ -186,12 +186,15 @@ will describe the operation.
 
 ```csharp
 using GenHTTP.Api.Content;
+
 using GenHTTP.Engine.Internal;
-using GenHTTP.Modules.Basics;
-using GenHTTP.Modules.Basics.Providers;
+
+using GenHTTP.Modules.Redirects;
+using GenHTTP.Modules.Redirects.Provider;
 using GenHTTP.Modules.Layouting;
 using GenHTTP.Modules.OpenApi;
 using GenHTTP.Modules.OpenApi.Discovery;
+
 using NSwag;
 
 var discovery = ApiDiscovery.Default()

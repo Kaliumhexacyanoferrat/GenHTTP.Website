@@ -1,6 +1,6 @@
 ---
 title: Method Definitions
-weight: 3
+weight: 2
 cascade:
   type: docs
 ---

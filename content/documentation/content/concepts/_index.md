@@ -15,7 +15,9 @@ handlers.
   {{< card link="./routing/" title="Routing" >}}
 
   {{< card link="./definitions/" title="Method Definitions" >}}
-  
+
+  {{< card link="./response-content/" title="Response Content" >}}
+
   {{< card link="./resources/" title="Resources" >}}
 
   {{< card link="./dependency-injection/" title="Dependency Injection" >}}

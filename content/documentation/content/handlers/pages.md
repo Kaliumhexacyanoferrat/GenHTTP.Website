@@ -1,5 +1,5 @@
 ﻿---
-title: Redirects
+title: Pages
 description: 'Renders HTML pages from template files'
 cascade:
   type: docs
