@@ -39,25 +39,38 @@ If you did not use a project template, create a new file named `Dockerfile` in t
 root directory of your repository and paste the following content:
 
 ```dockerfile
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build
-ARG TARGETARCH
+FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
+
+# uncomment those lines to enable globalization / localization features
+# RUN apk add --no-cache icu-libs tzdata
+# ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+
 WORKDIR /source
 
-COPY --link Project/*.csproj .
-RUN dotnet restore -a "$TARGETARCH"
+# copy csproj and restore as distinct layers
+COPY Project/*.csproj .
+RUN dotnet restore -r linux-musl-x64
 
-COPY --link Project/. .
-RUN dotnet publish --no-restore -a "$TARGETARCH" -o /app
+# copy and publish app and libraries
+COPY Project/ .
+RUN dotnet publish -c release -o /app -r linux-musl-x64 --no-restore
 
-# Enable globalization and time zones:
-# https://github.com/dotnet/dotnet-docker/blob/main/samples/enable-globalization.md
+# final stage/image
+FROM mcr.microsoft.com/dotnet/runtime:10.0-alpine
 
-FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine
-EXPOSE 8080
+# or FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine for Kestrel
+
+ENV DOTNET_EnableDiagnostics=0 \
+    DOTNET_gcServer=1 \
+    DOTNET_TieredPGO=1 \
+    DOTNET_ReadyToRun=1
+
 WORKDIR /app
-COPY --link --from=build /app .
-USER $APP_UID
-ENTRYPOINT ["./Project"]
+COPY --from=build /app .
+
+ENTRYPOINT ["dotnet", "Project.dll"]
+
+EXPOSE 8080
 ```
 
 This assumes that you named your project `Project`. With this file you can use
