@@ -14,6 +14,28 @@ functionality to the SDK or your own web application, you may implement
 a custom handler instance. The following example will generate a simple text response:
 
 ```csharp
+using GenHTTP.Api.Protocol;
+using GenHTTP.Engine.Internal;
+using GenHTTP.Modules.IO;
+
+var customHandler = Handler.From(r =>
+{
+    return r.Respond()
+            .Content("Hello World")
+            .Type(ContentType.TextPlain)
+            .Build();
+});
+
+await Host.Create()
+          .Handler(customHandler)
+          .RunAsync();
+```
+
+This code uses the `Handler` shortcut provided by the `IO` module to reduce the
+boilerplate required to implement a handler class. The full version of the example above
+would look like this:
+
+```csharp
 using GenHTTP.Api.Content;
 using GenHTTP.Api.Protocol;
 
@@ -64,9 +86,6 @@ await Host.Create()
           .Handler(new CustomHandlerBuilder())
           .RunAsync();
 ```
-
-The usage of the builder pattern is not required here but you will notice that all handlers
-provided by the framework use this scheme (which basically allows to add concerns everywhere).
 
 As handlers are invoked for every request handled by the server, it is usually worth it to
 optimize them for performance. For example, as the content served by our `CustomHandler` does
