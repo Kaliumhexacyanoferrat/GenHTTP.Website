@@ -49,3 +49,9 @@ var server = Server.Create()
                    .Defaults(compression: false)
                    .Compression(CompressedContent.Default().Add(new DeflateCompression()));
 ```
+
+## Minimum Size
+
+By default, only content larger than 256 bytes will be compressed, as compression on smaller responses
+introduces more overhead than benefits. To change this limit, use the `.MinimumSize()` overload
+on the builder. Passing `null` for minimal size will always compress response content.
