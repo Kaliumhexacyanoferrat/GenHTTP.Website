@@ -1,7 +1,7 @@
 ---
 title: Adapters
 description: Use GenHTTP modules in other webserver frameworks such as ASP.NET.
-weight: 6
+weight: 2
 cascade:
   type: docs
 ---
@@ -17,7 +17,7 @@ such as ASP.NET Core.
 {{< /cards >}}
 
 This adapter allows to plug in any GenHTTP handler into an existing ASP.NET Core application.
-The following example will use the [listing](../../handlers/listing/) module to render a graphical
+The following example will use the [listing](../../content/handlers/listing/) module to render a graphical
 file listing when accessing http://localhost:5000/files/ in the browser.
 
 ```csharp

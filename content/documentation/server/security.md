@@ -1,6 +1,6 @@
 ﻿---
 title: SSL Endpoints
-weight: 3
+weight: 4
 description: 'Host GenHTTP via SSL/TLS endpoints and enable client certificate authentication.'
 cascade:
   type: docs

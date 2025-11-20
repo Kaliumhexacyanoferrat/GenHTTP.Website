@@ -1,6 +1,6 @@
 ﻿---
 title: Companions
-weight: 4
+weight: 5
 description: 'Extend the GenHTTP server by a companion instance.'
 cascade:
   type: docs
