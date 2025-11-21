@@ -10,7 +10,7 @@ cascade:
 {{< /cards >}}
 
 The compression concern compresses content sent to the clients, if applicable. By default,
-[gzip](https://www.gzip.org/) and [Brotli](https://github.com/google/brotli) are supported.
+[gzip](https://www.gzip.org/), [Brotli](https://github.com/google/brotli) and [Zstandard](http://facebook.github.io/zstd/) are supported.
 
 ```csharp
 var content = Layout.Create()
@@ -18,14 +18,40 @@ var content = Layout.Create()
 ```
 
 This concern is part of the [default configuration](../defaults/) and will automatically
-be added.
+be added globally if `.Defaults()` is used on the host.
+
+## Request Analysis
+
+The algorithm used to compress the response is negotiated with the client via the
+`Accept-Encoding` header. If multiple algorithms are supported by the client,
+the server will choose the most modern one. This is determined via the `Priority`
+field of the configured compression algorithms.
+
+## Response Analysis
+
+The concern analyzes the `Content-Type` of the generated response to check, whether
+the content can be compressed. The types enabling compression are currently fixed
+and cannot be modified. Responses that are already encoded (have a `Content-Encoding`)
+will not be changed.
+
+By default, only content larger than 256 bytes will be compressed, as compression on smaller responses
+introduces more overhead than benefits. To change this limit, use the `.MinimumSize()` overload
+on the builder. Passing `null` for minimal size will always compress response content.
+
+The compression concern will tell the algorithms to to use the fastest mode
+available, featuring a good balance between CPU usage and resulting content size.
+If you would like to adjust this setting, you can use the `.Level()` function of the
+builder.
+
+If the content served by your application is rather static and does rarely change,
+consider the usage of the [server caching](../server-caching/) mechanism.
 
 ## Custom Algorithms
 
 To add a custom compression algorithm to the server, you can implement the
 [ICompressionAlgorithm](https://github.com/Kaliumhexacyanoferrat/GenHTTP/blob/main/API/Content/IO/ICompressionAlgorithm.cs)
 interface and register the implementing class with your server builder. For example,
-the following implementation will add support for the `deflate` algorithm, which 
+the following implementation will add support for the `deflate` algorithm, which
 is not provided by the server out of the box:
 
 ```csharp
@@ -49,9 +75,3 @@ var server = Server.Create()
                    .Defaults(compression: false)
                    .Compression(CompressedContent.Default().Add(new DeflateCompression()));
 ```
-
-## Minimum Size
-
-By default, only content larger than 256 bytes will be compressed, as compression on smaller responses
-introduces more overhead than benefits. To change this limit, use the `.MinimumSize()` overload
-on the builder. Passing `null` for minimal size will always compress response content.
