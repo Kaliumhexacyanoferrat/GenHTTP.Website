@@ -23,7 +23,7 @@ date = 2025-10-31T14:10:41+02:00
 {{< hextra/feature-grid >}}
   {{< hextra/feature-card
     title="Fast Development"
-    subtitle="GenHTTP is designed for rapid web service development in .NET, supporting IDEs like Visual Studio or Rider."
+    subtitle="GenHTTP is designed for rapid web service development in .NET, supporting IDEs like Visual Studio, VS Code or Rider."
     style="background: radial-gradient(ellipse at 50% 80%,rgba(194,97,254,0.15),hsla(0,0%,100%,0));"
   >}}
   {{< hextra/feature-card
