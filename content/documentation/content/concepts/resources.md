@@ -10,10 +10,16 @@ cascade:
 {{< card link="https://www.nuget.org/packages/GenHTTP.Modules.IO/" title="GenHTTP.Modules.IO" icon="link" >}}
 {{< /cards >}}
 
-Resources provide an unified way to load and access binary data used by handlers
+GenHTTP provides a thin abstraction layer to control access of binary resources
+(such as files or blobs). This allows to re-use file-dependent handlers, independent from
+whether the data comes from the file system, a database or somewhere else.
+
+## Resources
+
+Resources provide a unified way to load and access binary data used by handlers
 to achieve their functionality. For example, the [Download](../../handlers/downloads/) handler
 serves a single file on request - where the content of the file originates from
-is not important for the handler to achieve it's functionality.
+is not important for the handler to achieve its functionality.
 
 ```csharp
 var resource = Resource.FromFile("/var/www/downloads/myvideo.mp4"); // or FromString, FromAssembly, ...
@@ -27,6 +33,32 @@ await Host.Create()
 
 By implementing the `IResource` interface, a custom data source can be used to
 provide resources, for example a database or a cloud blob storage.
+
+### Built-in Providers
+
+The following resource implementations are provided by the `IO` module:
+
+| Example                                | Description                                              |
+|----------------------------------------|----------------------------------------------------------|
+| `Resource.FromString("Hello World")`   | Creates a resource from a string constant.               |
+| `Resource.FromFile("binary.blob")`     | Creates a resource from the given file.                  |
+| `Resource.FromAssembly("binary.blob")` | Loads the resource from the currently executed assembly. |
+
+### Change Tracking
+
+For some use cases it might be important to determine, whether a given resource has changed
+since it has been accessed the last time. For example, the page handler will
+re-compile its template whenever the underlying resource has changed.
+
+```csharp
+var resource = Resource.FromFile("...")
+                       .Build()
+                       .Track();
+
+await using var content = await resource.GetContentAsync();
+
+var changed = await content.HasChanged();
+```
 
 ## Resource Trees
 
