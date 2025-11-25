@@ -172,3 +172,66 @@ class ContentExamples
 
 }
 ```
+
+## Custom Content Implementations
+
+The following code shows an example on how we can implement `IResponseContent`
+to efficiently serve the data stored in an entity record via `Content()`.
+
+```csharp
+public class Attachment
+{
+
+    public int Id { get; set; }
+
+    public long Size { get; set; }
+
+    public DateTime Modified { get; set; }
+
+    public ReadOnlyMemory<byte> Data { get; set; }
+
+}
+
+public class AttachmentContent(Attachment attachment) : IResponseContent
+{
+
+    public ulong? Length => (ulong)attachment.Size;
+
+    public ValueTask<ulong?> CalculateChecksumAsync() => new((ulong)attachment.Modified.Ticks);
+
+    public ValueTask WriteAsync(Stream target, uint bufferSize) => target.WriteAsync(attachment.Data);
+
+}
+
+public class AttachmentContentHandler : IHandler
+{
+
+    public ValueTask PrepareAsync() => ValueTask.CompletedTask;
+
+    public ValueTask<IResponse?> HandleAsync(IRequest request)
+    {
+        if (request.Query.TryGetValue("id", out var id))
+        {
+            // load the entity from some DB
+            var entity = ...
+
+            return request.Respond()
+                          .Content(new AttachmentContent(entity))
+                          .Type(ContentType.ApplicationForceDownload)
+                          .Build();
+        }
+
+        return new();
+    }
+    
+}
+
+await Host.Create()
+          .Handler(new AttachmentContentHandler())
+          .Defaults()
+          .RunAsync();
+```
+
+While this is more complex than simply returning a `Stream` from a web service,
+it is way more efficient for caching as we can use the modification date of the entity
+to check for changes.
