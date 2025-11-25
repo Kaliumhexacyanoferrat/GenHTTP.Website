@@ -76,6 +76,8 @@ await Host.Create()
           .RunAsync();
 ```
 
+### Virtual Trees
+
 Virtual trees allow to combine different sources of resources into an unified tree:
 
 ```csharp
@@ -85,4 +87,17 @@ var tree = VirtualTree.Create()
                       .Add("dist", ResourceTree.FromDirectory(...));
 
 var app = SinglePageApplication.From(tree);
+```
+
+### Resolving Files
+
+When using resource trees within a handler, you might want to search for
+files based on the remaining path of the request to be routed. The `Find()`
+extension provided by the `IO` module will attempt to find the requested resource
+or resource node from the current routing context and automatically advance the target.
+
+```csharp
+// either folder or file will be set
+// if both are null, routing did not succeed
+var (folder, file) = await Tree.Find(request.Target);
 ```
