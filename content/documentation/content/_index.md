@@ -78,32 +78,34 @@ functionality, you can also implement [custom handlers](./handlers/).
 
 {{< /cards >}}
 
-## Providers
+## Handlers
 
 {{< cards >}}
 
-  {{< card link="./handlers/layouting/" title="Layouting" >}}
-  
-  {{< card link="./handlers/static-content/" title="Static Content" >}}
-  
+  {{< card link="./handlers/api-browsing/" title="API Browsing" >}}
+
+  {{< card link="./handlers/content/" title="Content" >}}
+
   {{< card link="./handlers/downloads/" title="Downloads" >}}
-  
-  {{< card link="./handlers/redirects/" title="Redirects" >}}
+
+  {{< card link="./handlers/layouting/" title="Layouting" >}}
+
+  {{< card link="./handlers/listing/" title="Directory Browsing" >}}
+
+  {{< card link="./handlers/load-balancer/" title="Load Balancer" >}}
 
   {{< card link="./handlers/pages/" title="Pages" >}}
 
-  {{< card link="./handlers/api-browsing/" title="API Browsing" >}}
+  {{< card link="./handlers/redirects/" title="Redirects" >}}
+
+  {{< card link="./handlers/reverse-proxy/" title="Reverse Proxies" >}}
 
   {{< card link="./handlers/server-sent-events/" title="Server Sent Events (SSE)" >}}
-
-  {{< card link="./handlers/listing/" title="Directory Browsing" >}}
-  
-  {{< card link="./handlers/reverse-proxy/" title="Reverse Proxies" >}}
+ 
+  {{< card link="./handlers/static-content/" title="Static Content" >}}
   
   {{< card link="./handlers/virtual-hosts/" title="Virtual Hosts" >}}
   
-  {{< card link="./handlers/load-balancer/" title="Load Balancer" >}}
-
 {{< /cards >}}
 
 ## Concepts
