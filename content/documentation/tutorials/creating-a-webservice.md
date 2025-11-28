@@ -22,7 +22,7 @@ The easiest way of creating a new webservice is by using a [project template](..
 done, install the templates by executing the following command in your terminal:
 
 ```bash
-dotnet new -i GenHTTP.Templates
+dotnet new install GenHTTP.Templates
 ```
 
 After the templates have been installed, you can create a new folder for your project and use the webservice
