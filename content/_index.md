@@ -1,7 +1,7 @@
 +++
 title = ''
 description = 'Lightweight, embeddable HTTP web server written in C# with support for current standards such as Open API, JWT auth, Websockets and more.'
-date = 2025-10-31T14:10:41+02:00
+date = 2025-11-28T09:35:41+02:00
 +++
 
 {{< hextra/hero-headline >}}
@@ -11,7 +11,7 @@ date = 2025-10-31T14:10:41+02:00
 <br /><br />
 
 {{< hextra/hero-subtitle >}}
-  A configuration-free alternative to ASP.NET Core for building REST APIs on .NET.
+  A configuration-free, embeddable alternative to ASP.NET Core for building REST APIs on .NET.
 {{< /hextra/hero-subtitle >}}
 
 <br /><br />
@@ -23,7 +23,7 @@ date = 2025-10-31T14:10:41+02:00
 {{< hextra/feature-grid >}}
   {{< hextra/feature-card
     title="Fast Development"
-    subtitle="GenHTTP is designed for rapid web service development in .NET, supporting IDEs like Visual Studio or Rider."
+    subtitle="GenHTTP is designed for rapid web service development in .NET, supporting IDEs like Visual Studio, VS Code or Rider."
     style="background: radial-gradient(ellipse at 50% 80%,rgba(194,97,254,0.15),hsla(0,0%,100%,0));"
   >}}
   {{< hextra/feature-card
