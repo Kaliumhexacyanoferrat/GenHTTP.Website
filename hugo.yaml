@@ -14,24 +14,27 @@ menu:
     - name: Documentation
       url: /documentation/
       weight: 2
+    - name: Support
+      url: /support/
+      weight: 3
     - name: Links
       url: /links/
-      weight: 3
+      weight: 4
     - name: Legal
       url: /legal/
-      weight: 4
-    - name: GitHub
       weight: 5
+    - name: GitHub
+      weight: 6
       url: "https://github.com/Kaliumhexacyanoferrat/GenHTTP"
       params:
         icon: github
     - name: Discord
-      weight: 6
+      weight: 7
       url: "https://discord.gg/GwtDyUpkpV"
       params:
         icon: discord
     - name: Search
-      weight: 7
+      weight: 8
       params:
         type: search
 
