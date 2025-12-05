@@ -24,5 +24,5 @@ If you require extended, professional support such as workshops, prioritized fea
 development, architectural consulting, or dedicated development teams, please contact
 [solutions@genhttp.org](mailto:solutions@genhttp.org).
 
-GenHTTP is backed by a Swiss IT service provider capable of supporting and delivering
-large software projects in a professional and reliable manner.
+GenHTTP is led and supported by senior engineers from a Swiss IT service provider specialized in delivering
+robust enterprise solutions.
