@@ -12,7 +12,7 @@ install the project templates in your environment run the following
 command in your terminal:
 
 ```bash
-dotnet new -i GenHTTP.Templates
+dotnet new install GenHTTP.Templates
 ```
 
 After the templates have been installed, new projects can be created
