@@ -25,8 +25,11 @@ your operations as needed.
 ```csharp
 using GenHTTP.Engine.Internal;
 
+using GenHTTP.Modules.ApiBrowsing;
 using GenHTTP.Modules.Functional;
 using GenHTTP.Modules.Layouting;
+using GenHTTP.Modules.OpenApi;
+using GenHTTP.Modules.Security;
 
 var bookService = Inline.Create()                        
                         // GET http://localhost:8080/books/?page=1&pageSize=20
@@ -38,10 +41,13 @@ var bookService = Inline.Create()
                         // POST http://localhost:8080/books/
                         .Post((Book book) => /* ... */) 
                         // DELETE http://localhost:8080/books/4711
-                        .Delete(":id", (int id) => /* ... */); 
+                        .Delete(":id", (int id) => /* ... */);
 
 var api = Layout.Create()
-                .Add("books", bookService);
+                .Add("books", bookService)
+                .Add(CorsPolicy.Permissive())
+                .AddOpenApi() // http://localhost:8080/openapi.json
+                .AddRedoc(); // http://localhost:8080/redoc/
 
 await Host.Create()
           .Handler(api)

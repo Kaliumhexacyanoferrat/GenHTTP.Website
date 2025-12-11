@@ -31,9 +31,23 @@ using GenHTTP.Engine.Internal;
 
 using GenHTTP.Api.Protocol;
 
+using GenHTTP.Modules.ApiBrowsing;
 using GenHTTP.Modules.Webservices;
 using GenHTTP.Modules.Security;
 using GenHTTP.Modules.Layouting;
+using GenHTTP.Modules.OpenApi;
+
+var service = Layout.Create()
+                    .AddService<BookService>("books")
+                    .Add(CorsPolicy.Permissive())
+                    .AddOpenApi() // http://localhost:8080/openapi.json
+                    .AddRedoc(); // http://localhost:8080/redoc/
+
+await Host.Create()
+          .Handler(service)
+          .Development()
+          .Console()
+          .RunAsync();
 
 public class BookService
 {
@@ -47,28 +61,18 @@ public class BookService
     public Book? GetBook(int id) { /* ... */ }
 
     // PUT http://localhost:8080/books/
-    [ResourceMethod(RequestMethod.PUT)]
+    [ResourceMethod(RequestMethod.Put)]
     public Book AddBook(Book book) { /* ... */ }
 
     // POST http://localhost:8080/books/
-    [ResourceMethod(RequestMethod.POST)]
+    [ResourceMethod(RequestMethod.Post)]
     public Book UpdateBook(Book book) { /* ... */ }
 
     // DELETE http://localhost:8080/books/4711
-    [ResourceMethod(RequestMethod.DELETE, ":id")]
+    [ResourceMethod(RequestMethod.Delete, ":id")]
     public Book? DeleteBook(int id) { /* ... */ }
 
 }
-
-var service = Layout.Create()
-                    .AddService<BookService>("books")
-                    .Add(CorsPolicy.Permissive());
-
-await Host.Create()
-          .Handler(service)
-          .Development()
-          .Console()
-          .RunAsync();
 ```
 
 ## Further Resources
