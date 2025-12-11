@@ -1,7 +1,7 @@
 ﻿---
 title: Static Websites
 description: Simple way to host static websites with sitemap and robots.txt support
-weight: 4
+weight: 6
 cascade:
   type: docs
 ---

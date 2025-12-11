@@ -2,7 +2,7 @@
 title: Websockets
 description: 'Create a simple websocket server in C# and dotnet'
 date: 2025-12-11T00:27:41+02:00
-weight: 1
+weight: 4
 cascade:
   type: docs
 ---
