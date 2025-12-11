@@ -1,6 +1,6 @@
 ﻿---
 title: Client Caching (Validation)
-description: Instructs clients to validate their cache when requesting resources to save bandwith and resources.
+description: Instructs clients to validate their cache when requesting resources to save bandwidth and resources.
 cascade:
   type: docs
 ---

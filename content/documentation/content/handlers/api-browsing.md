@@ -158,7 +158,7 @@ By default, the applications will use `../openapi.json` to
 reference to the Open API definition to be used. There is no
 magic link between the API browser and the Open API handler, so you 
 need to pass the correct link depending on the structure of your 
-application. In the following example, docs and the API are seperated
+application. In the following example, docs and the API are separated
 so another path is required and needs to be passed:
 
 ```csharp

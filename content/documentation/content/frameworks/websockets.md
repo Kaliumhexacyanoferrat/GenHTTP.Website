@@ -238,7 +238,7 @@ After starting the server, you can open the following HTML page in your browser 
     <title>websocket client</title>
     <script type="text/javascript">
         var start = function () {
-            var inc = document.getElementById('incomming');
+            var inc = document.getElementById('incoming');
             var wsImpl = window.WebSocket || window.MozWebSocket;
             var form = document.getElementById('sendForm');
             var input = document.getElementById('sendText');
@@ -248,7 +248,7 @@ After starting the server, you can open the following HTML page in your browser 
             // create a new websocket and connect
             window.ws = new wsImpl('ws://localhost:8080/');
 
-            // when data is comming from the server, this metod is called
+            // when data is coming from the server, this method is called
             ws.onmessage = function (evt) {
                 inc.innerHTML += evt.data + '<br/>';
             };
@@ -278,7 +278,7 @@ After starting the server, you can open the following HTML page in your browser 
 	<form id="sendForm">
 		<input id="sendText" placeholder="Text to send" />
 	</form>
-    <pre id="incomming"></pre>
+    <pre id="incoming"></pre>
 </body>
 </html>
 
