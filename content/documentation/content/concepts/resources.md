@@ -57,7 +57,7 @@ var resource = Resource.FromFile("...")
 
 await using var content = await resource.GetContentAsync();
 
-var changed = await content.HasChanged();
+var changed = await content.CheckChangedAsync();
 ```
 
 ## Resource Trees

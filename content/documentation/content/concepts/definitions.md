@@ -590,7 +590,7 @@ the tenant ID passed to the method:
 
 {{< /tabs >}}
 
-### Streams
+### Binary Data
 
 To return files or similar content, you can directly return a `Stream` instance
 from your method.
@@ -598,24 +598,38 @@ The framework will automatically seek and dispose the stream. Returning streams
 is not thread-safe as streams are stateful, so you will need to create a new 
 instance for every request to be answered.
 
+Besides streams, returning `byte[]` and `ReadOnlyMemory<byte>` is also supported.
+
 {{< tabs items="Webservices,Functional,Controllers" >}}
 
 {{< tab >}}
   ```csharp
   [ResourceMethod]
   public Stream GetFile() => File.OpenRead("...");
+  
+  [ResourceMethod]
+  public byte[] GetBytes() => Encoding.UTF8.GetBytes("Binary data");
+  
+  [ResourceMethod]
+  public ReadOnlyMemory<byte> GetMemory() => "Binary data"u8;
   ```
 {{< /tab >}}
 
 {{< tab >}}
   ```csharp
-  .Get(() => File.OpenRead("..."))
+  .Get("/file" => File.OpenRead("..."))
+  .Get("/bytes", () => Encoding.UTF8.GetBytes("Binary data"))
+  .Get("/memory", () => "Binary data"u8)
   ```
 {{< /tab >}}
 
 {{< tab >}}
   ```csharp
   public Stream File() => File.OpenRead("...");
+  
+  public byte[] Bytes() => Encoding.UTF8.GetBytes("Binary data");
+  
+  public ReadOnlyMemory<byte> Memory() => "Binary data"u8;
   ```
 {{< /tab >}}
 
