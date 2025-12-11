@@ -22,10 +22,11 @@ await Host.Create()
 ```
 
 When running this example, any request to http://localhost:8080 will be
-proxied to http://my-cdn:8080/.
+proxied to http://my-cdn:8080/. Proxying works both for regular HTTP
+requests and websocket connections.
 
 If the upstream server is either not available or does not respond in time,
-the provider will return a HTTP 502/504 error page instead.
+the provider will return an HTTP 502/504 error page instead.
 
 ## Adjustments
 
