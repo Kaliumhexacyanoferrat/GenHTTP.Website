@@ -64,6 +64,8 @@ functionality, you can also implement [custom handlers](./handlers/).
 
   {{< card link="./concerns/cors/" title="CORS" >}}
 
+  {{< card link="./concerns/decompression/" title="Decompression" >}}
+
   {{< card link="./concerns/error-handling/" title="Error Handling" >}}
 
   {{< card link="./concerns/inspection/" title="Inspection" >}}

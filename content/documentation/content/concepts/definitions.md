@@ -456,7 +456,6 @@ When injecting the request into your method, you can directly generate an `IResp
 or `IResponseBuilder` and return it to the client. This allows you to take full control
 over the response generation but is less readable than the typed versions.
 
-
 {{< tabs items="Webservices,Functional,Controllers" >}}
 
 {{< tab >}}
@@ -506,7 +505,8 @@ over the response generation but is less readable than the typed versions.
 
 {{< /tabs >}}
 
-// ToDo: Doku zu möglichen Contents (verlinken bei custom handler?)
+For additional hints on how to use this method to provide responses, see the
+[response content](../response-content/) section.
 
 ### Results
 
