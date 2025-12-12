@@ -66,6 +66,11 @@ public class DeflateCompression : ICompressionAlgorithm
     {
         return new CompressedResponseContent(content, (target) => new DeflateStream(target, level, false));
     }
+    
+    public Stream Decompress(Stream content) 
+    {
+        return new DeflateStream(content, CompressionMode.Decompress, leaveOpen: true);        
+    }
 
 }
                         

@@ -27,11 +27,22 @@ The methods of the controller class will automatically be translated into paths
 that can be called by the client.
 
 ```csharp
-// API will be available via http://localhost:8080/device/
+using GenHTTP.Api.Protocol;
+
+using GenHTTP.Engine.Internal;
+
+using GenHTTP.Modules.ApiBrowsing;
+using GenHTTP.Modules.Controllers;
+using GenHTTP.Modules.Layouting;
+using GenHTTP.Modules.OpenApi;
+using GenHTTP.Modules.Practices;
+using GenHTTP.Modules.Security;
 
 var api = Layout.Create()
                 .AddController<IotController>("device")
-                .Add(CorsPolicy.Permissive());
+                .Add(CorsPolicy.Permissive())
+                .AddOpenApi() // http://localhost:8080/openapi.json
+                .AddRedoc(); // http://localhost:8080/redoc/
                 
 await Host.Create()
           .Handler(api)
@@ -39,8 +50,6 @@ await Host.Create()
           .Development()
           .Console()
           .RunAsync();
-    
-// --
 
 public class IotController
 {
@@ -48,17 +57,20 @@ public class IotController
     public DeviceInfo Index() 
     {
         // GET http://localhost:8080/device/
+        return new();
     }
     
     public DeviceFieldInfo Field([FromPath] int fieldID) 
     {
         // GET http://localhost:8080/device/field/4711
+        return new();
     }
     
-    [ControllerAction(RequestMethod.POST)]
+    [ControllerAction(RequestMethod.Post)]
     public DeviceInfo Restart() 
     {
         // POST http://localhost:8080/device/restart
+        return new();
     }
 
 }
