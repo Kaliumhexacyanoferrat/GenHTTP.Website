@@ -34,7 +34,7 @@ and two endpoints to host Swagger and Redoc.
   var app = Layout.Create()
                   .AddService<BookService>("books")
                   .AddOpenApi()
-                  .AddSwaggerUI()
+                  .AddSwaggerUi()
                   .AddRedoc()
                   .AddScalar();
   
@@ -85,7 +85,7 @@ and two endpoints to host Swagger and Redoc.
   var app = Layout.Create()
                   .Add("books", bookApi)
                   .AddOpenApi()
-                  .AddSwaggerUI()
+                  .AddSwaggerUi()
                   .AddRedoc()
                   .AddScalar();
 
@@ -115,7 +115,7 @@ and two endpoints to host Swagger and Redoc.
   var app = Layout.Create()
                   .AddController<BookController>("books")
                   .AddOpenApi()
-                  .AddSwaggerUI()
+                  .AddSwaggerUi()
                   .AddRedoc()
                   .AddScalar();
 
@@ -174,7 +174,7 @@ var api = Layout.Create()
 
 var app = Layout.Create()
                 .Add(["api", "v1"], api)
-                .AddSwaggerUI(url: "../api/v1/openapi.json");
+                .AddSwaggerUi(url: "../api/v1/openapi.json");
 ```
 
 While you can pass an absolute URL, we recommend to pass a relative
@@ -187,7 +187,7 @@ By default, the applications will either be registered at `/swagger/` or
 This path can be adjusted as needed:
 
 ```csharp
-.AddSwaggerUI(segment: "docs");
+.AddSwaggerUi(segment: "docs");
 ```
 
 ## Adjusting Meta Data
@@ -196,7 +196,7 @@ There are overloads to adjust the meta data of the generated
 HTML index file. Currently, only the title can be changed.
 
 ```csharp
-.AddSwaggerUI(title: "Book API");
+.AddSwaggerUi(title: "Book API");
 ```
 
 ## Hiding in Production
@@ -208,7 +208,7 @@ e.g. depending on the project configuration:
 
 ```csharp
 #if DEBUG
-.AddSwaggerUI();
+.AddSwaggerUi();
 #endif
 ```
 
