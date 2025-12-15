@@ -10,7 +10,7 @@ If you have questions or run into issues while building applications with the Ge
 our community is here to help. You can reach us through:
 
 - [GitHub](https://github.com/Kaliumhexacyanoferrat/GenHTTP) discussions and issue tracking
-- Our community [Discord channel](https://discord.gg/GwtDyUpkpV)
+- Our community [Discord channel](https://discord.gg/PRkwKrnrB4)
 
 Both platforms are actively monitored and are great places to get guidance, report problems,
 or exchange ideas with other GenHTTP users.

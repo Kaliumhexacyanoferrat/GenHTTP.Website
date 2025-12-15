@@ -30,7 +30,7 @@ menu:
         icon: github
     - name: Discord
       weight: 7
-      url: "https://discord.gg/GwtDyUpkpV"
+      url: "https://discord.gg/PRkwKrnrB4"
       params:
         icon: discord
     - name: Search
