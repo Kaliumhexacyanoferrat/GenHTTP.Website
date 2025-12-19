@@ -288,7 +288,7 @@ Every browser instance of this page will connect to the server and show messages
 
 ![A browser window showing the sample app in action](websockets.png)
 
-## Threading Considerations
+## Further Considerations
 
 In contrast to regular webservice handlers, websockets can be used for long-running
 processes and to inform clients about events that happen in your systems. As this changes
@@ -353,3 +353,25 @@ public static class WebsocketSynchronizationExtensions
 
 }
 ```
+
+### Continuation Handling
+
+If a client sends a large chunk of data, browsers may segment this data
+into multiple continuation messages (usually happens for payloads bigger
+then 16 KB). The websocket handler will collect those frames and automatically
+merge them into a single `IWebsocketFrame` passed to your logic.
+
+If you would like to handle continuation frames yourself, you can call
+`.HandleContinuationFramesManually()` on the builder instances and will
+start to receive frames with `Type` being set to `Continue`.
+
+## Allocation Handling
+
+By default, the websocket handler will allocate a new buffer per frame to
+keep the data available after the next message has already been read from
+the underlying connection. This allows user to store frames or their `Data`.
+
+For high performance scenarios, you can disable this automatic allocation 
+by calling `.DoNotAllocateFrameData()` on the builder and access the raw buffer 
+via `frame.Raw.Memory` (or `frame.Raw.Segments` for a message consisting
+of multiple continuation frames).
