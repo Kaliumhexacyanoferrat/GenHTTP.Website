@@ -89,8 +89,28 @@ using GenHTTP.Engine.Internal;
 using GenHTTP.Modules.Practices;
 using GenHTTP.Modules.Websockets;
 
-var websocket = Websocket.Reactive()
-                         .Handler(new ChatHandler());
+List<IReactiveConnection> clients = [];
+
+var websocket = Websocket.Functional()
+                         .OnConnected(c =>
+                         {
+                             clients.Add(c);
+                             return ValueTask.CompletedTask;
+                         })
+                         .OnMessage(async (c, m) =>
+                         {
+                             var clientNumber = clients.IndexOf(c);
+
+                             foreach (var client in clients)
+                             {
+                                 await client.WritePayloadAsync($"[{clientNumber}]: " + await m.ReadPayloadAsync<string>());
+                             }
+                         })
+                         .OnClose((c, _) =>
+                         {
+                             clients.Remove(c);
+                             return ValueTask.CompletedTask;
+                         });
 
 await Host.Create()
           .Handler(websocket)
@@ -98,34 +118,6 @@ await Host.Create()
           .Development()
           .Console()
           .RunAsync();
-
-class ChatHandler : IReactiveHandler
-{
-    private static readonly List<IReactiveConnection> Clients = [];
-
-    public ValueTask OnConnected(IReactiveConnection connection)
-    {
-        Clients.Add(connection);
-        return ValueTask.CompletedTask;
-    }
-
-    public async ValueTask OnMessage(IReactiveConnection connection, IWebsocketFrame message)
-    {
-        var clientNumber = Clients.IndexOf(connection);
-
-        foreach (var client in Clients)
-        {
-            await client.WritePayloadAsync($"[{clientNumber}]: " + await message.ReadPayloadAsync<string>());
-        }
-    }
-
-    public ValueTask OnClose(IReactiveConnection connection, IWebsocketFrame message)
-    {
-        Clients.Remove(connection);
-        return ValueTask.CompletedTask;
-    }
-
-}
 ```
 
 ### Imperative
