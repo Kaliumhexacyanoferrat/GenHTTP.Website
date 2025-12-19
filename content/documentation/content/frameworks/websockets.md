@@ -38,7 +38,6 @@ using GenHTTP.Engine.Internal;
 
 using GenHTTP.Modules.Practices;
 using GenHTTP.Modules.Websockets;
-using GenHTTP.Modules.Websockets.Protocol;
 
 var websocket = Websocket.Reactive()
                          .Handler(new ChatHandler());
@@ -60,17 +59,17 @@ class ChatHandler : IReactiveHandler
         return ValueTask.CompletedTask;
     }
 
-    public async ValueTask OnMessage(IReactiveConnection connection, WebsocketFrame message)
+    public async ValueTask OnMessage(IReactiveConnection connection, IWebsocketFrame message)
     {
         var clientNumber = Clients.IndexOf(connection);
         
         foreach (var client in Clients)
         {
-            await client.WriteAsync($"[{clientNumber}]: " + message.DataAsString);
+            await client.WritePayloadAsync($"[{clientNumber}]: " + await message.ReadPayloadAsync<string>());
         }
     }
 
-    public ValueTask OnClose(IReactiveConnection connection, WebsocketFrame message)
+    public ValueTask OnClose(IReactiveConnection connection, IWebsocketFrame message)
     {
         Clients.Remove(connection);
         return ValueTask.CompletedTask;
@@ -90,28 +89,8 @@ using GenHTTP.Engine.Internal;
 using GenHTTP.Modules.Practices;
 using GenHTTP.Modules.Websockets;
 
-List<IReactiveConnection> clients = [];
-
-var websocket = Websocket.Functional()
-                         .OnConnected(c =>
-                         {
-                             clients.Add(c);
-                             return ValueTask.CompletedTask;
-                         })
-                         .OnMessage(async (c, m) =>
-                         {
-                             var clientNumber = clients.IndexOf(c);
-
-                             foreach (var client in clients)
-                             {
-                                 await client.WriteAsync($"[{clientNumber}]: " + m.DataAsString);
-                             }
-                         })
-                         .OnClose((c, _) =>
-                         {
-                             clients.Remove(c);
-                             return ValueTask.CompletedTask;
-                         });
+var websocket = Websocket.Reactive()
+                         .Handler(new ChatHandler());
 
 await Host.Create()
           .Handler(websocket)
@@ -119,6 +98,34 @@ await Host.Create()
           .Development()
           .Console()
           .RunAsync();
+
+class ChatHandler : IReactiveHandler
+{
+    private static readonly List<IReactiveConnection> Clients = [];
+
+    public ValueTask OnConnected(IReactiveConnection connection)
+    {
+        Clients.Add(connection);
+        return ValueTask.CompletedTask;
+    }
+
+    public async ValueTask OnMessage(IReactiveConnection connection, IWebsocketFrame message)
+    {
+        var clientNumber = Clients.IndexOf(connection);
+
+        foreach (var client in Clients)
+        {
+            await client.WritePayloadAsync($"[{clientNumber}]: " + await message.ReadPayloadAsync<string>());
+        }
+    }
+
+    public ValueTask OnClose(IReactiveConnection connection, IWebsocketFrame message)
+    {
+        Clients.Remove(connection);
+        return ValueTask.CompletedTask;
+    }
+
+}
 ```
 
 ### Imperative
@@ -167,7 +174,7 @@ class ChatHandler : IImperativeHandler
             {
                 foreach (var client in Clients)
                 {
-                    await client.WriteAsync($"[{clientNumber}]: " + message.DataAsString);
+                    await client.WritePayloadAsync($"[{clientNumber}]: " + await message.ReadPayloadAsync<string>());
                 }
             }
             else if (message.Type == FrameType.Close)
@@ -288,7 +295,46 @@ Every browser instance of this page will connect to the server and show messages
 
 ![A browser window showing the sample app in action](websockets.png)
 
-## Threading Considerations
+## Data Serialization
+
+To send and receive objects via a websocket connection, the framework provides convenience methods
+that can be used:
+
+```csharp
+var myObject = await message.ReadPayloadAsync<MyType>();
+
+await connection.WritePayloadAsync(new MyType());
+```
+
+Those methods work both for primitives (e.g. `int`, `string`, `Guid` or `enum`) as well a complex
+types, that will be deserialized from and serialized into a specified format (defaults to JSON).
+
+If needed, you can customize the formatters and serializers used by your websocket handler:
+
+```csharp
+using GenHTTP.Modules.Conversion;
+using GenHTTP.Modules.Conversion.Formatters;
+using GenHTTP.Modules.Conversion.Serializers.Yaml;
+using GenHTTP.Modules.Websockets;
+
+// read and write complex objects as YAML instead of JSON
+var serialization = new YamlFormat();
+
+// only support GUIDs as primitive types
+var formatters = Formatting.Empty()
+                           .Add(new GuidFormatter())
+                           .Build();
+
+var websocket = Websocket.Reactive()
+                         .Handler(new ChatHandler())
+                         .Serialization(serialization)
+                         .Formatters(formatters);
+```
+
+Please note that these types are the same that are used by the web service frameworks to read and write
+typed data, so you might want to share them to unify the behavior of your API.
+
+## Further Considerations
 
 In contrast to regular webservice handlers, websockets can be used for long-running
 processes and to inform clients about events that happen in your systems. As this changes
@@ -312,13 +358,13 @@ private Task? _importJob;
 
 private readonly CancellationTokenSource _cancellationTokenSource = new();
 
-public ValueTask OnMessage(IReactiveConnection connection, WebsocketFrame message)
+public ValueTask OnMessage(IReactiveConnection connection, IWebsocketFrame message)
 {
     _importJob = Task.Run(() => { /* ... */ }, _cancellationTokenSource.Token);
     return ValueTask.CompletedTask;
 }
 
-public ValueTask OnClose(IReactiveConnection connection, WebsocketFrame message)
+public ValueTask OnClose(IReactiveConnection connection, IWebsocketFrame message)
 {
     _cancellationTokenSource.Cancel();
     return ValueTask.CompletedTask;
@@ -333,23 +379,48 @@ connection is not thread safe, you need to synchronize write access manually, e.
 an additional extension method:
 
 ```csharp
+using GenHTTP.Modules.Websockets;
+using GenHTTP.Modules.Websockets.Protocol;
+
 public static class WebsocketSynchronizationExtensions
 {
     private static readonly SemaphoreSlim WriteLock = new(1, 1);
-    
-    public static async ValueTask WriteSynchronizedAsync(this ISocketConnection connection, string payload, FrameType opcode = FrameType.Text, bool fin = true, CancellationToken token = default)
+
+    public static async ValueTask WriteSynchronizedAsync<T>(this ISocketConnection connection, T payload, FrameType opcode = FrameType.Text, CancellationToken token = default)
     {
         await WriteLock.WaitAsync(token);
-        
+
         try
         {
-            await connection.WriteAsync(Encoding.UTF8.GetBytes(payload), opcode, fin, token: token);
+            await connection.WritePayloadAsync(payload, opcode, token);
         }
         finally
         {
             WriteLock.Release();
         }
-    } 
+    }
 
 }
 ```
+
+### Continuation Handling
+
+If a client sends a large chunk of data, browsers may segment this data
+into multiple continuation messages (usually happens for payloads bigger
+then 16 KB). The websocket handler will collect those frames and automatically
+merge them into a single `IWebsocketFrame` passed to your logic.
+
+If you would like to handle continuation frames yourself, you can call
+`.HandleContinuationFramesManually()` on the builder instances and will
+start to receive frames with `Type` being set to `Continue`.
+
+### Allocation Handling
+
+By default, the websocket handler will allocate a new buffer per frame to
+keep the data available after the next message has already been read from
+the underlying connection. This allows user to store frames or their `Data`.
+
+For high performance scenarios, you can disable this automatic allocation 
+by calling `.DoNotAllocateFrameData()` on the builder and access the raw buffer 
+via `frame.Raw.Memory` (or `frame.Raw.Segments` for a message consisting
+of multiple continuation frames).
