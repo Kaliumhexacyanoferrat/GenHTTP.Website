@@ -65,7 +65,7 @@ class ChatHandler : IReactiveHandler
         
         foreach (var client in Clients)
         {
-            await client.WriteAsync($"[{clientNumber}]: " + message.DataAsString());
+            await client.WritePayloadAsync($"[{clientNumber}]: " + await message.ReadPayloadAsync<string>());
         }
     }
 
@@ -115,7 +115,7 @@ class ChatHandler : IReactiveHandler
 
         foreach (var client in Clients)
         {
-            await client.WriteAsync($"[{clientNumber}]: " + message.DataAsString());
+            await client.WritePayloadAsync($"[{clientNumber}]: " + await message.ReadPayloadAsync<string>());
         }
     }
 
@@ -174,7 +174,7 @@ class ChatHandler : IImperativeHandler
             {
                 foreach (var client in Clients)
                 {
-                    await client.WriteAsync($"[{clientNumber}]: " + message.DataAsString());
+                    await client.WritePayloadAsync($"[{clientNumber}]: " + await message.ReadPayloadAsync<string>());
                 }
             }
             else if (message.Type == FrameType.Close)
@@ -295,6 +295,45 @@ Every browser instance of this page will connect to the server and show messages
 
 ![A browser window showing the sample app in action](websockets.png)
 
+## Data Serialization
+
+To send and receive objects via a websocket connection, the framework provides convenience methods
+that can be used:
+
+```csharp
+var myObject = await message.ReadPayloadAsync<MyType>();
+
+await connection.WritePayloadAsync(new MyType());
+```
+
+Those methods work both for primitives (e.g. `int`, `string`, `Guid` or `enum`) as well a complex
+types, that will be deserialized from and serialized into a specified format (defaults to JSON).
+
+If needed, you can customize the formatters and serializers used by your websocket handler:
+
+```csharp
+using GenHTTP.Modules.Conversion;
+using GenHTTP.Modules.Conversion.Formatters;
+using GenHTTP.Modules.Conversion.Serializers.Yaml;
+using GenHTTP.Modules.Websockets;
+
+// read and write complex objects as YAML instead of JSON
+var serialization = new YamlFormat();
+
+// only support GUIDs as primitive types
+var formatters = Formatting.Empty()
+                           .Add(new GuidFormatter())
+                           .Build();
+
+var websocket = Websocket.Reactive()
+                         .Handler(new ChatHandler())
+                         .Serialization(serialization)
+                         .Formatters(formatters);
+```
+
+Please note that these types are the same that are used by the web service frameworks to read and write
+typed data, so you might want to share them to unify the behavior of your API.
+
 ## Further Considerations
 
 In contrast to regular webservice handlers, websockets can be used for long-running
@@ -340,23 +379,26 @@ connection is not thread safe, you need to synchronize write access manually, e.
 an additional extension method:
 
 ```csharp
+using GenHTTP.Modules.Websockets;
+using GenHTTP.Modules.Websockets.Protocol;
+
 public static class WebsocketSynchronizationExtensions
 {
     private static readonly SemaphoreSlim WriteLock = new(1, 1);
-    
-    public static async ValueTask WriteSynchronizedAsync(this ISocketConnection connection, string payload, FrameType opcode = FrameType.Text, bool fin = true, CancellationToken token = default)
+
+    public static async ValueTask WriteSynchronizedAsync<T>(this ISocketConnection connection, T payload, FrameType opcode = FrameType.Text, CancellationToken token = default)
     {
         await WriteLock.WaitAsync(token);
-        
+
         try
         {
-            await connection.WriteAsync(Encoding.UTF8.GetBytes(payload), opcode, fin, token: token);
+            await connection.WritePayloadAsync(payload, opcode, token);
         }
         finally
         {
             WriteLock.Release();
         }
-    } 
+    }
 
 }
 ```
@@ -372,7 +414,7 @@ If you would like to handle continuation frames yourself, you can call
 `.HandleContinuationFramesManually()` on the builder instances and will
 start to receive frames with `Type` being set to `Continue`.
 
-## Allocation Handling
+### Allocation Handling
 
 By default, the websocket handler will allocate a new buffer per frame to
 keep the data available after the next message has already been read from
