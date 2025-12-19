@@ -38,7 +38,6 @@ using GenHTTP.Engine.Internal;
 
 using GenHTTP.Modules.Practices;
 using GenHTTP.Modules.Websockets;
-using GenHTTP.Modules.Websockets.Protocol;
 
 var websocket = Websocket.Reactive()
                          .Handler(new ChatHandler());
@@ -60,17 +59,17 @@ class ChatHandler : IReactiveHandler
         return ValueTask.CompletedTask;
     }
 
-    public async ValueTask OnMessage(IReactiveConnection connection, WebsocketFrame message)
+    public async ValueTask OnMessage(IReactiveConnection connection, IWebsocketFrame message)
     {
         var clientNumber = Clients.IndexOf(connection);
         
         foreach (var client in Clients)
         {
-            await client.WriteAsync($"[{clientNumber}]: " + message.DataAsString);
+            await client.WriteAsync($"[{clientNumber}]: " + message.DataAsString());
         }
     }
 
-    public ValueTask OnClose(IReactiveConnection connection, WebsocketFrame message)
+    public ValueTask OnClose(IReactiveConnection connection, IWebsocketFrame message)
     {
         Clients.Remove(connection);
         return ValueTask.CompletedTask;
@@ -90,28 +89,8 @@ using GenHTTP.Engine.Internal;
 using GenHTTP.Modules.Practices;
 using GenHTTP.Modules.Websockets;
 
-List<IReactiveConnection> clients = [];
-
-var websocket = Websocket.Functional()
-                         .OnConnected(c =>
-                         {
-                             clients.Add(c);
-                             return ValueTask.CompletedTask;
-                         })
-                         .OnMessage(async (c, m) =>
-                         {
-                             var clientNumber = clients.IndexOf(c);
-
-                             foreach (var client in clients)
-                             {
-                                 await client.WriteAsync($"[{clientNumber}]: " + m.DataAsString);
-                             }
-                         })
-                         .OnClose((c, _) =>
-                         {
-                             clients.Remove(c);
-                             return ValueTask.CompletedTask;
-                         });
+var websocket = Websocket.Reactive()
+                         .Handler(new ChatHandler());
 
 await Host.Create()
           .Handler(websocket)
@@ -119,6 +98,34 @@ await Host.Create()
           .Development()
           .Console()
           .RunAsync();
+
+class ChatHandler : IReactiveHandler
+{
+    private static readonly List<IReactiveConnection> Clients = [];
+
+    public ValueTask OnConnected(IReactiveConnection connection)
+    {
+        Clients.Add(connection);
+        return ValueTask.CompletedTask;
+    }
+
+    public async ValueTask OnMessage(IReactiveConnection connection, IWebsocketFrame message)
+    {
+        var clientNumber = Clients.IndexOf(connection);
+
+        foreach (var client in Clients)
+        {
+            await client.WriteAsync($"[{clientNumber}]: " + message.DataAsString());
+        }
+    }
+
+    public ValueTask OnClose(IReactiveConnection connection, IWebsocketFrame message)
+    {
+        Clients.Remove(connection);
+        return ValueTask.CompletedTask;
+    }
+
+}
 ```
 
 ### Imperative
@@ -167,7 +174,7 @@ class ChatHandler : IImperativeHandler
             {
                 foreach (var client in Clients)
                 {
-                    await client.WriteAsync($"[{clientNumber}]: " + message.DataAsString);
+                    await client.WriteAsync($"[{clientNumber}]: " + message.DataAsString());
                 }
             }
             else if (message.Type == FrameType.Close)
@@ -312,13 +319,13 @@ private Task? _importJob;
 
 private readonly CancellationTokenSource _cancellationTokenSource = new();
 
-public ValueTask OnMessage(IReactiveConnection connection, WebsocketFrame message)
+public ValueTask OnMessage(IReactiveConnection connection, IWebsocketFrame message)
 {
     _importJob = Task.Run(() => { /* ... */ }, _cancellationTokenSource.Token);
     return ValueTask.CompletedTask;
 }
 
-public ValueTask OnClose(IReactiveConnection connection, WebsocketFrame message)
+public ValueTask OnClose(IReactiveConnection connection, IWebsocketFrame message)
 {
     _cancellationTokenSource.Cancel();
     return ValueTask.CompletedTask;
