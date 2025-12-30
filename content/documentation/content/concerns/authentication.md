@@ -98,6 +98,26 @@ private static Task ValidateClient(JwtSecurityToken token)
 }
 ```
 
+Similar to the validator, you can pass a custom logic to fetch the signing keys to validate against:
+
+```csharp
+var auth = BearerAuthentication.Create()
+                               .Issuer(...)
+                               .KeyResolver(FetchSigningKeys);
+
+// ...
+
+private static async ValueTask<ICollection<SecurityKey>> FetchSigningKeys(JwtSecurityToken token)
+{    
+    var pem = await File.ReadAllTextAsync("signing-key.pem");
+
+    var rsa = RSA.Create();
+    rsa.ImportFromPem(pem);
+
+    return new SecurityKey[] { new RsaSecurityKey(rsa) };
+}
+```
+
 If you would like to map incoming tokens to user accounts, you can add a mapper which will
 resolve an `IUser` instance. This mechanism can be combined with [user injection](/documentation/content/concepts/definitions/#user-injection)
 to allow you to directly access the user instance in your service methods.
