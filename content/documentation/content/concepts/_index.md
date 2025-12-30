@@ -16,6 +16,8 @@ handlers.
 
   {{< card link="./definitions/" title="Method Definitions" >}}
 
+  {{< card link="./code-generation/" title="Code Generation" >}}
+
   {{< card link="./response-content/" title="Response Content" >}}
 
   {{< card link="./resources/" title="Resources" >}}

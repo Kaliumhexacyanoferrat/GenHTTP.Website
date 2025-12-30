@@ -1,7 +1,7 @@
 ---
 title: Dependency Injection
 description: Enable dependency injection on the GenHTTP server.
-weight: 5
+weight: 6
 cascade:
   type: docs
 ---

@@ -1,7 +1,7 @@
 ---
 title: Response Content
 description: Describes the default I/O capabilities when working with response content in GenHTTP.
-weight: 3
+weight: 4
 cascade:
   type: docs
 ---
