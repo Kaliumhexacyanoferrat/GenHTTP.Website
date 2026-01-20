@@ -1,12 +1,24 @@
 ﻿---
-title: SSL Endpoints
+title: Security
 weight: 4
-description: 'Host GenHTTP via SSL/TLS endpoints and enable client certificate authentication.'
+description: 'Security considerations and configuration options for GenHTTP applications.'
 cascade:
   type: docs
 ---
 
-To add a SSL/TLS secured endpoint, you can use the overload of the `Bind()` method:
+This page summarizes security considerations and configuration options
+when running GenHTTP applications.
+
+## General Considerations
+
+GenHTTP is designed to be used as an application server behind a reverse proxy, and therefore does not provide built-in DoS protection (such as IP connection limits or Slowloris prevention).
+However, compared to many other web service frameworks for C#, it is hardened against - and explicitly tested for - typical attack vectors such as request smuggling, header injection, or malformed chunk attacks.
+
+If you would like to run your GenHTTP application without a reverse proxy in front of it, consider using the [Kestrel-based engine](../engines/) instead.
+
+## Encryption
+
+To add an SSL/TLS secured endpoint, you can use the overload of the `Bind()` method:
 
 ```csharp
 var certificate = X509CertificateLoader.LoadCertificateFromFile("./mycert.pfx");
@@ -21,7 +33,7 @@ var server = Server.Create()
 The given certificate will be used to encrypt all incoming requests with. Please note, that
 the client expects the server to use a certificate with a CN matching the requested host name.
 
-## Dynamic Certificate Selection
+### Dynamic Certificate Selection
 
 If you would like to dynamically select the certificate to be used to authenticate a connection
 (e.g. by the host name requested by the client), you can pass a custom `ICertificateProvider`
@@ -48,7 +60,7 @@ var server = Server.Create()
                    .Build();
 ```
 
-## Client Certificates
+### Client Certificates
 
 To enable client certificates (mTLS), you can pass a custom `ICertificateValidator` to the `Bind` method:
 
