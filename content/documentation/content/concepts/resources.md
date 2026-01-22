@@ -76,6 +76,41 @@ await Host.Create()
           .RunAsync();
 ```
 
+### Archives
+
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.Archives/" title="GenHTTP.Modules.Archives" icon="link" >}}
+{{< /cards >}}
+
+This module allows you to create resource trees from archive files such as `zip`, `tar`, `7z` or `rar`. Typical 
+use cases include reducing the number of files that need to be checked into your source
+repository, or directly hosting files from a release package without extracting it first. 
+The following example hosts an application that allows browsing the contents of the 
+given archive file:
+
+```csharp
+using GenHTTP.Engine.Internal;
+
+using GenHTTP.Modules.Archives;
+using GenHTTP.Modules.DirectoryBrowsing;
+using GenHTTP.Modules.IO;
+using GenHTTP.Modules.Practices;
+
+// http://localhost:8080
+
+var archive = Resource.FromFile("./sample.zip");
+
+var tree = ArchiveTree.From(archive);
+
+var app = Listing.From(tree);
+
+await Host.Create()
+          .Handler(app)
+          .Defaults()
+          .Console()
+          .RunAsync();
+```
+
 ### Virtual Trees
 
 Virtual trees allow to combine different sources of resources into an unified tree:
