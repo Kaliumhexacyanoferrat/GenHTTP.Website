@@ -43,6 +43,7 @@ The following resource implementations are provided by the `IO` module:
 | `Resource.FromString("Hello World")`   | Creates a resource from a string constant.               |
 | `Resource.FromFile("binary.blob")`     | Creates a resource from the given file.                  |
 | `Resource.FromAssembly("binary.blob")` | Loads the resource from the currently executed assembly. |
+| `Resource.FromWeb("https://...")`      | Creates a resource to be fetched from a web server.      |
 
 ### Change Tracking
 
