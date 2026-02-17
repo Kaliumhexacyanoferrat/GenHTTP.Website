@@ -51,6 +51,10 @@ await Host.Create()
 
 ## Framework Integration
 
+The following sections show how you can add dependency injection to webservices and websockets.
+
+### Service Frameworks
+
 The dependency injection module adds extensions to the layout builder that can be used to add DI-enabled
 web services, controllers, or functional handlers to your application. This requires dependency injection
 to be configured as described above. The following examples show how to inject the types registered
@@ -116,7 +120,50 @@ above into services or controllers.
 
 In contrast to non-injected services, the framework will create a new instance of your service
 on every request so that scoped dependencies can be injected. To control the lifecycle of your
-services, you can also register them in the service provider and they will be resolved from there.
+services, you can also register them in the service provider, and they will be resolved from there.
+
+### Websockets
+
+The dependency injection module adds extension methods that allow dependent websocket handlers to be
+created with having their dependencies injected as expected.
+
+{{< tabs items="Reactive,Imperative" >}}
+
+{{< tab >}}
+  ```csharp
+  var websocket = Websocket.Reactive() 
+                           .DependentHandler<MyHandler>();
+  
+  class MyHandler(MyDependency dependency) : IReactiveHandler
+  {
+  
+      public ValueTask OnMessage(IReactiveConnection connection, IWebsocketFrame message)
+      {
+          // do work
+      }
+  
+  }
+  ```
+{{< /tab >}}
+
+{{< tab >}}
+  ```csharp
+  var websocket = Websocket.Imperative()
+              .DependentHandler<MyHandler>();
+  
+  class MyHandler(MyDependency dependency) : IImperativeHandler
+  {
+  
+      public ValueTask HandleAsync(IImperativeConnection connection)
+      {
+          // do work
+      }
+  
+  }
+  ```
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Handler and Concern Integration
 

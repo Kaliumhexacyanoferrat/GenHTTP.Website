@@ -43,6 +43,7 @@ The following resource implementations are provided by the `IO` module:
 | `Resource.FromString("Hello World")`   | Creates a resource from a string constant.               |
 | `Resource.FromFile("binary.blob")`     | Creates a resource from the given file.                  |
 | `Resource.FromAssembly("binary.blob")` | Loads the resource from the currently executed assembly. |
+| `Resource.FromWeb("https://...")`      | Creates a resource to be fetched from a web server.      |
 
 ### Change Tracking
 
@@ -73,6 +74,41 @@ var listing = Listing.From(tree);
 
 await Host.Create()
           .Handler(listing)
+          .RunAsync();
+```
+
+### Archives
+
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.Archives/" title="GenHTTP.Modules.Archives" icon="link" >}}
+{{< /cards >}}
+
+This module allows you to create resource trees from archive files such as `zip`, `tar`, `7z` or `rar`. Typical 
+use cases include reducing the number of files that need to be checked into your source
+repository, or directly hosting files from a release package without extracting it first. 
+The following example hosts an application that allows browsing the contents of the 
+given archive file:
+
+```csharp
+using GenHTTP.Engine.Internal;
+
+using GenHTTP.Modules.Archives;
+using GenHTTP.Modules.DirectoryBrowsing;
+using GenHTTP.Modules.IO;
+using GenHTTP.Modules.Practices;
+
+// http://localhost:8080
+
+var archive = Resource.FromFile("./sample.zip");
+
+var tree = ArchiveTree.From(archive);
+
+var app = Listing.From(tree);
+
+await Host.Create()
+          .Handler(app)
+          .Defaults()
+          .Console()
           .RunAsync();
 ```
 
