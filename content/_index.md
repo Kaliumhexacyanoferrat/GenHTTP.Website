@@ -18,7 +18,7 @@ date = 2025-11-28T09:35:41+02:00
 
 {{< hextra/hero-button text="Get Started" link="/documentation/" >}}
 
-<br /><br />
+<div class="get-started-spacer"> </div>
 
 {{< hextra/feature-grid >}}
   {{< hextra/feature-card

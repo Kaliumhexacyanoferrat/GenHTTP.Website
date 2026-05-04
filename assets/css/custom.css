@@ -222,3 +222,7 @@
     --tw-text-opacity: 1;
     color: rgb(15 23 42 / var(--tw-text-opacity));
 }
+
+.get-started-spacer {
+    margin-bottom: 1.5em;
+}
