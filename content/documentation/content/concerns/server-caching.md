@@ -48,7 +48,7 @@ var cache = ServerCache.Memory();
 
 // stores generated responses in a temporary directory
 // uses memory to store the index meta data
-// low RAM comsumption but way slower than memory
+// low RAM consumption but way slower than memory
 var cache = ServerCache.TemporaryFiles();
 
 // stores generated responses in the given directory

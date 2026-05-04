@@ -51,7 +51,7 @@ and [client caching](/documentation/content/concerns/client-caching-validation/)
 ## Security
 
 By default, the server will provide an HTTP endpoint on port 8080 with no
-SSL supported enabled. It is recommended to serve all of your web applications
+SSL support enabled. It is recommended to serve all of your web applications
 by a dedicated reverse proxy such as [nginx](https://www.nginx.com/)
 or the [GenHTTP Gateway](https://hub.docker.com/r/genhttp/gateway).
 Nevertheless, the server allows you to [add HTTPS endpoints](./security/) to your application.

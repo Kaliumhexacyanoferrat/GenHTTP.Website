@@ -38,7 +38,7 @@ By default, only content larger than 256 bytes will be compressed, as compressio
 introduces more overhead than benefits. To change this limit, use the `.MinimumSize()` overload
 on the builder. Passing `null` for minimal size will always compress response content.
 
-The compression concern will tell the algorithms to to use the fastest mode
+The compression concern will tell the algorithms to use the fastest mode
 available, featuring a good balance between CPU usage and resulting content size.
 If you would like to adjust this setting, you can use the `.Level()` function of the
 builder.

@@ -10,7 +10,7 @@ cascade:
 {{< /cards >}}
 
 Downloads allow to serve a single [Resource](../../concepts/resources/) with a fixed name to your clients. The content type
-of the file will automatically be determined by it's extension.
+of the file will automatically be determined by its extension.
 
 ```csharp
 var resource = Resource.FromFile("/var/www/documents/agb.pdf");

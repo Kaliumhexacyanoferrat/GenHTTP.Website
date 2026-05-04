@@ -37,7 +37,7 @@ To create a project by using the terminal, create a new folder for your app and 
 | REST Webservice (controllers) | `dotnet new genhttp-webservice-controllers` | [Controllers](./content/frameworks/controllers/)                                 |
 | Websocket                     | `dotnet new genhttp-websocket`              | [Websockets](./content/frameworks/websockets/)                                   |
 | Server Sent Events (SSE)      | `dotnet new genhttp-sse`                    | [Server Sent Events](./content/handlers/server-sent-events/)                     |
-| Website (Static HTML)         | `dotnet new genhttp-website-static`         | [Statics Websites](./content/frameworks/static-websites/)                        |
+| Website (Static HTML)         | `dotnet new genhttp-website-static`         | [Static Websites](./content/frameworks/static-websites/)                        |
 | Single Page Application (SPA) | `dotnet new genhttp-spa`                    | [Single Page Applications (SPA)](./content/frameworks/single-page-applications/) |
 
 After the project has been created, you can run it via `dotnet run` and access the server via http://localhost:8080.
@@ -59,8 +59,8 @@ When you run this sample it can be accessed in the browser via http://localhost:
 
 ## Next Steps
 
-The example project above gives you a basic idea on how projects developed
-with the GenHTTP may look like. To create more complex web applications, 
+The example project above gives you a basic idea of how projects developed
+with GenHTTP might look like. To create more complex web applications, 
 follow the guides in the following sections:
 
 {{< cards >}}

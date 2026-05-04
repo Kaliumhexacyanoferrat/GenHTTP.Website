@@ -20,7 +20,7 @@ A project serving a websocket can quickly be created by using a [project templat
 
 ## Flavors
 
-There are four different kind of flavors that you can use to host a web socket endpoint. The template uses
+There are four different flavors that you can use to host a web socket endpoint. The template uses
 the reactive approach, but you can choose one of them based on your personal preference
 and project needs. They do not differ in functionality. In this section we will spawn
 a simple websocket server that will relay incoming messages to all other connected clients
@@ -410,7 +410,7 @@ start to receive frames with `Type` being set to `Continue`.
 
 By default, the websocket handler will allocate a new buffer per frame to
 keep the data available after the next message has already been read from
-the underlying connection. This allows user to store frames or their `Data`.
+the underlying connection. This allows users to store frames or their `Data`.
 
 For high performance scenarios, you can disable this automatic allocation 
 by calling `.DoNotAllocateFrameData()` on the builder and access the raw buffer 

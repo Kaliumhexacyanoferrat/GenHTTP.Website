@@ -94,8 +94,8 @@ var server = Server.Create()
 ```
 
 The server will only allow clients that can present a certificate that passes the `Validate`
-function of your implementation. If the client does not send a certificate, I may still connect
+function of your implementation. If the client does not send a certificate, it may still connect
 if `RequireCertificate` returns `false`.
 
-Client certificates can be combined with the [client certificate authentication](/documentation/content/concerns/authentication/#client-certificate-cuthentication) concern
+Client certificates can be combined with the [client certificate authentication](/documentation/content/concerns/authentication/#client-certificate-authentication) concern
 to authorize access on content level.

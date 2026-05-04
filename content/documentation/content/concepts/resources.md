@@ -114,7 +114,7 @@ await Host.Create()
 
 ### Virtual Trees
 
-Virtual trees allow to combine different sources of resources into an unified tree:
+Virtual trees allow to combine different sources of resources into a unified tree:
 
 ```csharp
 var tree = VirtualTree.Create()

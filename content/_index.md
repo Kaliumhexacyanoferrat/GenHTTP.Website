@@ -28,7 +28,7 @@ date = 2025-11-28T09:35:41+02:00
   >}}
   {{< hextra/feature-card
     title="100% Managed"
-    subtitle="Written in C# and provided as a .NET library package on nuget, with just a few dependencies. Spin up a local server with a single line of code."
+    subtitle="Written in C# and provided as a .NET library package on NuGet, with just a few dependencies. Spin up a local server with a single line of code."
     style="background: radial-gradient(ellipse at 50% 80%,rgba(142,53,74,0.15),hsla(0,0%,100%,0));"
   >}}
   {{< hextra/feature-card

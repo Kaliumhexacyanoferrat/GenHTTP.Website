@@ -100,7 +100,7 @@ in the `Project.cs`.
 ## Next Steps
 
 The documentation will show you the details of the web service framework as well
-as all other aspects that are relevant when developing an webservice application
+as all other aspects that are relevant when developing a webservice application
 using the GenHTTP framework.
 
 {{< cards >}}

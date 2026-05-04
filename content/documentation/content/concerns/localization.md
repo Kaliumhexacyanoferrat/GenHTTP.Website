@@ -16,7 +16,7 @@ serve content based on those.
 ## Basic Usage
 
 By default, the concern will read the `Accept-Language` header
-and set the `CultureInfo.CurrentUICulture`accordingly. 
+and set the `CultureInfo.CurrentUICulture` accordingly. 
 
 {{< tabs items="Webservices,Functional,Controllers" >}}
 

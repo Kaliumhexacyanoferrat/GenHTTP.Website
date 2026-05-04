@@ -64,7 +64,7 @@ await Host.Create()
 This uses the [functional framework](../../content/frameworks/functional/) to define and
 implement a web service and the GenHTTP host to spawn the server instance. 
 
-If you  have an already existing project, you can copy those two lines to an appropriate
+If you have an already existing project, you can copy those two lines to an appropriate
 place (e.g. the bootstrapping code of your app). As the `RunAsync()` method will block
 execution (which is convenient for a console app), you might want to manage 
 the server lifecycle via `StartAsync()` and `StopAsync()` yourself in such a scenario.
@@ -86,7 +86,7 @@ so you can open this URL in a browser (or with any other client such as `curl` o
 ## Next Steps
 
 The documentation will show you the details of the functional framework as well
-as all other aspects that are relevant when developing an webservice application
+as all other aspects that are relevant when developing a webservice application
 using the GenHTTP framework.
 
 {{< cards >}}

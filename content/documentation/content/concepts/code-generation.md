@@ -9,8 +9,8 @@ cascade:
 By default, the server will use the reflection APIs to analyze and execute
 webservice methods. For improved performance, there is an experimental
 code generation mode that compiles a delegate that fetches the input arguments
-from the request, execute the webservice method and map the result into
-a HTTP response.
+from the request, executes the webservice method, and maps the result into
+an HTTP response.
 
 {{< callout type="info" >}}
   This feature will be enabled by default with GenHTTP 11.

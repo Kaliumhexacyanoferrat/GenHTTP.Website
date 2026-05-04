@@ -93,7 +93,7 @@ await app.RunAsync();
 [Unhinged](https://github.com/MDA2AV/unhinged) is an experimental, Linux‑only high-performance socket engine written in C#. It is built around Linux’s epoll interface (accept4, etc.) for ultra-fast, low-level network I/O.
 
 The [adapter](https://github.com/MDA2AV/Unhinged-GenHttp-Adapter) allows to combine the raw performance provided by Unhinged with the high-level APIs provided by the GenHTTP framework.
-Please note that both Unhinged and the adapter are in a very development stage and also that this sample will run on `linux-x64` only.
+Please note that both Unhinged and the adapter are in a very early development stage and also that this sample will run on `linux-x64` only.
 
 ```csharp
 using GenHTTP.Modules.ApiBrowsing;

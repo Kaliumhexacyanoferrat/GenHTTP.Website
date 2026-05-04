@@ -177,7 +177,7 @@ var app = Layout.Create()
                 .AddSwaggerUi(url: "../api/v1/openapi.json");
 ```
 
-While you can pass an absolute URL, we recommend to pass a relative
+While you can pass an absolute URL, we recommend passing a relative
 URL to avoid issues with CORS and your reverse proxy setup.
 
 ## Adjusting the Path

@@ -11,7 +11,7 @@ cascade:
 {{< /cards >}}
 
 This framework allows to create APIs by defining and implementing controller classes. In contrast
-to ASP.NET you cannot use this framework to dynamically render HTML pages in a MVC style project,
+to ASP.NET, you cannot use this framework to dynamically render HTML pages in an MVC style project,
 so this is just another flavor of defining a web API.
 
 {{< callout type="info" >}}

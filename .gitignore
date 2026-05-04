@@ -3,3 +3,6 @@
 
 .hugo_build.lock
 .idea
+
+CLAUDE.md
+.claude/

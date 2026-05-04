@@ -318,7 +318,7 @@ public class CorrelationInjector : IParameterInjector
 }
 ```
 
-The injector can than be added to the default injection registry:
+The injector can then be added to the default injection registry:
 
 {{< tabs items="Webservices,Functional,Controllers" >}}
 
@@ -421,7 +421,7 @@ If declared nullable, the server will generate a `HTTP 204 No Content` if `null`
 ### Complex Types
 
 When returning a complex type, the value will be [serialized](#serialization-formats) and sent
-to the client. The response format is negated with the client using the `Accept` request
+to the client. The response format is negotiated with the client using the `Accept` request
 header. By default, the server is capable of generating XML, JSON, YAML or form encoded responses. If
 no format is specified by the client, the implementation will fall back to JSON.
 
@@ -784,7 +784,7 @@ This formatter can then be added to the default formatting registry.
 
 {{< /tabs >}}
 
-The serialization format is implemented by our formatter, so the API can be called
+The serialization format is implemented by the formatter, so the API can be called
 via `/invert/8-10` and will return `10-8` as a text formatted response.
 
 ### Serialization Formats
