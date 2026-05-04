@@ -18,9 +18,9 @@ for rendering websites in GenHTTP is minimalistic, so you should not use this fo
 The following example will show you how to use a Cottle template file to generate a web page
 with dynamic content via GenHTTP.
 
-{{< tabs items="Source,Template.html" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Source" >}}
   ```csharp
   using Cottle;
   
@@ -68,7 +68,7 @@ with dynamic content via GenHTTP.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Template.html" >}}
   ```html
   <!DOCTYPE html>
   <html lang="en">

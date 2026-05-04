@@ -1,4 +1,4 @@
----
+﻿---
 title: Method Definitions
 weight: 2
 cascade:
@@ -20,22 +20,22 @@ By default, the following types can be used as parameters within a method defini
 `string`, `bool`, `enum`, `Guid`, `DateOnly` and any other primitive type (such as
 `int`).
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod]
   public int Length(string text) => text.Length;
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   .Get((string text) => text.Length)
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   public int Index(string text) => text.Length;
   ```
@@ -50,22 +50,22 @@ By default, parameters are read from the request query (`?text=abc`) or from a [
 
 If you would like to read the parameter directly from the request body, you can mark it with the `[FromBody]` attribute.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod(RequestMethod.PUT)]
   public int Length([FromBody] string text) => text.Length;
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   .Put(([FromBody] string text) => text.Length)
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   [ControllerAction(RequestMethod.PUT)]
   public int Index([FromBody] string text) => text.Length;
@@ -76,22 +76,22 @@ If you would like to read the parameter directly from the request body, you can 
 
 To read the parameter from the request path, use the appropriate method provided by the application framework.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod(RequestMethod.DELETE, ":id")]
   public void Delete(int id) { /* ... */ }
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   .Delete("/:id", (int id) => { /* ... */ })
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   [ControllerAction(RequestMethod.DELETE)]
   public int Delete([FromPath] int id) { /* ... */ }
@@ -102,16 +102,16 @@ To read the parameter from the request path, use the appropriate method provided
 
 Some frameworks allow to further restrict path parameters using a regular expression.
 
-{{< tabs items="Webservices,Functional" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod("(?<ean13>[0-9]{12,13})")]
   public Book? GetBook(int ean13) { /* ... */ }
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   .Get("/books/?<ean13>[0-9]{12,13})", (int ean13) => { /* ... */ })
   ```
@@ -125,22 +125,22 @@ When using a complex type in a parameter declaration, the value will be [deseria
 request body. By default, handlers will accept content declared as XML, JSON, YAML or form encoded. If
 the client does not declare the `Content-Type`, the server will try to treat the body as JSON.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod(RequestMethod.POST)]
   public void Save(MyClass data) { /* ... */ }
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   .Post((MyClass data) => { /* ... */ })
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   [ControllerAction(RequestMethod.POST)]
   public void Save(MyClass data) { /* ... */ }
@@ -174,9 +174,9 @@ Example form:
 
 Can be read using the following definitions:
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod(RequestMethod.POST)]
   public void Save(int id, string name) { /* ... */ }
@@ -188,7 +188,7 @@ Can be read using the following definitions:
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   .Post("/save", (int id, string name) => { /* ... */ })
   
@@ -198,7 +198,7 @@ Can be read using the following definitions:
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   [ControllerAction(RequestMethod.POST)]
   public void Save(int id, string name) { /* ... */ }
@@ -220,22 +220,22 @@ others as a custom type).
 To access information about the currently executed request you can add a parameter of
 type `IRequest` to your method definition which will automatically be populated.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod]
   public string? GetUserAgent(IRequest request) => request.UserAgent;
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   .Get("/user-agent", (IRequest request) => request.UserAgent)
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   public string? UserAgent(IRequest request) => request.UserAgent;
   ```
@@ -263,22 +263,22 @@ will already be decompressed and not in a chunked format. Depending on the
 size of request body this will either be a stream backed by memory or by a file
 and is therefore well suited for very large payloads.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod(RequestMethod.PUT, "upload")]
   public void Upload(Stream file) { /* ... */ }
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   .Put("/upload", (Stream file) => { /* ... */ })
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   [ControllerAction(RequestMethod.PUT)]
   public void Upload(Stream file) { /* ... */ }
@@ -320,9 +320,9 @@ public class CorrelationInjector : IParameterInjector
 
 The injector can then be added to the default injection registry:
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   var injection = Injection.Default()
                            .Add(new CorrelationInjector());
@@ -340,7 +340,7 @@ The injector can then be added to the default injection registry:
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   var injection = Injection.Default()
                            .Add(new CorrelationInjector());
@@ -351,7 +351,7 @@ The injector can then be added to the default injection registry:
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   var injection = Injection.Default()
                          .Add(new CorrelationInjector());
@@ -395,22 +395,22 @@ By default, the following types can be used as a return type within a method def
 
 If declared nullable, the server will generate a `HTTP 204 No Content` if `null` is returned.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod]
   public int Length(string text) => text.Length;
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   .Get((string text) => text.Length)
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   public int Index(string text) => text.Length;
   ```
@@ -427,22 +427,22 @@ no format is specified by the client, the implementation will fall back to JSON.
 
 If declared nullable, the server will generate a `HTTP 204 No Content` if `null` is returned.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod]
   public MyType DoWork() => new();
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   .Get(() => new MyType())
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   public MyType Index() => new();
   ```
@@ -456,9 +456,9 @@ When injecting the request into your method, you can directly generate an `IResp
 or `IResponseBuilder` and return it to the client. This allows you to take full control
 over the response generation but is less readable than the typed versions.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod]
   public IResponseBuilder Respond(IRequest request)
@@ -474,7 +474,7 @@ over the response generation but is less readable than the typed versions.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   .Get((IRequest request) => {
      var content = Resource.FromString("Hello World")
@@ -488,7 +488,7 @@ over the response generation but is less readable than the typed versions.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   public IResponseBuilder Respond(IRequest request)
   {
@@ -515,9 +515,9 @@ generated HTTP response. Therefore, results can be considered an advanced
 way to generate responses without the need to fully generate the response
 in the first place.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod]
   public Result<string> DoWork() 
@@ -527,13 +527,13 @@ in the first place.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   .Get(() => new Result<string>("Hello World").Header("X-My-Header", "my-value"))
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   public Result<string> Index()
   {
@@ -557,9 +557,9 @@ This allows you to provide a whole segment on your web application by re-using t
 The following example will render a fully navigable directory listing view depending on
 the tenant ID passed to the method:
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod("files/:tenant")]
   public IHandlerBuilder Files(int tenant) 
@@ -571,13 +571,13 @@ the tenant ID passed to the method:
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   .Get("/files/:tenant", (int tenant) => Listing.From(ResourceTree.FromDirectory($"/data/tenants/{tenant}")))
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   public IHandlerBuilder Files(int tenant) 
   {
@@ -600,9 +600,9 @@ instance for every request to be answered.
 
 Besides streams, returning `byte[]` and `ReadOnlyMemory<byte>` is also supported.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod]
   public Stream GetFile() => File.OpenRead("...");
@@ -615,7 +615,7 @@ Besides streams, returning `byte[]` and `ReadOnlyMemory<byte>` is also supported
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   .Get("/file" => File.OpenRead("..."))
   .Get("/bytes", () => Encoding.UTF8.GetBytes("Binary data"))
@@ -623,7 +623,7 @@ Besides streams, returning `byte[]` and `ReadOnlyMemory<byte>` is also supported
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   public Stream File() => File.OpenRead("...");
   
@@ -640,22 +640,22 @@ Besides streams, returning `byte[]` and `ReadOnlyMemory<byte>` is also supported
 Methods with a `void` return type will automatically generate a `HTTP 204 No Content`
 response. This is also the case when `null` is returned.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod]
   public void DoWork() { }
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   .Get(() => { }})
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   public void DoWork() { }
   ```
@@ -669,22 +669,22 @@ Service methods returning a `Task` or `ValueTask` will be executed
 asynchronously. All the features described in this document will work
 for asynchronous execution as well. 
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod]
   public async ValueTask<int> DoWork() { /* ... */ }
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   .Get(async () => await ...)
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   public async ValueTask<int> DoWork() { /* ... */ }
   ```
@@ -734,9 +734,9 @@ public class PointFormatter : IFormatter
 
 This formatter can then be added to the default formatting registry.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   var registry = Formatting.Default()
                            .Add(new PointFormatter());
@@ -754,7 +754,7 @@ This formatter can then be added to the default formatting registry.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   var registry = Formatting.Default()
                            .Add(new PointFormatter());
@@ -765,7 +765,7 @@ This formatter can then be added to the default formatting registry.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   var registry = Formatting.Default()
                          .Add(new PointFormatter());
@@ -810,9 +810,9 @@ For example, the nuget package `GenHTTP.Modules.Protobuf` adds support for
 following snippet shows how to register the protobuf format and use it in 
 a service.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   var registry = Serialization.Default()
                               .Add(new FlexibleContentType("application/protobuf"), new ProtobufFormat());
@@ -830,7 +830,7 @@ a service.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   var registry = Serialization.Default()
                               .Add(new FlexibleContentType("application/protobuf"), new ProtobufFormat());
@@ -841,7 +841,7 @@ a service.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   var registry = Serialization.Default()
                               .Add(new FlexibleContentType("application/protobuf"), new ProtobufFormat());
@@ -878,9 +878,9 @@ var serialization = Serialization.Default(jsonOptions: options);
 With interceptors, you can add behavior on operation-level by using additional attributes. This is useful
 for features such as authorization.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   using System.Net;
   
@@ -936,7 +936,7 @@ for features such as authorization.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   using System.Net;
   
@@ -982,7 +982,7 @@ for features such as authorization.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   using System.Net;
   

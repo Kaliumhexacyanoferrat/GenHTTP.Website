@@ -239,9 +239,9 @@ If you are using one of the service frameworks, you probably want to authorize u
 by setting the `Roles` property on user creation in combination with the `[RequireRole]`
 interceptor:
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   using GenHTTP.Api.Content.Authentication;
   using GenHTTP.Api.Protocol;
@@ -295,7 +295,7 @@ interceptor:
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   using GenHTTP.Api.Content.Authentication;
   using GenHTTP.Api.Protocol;
@@ -336,7 +336,7 @@ interceptor:
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   using GenHTTP.Api.Content.Authentication;
   using GenHTTP.Api.Protocol;

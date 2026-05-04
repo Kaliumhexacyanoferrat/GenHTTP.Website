@@ -17,9 +17,9 @@ apps are hosted locally so no internet connection is required.
 The following example creates an API, the corresponding Open API definition
 and two endpoints to host Swagger and Redoc.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   using GenHTTP.Api.Protocol;
   
@@ -66,7 +66,7 @@ and two endpoints to host Swagger and Redoc.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   using GenHTTP.Engine.Internal;
 
@@ -100,7 +100,7 @@ and two endpoints to host Swagger and Redoc.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   using GenHTTP.Api.Protocol;
 

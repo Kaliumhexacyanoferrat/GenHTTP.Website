@@ -18,9 +18,9 @@ serve content based on those.
 By default, the concern will read the `Accept-Language` header
 and set the `CultureInfo.CurrentUICulture` accordingly. 
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   using System.Globalization;
 
@@ -54,7 +54,7 @@ and set the `CultureInfo.CurrentUICulture` accordingly.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   using System.Globalization;
 
@@ -79,7 +79,7 @@ and set the `CultureInfo.CurrentUICulture` accordingly.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   using System.Globalization;
 

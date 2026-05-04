@@ -1,4 +1,4 @@
----
+﻿---
 title: Code Generation
 description: Enables code generation for GenHTTP web services for faster execution.
 weight: 3
@@ -33,9 +33,9 @@ an HTTP response.
 Code generation can be enabled by passing `ExecutionMode.Auto` to the framework handlers
 (in contrast to `ExecutionMode.Reflection`, which is the default value).
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   using GenHTTP.Engine.Internal;
   
@@ -65,7 +65,7 @@ Code generation can be enabled by passing `ExecutionMode.Auto` to the framework 
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   using GenHTTP.Engine.Internal;
 
@@ -87,7 +87,7 @@ Code generation can be enabled by passing `ExecutionMode.Auto` to the framework 
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   using GenHTTP.Engine.Internal;
   

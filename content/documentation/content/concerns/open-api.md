@@ -12,9 +12,9 @@ type: docs
 This concern dynamically generates and serves an [Open API v3 specification](https://github.com/OAI/OpenAPI-Specification) using 
 [NSwag](https://github.com/RicoSuter/NSwag) for all detected API endpoints.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   using GenHTTP.Engine.Internal;
 
@@ -47,7 +47,7 @@ This concern dynamically generates and serves an [Open API v3 specification](htt
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   using GenHTTP.Engine.Internal;
 
@@ -69,7 +69,7 @@ This concern dynamically generates and serves an [Open API v3 specification](htt
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   using GenHTTP.Api.Protocol;
   using GenHTTP.Engine.Internal;

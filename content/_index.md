@@ -8,13 +8,13 @@ date = 2025-11-28T09:35:41+02:00
   Effortless REST API Development with C#
 {{< /hextra/hero-headline >}}
 
-<br /><br />
+<br />
 
 {{< hextra/hero-subtitle >}}
   A configuration-free, embeddable alternative to ASP.NET Core for building REST APIs on .NET.
 {{< /hextra/hero-subtitle >}}
 
-<br /><br />
+<br />
 
 {{< hextra/hero-button text="Get Started" link="/documentation/" >}}
 

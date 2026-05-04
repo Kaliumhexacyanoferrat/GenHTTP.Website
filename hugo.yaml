@@ -55,3 +55,8 @@ params:
       height: 32
 
 enableInlineShortcodes: true
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

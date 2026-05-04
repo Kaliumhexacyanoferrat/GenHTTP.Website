@@ -1,4 +1,4 @@
----
+﻿---
 title: Dependency Injection
 description: Enable dependency injection on the GenHTTP server.
 weight: 6
@@ -60,9 +60,9 @@ web services, controllers, or functional handlers to your application. This requ
 to be configured as described above. The following examples show how to inject the types registered
 above into services or controllers.
 
-{{< tabs items="Webservices,Functional,Controllers" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Webservices" >}}
   ```csharp
   using GenHTTP.Modules.DependencyInjection;
   
@@ -85,7 +85,7 @@ above into services or controllers.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Functional" >}}
   ```csharp
   using GenHTTP.Modules.DependencyInjection;
   
@@ -94,7 +94,7 @@ above into services or controllers.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Controllers" >}}
   ```csharp
   using GenHTTP.Modules.DependencyInjection;
   
@@ -127,9 +127,9 @@ services, you can also register them in the service provider, and they will be r
 The dependency injection module adds extension methods that allow dependent websocket handlers to be
 created with having their dependencies injected as expected.
 
-{{< tabs items="Reactive,Imperative" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Reactive" >}}
   ```csharp
   var websocket = Websocket.Reactive() 
                            .DependentHandler<MyHandler>();
@@ -146,7 +146,7 @@ created with having their dependencies injected as expected.
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Imperative" >}}
   ```csharp
   var websocket = Websocket.Imperative()
               .DependentHandler<MyHandler>();
@@ -171,9 +171,9 @@ The `Dependent` entry point allows you to create handlers and concerns that reso
 dependencies from the registered service provider. As their lifecycle may differ from that
 of regular handlers and concerns, there are slightly different interfaces to be implemented.
 
-{{< tabs items="Handlers,Concerns" >}}
+{{< tabs >}}
 
-{{< tab >}}
+{{< tab name="Handlers" >}}
   ```csharp
   using GenHTTP.Modules.DependencyInjection;
   
@@ -198,7 +198,7 @@ of regular handlers and concerns, there are slightly different interfaces to be 
   ```
 {{< /tab >}}
 
-{{< tab >}}
+{{< tab name="Concerns" >}}
   ```csharp
   using GenHTTP.Modules.DependencyInjection;
   
