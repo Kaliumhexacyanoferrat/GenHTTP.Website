@@ -1,5 +1,5 @@
 module website
 
-go 1.22.4
+go 1.26.2
 
-require github.com/imfing/hextra v0.11.1 // indirect
+require github.com/imfing/hextra v0.12.2 // indirect
