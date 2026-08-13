@@ -1,7 +1,7 @@
 +++
 title = ''
 description = 'Lightweight, embeddable HTTP web server written in C# with support for current standards such as Open API, JWT auth, Websockets and more.'
-date = 2025-11-28T09:35:41+02:00
+date = 2026-08-13T09:35:41+02:00
 +++
 
 {{< hextra/hero-headline >}}
