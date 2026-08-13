@@ -1,7 +1,7 @@
 ﻿+++
 title = 'Features'
 description = 'Features of the GenHTTP application framework such as performance, SEO or security.'
-date = 2024-06-20T14:10:41+02:00
+date = 2026-08-13T14:10:41+02:00
 +++
 
 ## Frameworks
@@ -20,13 +20,23 @@ comes with a rich set of features:
 
 ## Server Performance
 
-In terms of raw HTTP protocol performance, the GenHTTP webserver is located in the middle segment compared to
-other server implementations, serving more than four million requests per second. Improving the performance of the server is
-an ongoing task, especially since there is currently a lot of potential to be tapped.
+According to [HTTP Arena](https://www.http-arena.com), GenHTTP is currently the fastest web server for HTTP/1.1. The following
+excerpt shows how GenHTTP compares to other C# servers in the field:
 
-![GenHTTP framework analyzed with TechEmpower FrameworkBenchmarks](tfb.png)
+| Framework         | Score (Composite H1) |
+|-------------------|----------------------|
+| `genhttp-ioxide`  | 968                  |
+| `genhttp`         | 868                  |
+| `simplew`         | 624                  |
+| `genhttp-kestrel` | 585                  |
+| `aspnet-minimal`  | 506                  |
+| `fastendpoints`   | 493                  |
+| `aspnet-mvc`      | 378                  |
+| `sisk`            | 207                  |
+| `servicestack`    | 102                  |
 
-*see [TechEmpower Web Framework Benchmarks](https://www.techempower.com/benchmarks/)*
+According to those numbers, stock GenHTTP is 1.72 times faster then ASP.NET Core Minimal API
+in a mixed challenge with different use cases and usage scenarios.
 
 ## Footprint
 
