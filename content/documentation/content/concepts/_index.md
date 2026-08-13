@@ -12,6 +12,8 @@ handlers.
 
 {{< cards >}}
 
+  {{< card link="./request-api/" title="Request API" >}}
+
   {{< card link="./routing/" title="Routing" >}}
 
   {{< card link="./definitions/" title="Method Definitions" >}}
