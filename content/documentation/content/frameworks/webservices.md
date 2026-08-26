@@ -6,16 +6,8 @@ cascade:
   type: docs
 ---
 
-{{< cards >}}
-{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.Webservices/" title="GenHTTP.Modules.Webservices" icon="link" >}}
-{{< /cards >}}
-
 The webservice module provides an easy way to implement RESTful services
 that can be consumed by clients as needed.
-
-{{< callout type="info" >}}
-Webservices can quickly be created by using a [project template](../../templates/).
-{{< /callout >}}
 
 ## Hosting an API
 

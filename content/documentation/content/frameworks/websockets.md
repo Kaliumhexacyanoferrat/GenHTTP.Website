@@ -7,22 +7,12 @@ cascade:
   type: docs
 ---
 
-{{< cards >}}
-{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.Websockets/" title="GenHTTP.Modules.Websockets" icon="link" >}}
-{{< /cards >}}
-
 Websockets allow to create a bidirectional connection between your clients and your server,
 allowing both sides to push content without the need of sending HTTP requests.
 
-{{< callout type="info" >}}
-A project serving a websocket can quickly be created by using a [project template](../../templates/).
-{{< /callout >}}
-
 ## Flavors
 
-There are four different flavors that you can use to host a web socket endpoint. The template uses
-the reactive approach, but you can choose one of them based on your personal preference
-and project needs. They do not differ in functionality. In this section we will spawn
+There are four different flavors that you can use to host a web socket endpoint. They do not differ in functionality. In this section we will spawn
 a simple websocket server that will relay incoming messages to all other connected clients
 (so basically a simple chat application). In the "Client" section you will find a simple
 HTML file that can be opened in a browser to connect to your server.

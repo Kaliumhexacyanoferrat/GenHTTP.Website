@@ -15,47 +15,42 @@ or website in a couple of minutes.
 
 ## Getting Started
 
-This section shows how to create a new project from scratch using project templates and how to extend your existing application by embedding the GenHTTP engine.
-
-{{< callout emoji="🌐" >}}
-This is a brief overview to get you running. You might want to have a look
-at the [tutorials](./tutorials/) for detailed step-by-step guides.
-{{< /callout >}}
-
-### New Project
-
-Project templates can be used to create apps for typical use cases with little effort. After installing the [.NET SDK](https://dotnet.microsoft.com/en-us/download) and the templates via `dotnet new -i GenHTTP.Templates` in the terminal, the templates are available via the console or directly in Visual Studio:
-
-![GenHTTP template projects in Visual Studio](/documentation/content/templates.png)
-
-To create a project by using the terminal, create a new folder for your app and use one of the following commands:
-
-| Template                      | Command                                     | Documentation                                                                    |
-|-------------------------------|---------------------------------------------|----------------------------------------------------------------------------------|
-| REST Webservice               | `dotnet new genhttp-webservice`             | [Webservices](./content/frameworks/webservices/)                                 |
-| REST Webservice (single file) | `dotnet new genhttp-webservice-minimal`     | [Functional Handlers](./content/frameworks/functional/)                          |
-| REST Webservice (controllers) | `dotnet new genhttp-webservice-controllers` | [Controllers](./content/frameworks/controllers/)                                 |
-| Websocket                     | `dotnet new genhttp-websocket`              | [Websockets](./content/frameworks/websockets/)                                   |
-| Server Sent Events (SSE)      | `dotnet new genhttp-sse`                    | [Server Sent Events](./content/handlers/server-sent-events/)                     |
-| Website (Static HTML)         | `dotnet new genhttp-website-static`         | [Static Websites](./content/frameworks/static-websites/)                        |
-| Single Page Application (SPA) | `dotnet new genhttp-spa`                    | [Single Page Applications (SPA)](./content/frameworks/single-page-applications/) |
-
-After the project has been created, you can run it via `dotnet run` and access the server via http://localhost:8080.
-
-### Extending Existing Apps
-
-If you would like to extend an existing .NET application, just add a nuget reference to the `GenHTTP.Core` nuget package. You can then spawn a new server instance with just a few lines of code:
+To host a GenHTTP server instance in an existing or new .NET project, add a nuget reference to `GenHTTP.Full` to your
+project and spin off a new host:
 
 ```csharp
-var content = Content.From(Resource.FromString("Hello World!"));
+using GenHTTP.Engine.Internal;
 
-var server = Host.Create()
-                 .Handler(content)
-                 .Defaults()
-                 .StartAsync(); // or .RunAsync() to block until the application is shut down
+using GenHTTP.Modules.ApiBrowsing;
+using GenHTTP.Modules.Functional;
+using GenHTTP.Modules.Layouting;
+using GenHTTP.Modules.OpenApi;
+using GenHTTP.Modules.Practices;
+
+// use a handler of your choice (see the samples below)
+var api = Layout.Create()
+                .Add(Inline.Create().Get(() => "Hello World"))
+                .AddOpenApi()
+                .AddScalar();
+
+var host = await Host.Create()
+                     .Handler(api)
+                     .Defaults()
+                     .StartAsync(); // or .RunAsync() to block until the (console) application is shut down
 ```
 
-When you run this sample it can be accessed in the browser via http://localhost:8080. 
+Running this snippet will provide the following endpoints:
+
+| Endpoint                           | Description                                                            |
+|------------------------------------|------------------------------------------------------------------------|
+| http://localhost:8080              | Serves the API, answering requests with a "Hello World" text response. |
+| http://localhost:8080/openapi.json | Serves the automatically generated Open API specification of the API.  |
+| http://localhost:8080/scalar/      | Servers a graphical viewer of the API, using Scalar.                   |
+
+## Samples
+
+The [playground](https://github.com/Kaliumhexacyanoferrat/GenHTTP/tree/main/Playground) project provides a quick starting point to view sample code and find more complex apps
+built with GenHTTP.
 
 ## Next Steps
 
@@ -64,8 +59,6 @@ with GenHTTP might look like. To create more complex web applications,
 follow the guides in the following sections:
 
 {{< cards >}}
-
-  {{< card link="./tutorials/" title="Create a new project" >}}
 
   {{< card link="./content/" title="Implement your service" >}}
   

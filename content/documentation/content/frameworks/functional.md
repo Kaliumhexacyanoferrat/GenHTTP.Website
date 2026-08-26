@@ -6,16 +6,8 @@ cascade:
   type: docs
 ---
 
-{{< cards >}}
-{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.Functional/" title="GenHTTP.Modules.Functional" icon="link" >}}
-{{< /cards >}}
-
 With this module, requests can be handled in a functional manner, reducing
 the boilerplate code to be written by a web application developer.
-
-{{< callout type="info" >}}
-Apps can quickly be created by using a [project template](../../templates/).
-{{< /callout >}}
 
 ## Hosting an API
 

@@ -15,28 +15,9 @@ As GenHTTP is built on top of .NET, we can use the base images provided by Micro
 to setup our build chain. For a list of available base images,
 see their [Docker Hub](https://hub.docker.com/r/microsoft/dotnet-sdk) page.
 
-## Building Template Apps
-
-If you created your application using a [project template](../content/templates/),
-you will see that matching Docker files have already been created. Building and
-running your app is as easy as:
-
-```bash
-# creates an image named "myproject"
-docker build -f Dockerfile -t myproject .
-
-# runs your application
-docker run -p 8080:8080 -d myproject
-```
-
-You should be able to access your app via http://localhost:8080. If you run those
-commands on the machine you would like to host your application on (e.g. a Linux server)
-you will not need to install the .NET SDK or any other dependencies besides Docker itself.
-
 ## Creating a new Dockerfile
 
-If you did not use a project template, create a new file named `Dockerfile` in the
-root directory of your repository and paste the following content:
+Create a new file named `Dockerfile` in the root directory of your repository and paste the following content:
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build

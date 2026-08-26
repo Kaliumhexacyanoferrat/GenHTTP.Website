@@ -14,19 +14,6 @@ be responsible to answer HTTP requests. You will typically start with a [layout]
 that allows to structure your web application and add some of the handlers below to 
 achieve the required functionality to this layout.
 
-The [template projects](./templates/) will already provide a basic project structure that
-you can extend to your needs.
-
-```csharp
-var app = Layout.Create()
-                .Add("resources", ...)
-                .Add("api", ...);
-
-await Host.Create()
-          .Handler(app)
-          .RunAsync();
-```
-
 This page lists all handlers that are provided by the framework. To implement new
 functionality, you can also implement [custom handlers](./handlers/).
 
@@ -123,7 +110,5 @@ functionality, you can also implement [custom handlers](./handlers/).
   {{< card link="./concepts/resources/" title="Resources" >}}
 
   {{< card link="./concepts/dependency-injection/" title="Dependency Injection" >}}
-
-  {{< card link="./concepts/caches/" title="Caches" >}}
 
 {{< /cards >}}
