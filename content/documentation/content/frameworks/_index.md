@@ -7,8 +7,6 @@ cascade:
 
 Frameworks are regular [handlers](../handlers/) that allow you to solve a problem (such as implementing
 web services) in a typical flavor or style, shaping the overall appearance of your application code base.
-For all frameworks listed below there are [template projects](../templates/) to quickly spin off a 
-new application using this technology, already with best practices and sane configuration values applied.
 
 ## Service Frameworks
 
