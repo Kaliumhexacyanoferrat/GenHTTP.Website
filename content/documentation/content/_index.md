@@ -59,8 +59,6 @@ functionality, you can also implement [custom handlers](./handlers/).
 
   {{< card link="./concerns/open-api/" title="Open API" >}}
 
-  {{< card link="./concerns/server-caching/" title="Server Caching" >}}
-
   {{< card link="./concerns/range-support/" title="Range Support" >}}
 
   {{< card link="./concerns/defaults/" title="Defaults" >}}

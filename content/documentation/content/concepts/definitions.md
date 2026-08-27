@@ -46,7 +46,7 @@ By default, the following types can be used as parameters within a method defini
 Parameters can be declared nullable (e.g. `int?`) and will be initialized with `null` if not present.
 If not declared nullable, parameters will be initialized with `default(T)` if not present.
 
-By default, parameters are read from the request query (`?text=abc`) or from a [form encoded](#html-forms) body.
+By default, parameters are read from the request query (`?text=abc`).
 
 If you would like to read the parameter directly from the request body, you can mark it with the `[FromBody]` attribute.
 
@@ -151,7 +151,7 @@ the client does not declare the `Content-Type`, the server will try to treat the
 
 ### HTML Forms
 
-Form data can be used to populate both complex types and primitive parameters. Browsers
+Form data can be used to populate both complex types or a dictionary-style object. Browsers
 will encode the content as `application/x-www-form-urlencoded` and the framework will
 populate the arguments as needed. This allows such endpoints to be used both from
 browsers and as a regular API.
@@ -179,7 +179,7 @@ Can be read using the following definitions:
 {{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod(RequestMethod.POST)]
-  public void Save(int id, string name) { /* ... */ }
+  public void Save(BodyArguments dict) { /* ... */ }
   
   // or
   
@@ -190,7 +190,7 @@ Can be read using the following definitions:
 
 {{< tab name="Functional" >}}
   ```csharp
-  .Post("/save", (int id, string name) => { /* ... */ })
+  .Post("/save", (BodyArguments dict) => { /* ... */ })
   
   // or
   
@@ -201,7 +201,7 @@ Can be read using the following definitions:
 {{< tab name="Controllers" >}}
   ```csharp
   [ControllerAction(RequestMethod.POST)]
-  public void Save(int id, string name) { /* ... */ }
+  public void Save(BodyArguments dict) { /* ... */ }
   
   // or
   
@@ -211,9 +211,6 @@ Can be read using the following definitions:
 {{< /tab >}}
 
 {{< /tabs >}}
-
-Both mechanisms can also be mixed (read one argument as a parameter and all
-others as a custom type).
 
 ### Request Injection
 
@@ -259,9 +256,9 @@ current request. This is typically not required but can be used to create and re
 
 The request body can be injected as a `Stream`, e.g. when implementing
 file uploads. This stream represents the processed request payload, so it
-will already be decompressed and not in a chunked format. Depending on the
-size of request body this will either be a stream backed by memory or by a file
-and is therefore well suited for very large payloads.
+will already be decompressed and not in a chunked format. Note that this
+stream can only be read once and is not seekable, as it is directly read from
+the wire.
 
 {{< tabs >}}
 
