@@ -43,9 +43,6 @@ available, featuring a good balance between CPU usage and resulting content size
 If you would like to adjust this setting, you can use the `.Level()` function of the
 builder.
 
-If the content served by your application is rather static and does rarely change,
-consider the usage of the [server caching](../server-caching/) mechanism.
-
 ## Custom Algorithms
 
 To add a custom compression algorithm to the server, you can implement the

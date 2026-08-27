@@ -1,6 +1,6 @@
 ﻿---
 title: Security
-weight: 4
+weight: 5
 description: 'Security considerations and configuration options for GenHTTP applications.'
 cascade:
   type: docs

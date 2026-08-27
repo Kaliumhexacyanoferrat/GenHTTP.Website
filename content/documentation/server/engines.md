@@ -63,13 +63,6 @@ requires additional firewall rules on your system:
 .Bind(IPAddress.Any, 443, myCertificate, enableQuic: true)
 ```
 
-There are some limitations that apply to this engine:
-
-- Kestrel does not allow to read the request body twice (there is `request.EnableBuffering()` but this has not been implemented yet)
-- Kestrel does not allow to read the size of the request body
-- Kestrel does not allow to set a custom HTTP response status
-- Websockets are currently not supported
-
 ## Custom Engines
 
 If you are interested in adding a new engine to the project, feel free

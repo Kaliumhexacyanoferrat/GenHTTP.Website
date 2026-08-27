@@ -1,6 +1,6 @@
 ﻿---
 title: Endpoints and Ports
-weight: 3
+weight: 4
 description: 'Configure the GenHTTP webserver to listen on different ports or endpoints.'
 cascade:
   type: docs

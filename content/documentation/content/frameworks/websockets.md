@@ -173,49 +173,6 @@ class ChatHandler : IImperativeHandler
 }
 ```
 
-### Legacy
-
-This flavor is similar to the functional one but uses [Fleck](https://github.com/statianzo/Fleck),
-an external dependency, to provide the functionality. This flavor is deprecated and will be 
-removed in GenHTTP 11.
-
-```csharp
-using GenHTTP.Engine.Internal;
-
-using GenHTTP.Modules.Practices;
-using GenHTTP.Modules.Websockets;
-
-List<IWebsocketConnection> clients = [];
-
-var websocket = Websocket.Create()
-                         .OnOpen(c =>
-                         {
-                             clients.Add(c);
-                             return Task.CompletedTask;
-                         })
-                         .OnMessage(async (c, m) =>
-                         {
-                             var clientNumber = clients.IndexOf(c);
-
-                             foreach (var client in clients)
-                             {
-                                 await client.SendAsync($"[{clientNumber}]: " + m);
-                             }
-                         })
-                         .OnClose(c =>
-                         {
-                             clients.Remove(c);
-                             return Task.CompletedTask;
-                         });
-
-await Host.Create()
-          .Handler(websocket)
-          .Defaults()
-          .Development()
-          .Console()
-          .RunAsync();
-```
-
 ### Client
 
 After starting the server, you can open the following HTML page in your browser to connect to the server:

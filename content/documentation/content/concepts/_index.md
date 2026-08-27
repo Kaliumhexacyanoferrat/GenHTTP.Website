@@ -25,7 +25,5 @@ handlers.
   {{< card link="./resources/" title="Resources" >}}
 
   {{< card link="./dependency-injection/" title="Dependency Injection" >}}
-  
-  {{< card link="./caches/" title="Caches" >}}
 
 {{< /cards >}}
