@@ -270,7 +270,7 @@ should be closed immediately by exiting the generator delegate.
 ## Error Handling
 
 By default, the `EventSource` handler will catch any exception that occurs in the generator logic, log
-it to the server companion and instruct the client to reconnect after 10 seconds. As the HTTP headers for the
+it to the server logger and instruct the client to reconnect after 10 seconds. As the HTTP headers for the
 event stream have already been sent, there is no general mechanism to inform the client about errors. This
 can be achieved by adding your own `try/catch` block to your generator:
 
