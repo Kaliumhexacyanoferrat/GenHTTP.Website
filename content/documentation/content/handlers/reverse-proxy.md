@@ -13,7 +13,7 @@ The reverse proxy content provider allows to embed content from another
 web server into your application.
 
 ```csharp
-var proxy = ReverseProxy.Create()
+var proxy = Proxy.Create()
                         .Upstream("http://my-cdn:8080/");
 
 await Host.Create()
@@ -34,7 +34,7 @@ The module internally uses the `HttpClient` to perform HTTP requests. If needed,
 you can pass actions to adjust the client as required.
 
 ```csharp
-var proxy = ReverseProxy.Create()
+var proxy = Proxy.Create()
                         .Upstream("http://my-cdn:8080/")
                         .AdjustHandler(h => h.Proxy = null)
                         .AdjustClient(c => c.MaxResponseContentBufferSize = 10000);

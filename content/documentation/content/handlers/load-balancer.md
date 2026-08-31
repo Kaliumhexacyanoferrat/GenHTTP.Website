@@ -40,6 +40,6 @@ distribute the load to two different, local drives.
 
 ```csharp
 LoadBalancer.Create()
-            .Add(Resources.From(ResourceTree.FromDirectory("/mnt/storage1/files/")))
-            .Add(Resources.From(ResourceTree.FromDirectory("/mnt/storage2/files/")));
+            .Add(Assets.From(ResourceTree.FromDirectory("/mnt/storage1/files/")))
+            .Add(Assets.From(ResourceTree.FromDirectory("/mnt/storage2/files/")));
 ```

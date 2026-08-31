@@ -40,7 +40,6 @@ await Host.Create()
           .Handler(app)
           .Defaults()
           .Development()
-          .Console()
           .RunAsync();
 
 static async ValueTask GenerateStock(IEventConnection connection)
@@ -203,16 +202,18 @@ available via `connection.LastEventId`.
 ### Parameters
 
 The `IEventConnection` provides access to the underlying HTTP request via `connection.Request`, so
-you can use query parameters or the request path to pass arguments to your logic:
+you can use query parameters or the request path to pass arguments to your logic. Query and header
+values are read via `GetEntry(...)` rather than indexed by key (see [Request API](../../concepts/request-api/#headers-query-and-cookies)),
+and the current path segment is available via `Header.Target`:
 
 ```csharp
 // http://localhost:8080/events?user=123
 
-var userId = connection.Request.Query["user"];
+var userId = connection.Request.Header.Query.GetEntry("user");
 
 // http://localhost:8080/events/type
 
-var eventType = connection.Request.Target.Current.Value;
+var eventType = connection.Request.Header.Target.Current?.Decode();
 ```
 
 ## Connection Lifecycle

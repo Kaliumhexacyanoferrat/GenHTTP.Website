@@ -23,11 +23,10 @@ To add an SSL/TLS secured endpoint, you can use the overload of the `Bind()` met
 ```csharp
 var certificate = X509CertificateLoader.LoadCertificateFromFile("./mycert.pfx");
 
-var server = Server.Create()
-                   .Handler(...)
-                   .Bind(null, 80)
-                   .Bind(null, 443, certificate)
-                   .Build();
+var host = Host.Create()
+               .Handler(...)
+               .Bind(null, 80)
+               .Bind(null, 443, certificate);
 ```
 
 The given certificate will be used to encrypt all incoming requests with. Please note, that
@@ -53,11 +52,10 @@ public class CustomCertificateProvider : ICertificateProvider
     
 }
 
-var server = Server.Create()
-                   .Handler(...)
-                   .Bind(null, 80)
-                   .Bind(null, 443, new CustomCertificateProvider())
-                   .Build();
+var host = Host.Create()
+               .Handler(...)
+               .Bind(null, 80)
+               .Bind(null, 443, new CustomCertificateProvider());
 ```
 
 ### Client Certificates
@@ -86,11 +84,10 @@ public class MyValidator : ICertificateValidator
 
 }
 
-var server = Server.Create()
-                   .Handler(...)
-                   .Bind(null, 80)
-                   .Bind(null, 443, certificate, certificateValidator: new MyValidator())
-                   .Build();
+var host = Host.Create()
+               .Handler(...)
+               .Bind(null, 80)
+               .Bind(null, 443, certificate, certificateValidator: new MyValidator());
 ```
 
 The server will only allow clients that can present a certificate that passes the `Validate`

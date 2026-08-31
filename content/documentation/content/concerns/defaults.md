@@ -22,12 +22,24 @@ await Host.Create()
           .RunAsync();
 ```
 
-If you would like to opt out of a default feature, you may pass a 
-flag as needed:
+If you would like to opt out of a default feature, or enable one that is off by default, you may
+pass a flag as needed:
 
 ```csharp
 await Host.Create()
           .Handler(...)
-          .Defaults(compression: false)
+          .Defaults(compression: false, rangeSupport: true)
           .RunAsync();
 ```
+
+`Defaults()` accepts the following flags:
+
+| Flag              | Default | Enables                                                                     |
+|-------------------|---------|------------------------------------------------------------------------------|
+| `compression`     | `true`  | [Compression](../compression/) of response content.                        |
+| `decompression`   | `false` | [Decompression](../decompression/) of request content.                    |
+| `secureUpgrade`   | `true`  | [Automatic upgrade](../hardening/#secure-upgrade) of insecure requests.    |
+| `strictTransport`  | `true`  | [HSTS](../hardening/#strict-transport) via a `Strict-Transport-Security` header. |
+| `clientCaching`   | `true`  | [Client side caching](../client-caching-validation/) via `ETag` validation. |
+| `rangeSupport`    | `false` | [Partial responses](../range-support/) for range requests.                 |
+| `preventSniffing` | `false` | [MIME type sniffing prevention](../hardening/#prevent-sniffing) via `X-Content-Type-Options`. |

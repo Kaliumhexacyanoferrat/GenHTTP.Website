@@ -12,7 +12,7 @@ allowing both sides to push content without the need of sending HTTP requests.
 
 ## Flavors
 
-There are four different flavors that you can use to host a web socket endpoint. They do not differ in functionality. In this section we will spawn
+There are three different flavors that you can use to host a web socket endpoint. They do not differ in functionality. In this section we will spawn
 a simple websocket server that will relay incoming messages to all other connected clients
 (so basically a simple chat application). In the "Client" section you will find a simple
 HTML file that can be opened in a browser to connect to your server.
@@ -36,7 +36,6 @@ await Host.Create()
           .Handler(websocket)
           .Defaults()
           .Development()
-          .Console()
           .RunAsync();
 
 class ChatHandler : IReactiveHandler
@@ -106,7 +105,6 @@ await Host.Create()
           .Handler(websocket)
           .Defaults()
           .Development()
-          .Console()
           .RunAsync();
 ```
 
@@ -131,7 +129,6 @@ await Host.Create()
           .Handler(websocket)
           .Defaults()
           .Development()
-          .Console()
           .RunAsync();
 
 class ChatHandler : IImperativeHandler
@@ -259,9 +256,9 @@ using GenHTTP.Modules.Websockets;
 // read and write complex objects as YAML instead of JSON
 var serialization = new YamlFormat();
 
-// only support GUIDs as primitive types
+// only support numeric types and GUIDs as primitives
 var formatters = Formatting.Empty()
-                           .Add(new GuidFormatter())
+                           .Add(new FormattableFormatter())
                            .Build();
 
 var websocket = Websocket.Reactive()
@@ -342,12 +339,32 @@ public static class WebsocketSynchronizationExtensions
 }
 ```
 
+Note that `WritePayloadAsync` always flushes the frame it writes immediately - see
+[Frame Batching](#frame-batching) below if you want to buffer several writes and flush them together;
+in that case, synchronize around `WriteAsync`/`FlushAsync` on `ISocketConnection` instead.
+
+### Frame Batching
+
+`WriteAsync`, `PingAsync`, `PongAsync` and `CloseAsync` on `ISocketConnection` all accept a `flush`
+parameter (defaulting to `true`). Passing `flush: false` buffers the frame instead of sending it
+immediately; call `FlushAsync()` once you are done to send everything that has been buffered in one
+go. This is useful if you are writing several frames in a row and want to avoid the overhead of a
+separate network write per frame.
+
+```csharp
+await connection.WriteAsync(firstPayload, flush: false, token: token);
+await connection.WriteAsync(secondPayload, flush: false, token: token);
+
+await connection.FlushAsync(token);
+```
+
 ### Continuation Handling
 
 If a client sends a large chunk of data, browsers may segment this data
-into multiple continuation messages (usually happens for payloads bigger
-then 16 KB). The websocket handler will collect those frames and automatically
-merge them into a single `IWebsocketFrame` passed to your logic.
+into multiple continuation messages - the websocket handler's receive buffer is fixed at 16 KB
+(`BufferSize.Read`), so any payload larger than that arrives as continuation frames. The websocket
+handler will collect those frames and automatically merge them into a single `IWebsocketFrame`
+passed to your logic.
 
 If you would like to handle continuation frames yourself, you can call
 `.HandleContinuationFramesManually()` on the builder instances and will
@@ -362,4 +379,5 @@ the underlying connection. This allows users to store frames or their `Data`.
 For high performance scenarios, you can disable this automatic allocation 
 by calling `.DoNotAllocateFrameData()` on the builder and access the raw buffer 
 via `frame.Raw.Memory` (or `frame.Raw.Segments` for a message consisting
-of multiple continuation frames).
+of multiple continuation frames). `frame.Raw` is typed `IRawFrameData`, a public contract you
+can also implement or wrap yourself if you need to.

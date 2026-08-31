@@ -16,9 +16,10 @@ kind of types can be used.
 
 ### Primitives
 
-By default, the following types can be used as parameters within a method definition: 
-`string`, `bool`, `enum`, `Guid`, `DateOnly` and any other primitive type (such as
-`int`).
+By default, a parameter type can be used within a method definition if it is either `string`,
+`bool`, an `enum`, one of `DateTime`, `DateTimeOffset`, `DateOnly`, `TimeOnly` or `TimeSpan`, or
+implements `IUtf8SpanFormattable` (which covers the numeric primitives such as `int`, `long` or
+`Guid`, but explicitly excludes `char`).
 
 {{< tabs >}}
 
@@ -46,7 +47,7 @@ By default, the following types can be used as parameters within a method defini
 Parameters can be declared nullable (e.g. `int?`) and will be initialized with `null` if not present.
 If not declared nullable, parameters will be initialized with `default(T)` if not present.
 
-By default, parameters are read from the request query (`?text=abc`).
+By default, parameters are read from the request query (`?text=abc`) or from a [form encoded](#html-forms) body.
 
 If you would like to read the parameter directly from the request body, you can mark it with the `[FromBody]` attribute.
 
@@ -54,7 +55,7 @@ If you would like to read the parameter directly from the request body, you can 
 
 {{< tab name="Webservices" >}}
   ```csharp
-  [ResourceMethod(RequestMethod.PUT)]
+  [ResourceMethod(Method.Put)]
   public int Length([FromBody] string text) => text.Length;
   ```
 {{< /tab >}}
@@ -67,7 +68,7 @@ If you would like to read the parameter directly from the request body, you can 
 
 {{< tab name="Controllers" >}}
   ```csharp
-  [ControllerAction(RequestMethod.PUT)]
+  [ControllerAction(Method.Put)]
   public int Index([FromBody] string text) => text.Length;
   ```
 {{< /tab >}}
@@ -80,7 +81,7 @@ To read the parameter from the request path, use the appropriate method provided
 
 {{< tab name="Webservices" >}}
   ```csharp
-  [ResourceMethod(RequestMethod.DELETE, ":id")]
+  [ResourceMethod(Method.Delete, ":id")]
   public void Delete(int id) { /* ... */ }
   ```
 {{< /tab >}}
@@ -93,7 +94,7 @@ To read the parameter from the request path, use the appropriate method provided
 
 {{< tab name="Controllers" >}}
   ```csharp
-  [ControllerAction(RequestMethod.DELETE)]
+  [ControllerAction(Method.Delete)]
   public int Delete([FromPath] int id) { /* ... */ }
   ```
 {{< /tab >}}
@@ -129,7 +130,7 @@ the client does not declare the `Content-Type`, the server will try to treat the
 
 {{< tab name="Webservices" >}}
   ```csharp
-  [ResourceMethod(RequestMethod.POST)]
+  [ResourceMethod(Method.Post)]
   public void Save(MyClass data) { /* ... */ }
   ```
 {{< /tab >}}
@@ -142,7 +143,7 @@ the client does not declare the `Content-Type`, the server will try to treat the
 
 {{< tab name="Controllers" >}}
   ```csharp
-  [ControllerAction(RequestMethod.POST)]
+  [ControllerAction(Method.Post)]
   public void Save(MyClass data) { /* ... */ }
   ```
 {{< /tab >}}
@@ -151,7 +152,7 @@ the client does not declare the `Content-Type`, the server will try to treat the
 
 ### HTML Forms
 
-Form data can be used to populate both complex types or a dictionary-style object. Browsers
+Form data can be used to populate both complex types and primitive parameters. Browsers
 will encode the content as `application/x-www-form-urlencoded` and the framework will
 populate the arguments as needed. This allows such endpoints to be used both from
 browsers and as a regular API.
@@ -178,19 +179,19 @@ Can be read using the following definitions:
 
 {{< tab name="Webservices" >}}
   ```csharp
-  [ResourceMethod(RequestMethod.POST)]
-  public void Save(BodyArguments dict) { /* ... */ }
+  [ResourceMethod(Method.Post)]
+  public void Save(int id, string name) { /* ... */ }
   
   // or
   
-  [ResourceMethod(RequestMethod.POST)]
+  [ResourceMethod(Method.Post)]
   public void Save(MyRecord record) { /* ... */ }  
   ```
 {{< /tab >}}
 
 {{< tab name="Functional" >}}
   ```csharp
-  .Post("/save", (BodyArguments dict) => { /* ... */ })
+  .Post("/save", (int id, string name) => { /* ... */ })
   
   // or
   
@@ -200,17 +201,25 @@ Can be read using the following definitions:
 
 {{< tab name="Controllers" >}}
   ```csharp
-  [ControllerAction(RequestMethod.POST)]
-  public void Save(BodyArguments dict) { /* ... */ }
+  [ControllerAction(Method.Post)]
+  public void Save(int id, string name) { /* ... */ }
   
   // or
   
-  [ControllerAction(RequestMethod.POST)]
+  [ControllerAction(Method.Post)]
   public void Save(MyRecord data) { /* ... */ }
   ```
 {{< /tab >}}
 
 {{< /tabs >}}
+
+Both mechanisms can also be mixed (read one argument as a parameter and all
+others as a custom type).
+
+Under the hood, the framework reads form encoded bodies into a `BodyArguments` instance
+(`request.GetBody()?.AsBodyArgumentsAsync()`). Like the request headers and query, it is an
+`IKeyValueList` rather than a dictionary, so entries are looked up via `GetEntry(...)` rather
+than indexed by key.
 
 ### Request Injection
 
@@ -222,19 +231,19 @@ type `IRequest` to your method definition which will automatically be populated.
 {{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod]
-  public string? GetUserAgent(IRequest request) => request.UserAgent;
+  public string? GetUserAgent(IRequest request) => request.Header.Headers.GetEntry("User-Agent");
   ```
 {{< /tab >}}
 
 {{< tab name="Functional" >}}
   ```csharp
-  .Get("/user-agent", (IRequest request) => request.UserAgent)
+  .Get("/user-agent", (IRequest request) => request.Header.Headers.GetEntry("User-Agent"))
   ```
 {{< /tab >}}
 
 {{< tab name="Controllers" >}}
   ```csharp
-  public string? UserAgent(IRequest request) => request.UserAgent;
+  public string? UserAgent(IRequest request) => request.Header.Headers.GetEntry("User-Agent");
   ```
 {{< /tab >}}
 
@@ -256,15 +265,15 @@ current request. This is typically not required but can be used to create and re
 
 The request body can be injected as a `Stream`, e.g. when implementing
 file uploads. This stream represents the processed request payload, so it
-will already be decompressed and not in a chunked format. Note that this
-stream can only be read once and is not seekable, as it is directly read from
-the wire.
+will already be decompressed and not in a chunked format. Depending on the
+size of request body this will either be a stream backed by memory or by a file
+and is therefore well suited for very large payloads.
 
 {{< tabs >}}
 
 {{< tab name="Webservices" >}}
   ```csharp
-  [ResourceMethod(RequestMethod.PUT, "upload")]
+  [ResourceMethod(Method.Put, "upload")]
   public void Upload(Stream file) { /* ... */ }
   ```
 {{< /tab >}}
@@ -277,7 +286,7 @@ the wire.
 
 {{< tab name="Controllers" >}}
   ```csharp
-  [ControllerAction(RequestMethod.PUT)]
+  [ControllerAction(Method.Put)]
   public void Upload(Stream file) { /* ... */ }
   ```
 {{< /tab >}}
@@ -289,9 +298,24 @@ the wire.
 To inject custom types besides the built-in capabilities, you can configure
 a custom `InjectionRegistry` and use it with your API services. The registry accepts 
 `IParameterInjector` instances that define what types are supported and how 
-they are determined from the current request and environment.
+the value is determined for a given request.
 
-The following injector will inspect the requests headers for a correlation ID
+```csharp
+public interface IParameterInjector
+{
+
+    bool Supports(IServer server, Type type);
+
+    ValueTask<object?> GetValueAsync(IHandler handler, IRequest request, Type targetType);
+
+}
+```
+
+`Supports` is checked once per parameter type against the server the service is running on, not
+on every request - so it should not depend on request state, only on the type and the server
+configuration.
+
+The following injector will inspect the request headers for a correlation ID
 and create a new one if not present.
 
 ```csharp
@@ -300,16 +324,13 @@ public record class CorrelationID(string ID);
 public class CorrelationInjector : IParameterInjector
 {
 
-    public bool Supports(Type type) => type == typeof(CorrelationID);
+    public bool Supports(IServer server, Type type) => type == typeof(CorrelationID);
 
-    public object? GetValue(IHandler handler, IRequest request, Type targetType)
+    public ValueTask<object?> GetValueAsync(IHandler handler, IRequest request, Type targetType)
     {
-        if (request.Headers.TryGetValue("X-Correlation-ID", out var id))
-        {
-            return new CorrelationID(id);
-        }
+        var id = request.Header.Headers.GetEntry("X-Correlation-ID");
 
-        return new CorrelationID(Guid.NewGuid().ToString());
+        return new(new CorrelationID(id ?? Guid.NewGuid().ToString()));
     }
 
 }
@@ -386,9 +407,9 @@ This section describes the various mechanisms to generate a service response.
 
 ### Primitives
 
-By default, the following types can be used as a return type within a method definition:
-`string`, `bool`, `enum`, `Guid`, `DateOnly` and any other primitive type (such as
-`int`).
+By default, a type can be used as a return type within a method definition under the same rules
+as [parameter primitives](#primitives): `string`, `bool`, `enum`, the date/time types, or anything
+implementing `IUtf8SpanFormattable` (except `char`, see [#858](https://github.com/Kaliumhexacyanoferrat/GenHTTP/issues/858)).
 
 If declared nullable, the server will generate a `HTTP 204 No Content` if `null` is returned.
 
@@ -465,8 +486,7 @@ over the response generation but is less readable than the typed versions.
      
      return request.Respond()
                    .Header("X-My-Header", "my-value")
-                   .Content(content)
-                   .Type(ContentType.TextPlain);
+                   .Content(content, ContentType.TextPlain);
   }
   ```
 {{< /tab >}}
@@ -479,8 +499,7 @@ over the response generation but is less readable than the typed versions.
      
      return request.Respond()
                    .Header("X-My-Header", "my-value")
-                   .Content(content)
-                   .Type(ContentType.TextPlain);
+                   .Content(content, ContentType.TextPlain);
   })
   ```
 {{< /tab >}}
@@ -494,8 +513,7 @@ over the response generation but is less readable than the typed versions.
      
      return request.Respond()
                    .Header("X-My-Header", "my-value")
-                   .Content(content)
-                   .Type(ContentType.TextPlain);
+                   .Content(content, ContentType.TextPlain);
   }
   ```
 {{< /tab >}}
@@ -541,8 +559,9 @@ in the first place.
 
 {{< /tabs >}}
 
-The `Result<T>` class allows to adjust any response property besides the actual content
-by implementing the same interfaces as the `IResponseBuilder`.  This does not only work
+The `Result<T>` class lets you adjust the response around the payload via `Status(...)`,
+`Connection(...)`, `Header(...)` and `Cookie(...)` - the payload itself is still serialized the
+same way it would be if you had returned it directly. This does not only work
 for data structures, but also for special types such as streams.
 
 ### Handlers
@@ -699,12 +718,36 @@ response generation.
 Primitives (such as `Guid` or `int`) used in parameters or as a response type are automatically
 handled using the built-in `FormatterRegistry`. You can add support for a custom type by
 implementing an `IFormatter` and adding it to a custom registry which is then used by your
-services.
+services:
+
+```csharp
+public interface IFormatter
+{
+
+    bool CanHandle(Type type);
+
+    object? Read(ByteString value, Type type);
+
+    T Read<T>(ByteString value);
+
+    string? Write(object value, Type type);
+
+    IResponseContent GetContent<T>(T value);
+
+}
+```
+
+`Read(ByteString, Type)` and `Write` are used wherever the value only needs to be parsed or
+formatted as part of a larger operation (e.g. a path or query parameter). `Read<T>` and
+`GetContent<T>` are used when the value is the whole response body, so `GetContent<T>` needs to
+produce a full `IResponseContent` rather than just a string.
 
 The following implementation will add support for a `Point` type with `x` and `y` coordinates
 so it can be used in a service.
 
 ```csharp
+using GenHTTP.Modules.IO.Strings;
+
 public record class Point(int X, int Y);
 
 public class PointFormatter : IFormatter
@@ -712,12 +755,14 @@ public class PointFormatter : IFormatter
 
     public bool CanHandle(Type type) => type == typeof(Point);
 
-    public object? Read(string value, Type type)
+    public object Read(ByteString value, Type type)
     {
-        var parts = value.Split('-');
+        var parts = value.ToString().Split('-');
 
         return new Point(int.Parse(parts[0]), int.Parse(parts[1]));
     }
+
+    public T Read<T>(ByteString value) => (T)Read(value, typeof(T));
 
     public string? Write(object value, Type type)
     {
@@ -725,6 +770,8 @@ public class PointFormatter : IFormatter
 
         return $"{point.X}-{point.Y}";
     }
+
+    public IResponseContent GetContent<T>(T value) => new StringContent(Write(value!, typeof(T))!);
 
 }
 ```
@@ -800,19 +847,19 @@ serialization format was used to generate the body of the response by specifying
 ![HTTP Content Flow](serialization.png)
 
 To add support for an additional format you can implement the `ISerializationFormat` and
-add your implementation to a registry which is then passed to your service. 
+add your implementation to a registry which is then passed to your service, via `.Add(contentType, format)`.
 
 For example, the nuget package `GenHTTP.Modules.Protobuf` adds support for
-[Protocol Buffers](https://protobuf.dev/) which is not enabled by default. The 
-following snippet shows how to register the protobuf format and use it in 
-a service.
+[Protocol Buffers](https://protobuf.dev/) (`ContentType.ApplicationProtobuf`) which is not
+enabled by default. It adds an `AddProtobuf()` extension to the registry builder, so you
+don't need to register the format manually.
 
 {{< tabs >}}
 
 {{< tab name="Webservices" >}}
   ```csharp
   var registry = Serialization.Default()
-                              .Add(new FlexibleContentType("application/protobuf"), new ProtobufFormat());
+                              .AddProtobuf();
 
   var api = Layout.Create()
                   .AddService<MyService>("service", registry);
@@ -820,7 +867,7 @@ a service.
   public class MyService
   {
 
-      [ResourceMethod(RequestMethod.PUT)]
+      [ResourceMethod(Method.Put)]
       public ResponseType Store(RequestType data) { /* ... */ }
 
   }
@@ -830,7 +877,7 @@ a service.
 {{< tab name="Functional" >}}
   ```csharp
   var registry = Serialization.Default()
-                              .Add(new FlexibleContentType("application/protobuf"), new ProtobufFormat());
+                              .AddProtobuf();
 
   var api = Inline.Create()
                   .Serializers(registry)
@@ -841,7 +888,7 @@ a service.
 {{< tab name="Controllers" >}}
   ```csharp
   var registry = Serialization.Default()
-                              .Add(new FlexibleContentType("application/protobuf"), new ProtobufFormat());
+                              .AddProtobuf();
 
   var api = Layout.Create()
                   .AddController<MyController>("controller", registry);
@@ -849,7 +896,7 @@ a service.
   public class MyController
   {
 
-      [ControllerAction(RequestMethod.PUT)]
+      [ControllerAction(Method.Put)]
       public ResponseType Store(RequestType data) { /* ... */ }
 
   }
@@ -910,9 +957,9 @@ for features such as authorization.
           }
       }
   
-      public ValueTask<InterceptionResult?> InterceptAsync(IRequest request, Operation operation, IReadOnlyDictionary<string, object?> arguments)
+      public ValueTask<InterceptionResult?> InterceptAsync(IRequest request, Operation operation, IReadOnlyDictionary<ByteString, object?> arguments)
       {
-          if (!request.Client.IPAddress.Equals(IPAddress.Loopback))
+          if (!request.Client.Address.Equals(IPAddress.Loopback))
           {
               throw new ProviderException(ResponseStatus.Forbidden, "Access from localhost only!");
           }
@@ -965,9 +1012,9 @@ for features such as authorization.
           }
       }
   
-      public ValueTask<InterceptionResult?> InterceptAsync(IRequest request, Operation operation, IReadOnlyDictionary<string, object?> arguments)
+      public ValueTask<InterceptionResult?> InterceptAsync(IRequest request, Operation operation, IReadOnlyDictionary<ByteString, object?> arguments)
       {
-          if (!request.Client.IPAddress.Equals(IPAddress.Loopback))
+          if (!request.Client.Address.Equals(IPAddress.Loopback))
           {
               throw new ProviderException(ResponseStatus.Forbidden, "Access from localhost only!");
           }
@@ -1012,9 +1059,9 @@ for features such as authorization.
           }
       }
   
-      public ValueTask<InterceptionResult?> InterceptAsync(IRequest request, Operation operation, IReadOnlyDictionary<string, object?> arguments)
+      public ValueTask<InterceptionResult?> InterceptAsync(IRequest request, Operation operation, IReadOnlyDictionary<ByteString, object?> arguments)
       {
-          if (!request.Client.IPAddress.Equals(IPAddress.Loopback))
+          if (!request.Client.Address.Equals(IPAddress.Loopback))
           {
               throw new ProviderException(ResponseStatus.Forbidden, "Access from localhost only!");
           }
@@ -1027,7 +1074,7 @@ for features such as authorization.
   class MyController
   {
   
-      [ControllerAction(RequestMethod.Get)]
+      [ControllerAction(Method.Get)]
       [RequireLocalhost]
       public string MyMethod() => "Hello to localhost";
   

@@ -6,10 +6,11 @@ cascade:
   type: docs
 ---
 
-To run web service methods, the server will either use code generation or reflection,
-based on the configuration and the execution environment. If supported, web service handlers
-will by default generate an optimized implementation snippet and compile it during preparation. As
-a fallback, reflection will be used to dynamically run the web server methods.
+By default, the server compiles a delegate for each webservice method that fetches the input
+arguments from the request, executes the method, and maps the result into an HTTP response -
+this is faster than analyzing and invoking the method via the reflection APIs on every request.
+The delegate is compiled once, during `PrepareAsync` (i.e. server start), so it does not add any
+latency to the first request handled by the endpoint.
 
 {{< callout type="warning" >}}
   Code generation is not supported on ARM-based CPUs due to limitations of the .NET framework on this platform.
@@ -18,10 +19,11 @@ a fallback, reflection will be used to dynamically run the web server methods.
   affected environments.
 {{< /callout >}}
 
-## Disabling Code Generation
+## Choosing an Execution Mode
 
-Code generation can be disabled by passing `ExecutionMode.Reflection` to the framework handlers
-(in contrast to `ExecutionMode.Auto`, which is the default value).
+Code generation is used automatically wherever supported (`ExecutionMode.Auto`, the default). To
+force plain reflection instead - e.g. while debugging a code generation issue - pass
+`ExecutionMode.Reflection` to the framework handlers.
 
 {{< tabs >}}
 
@@ -42,7 +44,6 @@ Code generation can be disabled by passing `ExecutionMode.Reflection` to the fra
   await Host.Create()
             .Handler(api)
             .Defaults()
-            .Console()
             .RunAsync();
   
   public class MyService
@@ -72,7 +73,6 @@ Code generation can be disabled by passing `ExecutionMode.Reflection` to the fra
   await Host.Create()
             .Handler(api)
             .Defaults()
-            .Console()
             .RunAsync();
   ```
 {{< /tab >}}
@@ -94,7 +94,6 @@ Code generation can be disabled by passing `ExecutionMode.Reflection` to the fra
   await Host.Create()
             .Handler(api)
             .Defaults()
-            .Console()
             .RunAsync();
   
   public class MyController
@@ -113,13 +112,16 @@ Code generation can be disabled by passing `ExecutionMode.Reflection` to the fra
 The code generated for a service method is highly optimized to directly read values from the request,
 similar as you would do it in a handwritten `IHandler` instance. Nevertheless, the routing required
 to find and invoke the requested service method adds a small overhead. The following table shows the
-performance of the different modes.
+performance of the different modes. As there were a lot of improvements when the code generation
+feature has been added to the reflection module, there is also a comparison to version 10.3 without
+those optimizations.
 
 | Mode              | Requests / s | Result |
 |-------------------|--------------|--------|
 | Native Handler    | 123,031      | 100%   |
 | Code Generation   | 121,465      | 98.7%  |
 | Reflection        | 118,230      | 96.1%  |
+| Reflection (10.3) | 115,157      | 93.6%  |
 
 ## Error Handling
 

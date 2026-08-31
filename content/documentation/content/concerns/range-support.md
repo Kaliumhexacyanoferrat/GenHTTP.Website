@@ -38,5 +38,5 @@ using GenHTTP.Modules.IO;
 
 var files = ResourceTree.FromDirectory("/var/www/downloads");
 
-layout.Add("downloads", Resources.From(files).AddRangeSupport());
+layout.Add("downloads", Assets.From(files).AddRangeSupport());
 ```

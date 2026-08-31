@@ -6,6 +6,10 @@ cascade:
   type: docs
 ---
 
+{{< cards >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.StaticWebsites/" title="GenHTTP.Modules.StaticWebsites" icon="link" >}}
+{{< /cards >}}
+
 This handler provides an easy way to serve a static website such as a [Hugo](https://gohugo.io/)
 application to your clients.
 
@@ -19,7 +23,6 @@ var tree = ResourceTree.FromDirectory("/var/html/my-website");
 var app = StaticWebsite.From(tree);
 
 await Host.Create()
-          .Console()
           .Defaults()
           .Handler(app)
           .RunAsync();

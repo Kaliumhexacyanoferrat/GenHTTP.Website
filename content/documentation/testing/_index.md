@@ -7,7 +7,7 @@ cascade:
 ---
 
 {{< cards >}}
-{{< card link="https://www.nuget.org/packages/GenHTTP.Testing/" title="GenHTTP.Modules.Testing" icon="link" >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Testing/" title="GenHTTP.Testing" icon="link" >}}
 {{< /cards >}}
 
 The `GenHTTP.Testing` package provides an easy way to write component tests for
@@ -69,3 +69,59 @@ var typedNullable = await response.GetOptionalContentAsync<MyType>(); // might b
 
 Those methods allows to deserialize all formats supported by the GenHTTP framework
 (JSON, XML, YAML, form encoded, Protobuf).
+
+```csharp
+var header = response.GetHeader("X-My-Header");
+var contentType = response.GetContentHeader("Content-Type");
+```
+
+## Testing Against Every Engine
+
+`RunAsync` accepts a `TestEngine` (`Internal` by default, or `Kestrel`/`Ioxide`), so the same test
+suite can be run against every [engine](../../server/engines/) without changing a single assertion -
+useful to catch engine-specific regressions early.
+
+```csharp
+[TestMethod]
+[DataRow(TestEngine.Internal)]
+[DataRow(TestEngine.Kestrel)]
+[DataRow(TestEngine.Ioxide)]
+public async Task TestMyApp(TestEngine engine)
+{
+    var app = ... // setup your app here
+
+    await using var runner = await TestHost.RunAsync(app, engine: engine);
+
+    using var response = await runner.GetResponseAsync("/some/path");
+
+    Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+}
+```
+
+`RunAsync` (and the `TestHost` constructor) also accept `defaults` and `development`, both `true`
+by default, controlling whether `.Defaults()` and `.Development()` are applied to the hosted server.
+
+## Configuring the HTTP Client
+
+`TestHost.GetClient(...)` builds an `HttpClient` preconfigured for testing (no proxy, a 15 second
+timeout) and lets you opt into the behavior a plain `HttpClient` doesn't have by default - useful
+when testing redirects, authentication, cookies or HTTP/2:
+
+```csharp
+var client = TestHost.GetClient(ignoreSecurityErrors: true, followRedirects: true,
+                                 protocolVersion: HttpVersion.Version20,
+                                 creds: new NetworkCredential("user", "pass"),
+                                 cookies: new CookieContainer());
+
+using var response = await runner.GetResponseAsync("/some/path", client);
+```
+
+## Accessing the Live Server
+
+If a test needs the actual URL the server is listening on (e.g. to hand it to another library),
+use `GetUrl()`. `TestHost.NextPort()` reserves the next free port used by the test infrastructure,
+in case you need to bind additional resources alongside the server under test.
+
+```csharp
+var url = runner.GetUrl("/some/path");
+```
