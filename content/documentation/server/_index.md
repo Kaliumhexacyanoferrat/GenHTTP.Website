@@ -68,6 +68,6 @@ Nevertheless, the server allows you to [add HTTPS endpoints](./security/) to you
 
 {{< card link="./security/" title="SSL Endpoints" >}}
 
-{{< card link="./companions/" title="Logging" >}}
+{{< card link="./logging/" title="Logging" >}}
 
 {{< /cards >}}
