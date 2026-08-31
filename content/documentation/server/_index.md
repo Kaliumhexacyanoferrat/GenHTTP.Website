@@ -60,14 +60,14 @@ Nevertheless, the server allows you to [add HTTPS endpoints](./security/) to you
 
 {{< cards >}}
 
-  {{< card link="./engines/" title="Engines" >}}
-  
-  {{< card link="./adapters/" title="Adapters" >}}
-  
-  {{< card link="./logging/" title="Logging" >}}
-  
-  {{< card link="./endpoints/" title="Endpoints and Ports" >}}
-  
-  {{< card link="./security/" title="SSL Endpoints" >}}
+{{< card link="./engines/" title="Engines" >}}
+
+{{< card link="./adapters/" title="Adapters" >}}
+
+{{< card link="./endpoints/" title="Endpoints and Ports" >}}
+
+{{< card link="./security/" title="SSL Endpoints" >}}
+
+{{< card link="./companions/" title="Logging" >}}
 
 {{< /cards >}}

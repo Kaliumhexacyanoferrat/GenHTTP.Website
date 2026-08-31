@@ -14,7 +14,7 @@ on the wire as it was received by the connected client.
 
 The core entry points to handle requests are [handlers](../../handlers/) and [concerns](../../concerns/). The server
 host is passed a handler instance (known as root handler) which is then responsible for handling all incoming requests.
-If needed, it can use other handlers to delegate work (see [layouting](../../layouting/) as a starting point).
+If needed, it can use other handlers to delegate work (see [layouting](../../handlers/layouting/) as a starting point).
 
 ```csharp
 public interface IRequest
@@ -42,14 +42,74 @@ Memory views can either be constructed from memory (which happens when the reque
 or from strings (which is the preferred way during compile/initialization time, e.g. as a static readonly field in
 handler code).
 
-### Header Retention
+### Headers, Query and Cookies
 
-As soon as a handler starts to read the body of the incoming request, GenHTTP will discard the memory used to store the
-HTTP request header. This way the server does not need to allocate memory for the header - if you would like to access
-the `Header` field in a later stage, you will need to instruct GenHTTP to retain the header:
+`IRequestHeader.Headers` and `IRequestHeader.Query` both implement `IKeyValueList`, an allocation-free, index-based
+list rather than a dictionary - the request may legitimately contain the same header multiple times, so dictionary
+semantics would lose entries. Instead of indexing by key, use the extension methods to look up a value:
 
 ```csharp
-var body = request.GetBody(HeaderAccess.Retain);
+var accepted = request.Header.Headers.GetEntry(KnownHeaders.Accept);
+
+var hasRange = request.Header.Headers.ContainsKey("Range");
+
+var page = request.Header.Query.GetEntry("page");
+```
+
+`KnownHeaders` provides pre-allocated `ByteString` instances for headers used throughout the framework, avoiding a
+string allocation on every lookup. To iterate all entries of a list (e.g. to log every header sent by the client),
+use `Count` together with `GetStringEntry`:
+
+```csharp
+for (var i = 0; i < request.Header.Headers.Count; i++)
+{
+    var (name, value) = request.Header.Headers.GetStringEntry(i);
+}
+```
+
+Cookies sent by the client are parsed from the `Cookie` header on demand:
+
+```csharp
+var session = request.Header.Headers.GetCookie("session"); // single cookie
+var all = request.Header.Headers.GetCookies(); // all cookies, as an IKeyValueList
+```
+
+If your application runs behind a reverse proxy (see [security](../../../server/security/)), the client address and
+protocol seen by `request.Client` reflect the proxy, not the original caller. Use `GetForwardings()` to read the proxy
+chain from the `Forwarded` header (RFC 7239) or the legacy `X-Forwarded-*` headers:
+
+```csharp
+var hops = request.Header.Headers.GetForwardings();
+
+var originalClient = hops.FirstOrDefault()?.For;
+```
+
+### Header Retention
+
+When reading the body of an incoming request, GenHTTP normally keeps `request.Header` available for the remainder of the request. To achieve this, the engine retains a copy of the header data before the memory backing the original request can be returned to the underlying pipe reader. This is the default behavior, `HeaderAccess.Retain`, and requires no action on your part.
+
+For high-performance handlers that no longer need the header after starting to read the body, this copy can be avoided by explicitly releasing the header:
+
+```csharp
+var body = request.GetBody(HeaderAccess.Release);
+```
+
+With `HeaderAccess.Release`, the memory used by the header can be returned to the underlying pipe reader instead of being copied. Consequently, accessing `request.Header` after the body has been read will throw an exception. Only use this option when you are certain that the header is no longer needed.
+
+### Properties
+
+Both `IRequest` and `IServer` expose a `Properties` bag (`IPropertyBag`) that lets handlers and concerns carry
+arbitrary state without threading it through method signatures. Values stored on `request.Properties` live for the
+duration of that request; values stored on `server.Properties` live for the duration of the server and are visible to
+every request it handles.
+
+```csharp
+request.Properties["user"] = currentUser;
+
+if (request.Properties.TryGet<User>("user", out var user))
+{
+    // ...
+}
 ```
 
 ## Response Generation
@@ -65,6 +125,38 @@ return request.Respond()
               .Status(ResponseStatus.NoContent)
               .Header("X-My-Header", "My-Value")
               .Build();
+```
+
+`Status(...)` only accepts values of the `ResponseStatus` enum - arbitrary status codes or custom reason phrases are
+not supported.
+
+### Cookies
+
+To set a cookie on the response, use the `Cookie` extension on the response builder, optionally passing
+`CookieOptions` to control `MaxAge`, `Expires`, `Domain`, `Path`, `Secure`, `HttpOnly` and `SameSite`:
+
+```csharp
+return request.Respond()
+              .Status(ResponseStatus.NoContent)
+              .Cookie("session", "abc123", new CookieOptions { HttpOnly = true, Secure = true, SameSite = SameSite.Lax })
+              .Build();
+```
+
+### Response Immutability
+
+The `IResponse` returned by `Build()` is immutable. A concern that wants to adjust a response already produced by the
+content it wraps (e.g. to add a header) cannot mutate it in place - it calls `Rebuild()` to get a new builder seeded
+with the existing status, headers and content, changes what it needs, and builds again:
+
+```csharp
+public async ValueTask<IResponse?> HandleAsync(IHandler content, IRequest request)
+{
+    var response = await content.HandleAsync(request);
+
+    return response?.Rebuild()
+                    .Header("X-Handled-By", "MyConcern")
+                    .Build();
+}
 ```
 
 ### Response Content

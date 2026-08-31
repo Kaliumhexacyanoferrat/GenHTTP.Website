@@ -44,7 +44,6 @@ var api = Layout.Create()
 await Host.Create()
           .Handler(api)
           .Development()
-          .Console()
           .RunAsync();
 ```
 

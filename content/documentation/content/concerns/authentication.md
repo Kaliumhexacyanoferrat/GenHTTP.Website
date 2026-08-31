@@ -378,11 +378,11 @@ interceptor:
   public class MyController
   {
 
-      [ControllerAction(RequestMethod.Get)]
+      [ControllerAction(Method.Get)]
       [RequireRole("ADMIN")]
       public string CheckAdmin() => "You are an administrator";
 
-      [ControllerAction(RequestMethod.Get)]
+      [ControllerAction(Method.Get)]
       [RequireRole("USER")]
       public string CheckUser() => "You are an user";
 

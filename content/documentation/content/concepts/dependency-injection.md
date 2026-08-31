@@ -45,7 +45,6 @@ await Host.Create()
           .Handler(app)
           .Defaults()
           .Development()
-          .Console()
           .RunAsync();
 ```
 
@@ -235,4 +234,17 @@ using GenHTTP.Modules.DependencyInjection;
 
 var serviceProvider = request.GetServiceProvider();
 var serviceScope = request.GetServiceScope();
+```
+
+There is also a `GetServiceProvider()` overload directly on `IServer`, which is what you should
+use from `PrepareAsync(IServer server)` - a handler is not yet handling a request at that point,
+so no `IRequest` is available:
+
+```csharp
+public ValueTask PrepareAsync(IServer server)
+{
+    var serviceProvider = server.GetServiceProvider();
+
+    return ValueTask.CompletedTask;
+}
 ```

@@ -10,7 +10,9 @@ cascade:
 {{< /cards >}}
 
 If an exception occurs while a request is handled, the server will render the
-exception into a JSON response that informs the client about the issue.
+exception into a structured response (JSON, XML, ... depending on what the client accepts) via
+`ErrorHandler.Default()`, which is an alias for `ErrorHandler.Structured()`. To customize the
+serialization used, pass a `SerializationBuilder` to `Structured(...)`.
 
 ## HTML Error Pages
 
@@ -47,13 +49,13 @@ public record ErrorModel(String Message);
 public class TextErrorMapper : IErrorMapper<Exception>
 {
 
-    public ValueTask<IResponse?> GetNotFound(IRequest request, IHandler handler)
+    public ValueTask<IResponse?> GetNotFound(IRequest request, IHandler handler, ByteString? acceptedFormat)
     {
         // hint: return null here to render the default error page of the server
         return new(GetResponse(request, ResponseStatus.NotFound, "The requested content was not found"));
     }
 
-    public ValueTask<IResponse?> Map(IRequest request, IHandler handler, Exception error)
+    public ValueTask<IResponse?> Map(IRequest request, IHandler handler, Exception error, ByteString? acceptedFormat)
     {
         var errorModel = new ErrorModel(error.Message);
 
@@ -69,10 +71,14 @@ public class TextErrorMapper : IErrorMapper<Exception>
     {
         return request.Respond()
                       .Status(status)
-                      .Content(message)
-                      .Type(ContentType.TextPlain)
+                      .Content(message, ContentType.TextPlain)
                       .Build();
     }
 
 }
 ```
+
+`acceptedFormat` is the format negotiated from the client's `Accept` header (as also used by
+[serialization](../../concepts/definitions/#serialization-formats)) - use it if your mapper wants
+to honor content negotiation like `ErrorHandler.Structured()` does; the example above ignores it
+and always renders plain text.

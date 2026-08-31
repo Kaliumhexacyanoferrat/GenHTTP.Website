@@ -44,7 +44,6 @@ await Host.Create()
           .Handler(api)
           .Defaults()
           .Development()
-          .Console()
           .RunAsync();
 
 public class IotController
@@ -62,7 +61,7 @@ public class IotController
         return new();
     }
     
-    [ControllerAction(RequestMethod.Post)]
+    [ControllerAction(Method.Post)]
     public DeviceInfo Restart() 
     {
         // POST http://localhost:8080/device/restart

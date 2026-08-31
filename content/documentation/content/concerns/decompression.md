@@ -26,18 +26,18 @@ await Host.Create()
 ## Custom Algorithms
 
 The concern analyzes the `Content-Encoding` header of incoming requests and
-supports automatic decompression of `gzip`, `br` and `zstd` compressed 
-request bodies.
+supports automatic decompression of `gzip` and `br` compressed request bodies
+(Zstandard support is tracked in [#883](https://github.com/Kaliumhexacyanoferrat/GenHTTP/issues/883)).
 
 If you would like to add support for an additional algorithm, you need to implement
-and supply a `ICompressionAlgorithm` instance. The following example shows how to
-add `deflate` support to your server:
+and supply a `ICompressionAlgorithm` instance - the same interface used to
+[compress responses](../compression/#custom-algorithms), but only its `Decompress(Stream)` member
+is relevant here. The following example shows how to add `deflate` support to your server:
 
 ```csharp
 using System.IO.Compression;
 
 using GenHTTP.Api.Content.IO;
-using GenHTTP.Api.Infrastructure;
 using GenHTTP.Api.Protocol;
 
 using GenHTTP.Engine.Internal;
@@ -57,19 +57,19 @@ await Host.Create()
           .Handler(app)
           .Defaults()
           .Development()
-          .Console()
           .RunAsync();
 
 public class DeflateAlgorithm : ICompressionAlgorithm
 {
+    private static readonly AlgorithmName AlgorithmName = new("deflate");
 
-    public string Name => "deflate";
+    public AlgorithmName Name => AlgorithmName;
 
     public Priority Priority => Priority.Low;
 
     public IResponseContent Compress(IResponseContent content, CompressionLevel level)
     {
-        return new CompressedResponseContent(content, target => new DeflateStream(target, level, false));
+        throw new NotSupportedException("This algorithm is only used for decompression");
     }
 
     public Stream Decompress(Stream content)
@@ -79,3 +79,9 @@ public class DeflateAlgorithm : ICompressionAlgorithm
 
 }
 ```
+
+Once a matching algorithm is found for the request's `Content-Encoding`, the concern calls
+`request.WrapBody(...)` to transparently replace the request body with a `DecompressedBody`
+that decompresses on read - handlers downstream keep reading `request.GetBody()` as usual and
+never see the compressed bytes. `WrapBody` on `IRequest` is the same extension point other
+body-rewriting concerns can build on; only one wrapper can be active per request.

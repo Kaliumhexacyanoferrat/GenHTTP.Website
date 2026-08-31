@@ -55,6 +55,8 @@ functionality, you can also implement [custom handlers](./handlers/).
 
   {{< card link="./concerns/error-handling/" title="Error Handling" >}}
 
+  {{< card link="./concerns/hardening/" title="Hardening" >}}
+
   {{< card link="./concerns/inspection/" title="Inspection" >}}
 
   {{< card link="./concerns/open-api/" title="Open API" >}}
@@ -73,7 +75,7 @@ functionality, you can also implement [custom handlers](./handlers/).
 
   {{< card link="./handlers/content/" title="Content" >}}
 
-  {{< card link="./handlers/downloads/" title="Downloads" >}}
+  {{< card link="./handlers/files/" title="Files" >}}
 
   {{< card link="./handlers/layouting/" title="Layouting" >}}
 
@@ -88,8 +90,6 @@ functionality, you can also implement [custom handlers](./handlers/).
   {{< card link="./handlers/reverse-proxy/" title="Reverse Proxies" >}}
 
   {{< card link="./handlers/server-sent-events/" title="Server Sent Events (SSE)" >}}
- 
-  {{< card link="./handlers/static-content/" title="Static Content" >}}
   
   {{< card link="./handlers/virtual-hosts/" title="Virtual Hosts" >}}
   

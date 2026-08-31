@@ -10,7 +10,8 @@ cascade:
 {{< /cards >}}
 
 The compression concern compresses content sent to the clients, if applicable. By default,
-[gzip](https://www.gzip.org/), [Brotli](https://github.com/google/brotli) and [Zstandard](http://facebook.github.io/zstd/) are supported.
+[gzip](https://www.gzip.org/) and [Brotli](https://github.com/google/brotli) are supported
+(Zstandard support is tracked in [#883](https://github.com/Kaliumhexacyanoferrat/GenHTTP/issues/883)).
 
 ```csharp
 var content = Layout.Create()
@@ -43,25 +44,42 @@ available, featuring a good balance between CPU usage and resulting content size
 If you would like to adjust this setting, you can use the `.Level()` function of the
 builder.
 
+If the content served by your application is static files that rarely change, consider
+[precompressing](../../handlers/files/#precompressed-files) them ahead of time instead of paying
+the compression cost on every request.
+
 ## Custom Algorithms
 
 To add a custom compression algorithm to the server, you can implement the
 [ICompressionAlgorithm](https://github.com/Kaliumhexacyanoferrat/GenHTTP/blob/main/API/Content/IO/ICompressionAlgorithm.cs)
-interface and register the implementing class with your server builder. For example,
-the following implementation will add support for the `deflate` algorithm, which
-is not provided by the server out of the box:
+interface and register the implementing class with your server builder. `Compress` produces the
+compressed `IResponseContent` by wrapping the response's `IResponseSink` with your own sink that
+compresses everything written through it - `CompressedResponseContent` takes care of the
+`IResponseContent` plumbing (checksum, encoding header) once you provide that sink factory. For
+example, the following implementation will add support for the `deflate` algorithm, which is not
+provided by the server out of the box:
 
 ```csharp
+using System.Buffers;
+using System.IO.Compression;
+
+using GenHTTP.Api.Content.IO;
+using GenHTTP.Api.Protocol;
+
+using GenHTTP.Modules.Compression.Providers;
+using GenHTTP.Modules.IO.Streaming;
+
 public class DeflateCompression : ICompressionAlgorithm
 {
+    private static readonly AlgorithmName AlgorithmName = new("deflate");
 
-    public string Name => "deflate";
+    public AlgorithmName Name => AlgorithmName;
 
     public Priority Priority => Priority.Low;
 
     public IResponseContent Compress(IResponseContent content, CompressionLevel level)
     {
-        return new CompressedResponseContent(content, (target) => new DeflateStream(target, level, false));
+        return new CompressedResponseContent(content, sink => new DeflateSink(sink, level), Name);
     }
     
     public Stream Decompress(Stream content) 
@@ -70,10 +88,22 @@ public class DeflateCompression : ICompressionAlgorithm
     }
 
 }
+
+public sealed class DeflateSink(IResponseSink sink, CompressionLevel level) : IResponseSink, IDisposable
+{
+    private IBufferWriter<byte>? _writer;
+
+    public Stream Stream { get; } = new DeflateStream(sink.Stream, level, leaveOpen: false);
+
+    public IBufferWriter<byte> Writer => _writer ??= new StreamBufferWriter(Stream);
+
+    public void Dispose() => Stream.Dispose();
+
+}
                         
 // registration
-var server = Server.Create()
-                   .Handler(...)
-                   .Defaults(compression: false)
-                   .Compression(CompressedContent.Default().Add(new DeflateCompression()));
+var server = Host.Create()
+                 .Handler(...)
+                 .Defaults(compression: false)
+                 .Compression(CompressedContent.Default().Add(new DeflateCompression()));
 ```

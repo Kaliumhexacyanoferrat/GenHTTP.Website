@@ -28,5 +28,5 @@ should be cached more explicitly:
 ```csharp
 var policy = ClientCache.Policy()
                         .Duration(7)
-                        .Predicate((req, resp) => resp.ContentType?.RawType != "text/html")); // do not cache HTML pages
+                        .Predicate((req, resp) => resp.Content?.Type != ContentType.TextHtml); // do not cache HTML pages
 ```

@@ -20,7 +20,7 @@ see their [Docker Hub](https://hub.docker.com/r/microsoft/dotnet-sdk) page.
 Create a new file named `Dockerfile` in the root directory of your repository and paste the following content:
 
 ```dockerfile
-FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
+FROM mcr.microsoft.com/dotnet/sdk:11.0-alpine AS build
 
 # uncomment those lines to enable globalization / localization features
 # RUN apk add --no-cache icu-libs tzdata
@@ -37,9 +37,9 @@ COPY Project/ .
 RUN dotnet publish -c release -o /app -r linux-musl-x64 --no-restore
 
 # final stage/image
-FROM mcr.microsoft.com/dotnet/runtime:10.0-alpine
+FROM mcr.microsoft.com/dotnet/runtime:11.0-alpine
 
-# or FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine for Kestrel
+# or FROM mcr.microsoft.com/dotnet/aspnet:11.0-alpine for Kestrel
 
 ENV DOTNET_EnableDiagnostics=0 \
     DOTNET_gcServer=1 \
@@ -55,7 +55,17 @@ EXPOSE 8080
 ```
 
 This assumes that you named your project `Project`. With this file you can use
-the commands in the previous section to build and run your project.
+the commands in the previous section to build and run your project. GenHTTP currently
+targets .NET 10 and .NET 11, so `10.0` images work just as well - pick whichever
+matches the target framework of your project.
+
+{{< callout type="info" >}}
+  If you are hosting on the [Ioxide engine](../server/engines/ioxide/), keep in mind it
+  needs .NET 11 and relies on `io_uring`, which is provided by the host's Linux kernel, not
+  the container image - it is unavailable on hosts with an older kernel or on container
+  runtimes that block the `io_uring` syscalls (e.g. some hardened or gVisor-based
+  environments), regardless of which .NET base image you pick.
+{{< /callout >}}
 
 ## Managing dependencies
 

@@ -18,9 +18,9 @@ var customConcern = Concern.From(async (request, content) =>
 {
     var response = await content.HandleAsync(request);
 
-    response?.Headers.Add("X-Custom-Header", "Custom Concern");
-
-    return response;
+    return response?.Rebuild()
+                    .Header("X-Custom-Header", "Custom Concern")
+                    .Build();
 });
 
 var handler = Content.From(Resource.FromString("Hello World"))
@@ -60,18 +60,15 @@ public class CustomConcern : IConcern
         Content = content;
     }
 
-    public ValueTask PrepareAsync() => Content.PrepareAsync();
+    public ValueTask PrepareAsync(IServer server) => Content.PrepareAsync(server);
 
     public async ValueTask<IResponse?> HandleAsync(IRequest request)
     {
         var response = await Content.HandleAsync(request);
 
-        if (response != null)
-        {
-            response.Headers.Add("X-Custom-Header", "Custom Concern");
-        }
-
-        return response;
+        return response?.Rebuild()
+                        .Header("X-Custom-Header", "Custom Concern")
+                        .Build();
     }
 
 }

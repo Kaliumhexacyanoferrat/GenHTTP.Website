@@ -11,7 +11,7 @@ cascade:
 
 This handler provides the content of a [resource](../../concepts/resources/) such
 as a file or a text resource to a requesting client. In contrast
-to [downloads](../downloads/), the handler does not instruct the
+to a [download](../files/#downloads), the handler does not instruct the
 client to download and store the file but just serves it.
 
 ```csharp

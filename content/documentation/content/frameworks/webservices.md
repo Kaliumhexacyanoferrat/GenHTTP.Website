@@ -38,7 +38,6 @@ var service = Layout.Create()
 await Host.Create()
           .Handler(service)
           .Development()
-          .Console()
           .RunAsync();
 
 public class BookService
@@ -53,15 +52,15 @@ public class BookService
     public Book? GetBook(int id) { /* ... */ }
 
     // PUT http://localhost:8080/books/
-    [ResourceMethod(RequestMethod.Put)]
+    [ResourceMethod(Method.Put)]
     public Book AddBook(Book book) { /* ... */ }
 
     // POST http://localhost:8080/books/
-    [ResourceMethod(RequestMethod.Post)]
+    [ResourceMethod(Method.Post)]
     public Book UpdateBook(Book book) { /* ... */ }
 
     // DELETE http://localhost:8080/books/4711
-    [ResourceMethod(RequestMethod.Delete, ":id")]
+    [ResourceMethod(Method.Delete, ":id")]
     public Book? DeleteBook(int id) { /* ... */ }
 
 }

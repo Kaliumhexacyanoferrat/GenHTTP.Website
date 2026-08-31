@@ -2,7 +2,7 @@
 title: Open API
 description: 'Dynamically generates an Open API v3 specification for a web service or controller'
 cascade:
-type: docs
+  type: docs
 ---
 
 {{< cards >}}
@@ -29,7 +29,6 @@ This concern dynamically generates and serves an [Open API v3 specification](htt
   await Host.Create()
             .Handler(api)
             .Development()
-            .Console()
             .RunAsync();
 
   public record User(int ID, string Name);
@@ -62,7 +61,6 @@ This concern dynamically generates and serves an [Open API v3 specification](htt
   await Host.Create()
             .Handler(api)
             .Development()
-            .Console()
             .RunAsync();
 
   record User(int ID, string Name);
@@ -85,7 +83,6 @@ This concern dynamically generates and serves an [Open API v3 specification](htt
   await Host.Create()
             .Handler(api)
             .Development()
-            .Console()
             .RunAsync();
 
   public record User(int ID, string Name);
@@ -93,10 +90,10 @@ This concern dynamically generates and serves an [Open API v3 specification](htt
   public class UserController
   {
 
-      [ControllerAction(RequestMethod.Get)]
+      [ControllerAction(Method.Get)]
       public List<User> List() => [];
 
-      [ControllerAction(RequestMethod.Get)]
+      [ControllerAction(Method.Get)]
       public User Find([FromPath] int id) => new(id, "John Doe");
 
   }
@@ -148,7 +145,6 @@ var api = Inline.Create()
 await Host.Create()
           .Handler(api)
           .Development()
-          .Console()
           .RunAsync();
 ```
 
@@ -209,7 +205,6 @@ var api = Layout.Create()
 await Host.Create()
           .Handler(api)
           .Development()
-          .Console()
           .RunAsync();
 
 class RedirectExplorer : IApiExplorer

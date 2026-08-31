@@ -21,8 +21,7 @@ using GenHTTP.Modules.IO;
 var customHandler = Handler.From(r =>
 {
     return r.Respond()
-            .Content("Hello World")
-            .Type(ContentType.TextPlain)
+            .Content("Hello World", ContentType.TextPlain)
             .Build();
 });
 
@@ -37,6 +36,7 @@ would look like this:
 
 ```csharp
 using GenHTTP.Api.Content;
+using GenHTTP.Api.Infrastructure;
 using GenHTTP.Api.Protocol;
 
 using GenHTTP.Engine.Internal;
@@ -46,7 +46,7 @@ using GenHTTP.Modules.IO;
 public class CustomHandler : IHandler
 { 
 
-    public ValueTask PrepareAsync() 
+    public ValueTask PrepareAsync(IServer server) 
     {
         // perform CPU or I/O heavy work to initialize this
         // handler and it's children
@@ -56,8 +56,7 @@ public class CustomHandler : IHandler
     public ValueTask<IResponse?> HandleAsync(IRequest request)
     {
         var response = request.Respond()
-                              .Content("Hello World")
-                              .Type(new FlexibleContentType(ContentType.TextPlain))
+                              .Content("Hello World", ContentType.TextPlain)
                               .Build();
 
         return new ValueTask<IResponse?>(response);
