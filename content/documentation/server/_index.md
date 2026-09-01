@@ -40,8 +40,7 @@ finally {
 
 The server will start to listen for requests as soon as the `RunAsync` or `StartAsync`
 method is called. When disposed, the server will stop to process messages
-and release all claimed resources. This way, server instances can easily be used
-for service mocks in integration and component testing as well. 
+and release all claimed resources.
 
 By default, the server will listen to all IP addresses on port 8080. These
 settings can be adjusted [as needed](./endpoints/). The `Defaults()` call adds 

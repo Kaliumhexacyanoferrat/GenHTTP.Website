@@ -15,25 +15,19 @@ and the `Host` namespace you import.
 
 ## Choosing an Engine
 
-{{< cards >}}
-{{< card link="./internal/" title="Internal" >}}
-{{< card link="./kestrel/" title="Kestrel" >}}
-{{< card link="./ioxide/" title="Ioxide" >}}
-{{< /cards >}}
-
-| Engine     | Package                  | Good fit for                                                                  |
-|------------|---------------------------|-------------------------------------------------------------------------------|
-| [Internal](./internal/) | `GenHTTP.Core`            | Embedding into another application, small Docker containers, few dependencies |
-| [Kestrel](./kestrel/)   | `GenHTTP.Core.Kestrel`    | Edge servers, security requirements, HTTP/2 and HTTP/3                        |
-| [Ioxide](./ioxide/)     | `GenHTTP.Core.Ioxide`     | Maximum HTTP/1.1 throughput on Linux; currently a spike, not production ready |
+| Engine                  | Package                | Good fit for                                                                  |
+|-------------------------|------------------------|-------------------------------------------------------------------------------|
+| [Internal](./internal/) | `GenHTTP.Core`         | Embedding into another application, small Docker containers, few dependencies |
+| [Kestrel](./kestrel/)   | `GenHTTP.Core.Kestrel` | Edge servers, security requirements, HTTP/2 and HTTP/3                        |
+| [Ioxide](./ioxide/)     | `GenHTTP.Core.Ioxide`  | Maximum HTTP/1.1 throughput on Linux; currently a spike, not production ready |
 
 ## Requirements
 
-| Engine   | Target Frameworks    | Platform                                  |
-|----------|-----------------------|--------------------------------------------|
-| Internal | .NET 10, .NET 11      | any                                        |
-| Kestrel  | .NET 10, .NET 11      | any                                        |
-| Ioxide   | .NET 11 only           | relies on `io_uring`, so effectively Linux |
+| Engine   | Target Frameworks | Platform                                   |
+|----------|-------------------|--------------------------------------------|
+| Internal | .NET 10, .NET 11  | any                                        |
+| Kestrel  | .NET 10, .NET 11  | any                                        |
+| Ioxide   | .NET 11 only      | relies on `io_uring`, so effectively Linux |
 
 ## Custom Engines
 

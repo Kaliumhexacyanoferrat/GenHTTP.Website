@@ -7,7 +7,8 @@ cascade:
 ---
 
 {{< cards >}}
-{{< card link="https://www.nuget.org/packages/GenHTTP.Core.Ioxide/" title="GenHTTP.Core.Ioxide" icon="link" >}}
+  {{< card link="https://www.nuget.org/packages/GenHTTP.Full.Ioxide/" title="GenHTTP.Full.Ioxide" icon="link" >}}
+  {{< card link="https://www.nuget.org/packages/GenHTTP.Core.Ioxide/" title="GenHTTP.Core.Ioxide" icon="link" >}}
 {{< /cards >}}
 
 {{< callout type="warning" >}}
@@ -92,11 +93,6 @@ As of this writing, the following are not yet implemented:
   server stops it without waiting for in-flight connections to finish)
 - The `Host` header validation and default error-response page the Internal engine provides -
   unhandled exceptions are currently swallowed rather than turned into a HTTP 500 response
-
-Ioxide also resumes awaited continuations inline on the reactor thread that received them. A
-handler that blocks or does sync-over-async work will stall every connection owned by that
-reactor, unlike the Internal engine's thread-pool model - this engine is best suited to
-non-blocking, CPU-light handlers.
 
 ## Serving Static Files
 
