@@ -1,7 +1,7 @@
 ﻿+++
 title = 'Features'
 description = 'Features of the GenHTTP application framework such as performance, SEO or security.'
-date = 2026-08-13T14:10:41+02:00
+date = 2026-09-01T09:35:41+02:00
 +++
 
 ## Frameworks
