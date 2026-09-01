@@ -26,8 +26,7 @@ await Host.Create()
 ## Custom Algorithms
 
 The concern analyzes the `Content-Encoding` header of incoming requests and
-supports automatic decompression of `gzip` and `br` compressed request bodies
-(Zstandard support is tracked in [#883](https://github.com/Kaliumhexacyanoferrat/GenHTTP/issues/883)).
+supports automatic decompression of `gzip`, `br` and `zstd` (.NET 11 only) compressed request bodies.
 
 If you would like to add support for an additional algorithm, you need to implement
 and supply a `ICompressionAlgorithm` instance - the same interface used to

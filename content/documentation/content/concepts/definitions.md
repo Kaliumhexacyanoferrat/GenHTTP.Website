@@ -19,7 +19,7 @@ kind of types can be used.
 By default, a parameter type can be used within a method definition if it is either `string`,
 `bool`, an `enum`, one of `DateTime`, `DateTimeOffset`, `DateOnly`, `TimeOnly` or `TimeSpan`, or
 implements `IUtf8SpanFormattable` (which covers the numeric primitives such as `int`, `long` or
-`Guid`, but explicitly excludes `char`).
+`Guid`).
 
 {{< tabs >}}
 
@@ -47,7 +47,7 @@ implements `IUtf8SpanFormattable` (which covers the numeric primitives such as `
 Parameters can be declared nullable (e.g. `int?`) and will be initialized with `null` if not present.
 If not declared nullable, parameters will be initialized with `default(T)` if not present.
 
-By default, parameters are read from the request query (`?text=abc`) or from a [form encoded](#html-forms) body.
+By default, parameters are read from the request query (`?text=abc`).
 
 If you would like to read the parameter directly from the request body, you can mark it with the `[FromBody]` attribute.
 
@@ -152,7 +152,7 @@ the client does not declare the `Content-Type`, the server will try to treat the
 
 ### HTML Forms
 
-Form data can be used to populate both complex types and primitive parameters. Browsers
+Form data can be used to populate both complex types and a generic dictionary-like object. Browsers
 will encode the content as `application/x-www-form-urlencoded` and the framework will
 populate the arguments as needed. This allows such endpoints to be used both from
 browsers and as a regular API.
@@ -180,7 +180,7 @@ Can be read using the following definitions:
 {{< tab name="Webservices" >}}
   ```csharp
   [ResourceMethod(Method.Post)]
-  public void Save(int id, string name) { /* ... */ }
+  public void Save(BodyArguments bodyArgs) { /* ... */ }
   
   // or
   
@@ -191,7 +191,7 @@ Can be read using the following definitions:
 
 {{< tab name="Functional" >}}
   ```csharp
-  .Post("/save", (int id, string name) => { /* ... */ })
+  .Post("/save", (BodyArguments bodyArgs) => { /* ... */ })
   
   // or
   
@@ -202,7 +202,7 @@ Can be read using the following definitions:
 {{< tab name="Controllers" >}}
   ```csharp
   [ControllerAction(Method.Post)]
-  public void Save(int id, string name) { /* ... */ }
+  public void Save(BodyArguments bodyArgs) { /* ... */ }
   
   // or
   
@@ -212,14 +212,6 @@ Can be read using the following definitions:
 {{< /tab >}}
 
 {{< /tabs >}}
-
-Both mechanisms can also be mixed (read one argument as a parameter and all
-others as a custom type).
-
-Under the hood, the framework reads form encoded bodies into a `BodyArguments` instance
-(`request.GetBody()?.AsBodyArgumentsAsync()`). Like the request headers and query, it is an
-`IKeyValueList` rather than a dictionary, so entries are looked up via `GetEntry(...)` rather
-than indexed by key.
 
 ### Request Injection
 
@@ -409,7 +401,7 @@ This section describes the various mechanisms to generate a service response.
 
 By default, a type can be used as a return type within a method definition under the same rules
 as [parameter primitives](#primitives): `string`, `bool`, `enum`, the date/time types, or anything
-implementing `IUtf8SpanFormattable` (except `char`, see [#858](https://github.com/Kaliumhexacyanoferrat/GenHTTP/issues/858)).
+implementing `IUtf8SpanFormattable`.
 
 If declared nullable, the server will generate a `HTTP 204 No Content` if `null` is returned.
 
