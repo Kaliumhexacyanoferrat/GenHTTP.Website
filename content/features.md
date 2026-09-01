@@ -25,17 +25,17 @@ excerpt shows how GenHTTP compares to other C# servers in the field:
 
 | Framework         | Score (Composite H1) |
 |-------------------|----------------------|
-| `genhttp-ioxide`  | 968                  |
-| `genhttp`         | 868                  |
-| `simplew`         | 624                  |
-| `genhttp-kestrel` | 585                  |
-| `aspnet-minimal`  | 506                  |
-| `fastendpoints`   | 493                  |
-| `aspnet-mvc`      | 378                  |
-| `sisk`            | 207                  |
-| `servicestack`    | 102                  |
+| `genhttp-ioxide`  | 6211                 |
+| `genhttp`         | 4088                 |
+| `simplew`         | 3671                 |
+| `genhttp-kestrel` | 2992                 |
+| `carter`          | 2978                 |
+| `aspnet-minimal`  | 2715                 |
+| `fastendpoints`   | 2660                 |
+| `sisk`            | 2047                 |
+| `servicestack`    | 237                  |
 
-According to those numbers, stock GenHTTP is 1.72 times faster then ASP.NET Core Minimal API
+According to those numbers, stock GenHTTP is 1.5 times faster then ASP.NET Core Minimal API
 in a mixed challenge with different use cases and usage scenarios.
 
 ## Footprint
