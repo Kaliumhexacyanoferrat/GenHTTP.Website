@@ -7,7 +7,8 @@ cascade:
 ---
 
 {{< cards >}}
-{{< card link="https://www.nuget.org/packages/GenHTTP.Core.Kestrel/" title="GenHTTP.Core.Kestrel" icon="link" >}}
+    {{< card link="https://www.nuget.org/packages/GenHTTP.Full.Kestrel/" title="GenHTTP.Full.Kestrel" icon="link" >}}
+    {{< card link="https://www.nuget.org/packages/GenHTTP.Core.Kestrel/" title="GenHTTP.Core.Kestrel" icon="link" >}}
 {{< /cards >}}
 
 Kestrel is a web server developed by Microsoft and the engine that runs ASP.NET applications.

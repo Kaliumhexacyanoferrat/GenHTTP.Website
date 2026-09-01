@@ -7,7 +7,8 @@ cascade:
 ---
 
 {{< cards >}}
-{{< card link="https://www.nuget.org/packages/GenHTTP.Core/" title="GenHTTP.Core" icon="link" >}}
+    {{< card link="https://www.nuget.org/packages/GenHTTP.Full/" title="GenHTTP.Full" icon="link" >}}
+    {{< card link="https://www.nuget.org/packages/GenHTTP.Core/" title="GenHTTP.Core" icon="link" >}}
 {{< /cards >}}
 
 This is the default HTTP implementation provided by the GenHTTP framework. It
