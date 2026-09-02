@@ -17,13 +17,18 @@ cascade:
 {{< /callout >}}
 
 Ioxide is a thread-per-reactor HTTP engine built on top of the
-[ioxide](https://github.com/MDA2AV/ioxide) `io_uring` runtime. One reactor is started per
-CPU core, each accepting and serving connections independently via `SO_REUSEPORT` - there is
-no shared thread pool and no hand-off between threads for a given connection. Unlike the Kestrel
-engine, which hands GenHTTP a fully parsed `HttpContext`, Ioxide runs GenHTTP's own HTTP/1.1
-conversation directly on top of the `io_uring` pipes, the same way the Internal engine runs it on
-top of sockets. According to the [HTTP Arena](https://www.http-arena.com) benchmark, this makes
-it the fastest of the three engines for HTTP/1.1 (see the [performance comparison](/features/)).
+[ioxide](https://github.com/MDA2AV/ioxide) `io_uring` runtime: one reactor runs per CPU core,
+accepting and serving connections independently via `SO_REUSEPORT`. According to the
+[HTTP Arena](https://www.http-arena.com) benchmark, this makes it the fastest of the three engines
+for HTTP/1.1 (see the [performance comparison](/features/)).
+
+Architecturally, this is different from the Kestrel engine, which hands GenHTTP a fully parsed
+`HttpContext`: Ioxide runs GenHTTP's own HTTP/1.1 conversation directly on top of the `io_uring`
+pipes, the same way the Internal engine runs it on top of sockets. There is no shared thread pool
+and no hand-off between threads for a given connection.
+
+The engine targets .NET 11 only and relies on `io_uring`, so it effectively runs on Linux only -
+see [Requirements](../#requirements) for how it compares to the other engines.
 
 ```csharp
 using GenHTTP.Engine.Ioxide;
@@ -33,12 +38,25 @@ await Host.Create()
           .RunAsync();
 ```
 
+## Current Limitations
+
+As of this writing, the following are not yet implemented:
+
+- IPv6 binding and multiple endpoints via the regular `.Bind()` API (only the first configured
+  endpoint is served; reaching additional ports such as a TLS listener requires the manual wiring
+  shown [below](#tls))
+- Graceful shutdown and connection draining (reactors run as background threads; disposing the
+  server stops it without waiting for in-flight connections to finish)
+- The `Host` header validation and default error-response page the Internal engine provides -
+  unhandled exceptions are currently swallowed rather than turned into a HTTP 500 response
+
 ## Tuning the io_uring Runtime
 
-`Host.Create(...)` accepts an optional hook to customize the reactor count as well as ring and
-buffer sizes. The hook receives a config pre-seeded with sensible defaults (one reactor per CPU
-core) and should return a modified copy. The listening port always comes from the GenHTTP endpoint
-binding (`.Port()`/`.Bind()`), so any port set on the config is overridden.
+The defaults - one reactor per CPU core, with sensible ring and buffer sizes - work for most
+deployments. If you need finer control, `Host.Create(...)` accepts an optional hook that receives
+a config pre-seeded with those defaults and should return a modified copy. The listening port
+always comes from the GenHTTP endpoint binding (`.Port()`/`.Bind()`), so any port set on the
+config is overridden.
 
 ```csharp
 using GenHTTP.Engine.Ioxide;
@@ -81,18 +99,6 @@ await Host.Create(configure: c => c with { ExtraPorts = [8081] },
           .Handler(...)
           .RunAsync();
 ```
-
-## Current Limitations
-
-As of this writing, the following are not yet implemented:
-
-- IPv6 binding and multiple endpoints via the regular `.Bind()` API (only the first configured
-  endpoint is served; reaching additional ports such as a TLS listener requires the manual wiring
-  shown above)
-- Graceful shutdown and connection draining (reactors run as background threads; disposing the
-  server stops it without waiting for in-flight connections to finish)
-- The `Host` header validation and default error-response page the Internal engine provides -
-  unhandled exceptions are currently swallowed rather than turned into a HTTP 500 response
 
 ## Serving Static Files
 
