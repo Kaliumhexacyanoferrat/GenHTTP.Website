@@ -12,7 +12,8 @@ when running GenHTTP applications.
 ## General Considerations
 
 GenHTTP is designed to be used as an application server behind a reverse proxy, and therefore does not provide built-in DoS protection (such as IP connection limits or Slowloris prevention).
-However, compared to many other web service frameworks for C#, it is hardened against - and explicitly tested for - typical attack vectors such as request smuggling, header injection, or malformed chunk attacks.
+However, compared to many other web service frameworks for C#, it is hardened against - and explicitly 
+[tested for](https://www.http-probe.com/servers/genhttp.html) - typical attack vectors such as request smuggling, header injection, or malformed chunk attacks.
 
 If you would like to run your GenHTTP application without a reverse proxy in front of it, consider using the [Kestrel-based engine](../engines/) instead.
 
