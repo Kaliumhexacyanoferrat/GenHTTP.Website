@@ -21,14 +21,6 @@ and the `Host` namespace you import.
 | [Kestrel](./kestrel/)   | `GenHTTP.Core.Kestrel` | Edge servers, security requirements, HTTP/2 and HTTP/3                        |
 | [Ioxide](./ioxide/)     | `GenHTTP.Core.Ioxide`  | Maximum HTTP/1.1 throughput on Linux; currently a spike, not production ready |
 
-## Requirements
-
-| Engine   | Target Frameworks | Platform                                   |
-|----------|-------------------|--------------------------------------------|
-| Internal | .NET 10, .NET 11  | any                                        |
-| Kestrel  | .NET 10, .NET 11  | any                                        |
-| Ioxide   | .NET 11 only      | relies on `io_uring`, so effectively Linux |
-
 ## Custom Engines
 
 If you are interested in adding a new engine to the project, feel free
