@@ -13,7 +13,6 @@ cascade:
 
 {{< callout type="warning" >}}
   This engine is currently in preview and will be extended within the next releases of GenHTTP.
-  Currently available on .NET 11 only.
 {{< /callout >}}
 
 {{< callout type="warning" >}}
@@ -30,40 +29,10 @@ An engine built on top of the [ioxide](https://github.com/MDA2AV/ioxide) `io_uri
 one reactor runs per CPU core,accepting and serving connections independently. According to the
 [HTTP Arena](https://www.http-arena.com) benchmark, this engine provides the fastest webserver on the whole list.
 
-Architecturally, this is different from the Kestrel engine, which hands GenHTTP a fully parsed
-`HttpContext`: Ioxide runs GenHTTP's own HTTP/1.1 conversation directly on top of the `io_uring`
-pipes, the same way the Internal engine runs it on top of sockets. There is no shared thread pool
-and no hand-off between threads for a given connection.
-
 ```csharp
 using GenHTTP.Engine.Ioxide;
 
 await Host.Create()
-          .Handler(...)
-          .RunAsync();
-```
-
-## TLS
-
-The standard `.Bind(host, port, certificate)` overloads used by the Internal and Kestrel engines
-are not wired up for Ioxide yet. TLS termination is available, but only through the lower-level
-`onReactorStart`/`connectionFactory` hooks and the `ioxide.tls` package, which perform the
-handshake ring-natively (OpenSSL) and then hand the connection off as kTLS:
-
-```csharp
-using GenHTTP.Engine.Ioxide;
-
-using ioxide.tls;
-
-await Host.Create(configure: c => c with { ExtraPorts = [8081] },
-                  onReactorStart: r => IoxideTls.StartService(r, new TlsOptions
-                  {
-                      CertificatePath = "./cert.pem",
-                      KeyPath = "./key.pem"
-                  }),
-                  connectionFactory: conn => conn.ListenerPort == 8081
-                      ? IoxideTls.AcceptAsync(conn)
-                      : new(new ConnectionDualPipe(conn)))
           .Handler(...)
           .RunAsync();
 ```
@@ -103,36 +72,163 @@ ahead of time and revalidates them via `statx` instead of assembling them per re
 ## Tuning the io_uring Runtime
 
 The defaults - one reactor per CPU core, with sensible ring and buffer sizes - work for most
-deployments. If you need finer control, `Host.Create(...)` accepts an optional hook that receives
-a config pre-seeded with those defaults and should return a modified copy. The listening port
-always comes from the GenHTTP endpoint binding (`.Port()`/`.Bind()`), so any port set on the
-config is overridden.
+deployments. If you need finer control, `Host.Create(...)` takes an `EngineOptions`, grouped by the
+part of the runtime each setting belongs to: the reactors (`Reactor`), the TCP transport and its TLS
+(`Tcp`), the QUIC transport (`Quic`), and HTTP/3 above it (`Http3`).
 
 ```csharp
 using GenHTTP.Engine.Ioxide;
 
-await Host.Create(c => c with
+await Host.Create(options: new EngineOptions
                   {
-                      ReactorCount      = 16,
-                      RingEntries       = 16384,
-                      RecvBufferSize    = 64 * 1024,
-                      BufferRingEntries = 8192,
+                      Reactor = new ReactorOptions
+                      {
+                          ReactorCount   = 16,
+                          RingEntries    = 16384,
+                          RecvBufferSize = 64 * 1024,
+                          RecvSlots      = 8192,
+                      },
                   })
           .Handler(...)
+          .Bind(...)
           .RunAsync();
 ```
 
-`Host.Create(...)` also accepts a hook that runs once per reactor, on that reactor's own thread,
-before it starts serving - useful to register per-reactor, ring-native services.
+`Host.Create(...)` also takes a hook that runs once per reactor, on that reactor's own thread, before
+it starts serving - useful to register per-reactor, ring-native services.
 
-## Current Limitations
+```csharp
+await Host.Create(onReactorStart: reactor => ...)
+          .Handler(...)
+          .Bind(...)
+          .RunAsync();
+```
 
-As of this writing, the following are not yet implemented:
+## TLS
 
-- IPv6 binding and multiple endpoints via the regular `.Bind()` API (only the first configured
-  endpoint is served; reaching additional ports such as a TLS listener requires the manual wiring
-  shown [below](#tls))
-- Graceful shutdown and connection draining (reactors run as background threads; disposing the
-  server stops it without waiting for in-flight connections to finish)
-- The `Host` header validation and default error-response page the Internal engine provides -
-  unhandled exceptions are currently swallowed rather than turned into a HTTP 500 response
+TLS is configured through the `.Bind(...)` overload that takes a certificate provider. It is
+terminated in OpenSSL on the TCP transports, and the handshake rides the same `io_uring` reads and
+writes as everything else. Where a port serves both HTTP/1.1 and HTTP/2, ALPN decides which one a
+connection speaks - the server offers HTTP/2 first, so a client that speaks it is served HTTP/2 and
+everyone else falls back to HTTP/1.1.
+
+```csharp
+using System.Net;
+using System.Security.Authentication;
+
+using GenHTTP.Api.Infrastructure;
+using GenHTTP.Engine.Ioxide;
+
+await Host.Create()
+          .Handler(...)
+          .Bind(IPAddress.Any, 8443, new FileCertificateProvider("./cert.pem", "./key.pem"),
+                sslProtocols: SslProtocols.Tls12 | SslProtocols.Tls13,
+                httpProtocols: HttpProtocols.Http1AndHttp2)
+          .RunAsync();
+```
+
+A `FileCertificateProvider` names the certificate and its key as PEM files. Files are preferred:
+OpenSSL reads the chain from the file, so intermediates come from there rather than the machine
+store, and the private key never enters managed memory. On the TCP transports an already loaded
+`X509Certificate2` can be passed instead; HTTP/3 cannot take one.
+
+### Server Name Indication
+
+If you would like to serve several host names from one port, a `HostCertificateProvider` holds one
+certificate per name alongside a default:
+
+```csharp
+var certificates = new HostCertificateProvider("./localhost.pem", "./localhost.key");
+
+certificates.Add("alpha.example", "./alpha.pem", "./alpha.key");
+certificates.Add("beta.example", "./beta.pem", "./beta.key");
+
+await Host.Create()
+          .Handler(...)
+          .Bind(IPAddress.Any, 8443, certificates, httpProtocols: HttpProtocols.Http1AndHttp2)
+          .RunAsync();
+```
+
+The client sends the name it wants during the handshake, and the server answers with that name's
+certificate. Names are matched case-insensitively and exactly - a wildcard certificate covers its
+names through the certificate itself, not by being registered here. The default is not optional, as
+it answers a client that sent no name or asked for one this port does not hold, which is what a bare
+IP address does, since an IP is not a legal SNI value.
+
+### HTTP/3
+
+An HTTP/3 port always needs a certificate, and it needs it as files: ngtcp2 loads PEM by path and
+takes nothing else, so an in-memory `X509Certificate2` is refused when the server starts. Bind such
+a port with an `IFileCertificateProvider` - both `FileCertificateProvider` and
+`HostCertificateProvider` are such. Only one endpoint may serve HTTP/3, as the engine binds a single
+QUIC listener. Browsers reach HTTP/3 only after an `Alt-Svc` header points them there from a TCP
+port, so a browser-facing deployment binds HTTP/3 alongside HTTP/1.1 or HTTP/2 rather than on its own.
+
+### Client Certificates
+
+If you would like to require a client certificate, pass an `IMutualTlsValidator` as the
+`certificateValidator`, naming the anchors the client's certificate is checked against:
+
+```csharp
+public sealed class RequireClientCertificate(string clientCaPath) : IMutualTlsValidator
+{
+    public bool RequireCertificate => true;
+
+    public string? ClientCaPath => clientCaPath;
+}
+```
+
+```csharp
+.Bind(IPAddress.Any, 8444, new FileCertificateProvider("./cert.pem", "./key.pem"),
+      certificateValidator: new RequireClientCertificate("./client-ca.pem"),
+      httpProtocols: HttpProtocols.Http1)
+```
+
+With `RequireCertificate` left false the connection is let in and the decision is left to the
+handler. A binding that requires a certificate but names nothing to validate it against is refused
+when the server starts.
+
+### Certificate Rotation
+
+A renewed certificate does not need a restart. `ReloadCertificates` asks each bound provider again
+and installs what it answers with, across both transports, while the server keeps serving:
+
+```csharp
+using IoxideServer = GenHTTP.Engine.Ioxide.Infrastructure.Server;
+
+var host = Host.Create()
+               .Handler(...)
+               .Bind(IPAddress.Any, 8443, certificates, httpProtocols: HttpProtocols.Http1AndHttp2);
+
+// after the PEM files the providers name have been rewritten, e.g. by an ACME hook
+(host.Instance as IoxideServer)?.ReloadCertificates();
+```
+
+Connections already established keep the certificate they authenticated with. Only the certificate
+material changes: trust anchors, `RequireCertificate`, ALPN and the TLS floor stay as the binding
+set them, and no name can be added, since both stacks settle their SNI tables at startup. Everything
+is resolved and checked before anything is published, so a provider that throws, or a path an ACME
+client has not finished writing, leaves the server exactly as it was.
+
+### Kernel TLS
+
+Kernel TLS moves the record layer into the kernel, so plaintext lands directly in ring memory. It is
+off by default and is not a free win: it needs the Linux `tls` module, pins TLS 1.3 and a single
+ciphersuite, and disables session resumption. `RxKernelTls` needs `TxKernelTls`, as inbound shares
+the `TCP_ULP` the outbound side installs, so `Tls13` is the only floor that is consistent with it.
+
+```csharp
+await Host.Create(options: new EngineOptions
+          {
+              Tcp = new TcpTransportOptions
+              {
+                  TxKernelTls = true,
+                  RxKernelTls = true,
+              },
+          })
+          .Handler(...)
+          .Bind(IPAddress.Any, 8443, new FileCertificateProvider("./cert.pem", "./key.pem"),
+                sslProtocols: SslProtocols.Tls13,
+                httpProtocols: HttpProtocols.Http1AndHttp2)
+          .RunAsync();
+```
