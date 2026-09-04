@@ -18,8 +18,8 @@ and the `Host` namespace you import.
 | Engine                  | Package                | Good fit for                                                                  |
 |-------------------------|------------------------|-------------------------------------------------------------------------------|
 | [Internal](./internal/) | `GenHTTP.Core`         | Embedding into another application, small Docker containers, few dependencies |
-| [Kestrel](./kestrel/)   | `GenHTTP.Core.Kestrel` | Edge servers, security requirements, HTTP/2 and HTTP/3                        |
-| [Ioxide](./ioxide/)     | `GenHTTP.Core.Ioxide`  | Maximum HTTP/1.1 throughput on Linux; currently a spike, not production ready |
+| [Kestrel](./kestrel/)   | `GenHTTP.Core.Kestrel` | Edge servers, security requirements, supports HTTP/2 and HTTP/3               |
+| [Ioxide](./ioxide/)     | `GenHTTP.Core.Ioxide`  | High performance on Linux using `io_uring`, supports HTTP/2 and HTTP/3        |
 
 ## Custom Engines
 
