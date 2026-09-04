@@ -23,6 +23,8 @@ If needed, those handlers can also be mixed within a project (see [layouting](..
   
   {{< card link="./controllers/" title="Controllers" >}}
 
+  {{< card link="./custom/" title="Custom Frameworks" >}}
+
 {{< /cards >}}
 
 ## Other Frameworks
