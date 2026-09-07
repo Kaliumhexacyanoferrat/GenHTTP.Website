@@ -63,13 +63,6 @@ work that only it can process and will not recover until the process is
 restarted. Always use `await`.
 {{< /callout >}}
 
-### Static Files
-
-For static file serving, see the [Ioxide Engine](../../../content/handlers/files/#ioxide-engine)
-section of the files handler page - the directory based `Assets.From(...)` bakes responses ahead of
-time and revalidates them via `statx` on this engine instead of assembling them per request, without
-a separate module.
-
 ## Tuning the io_uring Runtime
 
 The defaults - one reactor per CPU core, with sensible ring and buffer sizes - work for most

@@ -10,8 +10,7 @@ cascade:
 {{< /cards >}}
 
 The compression concern compresses content sent to the clients, if applicable. By default,
-[gzip](https://www.gzip.org/) and [Brotli](https://github.com/google/brotli) are supported
-(Zstandard support is tracked in [#883](https://github.com/Kaliumhexacyanoferrat/GenHTTP/issues/883)).
+[gzip](https://www.gzip.org/), [Brotli](https://github.com/google/brotli) and [Zstandard](https://github.com/facebook/zstd) (on .NET 11) are supported.
 
 ```csharp
 var content = Layout.Create()
@@ -52,14 +51,7 @@ the compression cost on every request.
 
 To add a custom compression algorithm to the server, you can implement the
 [ICompressionAlgorithm](https://github.com/Kaliumhexacyanoferrat/GenHTTP/blob/main/API/General/Content/IO/ICompressionAlgorithm.cs)
-interface and register the implementing class with your server builder. `Compress` produces the
-compressed `IResponseContent` by wrapping the response's `IResponseSink` with your own sink that
-compresses everything written through it - `CompressedResponseContent` takes care of the
-`IResponseContent` plumbing (checksum, encoding header) once you provide that sink factory. The
-`FileExtension` is the suffix the [files handler](../../handlers/files/#precompressed-files) looks
-for when serving precompressed variants of static files (for example `main.css.zz`), independent of
-the `Name` negotiated over `Accept-Encoding`. For example, the following implementation will add
-support for the `deflate` algorithm, which is not provided by the server out of the box:
+interface and register the implementing class with your server builder.
 
 ```csharp
 using System.Buffers;

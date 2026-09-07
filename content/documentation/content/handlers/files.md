@@ -69,10 +69,7 @@ http://localhost:8080/res/styles/main.css.
 
 If your build already produces precompressed variants of your static assets (e.g. `main.css.br`
 next to `main.css`), `AllowPrecompressed(...)` lets the handler serve those directly instead of
-compressing the response on every request. The algorithms passed in are matched against the
-client's `Accept-Encoding` header, tried in priority order, and looked up as
-`<original path><separator><algorithm file extension>` (`.` by default) - so a gzip variant is
-resolved as `main.css.gz`, following each algorithm's `FileExtension`:
+compressing the response on every request:
 
 ```csharp
 using GenHTTP.Modules.Compression.Algorithms;
@@ -83,8 +80,7 @@ var assets = Assets.From("./dist")
 
 With this configuration, a request for `main.css` with `Accept-Encoding: br` will be answered
 with the contents of `main.css.br` (falling back to `main.css` if no precompressed variant is
-found or accepted). Internally this reuses the [routing target's](../../concepts/routing/#suffix-routing)
-`CopyAndAppend()` to look up the suffixed path without disturbing the original routing state.
+found or accepted).
 
 ## Ioxide Engine
 
@@ -99,10 +95,6 @@ engine.
 var layout = Layout.Create()
                    .Add("static", Assets.From("./dist"));
 ```
-
-This optimization applies to the directory overloads (`Assets.From(string)` and
-`Assets.From(DirectoryInfo)`); the [resource tree](../../concepts/resources/#resource-trees) overload
-always uses the portable handler, as a tree is not necessarily backed by the file system.
 
 As the native layer caches file descriptors rather than touching the disk on every request, the baked
 responses are re-scanned for external changes at most once per `RefreshInterval` (250 ms by default).
