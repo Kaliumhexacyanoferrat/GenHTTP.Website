@@ -71,7 +71,8 @@ If your build already produces precompressed variants of your static assets (e.g
 next to `main.css`), `AllowPrecompressed(...)` lets the handler serve those directly instead of
 compressing the response on every request. The algorithms passed in are matched against the
 client's `Accept-Encoding` header, tried in priority order, and looked up as
-`<original path><separator><algorithm name>` (`.` by default):
+`<original path><separator><algorithm file extension>` (`.` by default) - so a gzip variant is
+resolved as `main.css.gz`, following each algorithm's `FileExtension`:
 
 ```csharp
 using GenHTTP.Modules.Compression.Algorithms;
@@ -87,19 +88,28 @@ found or accepted). Internally this reuses the [routing target's](../../concepts
 
 ## Ioxide Engine
 
-{{< cards >}}
-{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.IoxideFiles/" title="GenHTTP.Modules.IoxideFiles" icon="link" >}}
-{{< /cards >}}
-
-When running on the [Ioxide engine](../../../server/engines/ioxide/), the `IoxideFiles` module
-provides a specialized static file handler built directly on top of the engine's native I/O
-layer: responses are baked ahead of time and revalidated via `statx` instead of being assembled
-per request, and precompressed `.br`/`.gz` variants are negotiated the same way as above. It is
-mounted the same way as `Assets`:
+When the directory based `Assets.From(...)` runs on the [Ioxide engine](../../../server/engines/ioxide/),
+it automatically serves files through a handler built on the engine's native I/O layer: responses are
+baked ahead of time and revalidated via `statx` instead of being assembled per request, while
+precompressed variants are negotiated exactly as described above. No separate package or registration
+is required - the same handler transparently falls back to the portable implementation on every other
+engine.
 
 ```csharp
 var layout = Layout.Create()
-                   .Add("static", IoxideFiles.From("./dist"));
+                   .Add("static", Assets.From("./dist"));
 ```
 
-As it depends on the Ioxide engine's native bindings, this module targets `net11.0` only.
+This optimization applies to the directory overloads (`Assets.From(string)` and
+`Assets.From(DirectoryInfo)`); the [resource tree](../../concepts/resources/#resource-trees) overload
+always uses the portable handler, as a tree is not necessarily backed by the file system.
+
+As the native layer caches file descriptors rather than touching the disk on every request, the baked
+responses are re-scanned for external changes at most once per `RefreshInterval` (250 ms by default).
+Lowering it picks up changes faster at the cost of more frequent stat calls; the setting has no effect
+on other engines.
+
+```csharp
+var assets = Assets.From("./dist")
+                   .RefreshInterval(TimeSpan.FromSeconds(1));
+```

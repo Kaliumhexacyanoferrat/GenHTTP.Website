@@ -55,6 +55,19 @@ request.Content = new StringContent("My Body");
 using var response = await runner.GetResponseAsync(request);
 ```
 
+## Choosing an Engine
+
+By default the test host runs on the internal engine. To verify that an application behaves the same
+on another engine, pass a `ServerEngine` - the same enum the server reports through
+[`IServer.ServerEngine`](../server/engines/#detecting-the-engine):
+
+```csharp
+await using var runner = await TestHost.RunAsync(app, engine: ServerEngine.Kestrel);
+```
+
+The `Ioxide` engine depends on `io_uring` and is therefore Linux-only; it cannot be hosted on Windows
+or macOS.
+
 ## Response Handling
 
 The test framework provides some extension methods to simplify reading typed responses.

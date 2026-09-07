@@ -65,9 +65,10 @@ restarted. Always use `await`.
 
 ### Static Files
 
-For static file serving on with GenHTTP, see the [Ioxide Engine](../../../content/handlers/files/#ioxide-engine)
-section of the files handler page - the `GenHTTP.Modules.IoxideFiles` module bakes responses
-ahead of time and revalidates them via `statx` instead of assembling them per request.
+For static file serving, see the [Ioxide Engine](../../../content/handlers/files/#ioxide-engine)
+section of the files handler page - the directory based `Assets.From(...)` bakes responses ahead of
+time and revalidates them via `statx` on this engine instead of assembling them per request, without
+a separate module.
 
 ## Tuning the io_uring Runtime
 

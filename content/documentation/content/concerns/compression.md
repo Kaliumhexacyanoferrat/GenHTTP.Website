@@ -51,13 +51,15 @@ the compression cost on every request.
 ## Custom Algorithms
 
 To add a custom compression algorithm to the server, you can implement the
-[ICompressionAlgorithm](https://github.com/Kaliumhexacyanoferrat/GenHTTP/blob/main/API/Content/IO/ICompressionAlgorithm.cs)
+[ICompressionAlgorithm](https://github.com/Kaliumhexacyanoferrat/GenHTTP/blob/main/API/General/Content/IO/ICompressionAlgorithm.cs)
 interface and register the implementing class with your server builder. `Compress` produces the
 compressed `IResponseContent` by wrapping the response's `IResponseSink` with your own sink that
 compresses everything written through it - `CompressedResponseContent` takes care of the
-`IResponseContent` plumbing (checksum, encoding header) once you provide that sink factory. For
-example, the following implementation will add support for the `deflate` algorithm, which is not
-provided by the server out of the box:
+`IResponseContent` plumbing (checksum, encoding header) once you provide that sink factory. The
+`FileExtension` is the suffix the [files handler](../../handlers/files/#precompressed-files) looks
+for when serving precompressed variants of static files (for example `main.css.zz`), independent of
+the `Name` negotiated over `Accept-Encoding`. For example, the following implementation will add
+support for the `deflate` algorithm, which is not provided by the server out of the box:
 
 ```csharp
 using System.Buffers;
@@ -74,6 +76,8 @@ public class DeflateCompression : ICompressionAlgorithm
     private static readonly AlgorithmName AlgorithmName = new("deflate");
 
     public AlgorithmName Name => AlgorithmName;
+
+    public string FileExtension => "zz";
 
     public Priority Priority => Priority.Low;
 
