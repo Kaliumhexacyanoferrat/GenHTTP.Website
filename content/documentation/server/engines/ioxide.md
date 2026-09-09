@@ -12,10 +12,6 @@ cascade:
 {{< /cards >}}
 
 {{< callout type="warning" >}}
-  This engine is currently in preview and will be extended within the next releases of GenHTTP.
-{{< /callout >}}
-
-{{< callout type="warning" >}}
   As ioxide depends on `io_uring` which is a capability of the Linux kernel, it cannot
   run on other platforms, such as Windows or macOS. Kernel version 6.1 or higher is required.
 {{< /callout >}}
