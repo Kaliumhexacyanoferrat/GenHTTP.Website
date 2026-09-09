@@ -42,7 +42,6 @@ and two endpoints to host Swagger and Redoc.
             .Handler(app)
             .Defaults()
             .Development()
-            .Console()
             .RunAsync();
   
   public record Book(int ID, string Title);
@@ -53,13 +52,13 @@ and two endpoints to host Swagger and Redoc.
       [ResourceMethod]
       public List<Book> GetBooks() => [];
   
-      [ResourceMethod(RequestMethod.Put)]
+      [ResourceMethod(Method.Put)]
       public Book CreateBook(Book book) => book;
   
-      [ResourceMethod(RequestMethod.Post)]
+      [ResourceMethod(Method.Post)]
       public Book UpdateBook(Book book) => book;
   
-      [ResourceMethod(RequestMethod.Delete)]
+      [ResourceMethod(Method.Delete)]
       public void DeleteBook(int id) { }
   
   }
@@ -93,7 +92,6 @@ and two endpoints to host Swagger and Redoc.
             .Handler(app)
             .Defaults()
             .Development()
-            .Console()
             .RunAsync();
 
   public record Book(int ID, string Title);
@@ -123,7 +121,6 @@ and two endpoints to host Swagger and Redoc.
             .Handler(app)
             .Defaults()
             .Development()
-            .Console()
             .RunAsync();
 
   public record Book(int ID, string Title);
@@ -131,16 +128,16 @@ and two endpoints to host Swagger and Redoc.
   public class BookController
   {
 
-      [ControllerAction(RequestMethod.Get)]
+      [ControllerAction(Method.Get)]
       public List<Book> List() => [];
 
-      [ControllerAction(RequestMethod.Put)]
+      [ControllerAction(Method.Put)]
       public Book Create(Book book) => book;
 
-      [ControllerAction(RequestMethod.Post)]
+      [ControllerAction(Method.Post)]
       public Book Update(Book book) => book;
 
-      [ControllerAction(RequestMethod.Delete)]
+      [ControllerAction(Method.Delete)]
       public void Delete(int id) { }
 
   }
@@ -219,7 +216,7 @@ an API browser to a layout. For full access to the handlers,
 you may also directly create and link them.
 
 ```csharp
-var swagger = ApiBrowser.SwaggerUI()
+var swagger = ApiBrowser.SwaggerUi()
                         .Url("https://my.company.com/api/openapi.json");
 
 await Host.Create()

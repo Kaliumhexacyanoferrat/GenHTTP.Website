@@ -50,7 +50,6 @@ with dynamic content via GenHTTP.
             .Handler(app)
             .Defaults()
             .Development()
-            .Console()
             .RunAsync();
   
   static List<Value> GetUsers()
@@ -96,3 +95,14 @@ with dynamic content via GenHTTP.
 {{< /tab >}}
 
 {{< /tabs >}}
+
+## Server-Styled Pages
+
+`Renderer.Server` is a built-in renderer using the same theme as the server's own error pages and
+directory listings, so you can render a simple page without shipping a template of your own:
+
+```csharp
+var page = await Renderer.Server.RenderAsync("Maintenance", "<p>We'll be back shortly.</p>");
+
+return request.GetPage(page);
+```

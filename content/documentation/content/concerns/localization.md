@@ -41,7 +41,6 @@ and set the `CultureInfo.CurrentUICulture` accordingly.
             .Handler(app)
             .Defaults()
             .Development()
-            .Console()
             .RunAsync();
 
   public class LocalizedService
@@ -74,7 +73,6 @@ and set the `CultureInfo.CurrentUICulture` accordingly.
             .Handler(app)
             .Defaults()
             .Development()
-            .Console()
             .RunAsync();
   ```
 {{< /tab >}}
@@ -102,13 +100,12 @@ and set the `CultureInfo.CurrentUICulture` accordingly.
             .Handler(app)
             .Defaults()
             .Development()
-            .Console()
             .RunAsync();
 
   public class LocalizedController
   {
 
-      [ControllerAction(RequestMethod.Get)]
+      [ControllerAction(Method.Get)]
       public string Index() => CultureInfo.CurrentUICulture.ToString();
 
   }

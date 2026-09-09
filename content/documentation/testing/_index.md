@@ -7,17 +7,13 @@ cascade:
 ---
 
 {{< cards >}}
-{{< card link="https://www.nuget.org/packages/GenHTTP.Testing/" title="GenHTTP.Modules.Testing" icon="link" >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Testing/" title="GenHTTP.Testing" icon="link" >}}
 {{< /cards >}}
 
 The `GenHTTP.Testing` package provides an easy way to write component tests for
 your application using a test framework of your choice. It provides both the
 ability to host your project in an isolated mode as well as convenience methods
 to run HTTP requests against your server.
-
-{{< callout type="info" >}}
-Projects created via [project templates](../content/templates/) already feature a basic test setup.
-{{< /callout >}}
 
 ## Writing Tests
 
@@ -59,6 +55,19 @@ request.Content = new StringContent("My Body");
 using var response = await runner.GetResponseAsync(request);
 ```
 
+## Choosing an Engine
+
+By default the test host runs on the internal engine. To verify that an application behaves the same
+on another engine, pass a `ServerEngine` - the same enum the server reports through
+[`IServer.ServerEngine`](../server/engines/#detecting-the-engine):
+
+```csharp
+await using var runner = await TestHost.RunAsync(app, engine: ServerEngine.Kestrel);
+```
+
+The `Ioxide` engine depends on `io_uring` and is therefore Linux-only; it cannot be hosted on Windows
+or macOS.
+
 ## Response Handling
 
 The test framework provides some extension methods to simplify reading typed responses.
@@ -73,3 +82,18 @@ var typedNullable = await response.GetOptionalContentAsync<MyType>(); // might b
 
 Those methods allows to deserialize all formats supported by the GenHTTP framework
 (JSON, XML, YAML, form encoded, Protobuf).
+
+```csharp
+var header = response.GetHeader("X-My-Header");
+var contentType = response.GetContentHeader("Content-Type");
+```
+
+## Accessing the Live Server
+
+If a test needs the actual URL the server is listening on (e.g. to hand it to another library),
+use `GetUrl()`. `TestHost.NextPort()` reserves the next free port used by the test infrastructure,
+in case you need to bind additional resources alongside the server under test.
+
+```csharp
+var url = runner.GetUrl("/some/path");
+```

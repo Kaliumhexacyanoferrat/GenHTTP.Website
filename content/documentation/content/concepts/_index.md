@@ -12,6 +12,8 @@ handlers.
 
 {{< cards >}}
 
+  {{< card link="./request-api/" title="Request API" >}}
+
   {{< card link="./routing/" title="Routing" >}}
 
   {{< card link="./definitions/" title="Method Definitions" >}}
@@ -23,7 +25,5 @@ handlers.
   {{< card link="./resources/" title="Resources" >}}
 
   {{< card link="./dependency-injection/" title="Dependency Injection" >}}
-  
-  {{< card link="./caches/" title="Caches" >}}
 
 {{< /cards >}}

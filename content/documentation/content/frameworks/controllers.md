@@ -14,10 +14,6 @@ This framework allows to create APIs by defining and implementing controller cla
 to ASP.NET, you cannot use this framework to dynamically render HTML pages in an MVC style project,
 so this is just another flavor of defining a web API.
 
-{{< callout type="info" >}}
-Controller based APIs can quickly be created by using a [project template](../../templates/).
-{{< /callout >}}
-
 ## Hosting an API
 
 The following example shows how an API controlling an IoT device could look like
@@ -48,7 +44,6 @@ await Host.Create()
           .Handler(api)
           .Defaults()
           .Development()
-          .Console()
           .RunAsync();
 
 public class IotController
@@ -66,7 +61,7 @@ public class IotController
         return new();
     }
     
-    [ControllerAction(RequestMethod.Post)]
+    [ControllerAction(Method.Post)]
     public DeviceInfo Restart() 
     {
         // POST http://localhost:8080/device/restart

@@ -116,7 +116,7 @@ response only, if the request file does not exist in the given directory.
 ```csharp
 var tree = ResourceTree.FromDirectory("...");
 
-var files = Resources.From(tree);
+var files = Assets.From(tree);
 
 var app = Layout.Create()
                 .Add(files)
@@ -192,3 +192,6 @@ await Host.Create()
           .Handler(app)
           .RunAsync();            
 ```
+
+If you are inspecting the handler chain at runtime (e.g. to build a custom OpenAPI explorer), note
+that a layout is built into a `LayoutHandler` instance.

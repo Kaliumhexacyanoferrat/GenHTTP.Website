@@ -14,19 +14,6 @@ be responsible to answer HTTP requests. You will typically start with a [layout]
 that allows to structure your web application and add some of the handlers below to 
 achieve the required functionality to this layout.
 
-The [template projects](./templates/) will already provide a basic project structure that
-you can extend to your needs.
-
-```csharp
-var app = Layout.Create()
-                .Add("resources", ...)
-                .Add("api", ...);
-
-await Host.Create()
-          .Handler(app)
-          .RunAsync();
-```
-
 This page lists all handlers that are provided by the framework. To implement new
 functionality, you can also implement [custom handlers](./handlers/).
 
@@ -45,6 +32,8 @@ functionality, you can also implement [custom handlers](./handlers/).
   {{< card link="./frameworks/static-websites/" title="Static Websites" >}}
 
   {{< card link="./frameworks/single-page-applications/" title="Single Page Applications (SPA)" >}}
+
+  {{< card link="./frameworks/custom/" title="Custom Frameworks" >}}
 
 {{< /cards >}}
 
@@ -68,11 +57,11 @@ functionality, you can also implement [custom handlers](./handlers/).
 
   {{< card link="./concerns/error-handling/" title="Error Handling" >}}
 
+  {{< card link="./concerns/hardening/" title="Hardening" >}}
+
   {{< card link="./concerns/inspection/" title="Inspection" >}}
 
   {{< card link="./concerns/open-api/" title="Open API" >}}
-
-  {{< card link="./concerns/server-caching/" title="Server Caching" >}}
 
   {{< card link="./concerns/range-support/" title="Range Support" >}}
 
@@ -88,7 +77,7 @@ functionality, you can also implement [custom handlers](./handlers/).
 
   {{< card link="./handlers/content/" title="Content" >}}
 
-  {{< card link="./handlers/downloads/" title="Downloads" >}}
+  {{< card link="./handlers/files/" title="Files" >}}
 
   {{< card link="./handlers/layouting/" title="Layouting" >}}
 
@@ -103,8 +92,6 @@ functionality, you can also implement [custom handlers](./handlers/).
   {{< card link="./handlers/reverse-proxy/" title="Reverse Proxies" >}}
 
   {{< card link="./handlers/server-sent-events/" title="Server Sent Events (SSE)" >}}
- 
-  {{< card link="./handlers/static-content/" title="Static Content" >}}
   
   {{< card link="./handlers/virtual-hosts/" title="Virtual Hosts" >}}
   
@@ -123,7 +110,5 @@ functionality, you can also implement [custom handlers](./handlers/).
   {{< card link="./concepts/resources/" title="Resources" >}}
 
   {{< card link="./concepts/dependency-injection/" title="Dependency Injection" >}}
-
-  {{< card link="./concepts/caches/" title="Caches" >}}
 
 {{< /cards >}}

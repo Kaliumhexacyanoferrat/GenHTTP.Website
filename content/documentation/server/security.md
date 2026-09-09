@@ -1,6 +1,6 @@
 ﻿---
 title: Security
-weight: 4
+weight: 5
 description: 'Security considerations and configuration options for GenHTTP applications.'
 cascade:
   type: docs
@@ -12,7 +12,8 @@ when running GenHTTP applications.
 ## General Considerations
 
 GenHTTP is designed to be used as an application server behind a reverse proxy, and therefore does not provide built-in DoS protection (such as IP connection limits or Slowloris prevention).
-However, compared to many other web service frameworks for C#, it is hardened against - and explicitly tested for - typical attack vectors such as request smuggling, header injection, or malformed chunk attacks.
+However, compared to many other web service frameworks for C#, it is hardened against - and explicitly 
+[tested for](https://www.http-probe.com/servers/genhttp.html) - typical attack vectors such as request smuggling, header injection, or malformed chunk attacks.
 
 If you would like to run your GenHTTP application without a reverse proxy in front of it, consider using the [Kestrel-based engine](../engines/) instead.
 
@@ -23,11 +24,10 @@ To add an SSL/TLS secured endpoint, you can use the overload of the `Bind()` met
 ```csharp
 var certificate = X509CertificateLoader.LoadCertificateFromFile("./mycert.pfx");
 
-var server = Server.Create()
-                   .Handler(...)
-                   .Bind(null, 80)
-                   .Bind(null, 443, certificate)
-                   .Build();
+var host = Host.Create()
+               .Handler(...)
+               .Bind(null, 80)
+               .Bind(null, 443, certificate);
 ```
 
 The given certificate will be used to encrypt all incoming requests with. Please note, that
@@ -53,11 +53,10 @@ public class CustomCertificateProvider : ICertificateProvider
     
 }
 
-var server = Server.Create()
-                   .Handler(...)
-                   .Bind(null, 80)
-                   .Bind(null, 443, new CustomCertificateProvider())
-                   .Build();
+var host = Host.Create()
+               .Handler(...)
+               .Bind(null, 80)
+               .Bind(null, 443, new CustomCertificateProvider());
 ```
 
 ### Client Certificates
@@ -86,11 +85,10 @@ public class MyValidator : ICertificateValidator
 
 }
 
-var server = Server.Create()
-                   .Handler(...)
-                   .Bind(null, 80)
-                   .Bind(null, 443, certificate, certificateValidator: new MyValidator())
-                   .Build();
+var host = Host.Create()
+               .Handler(...)
+               .Bind(null, 80)
+               .Bind(null, 443, certificate, certificateValidator: new MyValidator());
 ```
 
 The server will only allow clients that can present a certificate that passes the `Validate`

@@ -17,14 +17,14 @@ whether the data comes from the file system, a database or somewhere else.
 ## Resources
 
 Resources provide a unified way to load and access binary data used by handlers
-to achieve their functionality. For example, the [Download](../../handlers/downloads/) handler
-serves a single file on request - where the content of the file originates from
+to achieve their functionality. For example, the [Files](../../handlers/files/) module
+serves a single resource on request - where the content of the file originates from
 is not important for the handler to achieve its functionality.
 
 ```csharp
 var resource = Resource.FromFile("/var/www/downloads/myvideo.mp4"); // or FromString, FromAssembly, ...
 
-var download = Download.From(resource);
+var download = Asset.From(resource).AsDownload();
 
 await Host.Create()
           .Handler(download)
@@ -32,7 +32,32 @@ await Host.Create()
 ```
 
 By implementing the `IResource` interface, a custom data source can be used to
-provide resources, for example a database or a cloud blob storage.
+provide resources, for example a database or a cloud blob storage:
+
+```csharp
+public interface IResource
+{
+
+    string? Name { get; }
+
+    DateTime? Modified { get; }
+
+    ContentType? ContentType { get; }
+
+    ulong? Length { get; }
+
+    ValueTask<ulong> CalculateChecksumAsync();
+
+    ValueTask<Stream> GetContentAsync();
+
+    ValueTask WriteAsync(IResponseSink sink);
+
+}
+```
+
+`WriteAsync` has no default implementation and must write the resource's content to the given
+sink; `GetContentAsync` is only needed if other code wants a plain `Stream` for the resource
+(e.g. to pass it on to a library that expects one).
 
 ### Built-in Providers
 
@@ -59,6 +84,13 @@ var resource = Resource.FromFile("...")
 await using var content = await resource.GetContentAsync();
 
 var changed = await content.CheckChangedAsync();
+```
+
+If you have not built the resource yet, `BuildWithTracking()` combines both steps:
+
+```csharp
+var resource = Resource.FromFile("...")
+                       .BuildWithTracking();
 ```
 
 ## Resource Trees
@@ -108,7 +140,6 @@ var app = Listing.From(tree);
 await Host.Create()
           .Handler(app)
           .Defaults()
-          .Console()
           .RunAsync();
 ```
 
@@ -128,12 +159,23 @@ var app = SinglePageApplication.From(tree);
 ### Resolving Files
 
 When using resource trees within a handler, you might want to search for
-files based on the remaining path of the request to be routed. The `Find()`
+files based on the remaining path of the request to be routed. The `FindAsync()`
 extension provided by the `IO` module will attempt to find the requested resource
-or resource node from the current routing context and automatically advance the target.
+or resource node from the current [routing target](../routing/) and automatically advance it.
 
 ```csharp
 // either folder or file will be set
 // if both are null, routing did not succeed
-var (folder, file) = await Tree.Find(request.Target);
+var (folder, file) = await Tree.FindAsync(request.Header.Target);
+```
+
+A custom `IResourceContainer` (e.g. to expose a database table as a browsable tree) resolves
+child nodes and resources by `PathSegment` rather than by `string`, so it can be looked up
+without decoding the segment first:
+
+```csharp
+public ValueTask<IResource?> TryGetResourceAsync(PathSegment segment)
+{
+    return FindInDatabase(segment.Decode());
+}
 ```

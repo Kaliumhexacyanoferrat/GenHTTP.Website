@@ -14,10 +14,6 @@ browsers to subscribe to a stream of relevant events without the overhead added 
 of websockets. Therefore, they are useful whenever the server would like to notify the client about changes. This article
 describes how to host an event source in C# using the GenHTTP web server.
 
-{{< callout type="info" >}}
-Event sources can quickly be created by using a [project template](../../templates/).
-{{< /callout >}}
-
 ## Example
 
 The following example will host a SSE endpoint that will stream
@@ -44,7 +40,6 @@ await Host.Create()
           .Handler(app)
           .Defaults()
           .Development()
-          .Console()
           .RunAsync();
 
 static async ValueTask GenerateStock(IEventConnection connection)
@@ -207,16 +202,18 @@ available via `connection.LastEventId`.
 ### Parameters
 
 The `IEventConnection` provides access to the underlying HTTP request via `connection.Request`, so
-you can use query parameters or the request path to pass arguments to your logic:
+you can use query parameters or the request path to pass arguments to your logic. Query and header
+values are read via `GetEntry(...)` rather than indexed by key (see [Request API](../../concepts/request-api/#headers-query-and-cookies)),
+and the current path segment is available via `Header.Target`:
 
 ```csharp
 // http://localhost:8080/events?user=123
 
-var userId = connection.Request.Query["user"];
+var userId = connection.Request.Header.Query.GetEntry("user");
 
 // http://localhost:8080/events/type
 
-var eventType = connection.Request.Target.Current.Value;
+var eventType = connection.Request.Header.Target.Current?.Decode();
 ```
 
 ## Connection Lifecycle
@@ -274,7 +271,7 @@ should be closed immediately by exiting the generator delegate.
 ## Error Handling
 
 By default, the `EventSource` handler will catch any exception that occurs in the generator logic, log
-it to the server companion and instruct the client to reconnect after 10 seconds. As the HTTP headers for the
+it to the server logger and instruct the client to reconnect after 10 seconds. As the HTTP headers for the
 event stream have already been sent, there is no general mechanism to inform the client about errors. This
 can be achieved by adding your own `try/catch` block to your generator:
 

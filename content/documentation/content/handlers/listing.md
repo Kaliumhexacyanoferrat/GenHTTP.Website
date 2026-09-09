@@ -16,7 +16,7 @@ and files read from a [resource tree](../../concepts/resources/) below the speci
 var tree = ResourceTree.FromDirectory("/var/www/documents/");
 
 await Host.Create()
-          .Handler(DirectoryListing.From(tree))
+          .Handler(Listing.From(tree))
           .RunAsync();
 ```
 

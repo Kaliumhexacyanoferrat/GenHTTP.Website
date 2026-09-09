@@ -7,15 +7,11 @@ cascade:
 ---
 
 {{< cards >}}
-{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.SinglePageApplications/" title="GenHTTP.Modules.SPAs" icon="link" >}}
+{{< card link="https://www.nuget.org/packages/GenHTTP.Modules.SinglePageApplications/" title="GenHTTP.Modules.SinglePageApplications" icon="link" >}}
 {{< /cards >}}
 
 This handler provides an easy way to serve a single page application (for example a 
 Vue.js, React, or Angular app) to your clients.
-
-{{< callout type="info" >}}
-Apps can quickly be created by using a [project template](../../templates/).
-{{< /callout >}}
 
 ## Hosting a SPA
 
@@ -25,7 +21,6 @@ var tree = ResourceTree.FromDirectory("/var/html/my-webapp");
 var app = SinglePageApplication.From(tree);
 
 await Host.Create()
-          .Console()
           .Defaults()
           .Handler(app)
           .RunAsync();
