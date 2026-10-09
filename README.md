@@ -1,5 +1,8 @@
 # GenHTTP Website
 
+> [!IMPORTANT]
+> The source of the GenHTTP website is now hosted on [GenHTTP Lambda](https://genhttp.dev/en/source/genhttp).
+
 Public website of the [GenHTTP webserver](https://github.com/Kaliumhexacyanoferrat/GenHTTP), served at [genhttp.org](https://genhttp.org/).
 
 Built with [Hugo](https://gohugo.io/) and the [Hextra](https://github.com/imfing/hextra) theme.
